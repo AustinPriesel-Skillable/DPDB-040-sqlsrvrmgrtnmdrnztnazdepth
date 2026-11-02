@@ -1,2 +1,2 @@
 # sqlsrvrmgrtnmdrnztnazdepth
-SQL Server Migration and Modernization on Azure
+Modernize your SQL Server Estate to Azure SQL
