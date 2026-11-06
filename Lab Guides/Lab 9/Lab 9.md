@@ -184,15 +184,17 @@ Lab 11 uses this identity to call Azure OpenAI without storing an API key in the
 
 In this exercise, you make your account the Microsoft Entra administrator, grant an Entra group read access, and then turn off SQL authentication entirely.
 
-![Set Entra admin, create contained users, enforce Entra-only; Entra MFA sign-in allowed and sqladminuser rejected](./media/image27.png)
-
-*Figure 2: Exercise 1 flow: from SQL authentication to Entra-only access*
+    ![Set Entra admin, create contained users, enforce Entra-only; Entra MFA sign-in allowed and sqladminuser rejected](./media/image27.png)
 
 #### **Task 1: Set the Microsoft Entra administrator**
 
 1.  On the logical server’s left menu, click **Settings > Microsoft Entra ID**.
 
+    ![](./media/image32.png)
+
 2.  Click **Set admin**.
+
+    ![](./media/image33.png)
 
 3.  In the search box, search for your lab account.
 
@@ -200,9 +202,13 @@ In this exercise, you make your account the Microsoft Entra administrator, grant
 
 5.  Click **Select**.
 
+    ![](./media/image34.png)
+
 6.  Leave **Support only Microsoft Entra authentication for this server** cleared for now.
 
 7.  Click **Save**.
+
+    ![](./media/image35.png)
 
 #### **Task 2: Create the SQL-Analysts group**
 
@@ -210,11 +216,20 @@ You will grant database access to an Entra group rather than to individual peopl
 
 1.  In the portal search bar, type +++Microsoft Entra ID+++.
 
+    ![](./media/image36.png)
+
+   
 2.  Under **Services**, select **Microsoft Entra ID**.
+
+     ![](./media/image37.png)
 
 3.  In the left menu, click **Manage > Groups**.
 
+    ![](./media/image38.png)
+
 4.  Search for +++SQL-Analysts+++.
+
+    ![](./media/image38.png)
 
 5.  If the group exists, note its exact name and go to Task 3. Otherwise, continue with the next step.
 
@@ -228,17 +243,25 @@ You will grant database access to an Entra group rather than to individual peopl
 
     - **Membership type:** Assigned
 
+    ![](./media/image40.png)
+
 8.  Under **Members**, click **No members selected**.
 
 9.  Search for and select your lab account.
 
 10. Click **Select**.
 
+    ![](./media/image41.png)
+
 11. Click **Create**.
+
+    ![](./media/image42.png)
 
 12. Wait about one minute for the group to be created before you continue.
 
     **If you cannot create groups:** Some lab tenants do not allow learners to create groups (**+ New group** is greyed out or fails). Ask your instructor to create the group or to give you another lab user’s email address. In Task 4, replace **[SQL-Analysts]** with **[\<that user’s email\>]**. The user then appears as **EXTERNAL_USER** instead of **EXTERNAL_GROUP**.
+
+    ![](./media/image43.png)
 
 #### **Task 3: Connect to the database**
 
@@ -249,11 +272,11 @@ Use **Option A** if SSMS is installed on your lab machine; otherwise, use **Opti
 1.  On your lab machine, open **SQL Server Management Studio**.
 
 2.  In the **Connect to Server** dialog, set **Server name** to +++sql-zava-jd427.database.windows.net+++.
-
+   
 3.  Set **Authentication** to **Microsoft Entra MFA**.
-
+  
 4.  In **User name**, enter your lab account.
-
+    
 5.  Set **Database name** to +++sqldb-zava+++.
 
 6.  Click **Connect**.
@@ -266,25 +289,28 @@ Use **Option A** if SSMS is installed on your lab machine; otherwise, use **Opti
 
 ##### **Option B: Azure portal Query editor (no installation)**
 
-1.  Open the logical server **sql-zava-jd427**.
+1.  Open the logical server **sql-zava-jd427**. Click **sqldb-zava**. In the left menu, expand **Settings** and click **SQL databases**.
 
-2.  In the left menu, expand **Settings** and click **SQL databases**.
+   
+    ![](./media/image43.png)
 
-3.  Click **sqldb-zava**.
+    
+    ![](./media/image44.png)
+    
 
-4.  In the database’s left menu, click **Query editor**.
+2.  In the database’s left menu, click **Query editor**.
 
-    - Use the default (new) editor. Do not click the **Classic experience (preview)** link on the toolbar; it switches back to the older editor.
+    ![](./media/image45.png)
 
-5.  On the **Microsoft Entra authentication** tab, click **Connect as \<your account\>**.
+    
+5.  On the **Microsoft Entra authentication** tab, click **Connect as <your account>**.
+
+    ![](./media/image46.png)
 
 6.  Click **New query**.
 
-7.  Keep this query window open. You run all T-SQL in this lab here.
+    ![](./media/image47.png)
 
-**How to run code:** Type or paste the code into the query window, and then click **Run** (Query editor) or **Execute** (SSMS). Results appear on the **Results** tab and errors on the **Messages** tab. Copy only the code lines, not the grey **T-SQL** or **KQL** label above each code block; pasting the label causes the error **Incorrect syntax near 'SQL'**.
-
-**Tip:** When a script returns more than one result set, the Query editor may show only one of them. If you do not see the result you expect, highlight one SELECT statement and click **Run** to run just that statement.
 
 #### **Task 4: Create contained users for Entra identities**
 
@@ -307,6 +333,8 @@ Use **Option A** if SSMS is installed on your lab machine; otherwise, use **Opti
 
     If you see **Principal 'SQL-Analysts' could not be found**, the group does not exist or the name differs. Return to Task 2, then run the whole script again; nothing after line 1 runs when line 1 fails.
 
+    ![](./media/image49.png)
+
 #### **Task 5: Enforce Entra-only authentication and validate**
 
 1.  In the portal, return to the server’s **Settings > Microsoft Entra ID** page.
@@ -315,7 +343,11 @@ Use **Option A** if SSMS is installed on your lab machine; otherwise, use **Opti
 
 3.  In the **Enable Microsoft Entra-only authentication** dialog, click **Yes**.
 
+    ![](./media/image50.png)
+
 4.  Click **Save**.
+
+    ![](./media/image51.png)
 
 5.  In your query window, run the following check:
 
@@ -328,55 +360,39 @@ Use **Option A** if SSMS is installed on your lab machine; otherwise, use **Opti
 
     **Expected result:** **login_name** is your lab account, **database_user** is **dbo** (you are the Entra admin), **database_name** is **sqldb-zava**, and **customer_rows** is 847.
 
+     ![](./media/image52.png)   
+
 6.  If you use the **Query editor**, test that SQL authentication is now refused:
 
     1.  In the logical server’s left menu, expand **Settings** and click **SQL databases**.
 
     2.  Click **sqldb-zava**.
 
+        ![](./media/image53.png) 
+
     3.  In the database’s left menu, click **Query editor**.
+
+         ![](./media/image54.png) 
 
     4.  On the toolbar, click **Sign out**.
 
     5.  Select the **SQL authentication** tab.
 
-    6.  In **Username**, enter +++sqladminuser+++.
+         ![](./media/image55.png) 
 
-    7.  In **Password**, enter +++P@ssword12345+++.
+    6.  In **Username**, enter +++sqladminuser+++. In **Password**, enter +++P@ssword12345+++.
 
-    8.  Click **Connect**.
+         ![](./media/image55.png) 
 
-    9.  Confirm that the connection is refused with a message that the server supports only Microsoft Entra authentication.
+    7.  Click **Connect**.
 
-7.  If you use **SSMS**, test that SQL authentication is now refused:
+         ![](./media/image56.png)   
 
-    1.  Click **Connect > Database Engine**.
+    8.  Confirm that the conection is refused with a message that the server supports only Microsoft Entra authentication.
 
-    2.  Set **Authentication** to **SQL Server Authentication**.
-
-    3.  In **Login**, enter +++sqladminuser+++.
-
-    4.  In **Password**, enter +++P@ssword12345+++.
-
-    5.  Set **Database name** to +++sqldb-zava+++.
-
-    6.  Click **Connect**.
-
-    7.  Confirm that the sign-in fails with error 18456 (**Login failed for user 'sqladminuser'**) and that the reason states that only Microsoft Entra (Azure Active Directory) authentication is enabled.
-
-    **Note:** If the SQL sign-in succeeds instead, the Entra-only setting was not saved. Save it, wait one minute, and try again.
-
-8.  Take your evidence screenshot of the rejected sign-in.
-
-9.  Sign back in with **Microsoft Entra authentication**. In the Query editor, use **Connect as \<your account\>** on the **Microsoft Entra authentication** tab.
-
-    **Why it matters:** Entra-only authentication removes passwords from the database tier, enables MFA and Conditional Access, and lets you revoke access by removing a user from a group.
-
-    **Evidence to capture:** The Microsoft Entra ID page with Entra-only authentication enabled, the principals query results, and the rejected sign-in.
+        ![](./media/image57.png) 
 
 ### **Exercise 2: Enable SQL auditing and monitoring**
-
-**Duration:** 15 minutes (split around Exercise 3 to allow for log ingestion)
 
 #### **Task 1: Create a Log Analytics workspace**
 
@@ -384,7 +400,11 @@ Use **Option A** if SSMS is installed on your lab machine; otherwise, use **Opti
 
 2.  Under **Services**, select **Log Analytics workspaces**.
 
+    ![](./media/image61.png) 
+
 3.  Click **+ Create**.
+
+    ![](./media/image62.png) 
 
 4.  On the **Basics** tab, set the following values:
 
@@ -396,41 +416,56 @@ Use **Option A** if SSMS is installed on your lab machine; otherwise, use **Opti
 
 5.  Click **Review + Create**.
 
+    ![](./media/image63.png) 
+
 6.  Click **Create**.
 
+    ![](./media/image64.png) 
+
+
 7.  Wait for the deployment to complete. This takes less than a minute.
+
+    ![](./media/image65.png) 
+
 
 #### **Task 2: Enable server auditing and diagnostics**
 
 1.  Open the logical server **sql-zava-jd427**.
 
-    ![](./media/image58.png)
+    ![](./media/image66.png)
 
 2.  In the left menu, click **Security > Auditing**.
 
+    ![](./media/image67.png)
+
 3.  Turn on **Enable Azure SQL Auditing**.
+
+    ![](./media/image68.png)
 
 4.  Under **Audit log destination**, select **Log Analytics**.
 
 5.  Select the **law-zava-jd427** workspace.
 
+    ![](./media/image69.png)
+
 6.  Turn on **Enable Auditing of Microsoft support operations**.
 
-7.  Send these audit logs to the same Log Analytics workspace, **law-zava-jd427**.
+7.  Send these audit logs to the same Log Analytics workspace, **law-zava-jd427**. Click **Save**.
 
-8.  Click **Save**.
+    ![](./media/image70.png)
 
-9.  Open the database **sqldb-zava**.
+8.  Open the database **sqldb-zava**.
 
-10. In the left menu, click **Monitoring > Diagnostic settings**.
+    ![](./media/image71.png)
 
-11. Click **+ Add diagnostic setting**.
 
-    ![](./media/image64.png)
+9. In the left menu, click **Monitoring > Diagnostic settings**. Click **+ Add diagnostic setting**.
 
-12. In **Diagnostic setting name**, enter +++diag-to-law+++.
+    ![](./media/image72.png)
 
-13. Under **Categories**, select the following checkboxes:
+10. In **Diagnostic setting name**, enter +++diag-to-law+++.
+
+11. Under **Categories**, select the following checkboxes:
 
     - **SQL Insights**
 
@@ -440,14 +475,20 @@ Use **Option A** if SSMS is installed on your lab machine; otherwise, use **Opti
 
     - **Deadlocks**
 
-14. Under **Metrics**, select **Basic**.
+    ![](./media/image73.png)
 
-15. Under **Destination details**, select **Send to Log Analytics workspace**.
+12. Under **Metrics**, select **Basic**.
 
-16. Select the **law-zava-jd427** workspace.
+    ![](./media/image74.png)
 
-17. Click **Save**.
+13. Under **Destination details**, select **Send to Log Analytics workspace**.
 
+14. Select the **law-zava-jd427** workspace.
+
+15. Click **Save**.
+
+    ![](./media/image75.png)
+    
     **Note:** Server-level auditing covers every database on the server, including future ones. Do not also enable database-level auditing; it duplicates records.
 
 #### **Task 3: Generate activity**
@@ -465,24 +506,11 @@ Use **Option A** if SSMS is installed on your lab machine; otherwise, use **Opti
     DROP TABLE dbo.AuditDemo;
     SELECT * FROM dbo.TableThatDoesNotExist; -- deliberate error 208
     ```
+    ![](./media/image75.png)
 
-3.  Open a new sign-in prompt. In the Query editor, click **Sign out** on the toolbar; in SSMS, click **Connect > Database Engine**.
+3. Sign back in with **Microsoft Entra authentication**.
 
-4.  Select SQL authentication: the **SQL authentication** tab in the Query editor, or **SQL Server Authentication** in the SSMS **Authentication** list.
-
-5.  Enter the login +++sqladminuser+++.
-
-    - Do not type **sqladminuser** into the query window; it is a login name, not a T-SQL statement.
-
-6.  Enter the password +++P@ssword12345+++.
-
-7.  If you use SSMS, set **Database name** to +++sqldb-zava+++.
-
-8.  Click **Connect**. The sign-in fails and is recorded as a failed sign-in against the database. The metric in Task 5 also counts it.
-
-9.  Repeat steps 3 to 8 once, so that two failed sign-ins are recorded.
-
-10. Sign back in with **Microsoft Entra authentication**.
+    ![](./media/image46.png)
 
     **Query editor users:** a sign-in rejected by the Query editor may not be recorded as a database authentication failure, so the failed sign-in query in Task 4 may return no rows. That is expected; note it in your evidence and continue.
 
@@ -492,31 +520,35 @@ Use **Option A** if SSMS is installed on your lab machine; otherwise, use **Opti
 
 1.  On the portal **Home** page, click **Log Analytics workspaces**.
 
-    ![](./media/image70.png)
+    ![](./media/image78.png)
 
 2.  Click **law-zava-jd427**.
 
+    ![](./media/image79.png)
+
 3.  In the left menu, select **Logs**.
 
-    ![](./media/image72.png)
+    ![](./media/image80.png)
 
 4.  If the **Welcome to Log Analytics** window opens, close it.
 
-    ![](./media/image73.png)
+    ![](./media/image81.png)
 
 5.  If the **Queries hub** window opens, close it.
 
-    ![](./media/image74.png)
+    ![](./media/image82.png)
 
 6.  Turn off the **Agent** toggle.
 
-    ![](./media/image75.png)
+    ![](./media/image83.png)
 
 7.  At the top right of the query pane, open the **Simple mode** drop-down list.
 
+    ![](./media/image84.png)
+
 8.  Select **KQL mode**.
 
-    ![](./media/image76.png)
+    ![](./media/image85.png)
 
 9.  Paste the following query into the query pane:
 
@@ -530,10 +562,12 @@ Use **Option A** if SSMS is installed on your lab machine; otherwise, use **Opti
               client_ip_s, succeeded_s, statement_s
     | order by TimeGenerated desc
     ```
-
+    
 10. Click **Run**.
 
 11. In the results, find your **SELECT**, **CREATE TABLE** and **DROP TABLE** statements with your account name.
+
+    ![](./media/image86.png)
 
 12. Replace the query with the following query:
 
@@ -554,15 +588,19 @@ Use **Option A** if SSMS is installed on your lab machine; otherwise, use **Opti
 
     - If neither query returns rows, wait 5 minutes and run both queries again. Audit data takes 5 to 10 minutes to arrive.
 
+    ![](./media/image87.png)    
+
 #### **Task 5: Monitor and manage the operational environment**
 
 Auditing answers “who did what”. Operational monitoring answers “is the database healthy, and is anything getting worse”.
 
 1.  Open the database **sqldb-zava**.
 
-    ![](./media/image80.png)
+    ![](./media/image88.png)
 
 2.  In the left menu, click **Monitoring > Metrics**.
+
+    ![](./media/image89.png)
 
 3.  Set **Metric** to **App CPU percentage**.
 
@@ -572,7 +610,7 @@ Auditing answers “who did what”. Operational monitoring answers “is the da
 
     - In the time range picker at the top right, select **Last hour**.
  
-        ![](./media/image82.png)
+        ![](./media/image90.png)
 
 5.  Click **+ Add metric**.
 
@@ -580,17 +618,25 @@ Auditing answers “who did what”. Operational monitoring answers “is the da
 
     - Set **Aggregation** to **Avg**.
 
+    ![](./media/image91.png)
+
 6.  Click **+ Add metric** again.
 
     - Set **Metric** to **Failed Connections : User Errors**.
 
     - Set **Aggregation** to **Sum**.
 
+    ![](./media/image92.png)
+
 7. In the left menu, click **Monitoring > Alerts**.
 
     - Click **+ Create > Alert rule**.
 
+        ![](./media/image93.png)
+
     - On the **Condition** tab, select the **Failed Connections : User Errors** signal.
+
+         ![](./media/image94.png)
 
 8. Under **Alert logic**, set the following values:
 
@@ -603,9 +649,7 @@ Auditing answers “who did what”. Operational monitoring answers “is the da
     - **Unit:** Count
 
     - **Threshold value:** +++5+++
-
-    ![](./media/image86.png)
-
+    
 7. Under **When to evaluate**, set the following values:
 
     - **Check every:** 1 minute
@@ -614,35 +658,54 @@ Auditing answers “who did what”. Operational monitoring answers “is the da
 
     - Review the estimated cost in the **Preview** pane (about USD 0.10 per month).
 
+     ![](./media/image95.png)
+
 8. Skip the **Actions** tab. Add an action group with your email address only if your instructor asks you to.
 
 9. Click the **Details** tab.
 
-10. Set **Severity** to **2 - Warning**.
+    - Set **Severity** to **2 - Warning**.
 
-11. Set **Alert rule name** to +++alert-failed-connections+++.
+    - Set **Alert rule name** to +++alert-failed-connections+++.
 
-12. Click **Review + create**.
+10. Click **Review + create**.
 
-13. Click **Create**.
+     ![](./media/image96.png)
 
-14. In the database’s left menu, click **Intelligent performance > Query performance insight**.
+11. Click **Create**.
 
-15. Review the top queries by CPU.
+     ![](./media/image97.png)
 
-    ![](./media/image91.png)
+     ![](./media/image98.png)
 
-16. If the page shows “There is no performance data available”, wait a few minutes and click **Refresh**. The chart fills once Query Store has collected data.
+12. In the database’s left menu, click **Intelligent performance > Query performance insight**.
 
-17. Click **Intelligent performance > Automatic tuning**.
+13. Review the top queries by CPU.
+
+    ![](./media/image100.png)
+
+14. If the page shows “There is no performance data available”, wait a few minutes and click **Refresh**. The chart fills once Query Store has collected data.
+
+     ![](./media/image99.png)
+
+15. Click **Intelligent performance > Automatic tuning**.
+
+    ![](./media/image101.png)
 
     - For **FORCE PLAN**, set **Desired state** to **ON**.
 
+    ![](./media/image102.png)
+
+
 18. Click **Apply**.
+
+    ![](./media/image103.png)
 
 19. In the **Do you want to continue?** dialog, click **OK**.
 
 20. Confirm that **Current state** for **FORCE PLAN** is **ON**. It shows **Inherited from server** or **Forced by user**; both are correct.
+
+    ![](./media/image104.png)
 
 21. Return to your query window.
 
@@ -661,29 +724,37 @@ Auditing answers “who did what”. Operational monitoring answers “is the da
 
     **Expected result:** Query Store **actual_state_desc** is **READ_WRITE**, and **FORCE_LAST_GOOD_PLAN** **actual_state_desc** is **ON**. In the Query editor, run each **SELECT** statement separately if only one result set is shown.
 
-### **Exercise 3: Configure Microsoft Defender for SQL**
+    ![](./media/image105.png)
 
-**Duration:** 10 minutes
+### **Exercise 3: Configure Microsoft Defender for SQL**
 
 #### **Task 1: Enable Defender for SQL**
 
 1.  Open the database **sqldb-zava**.
 
-    ![](./media/image98.png)
+    ![](./media/image106.png)
 
 2.  In the left menu, click **Security > Microsoft Defender for Cloud**.
 
 3.  Click **Enable**.
 
+    ![](./media/image107.png)
+
 4.  Wait 1 to 2 minutes, then refresh the page.
 
 5.  Confirm that the page shows **Microsoft Defender for SQL: On** and **Enabled at the server-level**.
 
+    ![](./media/image108.png)
+
 6.  Under **Microsoft Defender for SQL**, click **Settings**.
+
+    ![](./media/image109.png)
 
 7.  Confirm that vulnerability assessment uses the **Express configuration** (the default; it needs no storage account).
 
     - If vulnerability assessment is off, or shows the classic configuration with no storage account, switch it to the express configuration and click **Save**. Otherwise, scans never produce results.
+
+    ![](./media/image110.png)
 
     **Note:** Email notifications for security alerts are set for the whole subscription in **Defender for Cloud > Environment settings >** your subscription **> Email notifications**. You do not need to change them for this lab.
 
@@ -710,15 +781,21 @@ Auditing answers “who did what”. Operational monitoring answers “is the da
 
     **Expected result:** a row with **database_name** **sqldb-zava**, **SalesLT**, **Customer**, **SELECT** and **GRANT**. If **database_name** is **master**, or there is no row, select **sqldb-zava** in your query tool and run the script again.
 
-    **RETAKE SCREENSHOT (Exercise 3, Task 2, step 1):** the results list sys objects instead of the expected SalesLT.Customer row (sqldb-zava, SalesLT, Customer, SELECT, GRANT). Remove this note after replacing the image.
+    ![](./media/image111.png)
 
 2.  Return to the database’s **Security > Microsoft Defender for Cloud** page.
 
 3.  Under **Vulnerabilities on this database**, click **Scan now**.
 
+    ![](./media/image121.png)
+
 4.  Wait for the scan to finish. This usually takes 1 to 5 minutes.
 
+    ![](./media/image112.png)
+
 5.  Click **View database vulnerability summary**.
+
+    ![](./media/image113.png)
 
 6.  On the **Vulnerability Assessment** page, confirm that the **Last scan time** is later than the time you ran the **GRANT**.
 
@@ -726,11 +803,13 @@ Auditing answers “who did what”. Operational monitoring answers “is the da
 
     - If the latest scan is still in progress, wait, and then click **Refresh**.
 
+    ![](./media/image114.png)
+
 7.  On the **Findings** tab, clear any severity or status filter.
 
 8.  In the search box, enter +++PUBLIC+++.
 
-9.  Open the finding **Excessive permissions should not be granted to PUBLIC role on objects or columns** (rule VA1054).
+9.  Open the finding **Minimal set of principals should be members of fixed low impact database roles in SQL databases** (rule VA2109).
 
 10. Review its description, the query results (**SalesLT.Customer**, **SELECT**) and the remediation script.
 
@@ -739,18 +818,39 @@ Auditing answers “who did what”. Operational monitoring answers “is the da
     **T-SQL**
 
     ```
-    REVOKE SELECT ON SalesLT.Customer FROM public;
+    GRANT SELECT ON SalesLT.Customer TO public;   -- every user inherits this
+
+    -- Confirm the grant exists; this also wakes a paused serverless database
+    SELECT DB_NAME() AS database_name,
+       OBJECT_SCHEMA_NAME(major_id) AS schema_name,
+       OBJECT_NAME(major_id) AS object_name,
+       permission_name, state_desc
+    FROM sys.database_permissions
+    WHERE grantee_principal_id = DATABASE_PRINCIPAL_ID('public')
+    AND class = 1;   -- object-level permissions
+
     ```
+    ![](./media/image111.png)
 
 12. Return to the **Vulnerability Assessment** page.
 
+    ![](./media/image112.png)
+
 13. Open a finding that lists configuration you intend to keep: **VA2109 - Minimal set of principals should be members of fixed low impact database roles in SQL databases**. It lists **SQL-Analysts** in **db_datareader**, which you granted on purpose in Exercise 1.
+
+    ![](./media/image113.png)
 
 14. Click **Add all results as baseline**.
 
+    ![](./media/image115.png)
+
 15. In the **Set baseline** dialog, click **Yes**.
 
+    ![](./media/image116.png)
+
 16. Confirm that the result status shows **In Baseline**.
+
+    ![](./media/image117.png)
 
 17. Click **Scan** again.
 
@@ -758,23 +858,29 @@ Auditing answers “who did what”. Operational monitoring answers “is the da
 
 19. Click the **Passed** tab.
 
+    ![](./media/image118.png)
+
 20. Confirm that the PUBLIC finding (VA1054) now appears under **Passed** checks.
 
 21. Confirm that the baselined finding (VA2109) shows **Passed per custom baseline**.
 
     **Where is the firewall rule finding?** Server-level firewall rules are stored in the master database, so the check that flags your **AllowMyPC** rule (VA2065) appears in the server’s (master) results, not in **sqldb-zava**. You can view it on the logical server’s **Security > Microsoft Defender for Cloud** page. Baselining it there is optional.
 
+     ![](./media/image123.png)
+
 ##### **If the vulnerability count still shows 0**
 
-- **No scan has completed yet.** Click **Scan now**, wait for the notification (1 to 5 minutes), and then open **View database vulnerability summary**. Ignore the **Recommendations (0)** counter; it is not used in this lab.
+    - **No scan has completed yet.** Click **Scan now**, wait for the notification (1 to 5 minutes), and then open **View database vulnerability summary**. Ignore the **Recommendations (0)** counter; it is not used in this lab.
 
-- **The scan ran before the GRANT.** Run the confirmation query again, and then scan again.
+    - **The scan ran before the GRANT.** Run the confirmation query again, and then scan again.
 
-- **The GRANT ran in master.** In the Query editor, the connection is always to the database you opened it from; in SSMS, check the database drop-down on the toolbar.
+    - **The GRANT ran in master.** In the Query editor, the connection is always to the database you opened it from; in SSMS, check the database drop-down on the toolbar.
 
-- **Defender is still provisioning, or vulnerability assessment is not configured.** On the Defender for Cloud page, confirm **On** and **Enabled at the server-level**, and then check **Settings** for the express configuration (Task 1, step 7). If you enabled Defender less than 2 minutes ago, wait, refresh the page, and scan again.
+    - **Defender is still provisioning, or vulnerability assessment is not configured.** On the Defender for Cloud page, confirm **On** and **Enabled at the server-level**, and then check **Settings** for the express configuration (Task 1, step 7). If you enabled Defender less than 2 minutes ago, wait, refresh the page, and scan again.
 
-- **A filter hides the finding.** Clear the search box and any severity filter, and look in both the failed and passed lists.
+    - **A filter hides the finding.** Clear the search box and any severity filter, and look in both the failed and passed lists.
+
+     ![](./media/image119.png)
 
 ### **Review your lab resources**
 
@@ -789,3 +895,5 @@ Auditing answers “who did what”. Operational monitoring answers “is the da
     - **law-zava-jd427** (Log Analytics workspace)
 
     **Do not delete these resources.** Lab 10 and Lab 11 use them.
+
+    ![](./media/image120.png)
