@@ -318,8 +318,6 @@ WHERE major_id = OBJECT_ID('dbo.ProductEmbeddings');
 
 Embeddings can leak the meaning of the text they encode, so they inherit the sensitivity of their source. Product data is public; customer or HR text would need the Lab 10 controls. Do not grant **EXECUTE** on the external model to **AiSearchUsers**: the search procedures call it as owner, so applications cannot send arbitrary text to the model.
 
-**Evidence to capture:** Completed decision table, the table in Object Explorer, and the row count.
-
 ![](./media/image15.png)
 
 ### **Exercise 2: Load and Query Vector Data**
@@ -459,8 +457,6 @@ ORDER BY distance;
 ```
 
 "More like this" reuses a stored vector, so it needs no model call at query time.
-
-**Evidence to capture:** Completed results table and the similar-products output.
 
 ![](./media/image22.png)
 
@@ -724,8 +720,6 @@ ORDER BY s.distance;
 Newer vector index versions take the number of results from **SELECT TOP (n) WITH APPROXIMATE**; earlier preview releases used **TOP_N** inside **VECTOR_SEARCH** and now return “does not support explicit TOP_N parameter”. If **WITH APPROXIMATE** gives a syntax error on your server, remove those two words. At this size the approximate results should match the exact results from Exercise 2. If your release makes the table read-only while a vector index exists, drop the index before changing data.
 
 ![](./media/image30.png)
-
-**Evidence to capture:** Timing results, the cache hit, the Query Store output and your indexing decision.
 
 ### **Cleanup**
 
