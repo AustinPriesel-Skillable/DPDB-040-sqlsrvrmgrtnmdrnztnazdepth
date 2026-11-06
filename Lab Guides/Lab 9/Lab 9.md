@@ -32,13 +32,11 @@ This is the first of three connected labs. Lab 10 adds governance and data prote
 
 ### **Getting started: Set up your environment**
 
-**Duration:** 8 minutes
-
-**Portal tip:** Resource menus in the portal are grouped and collapsed. When a step says **Security > Networking**, click the **>** arrow next to **Security** to expand it, then click **Networking**. You can also type the page name in the menu’s **Search** box.
-
 #### **Task 1: Create the Azure SQL Database**
 
-1.  Open [**portal.azure.com**](https://portal.azure.com/).
+1.  Open +++https://portal.azure.com/+++.
+
+    ![](./media/image1.png)
 
 2.  Sign in with your lab account.
 
@@ -84,9 +82,9 @@ This is the first of three connected labs. Lab 10 adds governance and data prote
 
     - **Confirm password:** +++P@ssword12345+++
 
-    ![](./media/image6.png)
-
 9.  Click **OK**.
+
+    ![](./media/image6.png)
 
 10. Set **Want to use SQL elastic pool?** to **No**.
 
@@ -98,25 +96,25 @@ This is the first of three connected labs. Lab 10 adds governance and data prote
 
 13. Set **Service tier** to **General Purpose**.
 
-14. Set **Compute tier** to **Serverless**.
+    - Set **Compute tier** to **Serverless**.
 
-15. Set **Max vCores** to **2**.
+    - Set **Max vCores** to **2**.
 
-16. Set **Auto-pause delay** to **1 hour**.
-
-17. Click **Apply**.
+    - Set **Auto-pause delay** to **1 hour**.
+ 
+14. Click **Apply**.
 
     ![](./media/image8.png)
 
-18. Set **Backup storage redundancy** to **Locally-redundant backup storage**.
+15. Set **Backup storage redundancy** to **Locally-redundant backup storage**.
 
     ![](./media/image9.png)
 
-19. Click the **Networking** tab.
+16. Click the **Networking** tab.
 
     ![](./media/image11.png)
 
-20. Set the following values:
+17. Set the following values:
 
     - **Connectivity method:** Public endpoint
 
@@ -126,31 +124,31 @@ This is the first of three connected labs. Lab 10 adds governance and data prote
 
     ![](./media/image12.png)
 
-21. Click the **Security** tab.
+18. Click the **Security** tab.
 
     ![](./media/image13.png)
 
-22. Set **Enable Microsoft Defender for SQL** to **Not now**. You enable it in Exercise 3.
+19. Set **Enable Microsoft Defender for SQL** to **Not now**. You enable it in Exercise 3.
 
-23. Click the **Additional settings** tab.
+20. Click the **Additional settings** tab.
 
      ![](./media/image14.png)
 
-24. Under **Data source**, set **Use existing data** to **Sample**. This loads the AdventureWorksLT sample database.
+21. Under **Data source**, set **Use existing data** to **Sample**. This loads the AdventureWorksLT sample database.
 
-25. In the confirmation dialog, click **OK**.
+22. In the confirmation dialog, click **OK**.
 
     ![](./media/image15.png)
 
-26. Click **Review + create**.
+23. Click **Review + create**.
 
     ![](./media/image16.png)
 
-27. On the **Review + create** tab, click **Create**.
+24. On the **Review + create** tab, click **Create**.
 
     ![](./media/image17.png)
 
-28. Wait for the deployment to complete. This takes 2 to 3 minutes.
+25. Wait for the deployment to complete. This takes 2 to 3 minutes.
 
     ![](./media/image18.png)
 
@@ -192,38 +190,33 @@ Azure SQL blocks all public connections until a firewall rule allows them. In th
 
 10. Confirm that **Minimum TLS version** is **1.2**.
 
-    ![](./media/image26.png)
-
 11. Under **Outbound networking**, confirm that **Restrict outbound networking** shows **Restrictions disabled**. Lab 11 calls Azure OpenAI from the database and needs this outbound access.
 
-    ![](./media/image27.png)
+    ![](./media/image26.png)
+ 
 #### **Task 3: Turn on the server’s managed identity**
 
 Lab 11 uses this identity to call Azure OpenAI without storing an API key in the database. Turning it on now means Lab 11 can start straight away.
 
 1.  In the logical server’s left menu, click **Security > Identity**.
 
-    ![](./media/image25.png)
+    ![](./media/image27.png)
 
 2.  Under **System assigned managed identity**, set **Status** to **On**.
 
-    ![](./media/image25.png)
+    ![](./media/image28.png)
 
 3.  Click **Save**.
 
-    ![](./media/image25.png)
+    ![](./media/image29.png)
 
 4.  Confirm that **Status** is **On** and that **Save** is greyed out, which means the change is saved.
 
-    ![](./media/image26.png)
+    ![](./media/image30.png)
 
 ### **Exercise 1: Configure Microsoft Entra authentication**
 
-**Duration:** 14 minutes
-
 In this exercise, you make your account the Microsoft Entra administrator, grant an Entra group read access, and then turn off SQL authentication entirely.
-
-    ![Set Entra admin, create contained users, enforce Entra-only; Entra MFA sign-in allowed and sqladminuser rejected](./media/image27.png)
 
 #### **Task 1: Set the Microsoft Entra administrator**
 
@@ -267,7 +260,7 @@ You will grant database access to an Entra group rather than to individual peopl
 
 4.  Search for +++SQL-Analysts+++.
 
-    ![](./media/image38.png)
+    ![](./media/image39.png)
 
 5.  If the group exists, note its exact name and go to Task 3. Otherwise, continue with the next step.
 
@@ -329,10 +322,6 @@ Use **Option A** if SSMS is installed on your lab machine; otherwise, use **Opti
 
 1.  Open the logical server **sql-zava-jd427**. Click **sqldb-zava**. In the left menu, expand **Settings** and click **SQL databases**.
 
-   
-    ![](./media/image43.png)
-
-    
     ![](./media/image44.png)
     
 
@@ -419,8 +408,6 @@ Use **Option A** if SSMS is installed on your lab machine; otherwise, use **Opti
          ![](./media/image55.png) 
 
     6.  In **Username**, enter +++sqladminuser+++. In **Password**, enter +++P@ssword12345+++.
-
-         ![](./media/image55.png) 
 
     7.  Click **Connect**.
 
@@ -544,7 +531,7 @@ Use **Option A** if SSMS is installed on your lab machine; otherwise, use **Opti
     DROP TABLE dbo.AuditDemo;
     SELECT * FROM dbo.TableThatDoesNotExist; -- deliberate error 208
     ```
-    ![](./media/image75.png)
+    ![](./media/image76.png)
 
 3. Sign back in with **Microsoft Entra authentication**.
 
@@ -561,8 +548,6 @@ Use **Option A** if SSMS is installed on your lab machine; otherwise, use **Opti
     ![](./media/image78.png)
 
 2.  Click **law-zava-jd427**.
-
-    ![](./media/image79.png)
 
 3.  In the left menu, select **Logs**.
 
@@ -714,19 +699,21 @@ Auditing answers “who did what”. Operational monitoring answers “is the da
 
      ![](./media/image97.png)
 
+12.    After creating the alert rule, select Alert rules to view the alert rules configured for the Azure SQL database and verify that the newly created rule appears in the list. 
+
      ![](./media/image98.png)
 
-12. In the database’s left menu, click **Intelligent performance > Query performance insight**.
+13. In the database’s left menu, click **Intelligent performance > Query performance insight**.
 
-13. Review the top queries by CPU.
+14. Review the top queries by CPU.
 
     ![](./media/image100.png)
 
-14. If the page shows “There is no performance data available”, wait a few minutes and click **Refresh**. The chart fills once Query Store has collected data.
+15. If the page shows “There is no performance data available”, wait a few minutes and click **Refresh**. The chart fills once Query Store has collected data.
 
      ![](./media/image99.png)
 
-15. Click **Intelligent performance > Automatic tuning**.
+16. Click **Intelligent performance > Automatic tuning**.
 
     ![](./media/image101.png)
 
@@ -735,19 +722,19 @@ Auditing answers “who did what”. Operational monitoring answers “is the da
     ![](./media/image102.png)
 
 
-18. Click **Apply**.
+17. Click **Apply**.
 
     ![](./media/image103.png)
 
-19. In the **Do you want to continue?** dialog, click **OK**.
+18. In the **Do you want to continue?** dialog, click **OK**.
 
-20. Confirm that **Current state** for **FORCE PLAN** is **ON**. It shows **Inherited from server** or **Forced by user**; both are correct.
+19. Confirm that **Current state** for **FORCE PLAN** is **ON**. It shows **Inherited from server** or **Forced by user**; both are correct.
 
     ![](./media/image104.png)
 
-21. Return to your query window.
+20. Return to your query window.
 
-22. Run the following code to confirm that Query Store and automatic tuning are active:
+21. Run the following code to confirm that Query Store and automatic tuning are active:
 
     **T-SQL**
 
@@ -904,7 +891,7 @@ Auditing answers “who did what”. Operational monitoring answers “is the da
 
     **Where is the firewall rule finding?** Server-level firewall rules are stored in the master database, so the check that flags your **AllowMyPC** rule (VA2065) appears in the server’s (master) results, not in **sqldb-zava**. You can view it on the logical server’s **Security > Microsoft Defender for Cloud** page. Baselining it there is optional.
 
-     ![](./media/image123.png)
+    ![](./media/image123.png)
 
 ##### **If the vulnerability count still shows 0**
 
@@ -918,7 +905,7 @@ Auditing answers “who did what”. Operational monitoring answers “is the da
 
     - **A filter hides the finding.** Clear the search box and any severity filter, and look in both the failed and passed lists.
 
-     ![](./media/image119.png)
+![](./media/image119.png)
 
 ### **Review your lab resources**
 
