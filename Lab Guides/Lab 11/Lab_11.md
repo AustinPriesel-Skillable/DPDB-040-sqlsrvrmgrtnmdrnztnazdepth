@@ -27,19 +27,17 @@ By the end of this lab, you will be able to:
 
 ### **Setup: Connect the Database to Azure OpenAI**
 
-**Duration:** 12 minutes
-
-**Values used in this lab:** server **sql-zava-jd427**, database **sqldb-zava** and resource group **ResourceGroup1** (all from Lab 9), and your Foundry resource **aif-zava-\<lab-user-number\>** (Task 0). Wherever a script shows **\<lab-user-number\>**, replace it, including the angle brackets, with your lab user number.
+**Values used in this lab:** server **sql-zava-jd427**, database **sqldb-zava** and resource group **ResourceGroup1** (all from Lab 9), and your Foundry resource **aif-zava-<lab-user-number>** (Task 0). Wherever a script shows **<lab-user-number>**, replace it, including the angle brackets, with your lab user number.
 
 #### **Task 0: Create the Foundry resource and deploy the embedding model**
 
-Each learner needs a Microsoft Foundry resource in the lab resource group. Resource names must be unique across Azure, so include your **lab user number**: the digits in your sign-in name (for example, User1-67029880 gives **aif-zava-67029880**). If your instructor provides a resource instead, skip this task and use that name wherever this guide shows **aif-zava-\<lab-user-number\>**.
+Each learner needs a Microsoft Foundry resource in the lab resource group. Resource names must be unique across Azure, so include your **lab user number**: the digits in your sign-in name (for example, User1-67029880 gives **aif-zava-67029880**). If your instructor provides a resource instead, skip this task and use that name wherever this guide shows **aif-zava-<lab-user-number>**.
 
 1. In the Azure portal, click **Foundry** under **Azure services**.
 
 2. Click **Create a Foundry resource**.
 
-3. Set **Resource group** to +++ResourceGroup1+++ (your Lab 9 resource group), **Name** to **aif-zava-\<lab-user-number\>** and **Region** to the server’s region (East US in Lab 9). If asked for a default project name, use +++proj-zava+++.
+3. Set **Resource group** to +++ResourceGroup1+++ (your Lab 9 resource group), **Name** to **aif-zava-<lab-user-number>** and **Region** to the server’s region (East US in Lab 9). If asked for a default project name, use +++proj-zava+++.
 
 4. If the portal reports that the sub-domain name is already used, add a digit (for example **aif-zava-670298801**). Note the exact name: every later step uses it.
 
@@ -99,7 +97,7 @@ az cognitiveservices account deployment list -g $RG -n $AOAI_NAME \
 
     ![](./media/image11.png)
 
-**CLI alternative (Cloud Shell, Bash). In Bash, never leave \<…\> placeholders: \< is read as a file redirect.**
+**CLI alternative (Cloud Shell, Bash). In Bash, never leave <…> placeholders: < is read as a file redirect.**
 
 ```bash
 # Replace the example Foundry name with your own before running
@@ -126,7 +124,7 @@ az role assignment list --assignee $SQL_MI --scope $AOAI_ID -o table
 
 **CREATE EXTERNAL MODEL** stores the endpoint, credential and model as one database object, and **AI_GENERATE_EMBEDDINGS** calls it from any query. This replaces hand-written REST calls and JSON parsing.
 
-**Before you run:** replace **\<lab-user-number\>** in all three places (the credential name, **LOCATION** and **CREDENTIAL**), for example with **Ctrl+H** in the editor, so the address matches your Foundry resource exactly. Then run the whole script at once without highlighting anything. Any text in angle brackets is a placeholder; if one is left in, the script fails with “Only alphanumeric characters… are allowed in the hostname”.
+**Before you run:** replace **<lab-user-number>** in all three places (the credential name, **LOCATION** and **CREDENTIAL**), for example with **Ctrl+H** in the editor, so the address matches your Foundry resource exactly. Then run the whole script at once without highlighting anything. Any text in angle brackets is a placeholder; if one is left in, the script fails with “Only alphanumeric characters… are allowed in the hostname”.
 
 **T-SQL**
 
@@ -192,25 +190,7 @@ SELECT VECTORPROPERTY(@v, 'Dimensions') AS dims;
 
 ### **Exercise 1: Create Vector-Enabled Database Objects**
 
-**Duration:** 12 minutes
-
-#### **Task 1: Design the AI-ready architecture**
-
-Before creating objects, make the design decisions an architect would document. Review the reference flow, then complete the last column of the decision table with your partner.
-
-1. **Ingest:** product data is written by the order system as usual.
-
-2. **Embed:** a background job (in this lab, a batched T-SQL **UPDATE** using **AI_GENERATE_EMBEDDINGS**) generates embeddings for new or changed text and stores them in a separate table.
-
-3. **Retrieve:** the application calls a governed stored procedure that combines vector, keyword and relational filters.
-
-4. **Generate (optional):** the top results are passed to a chat model as grounding context (RAG).
-
-5. **Operate:** auditing, Defender, Query Store and policies from Labs 9 and 10 apply to every step.
-
-**Discussion:** Business Critical includes a readable secondary (connect with +++ApplicationIntent=ReadOnly+++), and Hyperscale supports named replicas. Either lets AI retrieval run without competing with order processing.
-
-#### **Task 2: Explore the vector type**
+#### **Task 1: Explore the vector type**
 
 **T-SQL**
 
@@ -227,7 +207,7 @@ Lower distance means more similar for all three metrics. Azure OpenAI embeddings
 
 ![](./media/image13.png)
 
-#### **Task 3: Create the vector table**
+#### **Task 2: Create the vector table**
 
 **T-SQL**
 
@@ -251,7 +231,7 @@ CREATE TABLE dbo.ProductEmbeddings (
 - **Stored source text:** **Description** records exactly what was embedded, so re-embedding after a model change is reproducible.
 - **Relational columns alongside the vector:** **Category** and **ListPrice** allow filtering before ranking.
 
-#### **Task 4: Insert source records**
+#### **Task 3: Insert source records**
 
 **T-SQL**
 
@@ -278,7 +258,7 @@ SELECT COUNT(*) AS products FROM dbo.ProductEmbeddings;
 
 ![](./media/image14.png)
 
-#### **Task 5: Apply governance to AI objects**
+#### **Task 4: Apply governance to AI objects**
 
 **T-SQL**
 
@@ -319,8 +299,6 @@ Embeddings can leak the meaning of the text they encode, so they inherit the sen
 ![](./media/image15.png)
 
 ### **Exercise 2: Load and Query Vector Data**
-
-**Duration:** 13 minutes
 
 #### **Task 1: Generate and store embeddings**
 
@@ -366,9 +344,9 @@ FROM dbo.ProductEmbeddings;
 
 ![](./media/image17.png)
 
-#### **Task 3: Run a semantic search (need to check again)**
+#### **Task 3: Run a semantic search**
 
-**Important:** T-SQL variables last for one batch. Run each script below as a single selection.
+**Question1: a bike that copes with rough mountain trails**
 
 **T-SQL**
 
@@ -385,9 +363,16 @@ ORDER BY distance;
 
 Rerun with each question below, changing only **@question**, and record the results.
 
-[TABLE]
+| Question | Top result | Distance | Relevant? |
+|---|---|---|---|
+| a bike that copes with rough mountain trails | | | |
+| something to keep my hands warm on cold morning rides | | | |
+| carry water on a long ride | | | |
+| a gift for a child learning to ride | | | |
 
-![](./media/image18.png)
+   ![](./media/image18.png)
+
+**Question2: something to keep my hands warm on cold morning rides**
 
 **T-SQL**
 
@@ -402,7 +387,9 @@ FROM dbo.ProductEmbeddings
 ORDER BY distance;
 ```
 
-![](./media/image19.png)
+   ![](./media/image19.png)
+
+**Question3: carry water on a long ride**
 
 **T-SQL**
 
@@ -417,7 +404,9 @@ FROM dbo.ProductEmbeddings
 ORDER BY distance;
 ```
 
-![](./media/image20.png)
+   ![](./media/image20.png)
+
+**Question4: a gift for a child learning to ride**
 
 **T-SQL**
 
@@ -432,9 +421,7 @@ FROM dbo.ProductEmbeddings
 ORDER BY distance;
 ```
 
-![](./media/image21.png)
-
-Discuss: at what distance do results stop being relevant? That value becomes a cut-off that lets an assistant answer "no match" instead of guessing.
+   ![](./media/image21.png)
 
 #### **Task 4: Find similar products**
 
@@ -454,13 +441,9 @@ WHERE ProductName NOT LIKE N'Mountain-200%'
 ORDER BY distance;
 ```
 
-"More like this" reuses a stored vector, so it needs no model call at query time.
-
-![](./media/image22.png)
+   ![](./media/image22.png)
 
 ### **Exercise 3: Perform Hybrid and Semantic Search**
-
-**Duration:** 16 minutes
 
 #### **Task 1: Create a full-text index**
 
@@ -476,7 +459,7 @@ CREATE FULLTEXT INDEX ON dbo.ProductEmbeddings (Description LANGUAGE 1033)
 SELECT FULLTEXTCATALOGPROPERTY('ftc_products', 'PopulateStatus') AS populate_status;   -- 0 = done
 ```
 
-![](./media/image23.png)
+   ![](./media/image23.png)
 
 #### **Task 2: Compare keyword and semantic search**
 
@@ -499,9 +482,9 @@ FROM dbo.ProductEmbeddings
 ORDER BY distance;
 ```
 
-Run it again with +++keep my hands warm on cold rides+++. Keyword search wins on exact model, size and colour; semantic search wins on concepts. Hybrid search combines both.
+Note: Run it again with +++keep my hands warm on cold rides+++. Keyword search wins on exact model, size and colour; semantic search wins on concepts. Hybrid search combines both.
 
-![](./media/image24.png)
+   ![](./media/image24.png)
 
 #### **Task 3: Filtered semantic search**
 
@@ -521,7 +504,7 @@ ORDER BY distance;
 
 Relational predicates narrow the candidates before ranking: fewer distance calculations and more relevant results.
 
-![](./media/image25.png)
+   ![](./media/image25.png)
 
 #### **Task 4: Hybrid search with Reciprocal Rank Fusion**
 
@@ -591,7 +574,7 @@ Compare **vector_rank** and **keyword_rank**: exact-model queries are led by key
 
 **Expected result:** each of the first two searches returns five products with **vector_rank**, **keyword_rank** and **rrf_score**. The governed test returns three products and then a row saying “The SELECT permission was denied…”. That denial is the point of the test: the app can search but cannot read the table. **who_am_i** must show **dbo**; if it shows AssistantApp, run +++REVERT;+++.
 
-![](./media/image26.png)
+   ![](./media/image26.png)
 
 #### **Task 5: Optimize performance for AI and operational workloads**
 
@@ -614,7 +597,7 @@ SET STATISTICS TIME OFF;
 
 In the **Messages** tab, compare elapsed times. The model call (A) dominates; the vector ranking (B) takes a few milliseconds for about 290 rows.
 
-![](./media/image27.png)
+   ![](./media/image27.png)
 
 ##### **5b. Cache repeated question vectors**
 
@@ -656,7 +639,7 @@ SET STATISTICS TIME OFF;
 
 The second call skips the model entirely. Popular questions in a shopping assistant repeat often, so this removes most latency and cost.
 
-![](./media/image28.png)
+   ![](./media/image28.png)
 
 ##### **5c. Find the most expensive queries with Query Store**
 
@@ -681,13 +664,11 @@ ORDER BY SUM(rs.avg_cpu_time * rs.count_executions) DESC;
 
 Find the query containing **VECTOR_DISTANCE**. Its CPU and reads are small, confirming the SQL side scales well at this size; the cost to watch is the model call and the full scan as the table grows.
 
-![](./media/image29.png)
+   ![](./media/image29.png)
 
 ##### **5d. Decide on vector indexing and workload isolation**
 
-[TABLE]
-
-Record your decision for Ridgeline Cycles (about 290 rows today, 500,000 support-article chunks planned), and how you would keep AI reads away from order processing (Exercise 1, Task 1).
+Record your decision for Zava (about 290 rows today, 500,000 support-article chunks planned), and how you would keep AI reads away from order processing (Exercise 1, Task 1).
 
 **T-SQL (optional)**
 
@@ -717,7 +698,7 @@ ORDER BY s.distance;
 
 Newer vector index versions take the number of results from **SELECT TOP (n) WITH APPROXIMATE**; earlier preview releases used **TOP_N** inside **VECTOR_SEARCH** and now return “does not support explicit TOP_N parameter”. If **WITH APPROXIMATE** gives a syntax error on your server, remove those two words. At this size the approximate results should match the exact results from Exercise 2. If your release makes the table read-only while a vector index exists, drop the index before changing data.
 
-![](./media/image30.png)
+   ![](./media/image30.png)
 
 ### **Cleanup**
 
@@ -749,9 +730,9 @@ az cognitiveservices account list-deleted -o table
 az cognitiveservices account purge -l eastus -g ResourceGroup1 -n aif-zava-67029880   # use your resource name
 ```
 
-![](./media/image31.png)
+   ![](./media/image31.png)
 
-![](./media/image32.png)
+   ![](./media/image32.png)
 
 If you used a shared Foundry resource from your instructor instead of creating your own, ask them to remove your server’s role assignment from it.
 
