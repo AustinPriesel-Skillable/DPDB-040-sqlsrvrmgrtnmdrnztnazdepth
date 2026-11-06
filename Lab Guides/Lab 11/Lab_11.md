@@ -1,4 +1,4 @@
-# Lab 11: Enable AI-Ready Capabilities in Azure SQL
+# **Lab 11: Enable AI-Ready Capabilities in Azure SQL**
 
 **Introduction**
 
@@ -73,29 +73,43 @@ az cognitiveservices account deployment list -g $RG -n $AOAI_NAME \
 
 #### **Task 1: Grant the server identity access to the model**
 
-1. Open the server +++sql-zava-jd427+++, click **Security > Identity**, and confirm that **System assigned managed identity** is **On**. If it is **Off** (for example, because Lab 9 was done with an older guide), set it to **On** and click **Save**.
+1.  In the logical server’s left menu, click **Security > Identity**.
 
-2. In the Azure portal, open your Foundry resource **aif-zava-\<lab-user-number\>**: type its name in the top search bar and select it under **Resources** (or go to **Foundry > All resources**). Do not use the Microsoft Foundry overview page; IAM is only on the resource itself.
+   ![](./media/image35.png)
 
-    ![](./media/image6.png)
+2.  Under **System assigned managed identity**, set **Status** to **On**.
 
-3. Select **Access control (IAM) > + Add > Add role assignment**.
+   ![](./media/image36.png)
 
-    ![](./media/image7.png)
+3.  Click **Save**.
 
-4. Select +++Cognitive Services OpenAI User+++, then **Next**.
+   ![](./media/image37.png)
 
-    ![](./media/image8.png)
+4.  Confirm that **Status** is **On** and that **Save** is greyed out, which means the change is saved.
 
-5. Select **Managed identity**, click **+ Select members**, set **Managed identity** to **SQL server**, select +++sql-zava-jd427+++, click **Select**, then click **Review + assign** twice. Do not choose Foundry or Foundry project.
+   ![](./media/image38.png)
 
-    ![](./media/image9.png)
+5. In the Azure portal, open your Foundry resource **aif-zava-\<lab-user-number\>**: type its name in the top search bar and select it under **Resources** (or go to **Foundry > All resources**). Do not use the Microsoft Foundry overview page; IAM is only on the resource itself.
 
-    ![](./media/image10.png)
+   ![](./media/image6.png)
 
-6. Confirm the assignment: on the **Role assignments** tab, click **Refresh** and search for +++sql-zava-jd427+++. It must be listed under **Cognitive Services OpenAI User** with type **SQL server**. Wait about 5 minutes before Task 2.
+6. Select **Access control (IAM) > + Add > Add role assignment**.
 
-    ![](./media/image11.png)
+   ![](./media/image7.png)
+
+7. Select +++Cognitive Services OpenAI User+++, then **Next**.
+
+   ![](./media/image8.png)
+
+8. Select **Managed identity**, click **+ Select members**, set **Managed identity** to **SQL server**, select +++sql-zava-jd427+++, click **Select**, then click **Review + assign** twice. Do not choose Foundry or Foundry project.
+
+   ![](./media/image9.png)
+
+   ![](./media/image10.png)
+
+9. Confirm the assignment: on the **Role assignments** tab, click **Refresh** and search for +++sql-zava-jd427+++. It must be listed under **Cognitive Services OpenAI User** with type **SQL server**. Wait about 5 minutes before Task 2.
+
+   ![](./media/image11.png)
 
 **CLI alternative (Cloud Shell, Bash). In Bash, never leave <…> placeholders: < is read as a file redirect.**
 
