@@ -208,8 +208,6 @@ Before creating objects, make the design decisions an architect would document. 
 
 5. **Operate:** auditing, Defender, Query Store and policies from Labs 9 and 10 apply to every step.
 
-[TABLE]
-
 **Discussion:** Business Critical includes a readable secondary (connect with +++ApplicationIntent=ReadOnly+++), and Hyperscale supports named replicas. Either lets AI retrieval run without competing with order processing.
 
 #### **Task 2: Explore the vector type**
