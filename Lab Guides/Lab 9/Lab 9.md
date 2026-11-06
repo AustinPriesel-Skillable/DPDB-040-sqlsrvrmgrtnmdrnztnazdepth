@@ -2,7 +2,7 @@
 
 **Introduction**
 
-You’ve just joined Ridgeline Cycles as the database engineer. Ridgeline sells bikes, components and riding gear, and its order system runs on Azure SQL Database. The company plans to launch an AI shopping assistant on the same data, but a pre-launch security review stopped the project: developers share one SQL administrator password, nothing records who reads or changes customer data, and nobody is alerted to attacks or problems.
+You’ve just joined Zava Cycles as the database engineer. Zava sells bikes, components and riding gear, and its order system runs on Azure SQL Database. The company plans to launch an AI shopping assistant on the same data, but a pre-launch security review stopped the project: developers share one SQL administrator password, nothing records who reads or changes customer data, and nobody is alerted to attacks or problems.
 
 Your job is to deploy the database the right way and close those gaps. Microsoft Entra ID will replace shared passwords, every sign-in and query will be audited, Microsoft Defender for SQL will watch for attacks and misconfigurations, and monitoring will tell you when the database is unhealthy.
 
@@ -58,6 +58,8 @@ This is the first of three connected labs. Lab 10 adds governance and data prote
 
     - Do not select **SQL database (Free offer)**; it opens a different wizard with free-tier limits.
 
+    ![](./media/image4.png)
+
 6.  On the **Basics** tab, set the following values:
 
     - **Resource group:** Select your lab resource group.
@@ -65,6 +67,8 @@ This is the first of three connected labs. Lab 10 adds governance and data prote
     - **Database name:** Enter +++sqldb-zava+++.
 
 7.  Under **Server**, click **Create new**.
+
+    ![](./media/image5.png)
 
 8.  In the **Create SQL Database Server** pane, set the following values:
 
@@ -80,6 +84,8 @@ This is the first of three connected labs. Lab 10 adds governance and data prote
 
     - **Confirm password:** +++P@ssword12345+++
 
+    ![](./media/image6.png)
+
 9.  Click **OK**.
 
 10. Set **Want to use SQL elastic pool?** to **No**.
@@ -87,6 +93,8 @@ This is the first of three connected labs. Lab 10 adds governance and data prote
 11. Set **Workload environment** to **Development**.
 
 12. Under **Compute + storage**, click **Configure database**.
+
+    ![](./media/image7.png)
 
 13. Set **Service tier** to **General Purpose**.
 
@@ -102,6 +110,8 @@ This is the first of three connected labs. Lab 10 adds governance and data prote
 
 18. Set **Backup storage redundancy** to **Locally-redundant backup storage**.
 
+    ![](./media/image9.png)
+
 19. Click the **Networking** tab.
 
     ![](./media/image11.png)
@@ -114,21 +124,35 @@ This is the first of three connected labs. Lab 10 adds governance and data prote
 
     - **Add current client IP address:** Yes
 
+    ![](./media/image12.png)
+
 21. Click the **Security** tab.
+
+    ![](./media/image13.png)
 
 22. Set **Enable Microsoft Defender for SQL** to **Not now**. You enable it in Exercise 3.
 
 23. Click the **Additional settings** tab.
 
+     ![](./media/image14.png)
+
 24. Under **Data source**, set **Use existing data** to **Sample**. This loads the AdventureWorksLT sample database.
 
 25. In the confirmation dialog, click **OK**.
 
+    ![](./media/image15.png)
+
 26. Click **Review + create**.
+
+    ![](./media/image16.png)
 
 27. On the **Review + create** tab, click **Create**.
 
+    ![](./media/image17.png)
+
 28. Wait for the deployment to complete. This takes 2 to 3 minutes.
+
+    ![](./media/image18.png)
 
 #### **Task 2: Confirm network security**
 
@@ -136,28 +160,43 @@ Azure SQL blocks all public connections until a firewall rule allows them. In th
 
 1.  Click **Go to resource**.
 
+    ![](./media/image19.png)
+
 2.  On the database **Overview** page, click the **Server name** link to open the logical server.
+
+    ![](./media/image20.png)
 
 3.  In the left menu, click **Security > Networking**.
 
+    ![](./media/image21.png)
+
 4.  On the **Public access** tab, confirm that **Public network access** is set to **Selected networks**.
 
-5.  Under **Firewall rules**, confirm that one rule named **ClientIPAddress_\<date\>** exists.
+5.  Under **Firewall rules**, confirm that one rule named **ClientIPAddress_<date>** exists.
 
     ![](./media/image22.png)
 
 6.  In the **Rule name** box, rename the rule to +++AllowMyPC+++.
 
+    ![](./media/image23.png)
+
 7.  Confirm that **Allow Azure services and resources to access this server** is cleared. Leaving it selected would let resources in any Azure tenant reach the server’s login prompt.
 
+    ![](./media/image24.png)
+
 8.  Click **Save**.
+
+    ![](./media/image25.png)
 
 9.  Click the **Connectivity** tab.
 
 10. Confirm that **Minimum TLS version** is **1.2**.
 
+    ![](./media/image26.png)
+
 11. Under **Outbound networking**, confirm that **Restrict outbound networking** shows **Restrictions disabled**. Lab 11 calls Azure OpenAI from the database and needs this outbound access.
 
+    ![](./media/image27.png)
 #### **Task 3: Turn on the server’s managed identity**
 
 Lab 11 uses this identity to call Azure OpenAI without storing an API key in the database. Turning it on now means Lab 11 can start straight away.
@@ -218,7 +257,6 @@ You will grant database access to an Entra group rather than to individual peopl
 
     ![](./media/image36.png)
 
-   
 2.  Under **Services**, select **Microsoft Entra ID**.
 
      ![](./media/image37.png)
@@ -267,7 +305,7 @@ You will grant database access to an Entra group rather than to individual peopl
 
 Use **Option A** if SSMS is installed on your lab machine; otherwise, use **Option B**. Later steps say “in your query window”; this means the tool you chose.
 
-##### **Option A: SQL Server Management Studio (SSMS)**
+##### **Option A: SQL Server Management Studio (SSMS)** (Optional)
 
 1.  On your lab machine, open **SQL Server Management Studio**.
 
@@ -894,6 +932,6 @@ Auditing answers “who did what”. Operational monitoring answers “is the da
 
     - **law-zava-jd427** (Log Analytics workspace)
 
-    **Do not delete these resources.** Lab 10 and Lab 11 use them.
+      ![](./media/image120.png)
 
-    ![](./media/image120.png)
+**Note: Do not delete these resources.** Lab 10 and Lab 11 use them.
