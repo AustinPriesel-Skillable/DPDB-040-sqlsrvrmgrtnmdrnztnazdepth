@@ -1,0 +1,2171 @@
+==============================================================================
+IDLx MARKDOWN CLEANUP - CHANGE LOG
+==============================================================================
+Source file : C:\Users\SP\PycharmProjects\Austin_Instruction_CleanUp\DPDB-040-sqlsrvrmgrtnmdrnztnazdepth\Lab Guides\Lab 3\Lab 3.md
+Run time    : 2026-11-11 09:15:15
+Mode        : APPLIED
+Script      : idlx_cleanup.py v1.2
+Ruleset     : IDLx Markdown Formatting Rules v1.42
+
+Auto-fix changes : 273
+Review flags     : 45
+Not logged       : 40 (P1=38, SK-12=2) - applied but excluded by policy
+
+==============================================================================
+ACTION REQUIRED - LINES FLAGGED FOR REVIEW
+==============================================================================
+
+These lines were NOT changed. Each needs a human decision.
+Resolve all ERROR items before publishing.
+
+------------------------------------------------------------------------------
+SEVERITY: ERROR  (1 finding(s))
+------------------------------------------------------------------------------
+
+  Line 1     [SK-01] Front matter present and delimited
+      REASON : no YAML front matter block found
+      TEXT   : (file start)
+
+------------------------------------------------------------------------------
+SEVERITY: WARNING  (2 finding(s))
+------------------------------------------------------------------------------
+
+  Line 3     [SK-06] Heading hierarchy skips a level
+      REASON : jumped from h1 to h3
+      TEXT   : ### Lab overview
+
+  Line 191   [SK-25] Type-text not wrapped in +++
+      REASON : bare URL in instruction text - wrap in +++ if learner types it
+      TEXT   : https://www.microsoft.com/sql-server/sql-server-downloads
+
+------------------------------------------------------------------------------
+SEVERITY: INFO  (42 finding(s))
+------------------------------------------------------------------------------
+
+  Line 1     [SK-16] Relative image path
+      REASON : image base URL verified against GitHub - a sample image resolved successfully
+      TEXT   : https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203
+
+  Line 46    [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A computer screen with red and blue text Description automatically gen
+
+  Line 56    [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer screen Description automatically generated
+
+  Line 60    [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A computer screen shot of a program Description automatically generate
+
+  Line 72    [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer program Description automatically generated
+
+  Line 110   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A computer screen with a black background Description automatically ge
+
+  Line 116   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A computer screen with text on it Description automatically generated
+
+  Line 185   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer program Description automatically generated
+
+  Line 197   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a software update Description automatically generated
+
+  Line 211   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A black screen with blue text Description automatically generated
+
+  Line 213   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A black screen with white lines Description automatically generated
+
+  Line 215   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A black screen with a black background Description automatically gener
+
+  Line 293   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A computer screen with text on it Description automatically generated
+
+  Line 306   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A computer screen shot of a computer screen Description automatically 
+
+  Line 310   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screen shot of a computer Description automatically generated
+
+  Line 323   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screen shot of a computer Description automatically generated
+
+  Line 336   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A computer screen with text on it Description automatically generated
+
+  Line 351   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screen shot of a computer program Description automatically generate
+
+  Line 362   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screen shot of a computer Description automatically generated
+
+  Line 370   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 379   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 404   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screen shot of a computer code Description automatically generated
+
+  Line 410   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A computer screen with blue text Description automatically generated
+
+  Line 420   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer program Description automatically generated
+
+  Line 426   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A computer screen with text on it Description automatically generated
+
+  Line 451   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A computer screen with blue text Description automatically generated
+
+  Line 513   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 515   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 537   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screen shot of a computer Description automatically generated
+
+  Line 553   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screen shot of a computer Description automatically generated
+
+  Line 563   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screen shot of a computer Description automatically generated
+
+  Line 571   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 580   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A computer screen shot of a computer Description automatically generat
+
+  Line 588   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A computer screen with blue text Description automatically generated
+
+  Line 634   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A computer screen with text Description automatically generated
+
+  Line 640   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screen shot of a computer Description automatically generated
+
+  Line 658   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screen shot of a computer Description automatically generated
+
+  Line 670   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screen shot of a computer Description automatically generated
+
+  Line 681   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screen shot of a computer code Description automatically generated
+
+  Line 689   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screen shot of a computer Description automatically generated
+
+  Line 697   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A computer screen with text Description automatically generated
+
+  Line 709   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screen shot of a computer code Description automatically generated
+
+==============================================================================
+SUMMARY BY RULE
+==============================================================================
+
+FLAGGED FOR REVIEW:
+  SK-01       1 finding(s)  Front matter present and delimited
+  SK-06       1 finding(s)  Heading hierarchy skips a level
+  SK-14      41 finding(s)  Auto-generated alt text
+  SK-16       1 finding(s)  Relative image path
+  SK-25       1 finding(s)  Type-text not wrapped in +++
+
+AUTO-FIX APPLIED:
+  SK-04       2 change(s)   Bold-only label -> ### heading
+  SK-07      54 change(s)   Numbered step -> '1.' format
+  SK-10      68 change(s)   Unwrap hard-wrapped prose
+  SK-13b     41 change(s)   Rejoin image split across lines
+  SK-16      59 change(s)   Relative image path
+  SK-46       1 change(s)   Angle-bracket placeholder -> *{curly}*
+  SK-47       3 change(s)   Code in type-text -> inline code
+  SK-47b     11 change(s)   Single-line fence -> inline code
+  SK-53      14 change(s)   Two blank lines close every list
+  SK-57b      1 change(s)   Prose 'Tip:' label -> alert block
+  SK-81       7 change(s)   Compact bullet list (no padding blank lines)
+  SK-82       7 change(s)   Exercise -> h2, Task -> h3 heading hierarchy
+  SK-91       4 change(s)   Objectives list uses bullets, never numbering
+  SK-96       1 change(s)   Standalone dictated payload -> inline code
+
+==============================================================================
+DETAILED CHANGES
+==============================================================================
+
+
+------------------------------------------------------------------------------
+PHASE 2 - Character & Token Cleanup
+------------------------------------------------------------------------------
+
+[SK-47] Line 88  |  Code in type-text -> inline code
+    note: single line of code moved from type-text to inline code (backticks)
+    BEFORE:     +++dotnet tool update -g microsoft.sqlpackage+++
+    AFTER :     `dotnet tool update -g microsoft.sqlpackage`
+
+[SK-46] Line 125  |  Angle-bracket placeholder -> *{curly}*
+    note: angle-bracket placeholder converted to italicised curly braces
+    BEFORE: 1.  In the PowerShell window, run the block below. Replace \<initials\>
+    AFTER : 1.  In the PowerShell window, run the block below. Replace *{initials}*
+
+[SK-47] Line 192  |  Code in type-text -> inline code
+    note: single line of code moved from type-text to inline code (backticks)
+    BEFORE:     +++az provider show -n Microsoft.Sql --query registrationState -o tsv+++
+    AFTER :     `az provider show -n Microsoft.Sql --query registrationState -o tsv`
+
+[SK-47] Line 208  |  Code in type-text -> inline code
+    note: single line of code moved from type-text to inline code (backticks)
+    BEFORE:     +++az sql db list -g $rg -s $server --query "[?name!='master'].{name:name, status:status}" -o table+++
+    AFTER :     `az sql db list -g $rg -s $server --query "[?name!='master'].{name:name, status:status}" -o table`
+
+
+------------------------------------------------------------------------------
+PHASE 3 - Block-Level Structure
+------------------------------------------------------------------------------
+
+[SK-13b] Line 62  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A computer screen with red and blue text Description automatically
+        |     generated](./media/image1.png)
+    AFTER:
+        |     ![A computer screen with red and blue text Description automatically generated](./media/image1.png)
+
+[SK-13b] Line 76  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A screenshot of a computer screen Description automatically
+        |     generated](./media/image2.png)
+    AFTER:
+        |     ![A screenshot of a computer screen Description automatically generated](./media/image2.png)
+
+[SK-13b] Line 80  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A computer screen shot of a program Description automatically
+        |     generated](./media/image4.png)
+    AFTER:
+        |     ![A computer screen shot of a program Description automatically generated](./media/image4.png)
+
+[SK-13b] Line 94  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A screenshot of a computer program Description automatically
+        |     generated](./media/image6.png)
+    AFTER:
+        |     ![A screenshot of a computer program Description automatically generated](./media/image6.png)
+
+[SK-13b] Line 139  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A computer screen with a black background Description automatically
+        |     generated](./media/image8.png)
+    AFTER:
+        |     ![A computer screen with a black background Description automatically generated](./media/image8.png)
+
+[SK-13b] Line 147  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A computer screen with text on it Description automatically
+        |     generated](./media/image9.png)
+    AFTER:
+        |     ![A computer screen with text on it Description automatically generated](./media/image9.png)
+
+[SK-13b] Line 229  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A screenshot of a computer program Description automatically
+        |     generated](./media/image15.png)
+    AFTER:
+        |     ![A screenshot of a computer program Description automatically generated](./media/image15.png)
+
+[SK-13b] Line 252  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A screenshot of a software update Description automatically
+        |     generated](./media/image17.png)
+    AFTER:
+        |     ![A screenshot of a software update Description automatically generated](./media/image17.png)
+
+[SK-13b] Line 266  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A black screen with blue text Description automatically
+        |     generated](./media/image19.png)
+    AFTER:
+        |     ![A black screen with blue text Description automatically generated](./media/image19.png)
+
+[SK-13b] Line 268  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A black screen with white lines Description automatically
+        |     generated](./media/image20.png)
+    AFTER:
+        |     ![A black screen with white lines Description automatically generated](./media/image20.png)
+
+[SK-13b] Line 270  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A black screen with a black background Description automatically
+        |     generated](./media/image21.png)
+    AFTER:
+        |     ![A black screen with a black background Description automatically generated](./media/image21.png)
+
+[SK-13b] Line 356  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A computer screen with text on it Description automatically
+        |     generated](./media/image24.png)
+    AFTER:
+        |     ![A computer screen with text on it Description automatically generated](./media/image24.png)
+
+[SK-13b] Line 376  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A computer screen shot of a computer screen Description automatically
+        |     generated](./media/image25.png)
+    AFTER:
+        |     ![A computer screen shot of a computer screen Description automatically generated](./media/image25.png)
+
+[SK-13b] Line 384  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A screen shot of a computer Description automatically
+        |     generated](./media/image26.png)
+    AFTER:
+        |     ![A screen shot of a computer Description automatically generated](./media/image26.png)
+
+[SK-13b] Line 399  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A screen shot of a computer Description automatically
+        |     generated](./media/image27.png)
+    AFTER:
+        |     ![A screen shot of a computer Description automatically generated](./media/image27.png)
+
+[SK-13b] Line 411  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A computer screen with text on it Description automatically
+        |     generated](./media/image28.png)
+    AFTER:
+        |     ![A computer screen with text on it Description automatically generated](./media/image28.png)
+
+[SK-13b] Line 428  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A screen shot of a computer program Description automatically
+        |     generated](./media/image29.png)
+    AFTER:
+        |     ![A screen shot of a computer program Description automatically generated](./media/image29.png)
+
+[SK-13b] Line 442  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A screen shot of a computer Description automatically
+        |     generated](./media/image30.png)
+    AFTER:
+        |     ![A screen shot of a computer Description automatically generated](./media/image30.png)
+
+[SK-13b] Line 451  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A screenshot of a computer Description automatically
+        |     generated](./media/image32.png)
+    AFTER:
+        |     ![A screenshot of a computer Description automatically generated](./media/image32.png)
+
+[SK-13b] Line 464  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A screenshot of a computer Description automatically
+        |     generated](./media/image33.png)
+    AFTER:
+        |     ![A screenshot of a computer Description automatically generated](./media/image33.png)
+
+[SK-13b] Line 498  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A screen shot of a computer code Description automatically
+        |     generated](./media/image35.png)
+    AFTER:
+        |     ![A screen shot of a computer code Description automatically generated](./media/image35.png)
+
+[SK-13b] Line 506  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A computer screen with blue text Description automatically
+        |     generated](./media/image36.png)
+    AFTER:
+        |     ![A computer screen with blue text Description automatically generated](./media/image36.png)
+
+[SK-13b] Line 516  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A screenshot of a computer program Description automatically
+        |     generated](./media/image37.png)
+    AFTER:
+        |     ![A screenshot of a computer program Description automatically generated](./media/image37.png)
+
+[SK-13b] Line 524  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A computer screen with text on it Description automatically
+        |     generated](./media/image38.png)
+    AFTER:
+        |     ![A computer screen with text on it Description automatically generated](./media/image38.png)
+
+[SK-13b] Line 553  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A computer screen with blue text Description automatically
+        |     generated](./media/image40.png)
+    AFTER:
+        |     ![A computer screen with blue text Description automatically generated](./media/image40.png)
+
+[SK-13b] Line 617  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A screenshot of a computer Description automatically
+        |     generated](./media/image42.png)
+    AFTER:
+        |     ![A screenshot of a computer Description automatically generated](./media/image42.png)
+
+[SK-13b] Line 619  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A screenshot of a computer Description automatically
+        |     generated](./media/image43.png)
+    AFTER:
+        |     ![A screenshot of a computer Description automatically generated](./media/image43.png)
+
+[SK-13b] Line 646  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A screen shot of a computer Description automatically
+        |     generated](./media/image45.png)
+    AFTER:
+        |     ![A screen shot of a computer Description automatically generated](./media/image45.png)
+
+[SK-13b] Line 665  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A screen shot of a computer Description automatically
+        |     generated](./media/image46.png)
+    AFTER:
+        |     ![A screen shot of a computer Description automatically generated](./media/image46.png)
+
+[SK-13b] Line 677  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A screen shot of a computer Description automatically
+        |     generated](./media/image47.png)
+    AFTER:
+        |     ![A screen shot of a computer Description automatically generated](./media/image47.png)
+
+[SK-13b] Line 689  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A screenshot of a computer Description automatically
+        |     generated](./media/image48.png)
+    AFTER:
+        |     ![A screenshot of a computer Description automatically generated](./media/image48.png)
+
+[SK-13b] Line 699  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A computer screen shot of a computer Description automatically
+        |     generated](./media/image49.png)
+    AFTER:
+        |     ![A computer screen shot of a computer Description automatically generated](./media/image49.png)
+
+[SK-13b] Line 712  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A computer screen with blue text Description automatically
+        |     generated](./media/image50.png)
+    AFTER:
+        |     ![A computer screen with blue text Description automatically generated](./media/image50.png)
+
+[SK-13b] Line 759  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A computer screen with text Description automatically
+        |     generated](./media/image51.png)
+    AFTER:
+        |     ![A computer screen with text Description automatically generated](./media/image51.png)
+
+[SK-13b] Line 766  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A screen shot of a computer Description automatically
+        |     generated](./media/image52.png)
+    AFTER:
+        |     ![A screen shot of a computer Description automatically generated](./media/image52.png)
+
+[SK-13b] Line 791  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A screen shot of a computer Description automatically
+        |     generated](./media/image53.png)
+    AFTER:
+        |     ![A screen shot of a computer Description automatically generated](./media/image53.png)
+
+[SK-13b] Line 805  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A screen shot of a computer Description automatically
+        |     generated](./media/image54.png)
+    AFTER:
+        |     ![A screen shot of a computer Description automatically generated](./media/image54.png)
+
+[SK-13b] Line 817  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A screen shot of a computer code Description automatically
+        |     generated](./media/image55.png)
+    AFTER:
+        |     ![A screen shot of a computer code Description automatically generated](./media/image55.png)
+
+[SK-13b] Line 828  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A screen shot of a computer Description automatically
+        |     generated](./media/image56.png)
+    AFTER:
+        |     ![A screen shot of a computer Description automatically generated](./media/image56.png)
+
+[SK-13b] Line 840  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A computer screen with text Description automatically
+        |     generated](./media/image57.png)
+    AFTER:
+        |     ![A computer screen with text Description automatically generated](./media/image57.png)
+
+[SK-13b] Line 854  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A screen shot of a computer code Description automatically
+        |     generated](./media/image58.png)
+    AFTER:
+        |     ![A screen shot of a computer code Description automatically generated](./media/image58.png)
+
+
+------------------------------------------------------------------------------
+PHASE 2 - Character & Token Cleanup
+------------------------------------------------------------------------------
+
+[SK-16] Line 62  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A computer screen with red and blue text Description automatically generated](./media/image1.png)
+    AFTER :     ![A computer screen with red and blue text Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image1.png)
+
+[SK-16] Line 76  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer screen Description automatically generated](./media/image2.png)
+    AFTER :     ![A screenshot of a computer screen Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image2.png)
+
+[SK-16] Line 78  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image3.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image3.png)
+
+[SK-16] Line 80  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A computer screen shot of a program Description automatically generated](./media/image4.png)
+    AFTER :     ![A computer screen shot of a program Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image4.png)
+
+[SK-16] Line 87  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image5.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image5.png)
+
+[SK-16] Line 94  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer program Description automatically generated](./media/image6.png)
+    AFTER :     ![A screenshot of a computer program Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image6.png)
+
+[SK-16] Line 103  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image7.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image7.png)
+
+[SK-16] Line 139  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A computer screen with a black background Description automatically generated](./media/image8.png)
+    AFTER :     ![A computer screen with a black background Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image8.png)
+
+[SK-16] Line 147  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A computer screen with text on it Description automatically generated](./media/image9.png)
+    AFTER :     ![A computer screen with text on it Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image9.png)
+
+[SK-16] Line 175  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image10.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image10.png)
+
+[SK-16] Line 177  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image11.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image11.png)
+
+[SK-16] Line 182  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image12.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image12.png)
+
+[SK-16] Line 188  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image13.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image13.png)
+
+[SK-16] Line 209  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image14.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image14.png)
+
+[SK-16] Line 229  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer program Description automatically generated](./media/image15.png)
+    AFTER :     ![A screenshot of a computer program Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image15.png)
+
+[SK-16] Line 246  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image16.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image16.png)
+
+[SK-16] Line 252  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a software update Description automatically generated](./media/image17.png)
+    AFTER :     ![A screenshot of a software update Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image17.png)
+
+[SK-16] Line 256  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image18.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image18.png)
+
+[SK-16] Line 266  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A black screen with blue text Description automatically generated](./media/image19.png)
+    AFTER :     ![A black screen with blue text Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image19.png)
+
+[SK-16] Line 268  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A black screen with white lines Description automatically generated](./media/image20.png)
+    AFTER :     ![A black screen with white lines Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image20.png)
+
+[SK-16] Line 270  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A black screen with a black background Description automatically generated](./media/image21.png)
+    AFTER :     ![A black screen with a black background Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image21.png)
+
+[SK-16] Line 324  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image22.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image22.png)
+
+[SK-16] Line 332  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image23.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image23.png)
+
+[SK-16] Line 356  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A computer screen with text on it Description automatically generated](./media/image24.png)
+    AFTER :     ![A computer screen with text on it Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image24.png)
+
+[SK-16] Line 376  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A computer screen shot of a computer screen Description automatically generated](./media/image25.png)
+    AFTER :     ![A computer screen shot of a computer screen Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image25.png)
+
+[SK-16] Line 384  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screen shot of a computer Description automatically generated](./media/image26.png)
+    AFTER :     ![A screen shot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image26.png)
+
+[SK-16] Line 399  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screen shot of a computer Description automatically generated](./media/image27.png)
+    AFTER :     ![A screen shot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image27.png)
+
+[SK-16] Line 411  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A computer screen with text on it Description automatically generated](./media/image28.png)
+    AFTER :     ![A computer screen with text on it Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image28.png)
+
+[SK-16] Line 428  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screen shot of a computer program Description automatically generated](./media/image29.png)
+    AFTER :     ![A screen shot of a computer program Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image29.png)
+
+[SK-16] Line 442  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screen shot of a computer Description automatically generated](./media/image30.png)
+    AFTER :     ![A screen shot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image30.png)
+
+[SK-16] Line 446  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image31.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image31.png)
+
+[SK-16] Line 451  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image32.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image32.png)
+
+[SK-16] Line 464  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image33.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image33.png)
+
+[SK-16] Line 487  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image34.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image34.png)
+
+[SK-16] Line 498  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screen shot of a computer code Description automatically generated](./media/image35.png)
+    AFTER :     ![A screen shot of a computer code Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image35.png)
+
+[SK-16] Line 506  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A computer screen with blue text Description automatically generated](./media/image36.png)
+    AFTER :     ![A computer screen with blue text Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image36.png)
+
+[SK-16] Line 516  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer program Description automatically generated](./media/image37.png)
+    AFTER :     ![A screenshot of a computer program Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image37.png)
+
+[SK-16] Line 524  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A computer screen with text on it Description automatically generated](./media/image38.png)
+    AFTER :     ![A computer screen with text on it Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image38.png)
+
+[SK-16] Line 543  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image39.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image39.png)
+
+[SK-16] Line 553  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A computer screen with blue text Description automatically generated](./media/image40.png)
+    AFTER :     ![A computer screen with blue text Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image40.png)
+
+[SK-16] Line 603  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image41.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image41.png)
+
+[SK-16] Line 617  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image42.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image42.png)
+
+[SK-16] Line 619  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image43.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image43.png)
+
+[SK-16] Line 634  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image44.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image44.png)
+
+[SK-16] Line 646  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screen shot of a computer Description automatically generated](./media/image45.png)
+    AFTER :     ![A screen shot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image45.png)
+
+[SK-16] Line 665  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screen shot of a computer Description automatically generated](./media/image46.png)
+    AFTER :     ![A screen shot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image46.png)
+
+[SK-16] Line 677  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screen shot of a computer Description automatically generated](./media/image47.png)
+    AFTER :     ![A screen shot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image47.png)
+
+[SK-16] Line 689  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image48.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image48.png)
+
+[SK-16] Line 699  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A computer screen shot of a computer Description automatically generated](./media/image49.png)
+    AFTER :     ![A computer screen shot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image49.png)
+
+[SK-16] Line 712  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A computer screen with blue text Description automatically generated](./media/image50.png)
+    AFTER :     ![A computer screen with blue text Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image50.png)
+
+[SK-16] Line 759  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A computer screen with text Description automatically generated](./media/image51.png)
+    AFTER :     ![A computer screen with text Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image51.png)
+
+[SK-16] Line 766  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screen shot of a computer Description automatically generated](./media/image52.png)
+    AFTER :     ![A screen shot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image52.png)
+
+[SK-16] Line 791  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screen shot of a computer Description automatically generated](./media/image53.png)
+    AFTER :     ![A screen shot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image53.png)
+
+[SK-16] Line 805  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screen shot of a computer Description automatically generated](./media/image54.png)
+    AFTER :     ![A screen shot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image54.png)
+
+[SK-16] Line 817  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screen shot of a computer code Description automatically generated](./media/image55.png)
+    AFTER :     ![A screen shot of a computer code Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image55.png)
+
+[SK-16] Line 828  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screen shot of a computer Description automatically generated](./media/image56.png)
+    AFTER :     ![A screen shot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image56.png)
+
+[SK-16] Line 840  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A computer screen with text Description automatically generated](./media/image57.png)
+    AFTER :     ![A computer screen with text Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image57.png)
+
+[SK-16] Line 854  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screen shot of a computer code Description automatically generated](./media/image58.png)
+    AFTER :     ![A screen shot of a computer code Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image58.png)
+
+[SK-16] Line 865  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image59.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image59.png)
+
+
+------------------------------------------------------------------------------
+PHASE 3 - Block-Level Structure
+------------------------------------------------------------------------------
+
+[SK-57b] Line 145  |  Prose 'Tip:' label -> alert block
+    note: prose 'NOTE:' label converted to an IDLx Note block
+    BEFORE:     **NOTE: Make sure don’t close the powershell. Keep it open.**
+    AFTER :     >[!Note] Make sure don’t close the powershell. Keep it open.
+
+[SK-47b] Line 328  |  Single-line fence -> inline code
+    note: fenced block held a single line of code - collapsed to inline code
+    BEFORE:
+        |     ```
+        |     sqlcmd -S $src -d ZavaOrders -E -C -Q "SELECT (SELECT COUNT(*) FROM dbo.Customers) AS Customers, (SELECT COUNT(*) FROM dbo.Orders) AS Orders;"
+        |     ```
+    AFTER:
+        |     `sqlcmd -S $src -d ZavaOrders -E -C -Q "SELECT (SELECT COUNT(*) FROM dbo.Customers) AS Customers, (SELECT COUNT(*) FROM dbo.Orders) AS Orders;"`
+
+[SK-47b] Line 370  |  Single-line fence -> inline code
+    note: fenced block held a single line of code - collapsed to inline code
+    BEFORE:
+        |     ```
+        |     sqlpackage /Action:Export /SourceServerName:localhost /SourceDatabaseName:ZavaOrders /SourceTrustServerCertificate:True /TargetFile:C:\Lab3\ZavaOrders.bacpac
+        |     ```
+    AFTER:
+        |     `sqlpackage /Action:Export /SourceServerName:localhost /SourceDatabaseName:ZavaOrders /SourceTrustServerCertificate:True /TargetFile:C:\Lab3\ZavaOrders.bacpac`
+
+[SK-47b] Line 391  |  Single-line fence -> inline code
+    note: fenced block held a single line of code - collapsed to inline code
+    BEFORE:
+        |     ```
+        |     sqlcmd -S localhost -d ZavaOrders -E -C -Q "DROP VIEW dbo.vServerLogins;"
+        |     ```
+    AFTER:
+        |     `sqlcmd -S localhost -d ZavaOrders -E -C -Q "DROP VIEW dbo.vServerLogins;"`
+
+[SK-47b] Line 477  |  Single-line fence -> inline code
+    note: fenced block held a single line of code - collapsed to inline code
+    BEFORE:
+        |     ```
+        |     az sql db list -g $rg -s $server --query "[?name!='master'].{name:name, status:status}" -o table
+        |     ```
+    AFTER:
+        |     `az sql db list -g $rg -s $server --query "[?name!='master'].{name:name, status:status}" -o table`
+
+[SK-47b] Line 494  |  Single-line fence -> inline code
+    note: fenced block held a single line of code - collapsed to inline code
+    BEFORE:
+        |     ```
+        |     az sql db list -g $rg -s $server --query "[?name!='master'].{name:name, status:status}" -o table
+        |     ```
+    AFTER:
+        |     `az sql db list -g $rg -s $server --query "[?name!='master'].{name:name, status:status}" -o table`
+
+[SK-47b] Line 510  |  Single-line fence -> inline code
+    note: fenced block held a single line of code - collapsed to inline code
+    BEFORE:
+        |     ```
+        |     sqlcmd -S $azHost -d ZavaOrders_Offline -U $admin -P $sqlPass -Q "SELECT COUNT(*) AS Orders FROM dbo.Orders;"
+        |     ```
+    AFTER:
+        |     `sqlcmd -S $azHost -d ZavaOrders_Offline -U $admin -P $sqlPass -Q "SELECT COUNT(*) AS Orders FROM dbo.Orders;"`
+
+[SK-47b] Line 670  |  Single-line fence -> inline code
+    note: fenced block held a single line of code - collapsed to inline code
+    BEFORE:
+        |     ```
+        |     sqlcmd -S $azHost -d ZavaOrders_Online -U $admin -P $sqlPass -W -Q "SELECT actual_state_desc FROM sys.database_query_store_options; EXEC sp_updatestats;"
+        |     ```
+    AFTER:
+        |     `sqlcmd -S $azHost -d ZavaOrders_Online -U $admin -P $sqlPass -W -Q "SELECT actual_state_desc FROM sys.database_query_store_options; EXEC sp_updatestats;"`
+
+[SK-47b] Line 690  |  Single-line fence -> inline code
+    note: fenced block held a single line of code - collapsed to inline code
+    BEFORE:
+        |     ```
+        |     sqlcmd -S $src -E -C -W -Q "SELECT DISTINCT j.name FROM msdb.dbo.sysjobs AS j JOIN msdb.dbo.sysjobsteps AS s ON s.job_id = j.job_id WHERE s.database_name = 'ZavaOrders';"
+        |     ```
+    AFTER:
+        |     `sqlcmd -S $src -E -C -W -Q "SELECT DISTINCT j.name FROM msdb.dbo.sysjobs AS j JOIN msdb.dbo.sysjobsteps AS s ON s.job_id = j.job_id WHERE s.database_name = 'ZavaOrders';"`
+
+[SK-47b] Line 805  |  Single-line fence -> inline code
+    note: fenced block held a single line of code - collapsed to inline code
+    BEFORE:
+        |     ```
+        |     Compare-Orders
+        |     ```
+    AFTER:
+        |     `Compare-Orders`
+
+[SK-47b] Line 815  |  Single-line fence -> inline code
+    note: fenced block held a single line of code - collapsed to inline code
+    BEFORE:
+        |     ```
+        |     sqlcmd -S $azHost -d ZavaOrders_Online -U app_orders -P $appPass -W -Q "SET NOCOUNT ON; INSERT dbo.Orders(CustomerID, Amount) VALUES (1, 1.00); SELECT TOP (1) OrderID, Amount, OrderDate FROM dbo.Orders ORDER BY OrderID DESC;"
+        |     ```
+    AFTER:
+        |     `sqlcmd -S $azHost -d ZavaOrders_Online -U app_orders -P $appPass -W -Q "SET NOCOUNT ON; INSERT dbo.Orders(CustomerID, Amount) VALUES (1, 1.00); SELECT TOP (1) OrderID, Amount, OrderDate FROM dbo.Orders ORDER BY OrderID DESC;"`
+
+[SK-47b] Line 838  |  Single-line fence -> inline code
+    note: fenced block held a single line of code - collapsed to inline code
+    BEFORE:
+        |     ```
+        |     sqlcmd -S localhost -E -C -Q "ALTER DATABASE ZavaOrders SET READ_WRITE WITH ROLLBACK IMMEDIATE;"
+        |     ```
+    AFTER:
+        |     `sqlcmd -S localhost -E -C -Q "ALTER DATABASE ZavaOrders SET READ_WRITE WITH ROLLBACK IMMEDIATE;"`
+
+[SK-96] Line 92  |  Standalone dictated payload -> inline code
+    note: a standalone line holding one dictated multi-word phrase converted to inline code so every dictated prompt uses the same wrapper regardless of how its step was worded - backticks render reliably in AI/Copilot surfaces, where Type Text depends on focus the chat box takes away
+    BEFORE:     +++$env:Path += ";$env:USERPROFILE\\dotnet\tools"+++
+    AFTER :     `$env:Path += ";$env:USERPROFILE\\dotnet\tools"`
+
+
+------------------------------------------------------------------------------
+PHASE 4 - Numbering, Headings, Prose
+------------------------------------------------------------------------------
+
+[SK-10] Line 5  |  Unwrap hard-wrapped prose
+    note: joined 5 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | Lab 3 is based on **Module 2: Migration tooling and best practices**. It
+        | covers Microsoft migration tooling, destination-specific approaches,
+        | online versus offline strategies, and cutover planning. It is fully
+        | standalone: it builds its own source database and Azure target, and
+        | reuses nothing from Lab 1 or Lab 2.
+    AFTER:
+        | Lab 3 is based on **Module 2: Migration tooling and best practices**. It covers Microsoft migration tooling, destination-specific approaches, online versus offline strategies, and cutover planning. It is fully standalone: it builds its own source database and Azure target, and reuses nothing from Lab 1 or Lab 2.
+
+[SK-10] Line 11  |  Unwrap hard-wrapped prose
+    note: joined 4 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | **Scenario.** Zava Retail sells home and lifestyle products through 140
+        | stores and an online store that runs around the clock. Every sale, from
+        | store tills and the website, is written to one SQL Server database in a
+        | co-located datacenter whose contract ends in six months.
+    AFTER:
+        | **Scenario.** Zava Retail sells home and lifestyle products through 140 stores and an online store that runs around the clock. Every sale, from store tills and the website, is written to one SQL Server database in a co-located datacenter whose contract ends in six months.
+
+[SK-10] Line 16  |  Unwrap hard-wrapped prose
+    note: joined 5 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | Leadership has chosen Azure SQL Database to cut hardware and patching
+        | work for a two-person DBA team. The business has set two limits: the
+        | finance reporting copy can be offline over a weekend, but the live order
+        | system can stop taking orders for no more than 15 minutes, inside a
+        | Sunday 02:00 maintenance window.
+    AFTER:
+        | Leadership has chosen Azure SQL Database to cut hardware and patching work for a two-person DBA team. The business has set two limits: the finance reporting copy can be offline over a weekend, but the live order system can stop taking orders for no more than 15 minutes, inside a Sunday 02:00 maintenance window.
+
+[SK-10] Line 22  |  Unwrap hard-wrapped prose
+    note: joined 5 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | You are the migration engineer running the pilot. Before the full
+        | migration is approved, you must prove three things: which tool and
+        | target fit the database, how offline and online migrations compare in
+        | real downtime, and that a gated cutover with a rollback path stays
+        | inside the 15-minute limit.
+    AFTER:
+        | You are the migration engineer running the pilot. Before the full migration is approved, you must prove three things: which tool and target fit the database, how offline and online migrations compare in real downtime, and that a gated cutover with a rollback path stays inside the 15-minute limit.
+
+[SK-10] Line 50  |  Unwrap hard-wrapped prose
+    note: joined 2 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | **Verify the tools (1 minute).** Open **Windows PowerShell as
+        | Administrator** and run:
+    AFTER:
+        | **Verify the tools (1 minute).** Open **Windows PowerShell as Administrator** and run:
+
+[SK-10] Line 64  |  Unwrap hard-wrapped prose
+    note: joined 4 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | **If SqlPackage is not recognised or fails with "You must install or
+        | update .NET".** SqlPackage 170.x runs on .NET 10 and needs the latest
+        | .NET 10 runtime under **C:\Program Files\dotnet.** Run these steps in
+        | order, in the same Administrator PowerShell window:
+    AFTER:
+        | **If SqlPackage is not recognised or fails with "You must install or update .NET".** SqlPackage 170.x runs on .NET 10 and needs the latest .NET 10 runtime under **C:\Program Files\dotnet.** Run these steps in order, in the same Administrator PowerShell window:
+
+[SK-10] Line 82  |  Unwrap hard-wrapped prose
+    note: joined 2 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | 2.  Install SqlPackage as a .NET global tool, or update it if it is
+        |     already there:
+    AFTER:
+        | 2.  Install SqlPackage as a .NET global tool, or update it if it is already there:
+
+[SK-10] Line 89  |  Unwrap hard-wrapped prose
+    note: joined 2 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | 3.  Add the tools folder to this window's PATH so you do not need to
+        |     reopen PowerShell:
+    AFTER:
+        | 3.  Add the tools folder to this window's PATH so you do not need to reopen PowerShell:
+
+[SK-10] Line 105  |  Unwrap hard-wrapped prose
+    note: joined 3 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        |     **Expected result:** the runtime list includes a Microsoft.NETCore.App
+        |     10.0.x version at least as high as the one in any earlier error message,
+        |     and SqlPackage prints its version (for example 170.5.96).
+    AFTER:
+        |     **Expected result:** the runtime list includes a Microsoft.NETCore.App 10.0.x version at least as high as the one in any earlier error message, and SqlPackage prints its version (for example 170.5.96).
+
+[SK-10] Line 109  |  Unwrap hard-wrapped prose
+    note: joined 3 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        |     **Keep one PowerShell window open for the whole lab.** Later steps reuse
+        |     variables set in Exercise 0. If you close the window, rerun Exercise 0,
+        |     Task 1 (variables only) before continuing.
+    AFTER:
+        |     **Keep one PowerShell window open for the whole lab.** Later steps reuse variables set in Exercise 0. If you close the window, rerun Exercise 0, Task 1 (variables only) before continuing.
+
+[SK-10] Line 115  |  Unwrap hard-wrapped prose
+    note: joined 3 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | You create ZavaOrders on the local SQL Server with 1,000 customers and
+        | 20,000 orders, then start deploying two empty Azure SQL databases: one
+        | for the offline migration and one for the online migration.
+    AFTER:
+        | You create ZavaOrders on the local SQL Server with 1,000 customers and 20,000 orders, then start deploying two empty Azure SQL databases: one for the offline migration and one for the online migration.
+
+[SK-10] Line 121  |  Unwrap hard-wrapped prose
+    note: joined 2 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | 1.  In the PowerShell window, run the block below. Replace *{initials}*
+        |     with your initials :
+    AFTER:
+        | 1.  In the PowerShell window, run the block below. Replace *{initials}* with your initials :
+
+[SK-10] Line 136  |  Unwrap hard-wrapped prose
+    note: joined 2 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        |     Enter a strong password when prompted (12+ characters, upper, lower,
+        |     number, symbol) as +++Zava#Lab2026!+++
+    AFTER:
+        |     Enter a strong password when prompted (12+ characters, upper, lower, number, symbol) as +++Zava#Lab2026!+++
+
+[SK-10] Line 141  |  Unwrap hard-wrapped prose
+    note: joined 3 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | 2.  Write the **server’s name** on the notepad. If you reopen PowerShell
+        |     later, set $server back to this exact name instead of generating a
+        |     new one.
+    AFTER:
+        | 2.  Write the **server’s name** on the notepad. If you reopen PowerShell later, set $server back to this exact name instead of generating a new one.
+
+[SK-10] Line 151  |  Unwrap hard-wrapped prose
+    note: joined 2 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | 1.  Start this now; the databases deploy while you build the source. Run
+        |     this command in the same powershell window:
+    AFTER:
+        | 1.  Start this now; the databases deploy while you build the source. Run this command in the same powershell window:
+
+[SK-10] Line 170  |  Unwrap hard-wrapped prose
+    note: joined 4 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        |     The server takes about 1 to 2 minutes. The two az sql db create calls
+        |     return at once and keep deploying in the background. Both provider
+        |     checks must print Registered before the server is created; without
+        |     them the server create fails with MissingSubscriptionRegistration.
+    AFTER:
+        |     The server takes about 1 to 2 minutes. The two az sql db create calls return at once and keep deploying in the background. Both provider checks must print Registered before the server is created; without them the server create fails with MissingSubscriptionRegistration.
+
+[SK-10] Line 179  |  Unwrap hard-wrapped prose
+    note: joined 2 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        |     The server takes about 1 to 2 minutes. The two **az sql db** create
+        |     calls return at once and keep deploying in the background.
+    AFTER:
+        |     The server takes about 1 to 2 minutes. The two **az sql db** create calls return at once and keep deploying in the background.
+
+[SK-10] Line 204  |  Unwrap hard-wrapped prose
+    note: joined 4 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        |     You should see **ZavaOrders_Offline** and **ZavaOrders_Online**, either
+        |     Online already or still being created. If they’re still being created,
+        |     they’ll finish in the background. Either way, you can continue with
+        |     **Task 3**.
+    AFTER:
+        |     You should see **ZavaOrders_Offline** and **ZavaOrders_Online**, either Online already or still being created. If they’re still being created, they’ll finish in the background. Either way, you can continue with **Task 3**.
+
+[SK-10] Line 213  |  Unwrap hard-wrapped prose
+    note: joined 3 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | **Before you start, check the source SQL Server.** Every source command
+        | in this lab connects to $src, which Task 1 set to localhost (the default
+        | instance). Run:
+    AFTER:
+        | **Before you start, check the source SQL Server.** Every source command in this lab connects to $src, which Task 1 set to localhost (the default instance). Run:
+
+[SK-10] Line 226  |  Unwrap hard-wrapped prose
+    note: joined 2 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        |     **Result:** You’ll see that Server is not found or not accessible.
+        |     Proceed with installing SQL Server first.
+    AFTER:
+        |     **Result:** You’ll see that Server is not found or not accessible. Proceed with installing SQL Server first.
+
+[SK-10] Line 231  |  Unwrap hard-wrapped prose
+    note: joined 4 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | **Install SQL Server Developer (only if no MSSQL service exists).** This
+        | takes 10 to 20 minutes. The Basic install creates the default instance
+        | MSSQLSERVER and adds your Windows account to the sysadmin role, which is
+        | what this lab expects.
+    AFTER:
+        | **Install SQL Server Developer (only if no MSSQL service exists).** This takes 10 to 20 minutes. The Basic install creates the default instance MSSQLSERVER and adds your Windows account to the sysadmin role, which is what this lab expects.
+
+[SK-10] Line 236  |  Unwrap hard-wrapped prose
+    note: joined 4 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | Do not use winget or a previously saved SQL2022-SSEI-Dev.exe: that
+        | installer has been retired and stops with "This version of the installer
+        | is no longer supported". Use the current installer from Microsoft
+        | instead:
+    AFTER:
+        | Do not use winget or a previously saved SQL2022-SSEI-Dev.exe: that installer has been retired and stops with "This version of the installer is no longer supported". Use the current installer from Microsoft instead:
+
+[SK-10] Line 241  |  Unwrap hard-wrapped prose
+    note: joined 4 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | 1.  In the VM's browser, open
+        |     <https://www.microsoft.com/sql-server/sql-server-downloads> . In the
+        |     **Developer** section, choose **Enterprise Developer** and the
+        |     installer file will be downloaded.
+    AFTER:
+        | 1.  In the VM's browser, open <https://www.microsoft.com/sql-server/sql-server-downloads> . In the **Developer** section, choose **Enterprise Developer** and the installer file will be downloaded.
+
+[SK-10] Line 248  |  Unwrap hard-wrapped prose
+    note: joined 3 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | 2.  Run the downloaded installer (for example SQL2025-SSEI-EntDev.exe)
+        |     as administrator. Choose **Basic**, accept the licence terms, keep
+        |     the default install location, and select **Install**.
+    AFTER:
+        | 2.  Run the downloaded installer (for example SQL2025-SSEI-EntDev.exe) as administrator. Choose **Basic**, accept the licence terms, keep the default install location, and select **Install**.
+
+[SK-10] Line 272  |  Unwrap hard-wrapped prose
+    note: joined 4 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | 5.  **NOTE**: If setup asks you to restart, restart the VM, open
+        |     PowerShell as Administrator, and rerun Exercise 0, Task 1 with
+        |     $server set to your noted server name and the same password. Your
+        |     Azure resources from Task 2 are not affected.
+    AFTER:
+        | 5.  **NOTE**: If setup asks you to restart, restart the VM, open PowerShell as Administrator, and rerun Exercise 0, Task 1 with $server set to your noted server name and the same password. Your Azure resources from Task 2 are not affected.
+
+[SK-10] Line 334  |  Unwrap hard-wrapped prose
+    note: joined 3 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        |     The view dbo.vServerLogins is intentional. It stands in for the kind of
+        |     legacy object that decides which tool and target you can use; you will
+        |     find it in Exercise 1.
+    AFTER:
+        |     The view dbo.vServerLogins is intentional. It stands in for the kind of legacy object that decides which tool and target you can use; you will find it in Exercise 1.
+
+[SK-10] Line 340  |  Unwrap hard-wrapped prose
+    note: joined 3 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | You profile the source, hit a real SqlPackage export blocker and resolve
+        | it, then provision Azure Database Migration Service (DMS) to see how a
+        | managed migration service reaches an on-premises SQL Server.
+    AFTER:
+        | You profile the source, hit a real SqlPackage export blocker and resolve it, then provision Azure Database Migration Service (DMS) to see how a managed migration service reaches an on-premises SQL Server.
+
+[SK-10] Line 356  |  Unwrap hard-wrapped prose
+    note: joined 2 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | 2.  Record on your lab sheet: database size, number of user tables, and
+        |     any cross-database references.
+    AFTER:
+        | 2.  Record on your lab sheet: database size, number of user tables, and any cross-database references.
+
+[SK-10] Line 359  |  Unwrap hard-wrapped prose
+    note: joined 6 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        |     **Expected result:** about 16 MB, 2 user tables and 1 view, and one
+        |     blocker: **dbo.vServerLogins** reads **master.sys.server_principals**.
+        |     Size tells you whether a quick offline copy is realistic. The object
+        |     count sets what you must migrate and validate. The blocker matters
+        |     because Azure SQL Database can’t query master, so the view must be
+        |     fixed or the target changed. You’ll see it stop the export in Task 2.
+    AFTER:
+        |     **Expected result:** about 16 MB, 2 user tables and 1 view, and one blocker: **dbo.vServerLogins** reads **master.sys.server_principals**. Size tells you whether a quick offline copy is realistic. The object count sets what you must migrate and validate. The blocker matters because Azure SQL Database can’t query master, so the view must be fixed or the target changed. You’ll see it stop the export in Task 2.
+
+[SK-10] Line 374  |  Unwrap hard-wrapped prose
+    note: joined 5 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | 2.  Read the error. **Expected result:** the export fails with error
+        |     SQL71562. SqlPackage reports that vServerLogins has an unresolved
+        |     reference to master.sys.server_principals and that external
+        |     references are not supported. A BACPAC must be self-contained, and
+        |     Azure SQL Database has no instance-level master to query.
+    AFTER:
+        | 2.  Read the error. **Expected result:** the export fails with error SQL71562. SqlPackage reports that vServerLogins has an unresolved reference to master.sys.server_principals and that external references are not supported. A BACPAC must be self-contained, and Azure SQL Database has no instance-level master to query.
+
+[SK-10] Line 409  |  Unwrap hard-wrapped prose
+    note: joined 4 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | SqlPackage runs on your VM and connects to both ends directly. DMS is an
+        | Azure service: it orchestrates and monitors migrations, and reaches
+        | on-premises sources through a self-hosted integration runtime that you
+        | install near the source.
+    AFTER:
+        | SqlPackage runs on your VM and connects to both ends directly. DMS is an Azure service: it orchestrates and monitors migrations, and reaches on-premises sources through a self-hosted integration runtime that you install near the source.
+
+[SK-10] Line 424  |  Unwrap hard-wrapped prose
+    note: joined 2 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | 2.  Check its state and retrieve the integration runtime authentication
+        |     keys:
+    AFTER:
+        | 2.  Check its state and retrieve the integration runtime authentication keys:
+
+[SK-10] Line 432  |  Unwrap hard-wrapped prose
+    note: joined 3 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        |     **Expected result:** provisioningState is Succeeded, the integration
+        |     runtime state shows it still needs registration, and two
+        |     authentication keys are returned. Treat the keys as secrets.
+    AFTER:
+        |     **Expected result:** provisioningState is Succeeded, the integration runtime state shows it still needs registration, and two authentication keys are returned. Treat the keys as secrets.
+
+[SK-10] Line 442  |  Unwrap hard-wrapped prose
+    note: joined 2 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | 4.  Select the DMS resource and review its integration runtime status on
+        |     the **Overview** page.
+    AFTER:
+        | 4.  Select the DMS resource and review its integration runtime status on the **Overview** page.
+
+[SK-10] Line 450  |  Unwrap hard-wrapped prose
+    note: joined 4 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        |     This is the same status as NeedRegistration in PowerShell. DMS can’t
+        |     reach an on-premises SQL Server until a self-hosted integration
+        |     runtime is installed near the source and registered with one of the
+        |     auth keys.
+    AFTER:
+        |     This is the same status as NeedRegistration in PowerShell. DMS can’t reach an on-premises SQL Server until a self-hosted integration runtime is installed near the source and registered with one of the auth keys.
+
+[SK-10] Line 460  |  Unwrap hard-wrapped prose
+    note: joined 6 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        |     In production you would install the self-hosted integration runtime on a
+        |     machine that can reach SQL Server, register it with one of these keys,
+        |     then start migrations from the portal or CLI. DMS supports offline
+        |     migrations to Azure SQL Database, and online or offline migrations to
+        |     SQL Managed Instance and SQL Server on Azure VMs. That limit is why
+        |     Exercise 2 builds the online pattern to Azure SQL Database by hand.
+    AFTER:
+        |     In production you would install the self-hosted integration runtime on a machine that can reach SQL Server, register it with one of these keys, then start migrations from the portal or CLI. DMS supports offline migrations to Azure SQL Database, and online or offline migrations to SQL Managed Instance and SQL Server on Azure VMs. That limit is why Exercise 2 builds the online pattern to Azure SQL Database by hand.
+
+[SK-10] Line 469  |  Unwrap hard-wrapped prose
+    note: joined 3 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | You migrate the same database twice. The offline path copies a frozen
+        | snapshot; the online path seeds the target, keeps it in sync while the
+        | application writes, and leaves only a short final sync for cutover.
+    AFTER:
+        | You migrate the same database twice. The offline path copies a frozen snapshot; the online path seeds the target, keeps it in sync while the application writes, and leaves only a short final sync for cutover.
+
+[SK-10] Line 481  |  Unwrap hard-wrapped prose
+    note: joined 2 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | 2.  If in case, you databases also shows the status as paused, run the
+        |     below command to wake them up:
+    AFTER:
+        | 2.  If in case, you databases also shows the status as paused, run the below command to wake them up:
+
+[SK-10] Line 514  |  Unwrap hard-wrapped prose
+    note: joined 3 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        |     **Expected result:** Orders = 20000. Record the offline downtime. In
+        |     production the source would be read-only for that whole window, and it
+        |     grows with data size.
+    AFTER:
+        |     **Expected result:** Orders = 20000. Record the offline downtime. In production the source would be read-only for that whole window, and it grows with data size.
+
+[SK-10] Line 520  |  Unwrap hard-wrapped prose
+    note: joined 3 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | 1.  Deploy the schema only (no data) to the online target. Do this
+        |     before enabling Change Tracking, so the dacpac carries no tracking
+        |     settings that Azure SQL Database would reject:
+    AFTER:
+        | 1.  Deploy the schema only (no data) to the online target. Do this before enabling Change Tracking, so the dacpac carries no tracking settings that Azure SQL Database would reject:
+
+[SK-10] Line 533  |  Unwrap hard-wrapped prose
+    note: joined 2 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | 2.  Enable Change Tracking on the source so you can capture changes made
+        |     after the initial copy:
+    AFTER:
+        | 2.  Enable Change Tracking on the source so you can capture changes made after the initial copy:
+
+[SK-10] Line 543  |  Unwrap hard-wrapped prose
+    note: joined 2 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | 3.  Create the helper scripts and functions (workload, merge, version,
+        |     sync, compare):
+    AFTER:
+        | 3.  Create the helper scripts and functions (workload, merge, version, sync, compare):
+
+[SK-10] Line 593  |  Unwrap hard-wrapped prose
+    note: joined 2 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | 4.  Capture the baseline version **before** the initial copy, then seed
+        |     the target:
+    AFTER:
+        | 4.  Capture the baseline version **before** the initial copy, then seed the target:
+
+[SK-10] Line 609  |  Unwrap hard-wrapped prose
+    note: joined 4 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        |     Capturing the version first means any write that lands during the copy
+        |     is picked up by the next sync rather than lost. -E keeps the source
+        |     identity values. Customers is static in this scenario, so only Orders is
+        |     tracked.
+    AFTER:
+        |     Capturing the version first means any write that lands during the copy is picked up by the next sync rather than lost. -E keeps the source identity values. Customers is static in this scenario, so only Orders is tracked.
+
+[SK-10] Line 614  |  Unwrap hard-wrapped prose
+    note: joined 2 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | 5.  Simulate the application still writing to the source, then check the
+        |     drift:
+    AFTER:
+        | 5.  Simulate the application still writing to the source, then check the drift:
+
+[SK-10] Line 624  |  Unwrap hard-wrapped prose
+    note: joined 2 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        |     **Expected result:** source has 20045 rows, target has 20000. Totals
+        |     and checksums differ.
+    AFTER:
+        |     **Expected result:** source has 20045 rows, target has 20000. Totals and checksums differ.
+
+[SK-10] Line 636  |  Unwrap hard-wrapped prose
+    note: joined 3 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        |     **Expected result:** DeltaRows is about 64 (50 inserts, 10 updates, 4
+        |     deletes). Source and target now show the same Rows, Total and Chk. The
+        |     source stayed fully writable the whole time.
+    AFTER:
+        |     **Expected result:** DeltaRows is about 64 (50 inserts, 10 updates, 4 deletes). Source and target now show the same Rows, Total and Chk. The source stayed fully writable the whole time.
+
+[SK-10] Line 642  |  Unwrap hard-wrapped prose
+    note: joined 3 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | Azure SQL Database is scoped to the database: there is no SQL Agent,
+        | apps should not depend on server logins, and Query Store is on by
+        | default. Prepare the online target for go-live.
+    AFTER:
+        | Azure SQL Database is scoped to the database: there is no SQL Agent, apps should not depend on server logins, and Query Store is on by default. Prepare the online target for go-live.
+
+[SK-10] Line 655  |  Unwrap hard-wrapped prose
+    note: joined 3 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | 2.  Set the target to the source's level so queries behave the same at
+        |     go-live. Raise it only after go-live, once Query Store has a
+        |     performance baseline:
+    AFTER:
+        | 2.  Set the target to the source's level so queries behave the same at go-live. Raise it only after go-live, once Query Store has a performance baseline:
+
+[SK-10] Line 667  |  Unwrap hard-wrapped prose
+    note: joined 2 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | 3.  Confirm Query Store is capturing, and refresh statistics after the
+        |     bulk load:
+    AFTER:
+        | 3.  Confirm Query Store is capturing, and refresh statistics after the bulk load:
+
+[SK-10] Line 672  |  Unwrap hard-wrapped prose
+    note: joined 2 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        |     **Expected result:** READ_WRITE, followed by the statistics update
+        |     messages.
+    AFTER:
+        |     **Expected result:** READ_WRITE, followed by the statistics update messages.
+
+[SK-10] Line 677  |  Unwrap hard-wrapped prose
+    note: joined 2 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | 4.  Create a contained database user for the application instead of a
+        |     server login. Exercise 3 uses it for the smoke test:
+    AFTER:
+        | 4.  Create a contained database user for the application instead of a server login. Exercise 3 uses it for the smoke test:
+
+[SK-10] Line 687  |  Unwrap hard-wrapped prose
+    note: joined 2 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | 5.  Check the source for SQL Agent jobs that touch this database, since
+        |     they will not move with it:
+    AFTER:
+        | 5.  Check the source for SQL Agent jobs that touch this database, since they will not move with it:
+
+[SK-10] Line 692  |  Unwrap hard-wrapped prose
+    note: joined 3 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        |     **Expected result:** no rows in this lab. In production, each job
+        |     found here is rebuilt as an elastic job or an Azure Automation runbook
+        |     before cutover.
+    AFTER:
+        |     **Expected result:** no rows in this lab. In production, each job found here is rebuilt as an elastic job or an Azure Automation runbook before cutover.
+
+[SK-10] Line 700  |  Unwrap hard-wrapped prose
+    note: joined 2 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | You build an automated go/no-go check, then execute a timed cutover
+        | against your online target and measure the real application downtime.
+    AFTER:
+        | You build an automated go/no-go check, then execute a timed cutover against your online target and measure the real application downtime.
+
+[SK-10] Line 705  |  Unwrap hard-wrapped prose
+    note: joined 2 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | A cutover should start only when checks say GO, not when someone feels
+        | ready. The T-0 sequence you execute in Task 2 is:
+    AFTER:
+        | A cutover should start only when checks say GO, not when someone feels ready. The T-0 sequence you execute in Task 2 is:
+
+[SK-10] Line 747  |  Unwrap hard-wrapped prose
+    note: joined 2 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        |     sqlcmd -S localhost -d ZavaOrders -E -C -W -i C:\Lab3\workload.sql  
+        |     Test-CutoverReadiness
+    AFTER:
+        |     sqlcmd -S localhost -d ZavaOrders -E -C -W -i C:\Lab3\workload.sql Test-CutoverReadiness
+
+[SK-10] Line 752  |  Unwrap hard-wrapped prose
+    note: joined 3 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        |     **Expected result:** three GO lines, a pending delta of about 65 rows,
+        |     and OVERALL: GO. If the target shows Paused (serverless auto-pause), run
+        |     any query against it and check again.
+    AFTER:
+        |     **Expected result:** three GO lines, a pending delta of about 65 rows, and OVERALL: GO. If the target shows Paused (serverless auto-pause), run any query against it and check again.
+
+[SK-10] Line 756  |  Unwrap hard-wrapped prose
+    note: joined 3 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        |     **Rollback rule:** if any T-0 check fails, set the source back to
+        |     read-write and point the application at it. Nothing has changed on the
+        |     source, so rollback takes seconds.
+    AFTER:
+        |     **Rollback rule:** if any T-0 check fails, set the source back to read-write and point the application at it. Nothing has changed on the source, so rollback takes seconds.
+
+[SK-10] Line 762  |  Unwrap hard-wrapped prose
+    note: joined 5 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | **Read steps 2 to 6 before you start, then run them back to back without
+        | pausing.** The downtime clock starts in step 2 and stops in step 6, and
+        | it counts every second in between, including reading time. Run without
+        | stops, the online cutover takes well under a minute; with pauses it can
+        | wrongly look slower than the offline migration.
+    AFTER:
+        | **Read steps 2 to 6 before you start, then run them back to back without pausing.** The downtime clock starts in step 2 and stops in step 6, and it counts every second in between, including reading time. Run without stops, the online cutover takes well under a minute; with pauses it can wrongly look slower than the offline migration.
+
+[SK-10] Line 785  |  Unwrap hard-wrapped prose
+    note: joined 3 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        |     **Expected result:** the workload must fail with an error that the
+        |     database is read-only. If it succeeds, stop and check the first
+        |     command.
+    AFTER:
+        |     **Expected result:** the workload must fail with an error that the database is read-only. If it succeeds, stop and check the first command.
+
+[SK-10] Line 798  |  Unwrap hard-wrapped prose
+    note: joined 2 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        |     The reseed makes sure new orders created in Azure get IDs above the
+        |     highest migrated ID.
+    AFTER:
+        |     The reseed makes sure new orders created in Azure get IDs above the highest migrated ID.
+
+[SK-10] Line 807  |  Unwrap hard-wrapped prose
+    note: joined 2 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        |     **Go/no-go:** Rows, Total and Chk must match exactly. If they do not,
+        |     run the rollback in step 7 and investigate.
+    AFTER:
+        |     **Go/no-go:** Rows, Total and Chk must match exactly. If they do not, run the rollback in step 7 and investigate.
+
+[SK-10] Line 812  |  Unwrap hard-wrapped prose
+    note: joined 2 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | 5.  **Switch and smoke test.** Connect as the contained user app_orders,
+        |     as the application would after the switch:
+    AFTER:
+        | 5.  **Switch and smoke test.** Connect as the contained user app_orders, as the application would after the switch:
+
+[SK-10] Line 817  |  Unwrap hard-wrapped prose
+    note: joined 2 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        |     **Expected result:** a new order is returned with an OrderID higher
+        |     than any source order.
+    AFTER:
+        |     **Expected result:** a new order is returned with an OrderID higher than any source order.
+
+[SK-10] Line 830  |  Unwrap hard-wrapped prose
+    note: joined 3 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        |     Record both numbers. The online downtime covers only the last few
+        |     seconds of changes; the offline downtime covers the whole database. On
+        |     a 400 GB database, that difference is minutes versus hours.
+    AFTER:
+        |     Record both numbers. The online downtime covers only the last few seconds of changes; the offline downtime covers the whole database. On a 400 GB database, that difference is minutes versus hours.
+
+[SK-10] Line 840  |  Unwrap hard-wrapped prose
+    note: joined 2 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        |     If all checks passed, leave the source read-only. It is now your
+        |     fallback copy, as in the T+7 days row.
+    AFTER:
+        |     If all checks passed, leave the source read-only. It is now your fallback copy, as in the T+7 days row.
+
+[SK-10] Line 858  |  Unwrap hard-wrapped prose
+    note: joined 12 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | In this lab you took Zava Retail’s order database from SQL Server to
+        | Azure SQL Database. Profiling the source turned up a blocker before it
+        | could cause trouble, and you resolved it. You provisioned Azure Database
+        | Migration Service and saw how it reaches on-premises sources. Running an
+        | offline migration and an online migration side by side showed the
+        | trade-off: the offline copy is simpler, but downtime grows with data
+        | size, while the online approach keeps the source writable and shrinks
+        | downtime to a short final sync. Finally, you applied settings specific
+        | to Azure SQL Database, gated the cutover with automated readiness
+        | checks, and finished with a validated switch and a rollback path.
+        | Together these steps form a repeatable migration strategy you can apply
+        | to larger databases.
+    AFTER:
+        | In this lab you took Zava Retail’s order database from SQL Server to Azure SQL Database. Profiling the source turned up a blocker before it could cause trouble, and you resolved it. You provisioned Azure Database Migration Service and saw how it reaches on-premises sources. Running an offline migration and an online migration side by side showed the trade-off: the offline copy is simpler, but downtime grows with data size, while the online approach keeps the source writable and shrinks downtime to a short final sync. Finally, you applied settings specific to Azure SQL Database, gated the cutover with automated readiness checks, and finished with a validated switch and a rollback path. Together these steps form a repeatable migration strategy you can apply to larger databases.
+
+[SK-07] Line 50  |  Numbered step -> '1.' format
+    note: normalize step marker spacing
+    BEFORE: 1.  Install the latest .NET 10 SDK and runtime machine-wide:
+    AFTER : 1. Install the latest .NET 10 SDK and runtime machine-wide:
+
+[SK-07] Line 63  |  Numbered step -> '1.' format
+    note: renumber 2. -> 1. (editor handles display numbering)
+    BEFORE: 2.  Install SqlPackage as a .NET global tool, or update it if it is already there:
+    AFTER : 1. Install SqlPackage as a .NET global tool, or update it if it is already there:
+
+[SK-07] Line 69  |  Numbered step -> '1.' format
+    note: renumber 3. -> 1. (editor handles display numbering)
+    BEFORE: 3.  Add the tools folder to this window's PATH so you do not need to reopen PowerShell:
+    AFTER : 1. Add the tools folder to this window's PATH so you do not need to reopen PowerShell:
+
+[SK-07] Line 75  |  Numbered step -> '1.' format
+    note: renumber 4. -> 1. (editor handles display numbering)
+    BEFORE: 4.  Verify:
+    AFTER : 1. Verify:
+
+[SK-07] Line 94  |  Numbered step -> '1.' format
+    note: normalize step marker spacing
+    BEFORE: 1.  In the PowerShell window, run the block below. Replace *{initials}* with your initials :
+    AFTER : 1. In the PowerShell window, run the block below. Replace *{initials}* with your initials :
+
+[SK-07] Line 112  |  Numbered step -> '1.' format
+    note: renumber 2. -> 1. (editor handles display numbering)
+    BEFORE: 2.  Write the **server’s name** on the notepad. If you reopen PowerShell later, set $server back to this exact name instead of generating a new one.
+    AFTER : 1. Write the **server’s name** on the notepad. If you reopen PowerShell later, set $server back to this exact name instead of generating a new one.
+
+[SK-07] Line 120  |  Numbered step -> '1.' format
+    note: normalize step marker spacing
+    BEFORE: 1.  Start this now; the databases deploy while you build the source. Run this command in the same powershell window:
+    AFTER : 1. Start this now; the databases deploy while you build the source. Run this command in the same powershell window:
+
+[SK-07] Line 193  |  Numbered step -> '1.' format
+    note: normalize step marker spacing
+    BEFORE: 1.  In the VM's browser, open <https://www.microsoft.com/sql-server/sql-server-downloads> . In the **Developer** section, choose **Enterprise Developer** and the installer file will be downloaded.
+    AFTER : 1. In the VM's browser, open <https://www.microsoft.com/sql-server/sql-server-downloads> . In the **Developer** section, choose **Enterprise Developer** and the installer file will be downloaded.
+
+[SK-07] Line 197  |  Numbered step -> '1.' format
+    note: renumber 2. -> 1. (editor handles display numbering)
+    BEFORE: 2.  Run the downloaded installer (for example SQL2025-SSEI-EntDev.exe) as administrator. Choose **Basic**, accept the licence terms, keep the default install location, and select **Install**.
+    AFTER : 1. Run the downloaded installer (for example SQL2025-SSEI-EntDev.exe) as administrator. Choose **Basic**, accept the licence terms, keep the default install location, and select **Install**.
+
+[SK-07] Line 201  |  Numbered step -> '1.' format
+    note: renumber 3. -> 1. (editor handles display numbering)
+    BEFORE: 3.  Wait for **Installation has completed successfully**, then close the installer.
+    AFTER : 1. Wait for **Installation has completed successfully**, then close the installer.
+
+[SK-07] Line 205  |  Numbered step -> '1.' format
+    note: renumber 4. -> 1. (editor handles display numbering)
+    BEFORE: 4.  Confirm the service is running and connect:
+    AFTER : 1. Confirm the service is running and connect:
+
+[SK-07] Line 219  |  Numbered step -> '1.' format
+    note: renumber 5. -> 1. (editor handles display numbering)
+    BEFORE: 5.  **NOTE**: If setup asks you to restart, restart the VM, open PowerShell as Administrator, and rerun Exercise 0, Task 1 with $server set to your noted server name and the same password. Your Azure resources from Task 2 are not affected.
+    AFTER : 1. **NOTE**: If setup asks you to restart, restart the VM, open PowerShell as Administrator, and rerun Exercise 0, Task 1 with $server set to your noted server name and the same password. Your Azure resources from Task 2 are not affected.
+
+[SK-07] Line 223  |  Numbered step -> '1.' format
+    note: renumber 6. -> 1. (editor handles display numbering)
+    BEFORE: 6.  Create the setup script and run it against the local instance:
+    AFTER : 1. Create the setup script and run it against the local instance:
+
+[SK-07] Line 270  |  Numbered step -> '1.' format
+    note: renumber 2. -> 1. (editor handles display numbering)
+    BEFORE: 2.  Confirm the row counts:
+    AFTER : 1. Confirm the row counts:
+
+[SK-07] Line 286  |  Numbered step -> '1.' format
+    note: normalize step marker spacing
+    BEFORE: 1.  Run the profiling queries:
+    AFTER : 1. Run the profiling queries:
+
+[SK-07] Line 296  |  Numbered step -> '1.' format
+    note: renumber 2. -> 1. (editor handles display numbering)
+    BEFORE: 2.  Record on your lab sheet: database size, number of user tables, and any cross-database references.
+    AFTER : 1. Record on your lab sheet: database size, number of user tables, and any cross-database references.
+
+[SK-07] Line 302  |  Numbered step -> '1.' format
+    note: normalize step marker spacing
+    BEFORE: 1.  Attempt a BACPAC export:
+    AFTER : 1. Attempt a BACPAC export:
+
+[SK-07] Line 308  |  Numbered step -> '1.' format
+    note: renumber 2. -> 1. (editor handles display numbering)
+    BEFORE: 2.  Read the error. **Expected result:** the export fails with error SQL71562. SqlPackage reports that vServerLogins has an unresolved reference to master.sys.server_principals and that external references are not supported. A BACPAC must be self-contained, and Azure SQL Database has no instance-level master to query.
+    AFTER : 1. Read the error. **Expected result:** the export fails with error SQL71562. SqlPackage reports that vServerLogins has an unresolved reference to master.sys.server_principals and that external references are not supported. A BACPAC must be self-contained, and Azure SQL Database has no instance-level master to query.
+
+[SK-07] Line 312  |  Numbered step -> '1.' format
+    note: renumber 3. -> 1. (editor handles display numbering)
+    BEFORE: 3.  Make the migration decision. You have two options:
+    AFTER : 1. Make the migration decision. You have two options:
+
+[SK-07] Line 325  |  Numbered step -> '1.' format
+    note: renumber 4. -> 1. (editor handles display numbering)
+    BEFORE: 4.  Rerun the export and time it:
+    AFTER : 1. Rerun the export and time it:
+
+[SK-07] Line 341  |  Numbered step -> '1.' format
+    note: normalize step marker spacing
+    BEFORE: 1.  Create the DMS instance in your lab resource group:
+    AFTER : 1. Create the DMS instance in your lab resource group:
+
+[SK-07] Line 351  |  Numbered step -> '1.' format
+    note: renumber 2. -> 1. (editor handles display numbering)
+    BEFORE: 2.  Check its state and retrieve the integration runtime authentication keys:
+    AFTER : 1. Check its state and retrieve the integration runtime authentication keys:
+
+[SK-07] Line 362  |  Numbered step -> '1.' format
+    note: renumber 3. -> 1. (editor handles display numbering)
+    BEFORE: 3.  In the **Azure portal**, open your resource group.
+    AFTER : 1. In the **Azure portal**, open your resource group.
+
+[SK-07] Line 366  |  Numbered step -> '1.' format
+    note: renumber 4. -> 1. (editor handles display numbering)
+    BEFORE: 4.  Select the DMS resource and review its integration runtime status on the **Overview** page.
+    AFTER : 1. Select the DMS resource and review its integration runtime status on the **Overview** page.
+
+[SK-07] Line 388  |  Numbered step -> '1.' format
+    note: normalize step marker spacing
+    BEFORE: 1.  Confirm both Azure databases finished deploying (status Online):
+    AFTER : 1. Confirm both Azure databases finished deploying (status Online):
+
+[SK-07] Line 394  |  Numbered step -> '1.' format
+    note: renumber 2. -> 1. (editor handles display numbering)
+    BEFORE: 2.  If in case, you databases also shows the status as paused, run the below command to wake them up:
+    AFTER : 1. If in case, you databases also shows the status as paused, run the below command to wake them up:
+
+[SK-07] Line 404  |  Numbered step -> '1.' format
+    note: renumber 3. -> 1. (editor handles display numbering)
+    BEFORE: 3.  Check the status again to see if databases are now Online:
+    AFTER : 1. Check the status again to see if databases are now Online:
+
+[SK-07] Line 410  |  Numbered step -> '1.' format
+    note: renumber 4. -> 1. (editor handles display numbering)
+    BEFORE: 4.  Import the BACPAC from Exercise 1 and time it:
+    AFTER : 1. Import the BACPAC from Exercise 1 and time it:
+
+[SK-07] Line 420  |  Numbered step -> '1.' format
+    note: renumber 3. -> 1. (editor handles display numbering)
+    BEFORE: 3.  Validate the copy:
+    AFTER : 1. Validate the copy:
+
+[SK-07] Line 430  |  Numbered step -> '1.' format
+    note: normalize step marker spacing
+    BEFORE: 1.  Deploy the schema only (no data) to the online target. Do this before enabling Change Tracking, so the dacpac carries no tracking settings that Azure SQL Database would reject:
+    AFTER : 1. Deploy the schema only (no data) to the online target. Do this before enabling Change Tracking, so the dacpac carries no tracking settings that Azure SQL Database would reject:
+
+[SK-07] Line 441  |  Numbered step -> '1.' format
+    note: renumber 2. -> 1. (editor handles display numbering)
+    BEFORE: 2.  Enable Change Tracking on the source so you can capture changes made after the initial copy:
+    AFTER : 1. Enable Change Tracking on the source so you can capture changes made after the initial copy:
+
+[SK-07] Line 450  |  Numbered step -> '1.' format
+    note: renumber 3. -> 1. (editor handles display numbering)
+    BEFORE: 3.  Create the helper scripts and functions (workload, merge, version, sync, compare):
+    AFTER : 1. Create the helper scripts and functions (workload, merge, version, sync, compare):
+
+[SK-07] Line 499  |  Numbered step -> '1.' format
+    note: renumber 4. -> 1. (editor handles display numbering)
+    BEFORE: 4.  Capture the baseline version **before** the initial copy, then seed the target:
+    AFTER : 1. Capture the baseline version **before** the initial copy, then seed the target:
+
+[SK-07] Line 516  |  Numbered step -> '1.' format
+    note: renumber 5. -> 1. (editor handles display numbering)
+    BEFORE: 5.  Simulate the application still writing to the source, then check the drift:
+    AFTER : 1. Simulate the application still writing to the source, then check the drift:
+
+[SK-07] Line 527  |  Numbered step -> '1.' format
+    note: renumber 6. -> 1. (editor handles display numbering)
+    BEFORE: 6.  Run a change sync and compare again:
+    AFTER : 1. Run a change sync and compare again:
+
+[SK-07] Line 542  |  Numbered step -> '1.' format
+    note: normalize step marker spacing
+    BEFORE: 1.  Compare compatibility levels on source and target:
+    AFTER : 1. Compare compatibility levels on source and target:
+
+[SK-07] Line 551  |  Numbered step -> '1.' format
+    note: renumber 2. -> 1. (editor handles display numbering)
+    BEFORE: 2.  Set the target to the source's level so queries behave the same at go-live. Raise it only after go-live, once Query Store has a performance baseline:
+    AFTER : 1. Set the target to the source's level so queries behave the same at go-live. Raise it only after go-live, once Query Store has a performance baseline:
+
+[SK-07] Line 561  |  Numbered step -> '1.' format
+    note: renumber 3. -> 1. (editor handles display numbering)
+    BEFORE: 3.  Confirm Query Store is capturing, and refresh statistics after the bulk load:
+    AFTER : 1. Confirm Query Store is capturing, and refresh statistics after the bulk load:
+
+[SK-07] Line 569  |  Numbered step -> '1.' format
+    note: renumber 4. -> 1. (editor handles display numbering)
+    BEFORE: 4.  Create a contained database user for the application instead of a server login. Exercise 3 uses it for the smoke test:
+    AFTER : 1. Create a contained database user for the application instead of a server login. Exercise 3 uses it for the smoke test:
+
+[SK-07] Line 578  |  Numbered step -> '1.' format
+    note: renumber 5. -> 1. (editor handles display numbering)
+    BEFORE: 5.  Check the source for SQL Agent jobs that touch this database, since they will not move with it:
+    AFTER : 1. Check the source for SQL Agent jobs that touch this database, since they will not move with it:
+
+[SK-07] Line 594  |  Numbered step -> '1.' format
+    note: normalize step marker spacing
+    BEFORE: 1.  Run the readiness check
+    AFTER : 1. Run the readiness check
+
+[SK-07] Line 596  |  Numbered step -> '1.' format
+    note: renumber 2. -> 1. (editor handles display numbering)
+    BEFORE: 2.  Final sync while the application still writes
+    AFTER : 1. Final sync while the application still writes
+
+[SK-07] Line 598  |  Numbered step -> '1.' format
+    note: renumber 3. -> 1. (editor handles display numbering)
+    BEFORE: 3.  Stop writes on the source
+    AFTER : 1. Stop writes on the source
+
+[SK-07] Line 600  |  Numbered step -> '1.' format
+    note: renumber 4. -> 1. (editor handles display numbering)
+    BEFORE: 4.  Final sync and identity reseed
+    AFTER : 1. Final sync and identity reseed
+
+[SK-07] Line 602  |  Numbered step -> '1.' format
+    note: renumber 5. -> 1. (editor handles display numbering)
+    BEFORE: 5.  Validate source against target
+    AFTER : 1. Validate source against target
+
+[SK-07] Line 604  |  Numbered step -> '1.' format
+    note: renumber 6. -> 1. (editor handles display numbering)
+    BEFORE: 6.  Switch the application and smoke test
+    AFTER : 1. Switch the application and smoke test
+
+[SK-07] Line 606  |  Numbered step -> '1.' format
+    note: renumber 7. -> 1. (editor handles display numbering)
+    BEFORE: 7.  Keep the source as fallback, or roll back
+    AFTER : 1. Keep the source as fallback, or roll back
+
+[SK-07] Line 645  |  Numbered step -> '1.' format
+    note: normalize step marker spacing
+    BEFORE: 1.  **T-0 pre-cutover sync.** The application is still writing:
+    AFTER : 1. **T-0 pre-cutover sync.** The application is still writing:
+
+[SK-07] Line 654  |  Numbered step -> '1.' format
+    note: renumber 2. -> 1. (editor handles display numbering)
+    BEFORE: 2.  **Start the downtime clock and stop writes on the source:**
+    AFTER : 1. **Start the downtime clock and stop writes on the source:**
+
+[SK-07] Line 666  |  Numbered step -> '1.' format
+    note: renumber 3. -> 1. (editor handles display numbering)
+    BEFORE: 3.  **Final sync and identity reseed:**
+    AFTER : 1. **Final sync and identity reseed:**
+
+[SK-07] Line 677  |  Numbered step -> '1.' format
+    note: renumber 4. -> 1. (editor handles display numbering)
+    BEFORE: 4.  **Validate.** This is the main go/no-go gate:
+    AFTER : 1. **Validate.** This is the main go/no-go gate:
+
+[SK-07] Line 685  |  Numbered step -> '1.' format
+    note: renumber 5. -> 1. (editor handles display numbering)
+    BEFORE: 5.  **Switch and smoke test.** Connect as the contained user app_orders, as the application would after the switch:
+    AFTER : 1. **Switch and smoke test.** Connect as the contained user app_orders, as the application would after the switch:
+
+[SK-07] Line 693  |  Numbered step -> '1.' format
+    note: renumber 6. -> 1. (editor handles display numbering)
+    BEFORE: 6.  **Stop the clock:**
+    AFTER : 1. **Stop the clock:**
+
+[SK-07] Line 705  |  Numbered step -> '1.' format
+    note: renumber 7. -> 1. (editor handles display numbering)
+    BEFORE: 7.  **Rollback drill (run only if a go/no-go check failed):**
+    AFTER : 1. **Rollback drill (run only if a go/no-go check failed):**
+
+[SK-04] Line 3  |  Bold-only label -> ### heading
+    BEFORE: **Lab overview**
+    AFTER : ### Lab overview
+
+[SK-04] Line 13  |  Bold-only label -> ### heading
+    BEFORE: **Objectives**
+    AFTER : ### Objectives
+
+[SK-82] Line 118  |  Exercise -> h2, Task -> h3 heading hierarchy
+    note: a Task-number heading is always an h3 (###) in the standard lab outline
+    BEFORE: #### Task 2: Start the Azure deployment
+    AFTER : ### Task 2: Start the Azure deployment
+
+[SK-82] Line 280  |  Exercise -> h2, Task -> h3 heading hierarchy
+    note: a Exercise-number heading is always an h2 (##) in the standard lab outline
+    BEFORE: ### Exercise 1: Evaluate and provision migration tooling
+    AFTER : ## Exercise 1: Evaluate and provision migration tooling
+
+[SK-82] Line 284  |  Exercise -> h2, Task -> h3 heading hierarchy
+    note: a Task-number heading is always an h3 (###) in the standard lab outline
+    BEFORE: #### Task 1: Profile the source
+    AFTER : ### Task 1: Profile the source
+
+[SK-82] Line 337  |  Exercise -> h2, Task -> h3 heading hierarchy
+    note: a Task-number heading is always an h3 (###) in the standard lab outline
+    BEFORE: #### Task 3: Provision Azure Database Migration Service
+    AFTER : ### Task 3: Provision Azure Database Migration Service
+
+[SK-82] Line 538  |  Exercise -> h2, Task -> h3 heading hierarchy
+    note: a Task-number heading is always an h3 (###) in the standard lab outline
+    BEFORE: #### Task 3: Apply destination-specific settings for Azure SQL Database
+    AFTER : ### Task 3: Apply destination-specific settings for Azure SQL Database
+
+[SK-82] Line 586  |  Exercise -> h2, Task -> h3 heading hierarchy
+    note: a Exercise-number heading is always an h2 (##) in the standard lab outline
+    BEFORE: ### Exercise 3: Run readiness checks and execute the cutover
+    AFTER : ## Exercise 3: Run readiness checks and execute the cutover
+
+[SK-82] Line 590  |  Exercise -> h2, Task -> h3 heading hierarchy
+    note: a Task-number heading is always an h3 (###) in the standard lab outline
+    BEFORE: #### Task 1: Build a cutover readiness check
+    AFTER : ### Task 1: Build a cutover readiness check
+
+[SK-91] Line 50  |  Objectives list uses bullets, never numbering
+    note: an Objectives entry is an outcome, not an ordered step - numbering replaced with a bullet
+    BEFORE: 1. Install the latest .NET 10 SDK and runtime machine-wide:
+    AFTER : - Install the latest .NET 10 SDK and runtime machine-wide:
+
+[SK-91] Line 63  |  Objectives list uses bullets, never numbering
+    note: an Objectives entry is an outcome, not an ordered step - numbering replaced with a bullet
+    BEFORE: 1. Install SqlPackage as a .NET global tool, or update it if it is already there:
+    AFTER : - Install SqlPackage as a .NET global tool, or update it if it is already there:
+
+[SK-91] Line 69  |  Objectives list uses bullets, never numbering
+    note: an Objectives entry is an outcome, not an ordered step - numbering replaced with a bullet
+    BEFORE: 1. Add the tools folder to this window's PATH so you do not need to reopen PowerShell:
+    AFTER : - Add the tools folder to this window's PATH so you do not need to reopen PowerShell:
+
+[SK-91] Line 75  |  Objectives list uses bullets, never numbering
+    note: an Objectives entry is an outcome, not an ordered step - numbering replaced with a bullet
+    BEFORE: 1. Verify:
+    AFTER : - Verify:
+
+[SK-53] Line 35  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | **Verify the tools (1 minute).** Open **Windows PowerShell as Administrator** and run:
+    AFTER:
+        | (2 blank lines)
+        | **Verify the tools (1 minute).** Open **Windows PowerShell as Administrator** and run:
+
+[SK-53] Line 88  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | ## Exercise 0: Set up the source and target
+    AFTER:
+        | (2 blank lines)
+        | ## Exercise 0: Set up the source and target
+
+[SK-53] Line 118  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | ### Task 2: Start the Azure deployment
+    AFTER:
+        | (2 blank lines)
+        | ### Task 2: Start the Azure deployment
+
+[SK-53] Line 172  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | ### Task 3: Build the source database
+    AFTER:
+        | (2 blank lines)
+        | ### Task 3: Build the source database
+
+[SK-53] Line 280  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | ## Exercise 1: Evaluate and provision migration tooling
+    AFTER:
+        | (2 blank lines)
+        | ## Exercise 1: Evaluate and provision migration tooling
+
+[SK-53] Line 300  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | ### Task 2: Try an offline export with SqlPackage
+    AFTER:
+        | (2 blank lines)
+        | ### Task 2: Try an offline export with SqlPackage
+
+[SK-53] Line 325  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | 1. Rerun the export and time it:
+    AFTER:
+        | (2 blank lines)
+        | 1. Rerun the export and time it:
+
+[SK-53] Line 337  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | ### Task 3: Provision Azure Database Migration Service
+    AFTER:
+        | (2 blank lines)
+        | ### Task 3: Provision Azure Database Migration Service
+
+[SK-53] Line 382  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | ## Exercise 2: Run offline and online migrations to Azure SQL Database
+    AFTER:
+        | (2 blank lines)
+        | ## Exercise 2: Run offline and online migrations to Azure SQL Database
+
+[SK-53] Line 428  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | ### Task 2: Online (minimal-downtime) migration
+    AFTER:
+        | (2 blank lines)
+        | ### Task 2: Online (minimal-downtime) migration
+
+[SK-53] Line 538  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | ### Task 3: Apply destination-specific settings for Azure SQL Database
+    AFTER:
+        | (2 blank lines)
+        | ### Task 3: Apply destination-specific settings for Azure SQL Database
+
+[SK-53] Line 586  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | ## Exercise 3: Run readiness checks and execute the cutover
+    AFTER:
+        | (2 blank lines)
+        | ## Exercise 3: Run readiness checks and execute the cutover
+
+[SK-53] Line 641  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | ### Task 2: Rehearse the cutover
+    AFTER:
+        | (2 blank lines)
+        | ### Task 2: Rehearse the cutover
+
+[SK-53] Line 713  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | ## Clean up and review
+    AFTER:
+        | (2 blank lines)
+        | ## Clean up and review
+
+[SK-81] Line 17  |  Compact bullet list (no padding blank lines)
+    note: a bullet list attaches directly to the prose lead-in that introduces it
+    BEFORE:
+        | By the end of the lab you will be able to:
+        | 
+        | - Profile a SQL Server database and find blockers that affect the choice
+    AFTER:
+        | By the end of the lab you will be able to:
+        | - Profile a SQL Server database and find blockers that affect the choice
+
+[SK-81] Line 51  |  Compact bullet list (no padding blank lines)
+    note: a bullet list attaches directly to the prose lead-in that introduces it
+    BEFORE:
+        | **If SqlPackage is not recognised or fails with "You must install or update .NET".** SqlPackage 170.x runs on .NET 10 and needs the latest .NET 10 runtime under **C:\Program Files\dotnet.** Run these steps in order, in the same Administrator PowerShell window:
+        | 
+        | - Install the latest .NET 10 SDK and runtime machine-wide:
+    AFTER:
+        | **If SqlPackage is not recognised or fails with "You must install or update .NET".** SqlPackage 170.x runs on .NET 10 and needs the latest .NET 10 runtime under **C:\Program Files\dotnet.** Run these steps in order, in the same Administrator PowerShell window:
+        | - Install the latest .NET 10 SDK and runtime machine-wide:
+
+[SK-81] Line 159  |  Compact bullet list (no padding blank lines)
+    note: a bullet list attaches directly to the prose lead-in that introduces it
+    BEFORE:
+        |     Everything worked:
+        | 
+        |     - Both providers show Registered.
+    AFTER:
+        |     Everything worked:
+        |     - Both providers show Registered.
+
+[SK-81] Line 161  |  Compact bullet list (no padding blank lines)
+    note: sibling bullets in one list need no blank line between them
+    BEFORE:
+        |     - Both providers show Registered.
+        | 
+        |     - The resource group rg-lab3-sd was created.
+    AFTER:
+        |     - Both providers show Registered.
+        |     - The resource group rg-lab3-sd was created.
+
+[SK-81] Line 163  |  Compact bullet list (no padding blank lines)
+    note: sibling bullets in one list need no blank line between them
+    BEFORE:
+        |     - The resource group rg-lab3-sd was created.
+        | 
+        |     - The SQL server **sql-lab3-sd-1186** was created. Note this name down.
+    AFTER:
+        |     - The resource group rg-lab3-sd was created.
+        |     - The SQL server **sql-lab3-sd-1186** was created. Note this name down.
+
+[SK-81] Line 165  |  Compact bullet list (no padding blank lines)
+    note: sibling bullets in one list need no blank line between them
+    BEFORE:
+        |     - The SQL server **sql-lab3-sd-1186** was created. Note this name down.
+        | 
+        |     - The firewall rule Allow lets your VM’s IP connect.
+    AFTER:
+        |     - The SQL server **sql-lab3-sd-1186** was created. Note this name down.
+        |     - The firewall rule Allow lets your VM’s IP connect.
+
+[SK-81] Line 380  |  Compact bullet list (no padding blank lines)
+    note: a bullet list attaches directly to the prose lead-in that introduces it
+    BEFORE:
+        |     The Overview page shows what the CLI reported:
+        | 
+        |     - **Integration Runtime State: “Integration Runtime not registered”.**
+    AFTER:
+        |     The Overview page shows what the CLI reported:
+        |     - **Integration Runtime State: “Integration Runtime not registered”.**
+
+==============================================================================
+END OF LOG
+==============================================================================

@@ -1,27 +1,20 @@
-# **Lab 6: Evaluate Azure SQL Database Hyperscale as a Migration Destination**
+# Lab 6: Evaluate Azure SQL Database Hyperscale as a Migration Destination
 
-**Lab overview**
+### Lab overview
 
-In Lab 5, Fabrikam Retail deployed ReportingDB to Azure SQL Database
-General Purpose. Since then, two things have changed:
-
+In Lab 5, Fabrikam Retail deployed ReportingDB to Azure SQL Database General Purpose. Since then, two things have changed:
 - **Growth:** the analytics team plans to load five years of sales
-  history plus a daily feed. ReportingDB is now forecast to pass 4 TB
-  within two years, which is the General Purpose storage limit.
+  history plus a daily feed. ReportingDB is now forecast to pass 4 TB within two years, which is the General Purpose storage limit.
 
 - **New workloads:** Power BI dashboards and a new AI sales-forecasting
-  service will run heavy read queries all day. The team doesn’t want
-  them to slow down the daily feed that writes to the database.
+  service will run heavy read queries all day. The team doesn’t want them to slow down the daily feed that writes to the database.
 
-Lab 2’s decision flow sends a database over 4 TB, or one that needs to
-scale reads independently, to **Hyperscale**. Your task is to prove that
-Hyperscale meets both needs before the team changes ReportingDB’s
-destination.
 
-**Objectives**
+Lab 2’s decision flow sends a database over 4 TB, or one that needs to scale reads independently, to **Hyperscale**. Your task is to prove that Hyperscale meets both needs before the team changes ReportingDB’s destination.
+
+### Objectives
 
 After completing this lab, you will be able to:
-
 - Deploy an Azure SQL Database Hyperscale database and identify its
   storage architecture.
 
@@ -37,135 +30,107 @@ After completing this lab, you will be able to:
 - Explain why choosing Hyperscale is a one-way decision for a new
   database.
 
-## **Exercise 1: Deploy an Azure SQL Database Hyperscale Database**
 
-You deploy a Hyperscale database with the AdventureWorksLT sample, which
-stands in for ReportingDB’s data, and confirm how its storage differs
-from General Purpose.
+## Exercise 1: Deploy an Azure SQL Database Hyperscale Database
 
-### **Task 1: Create the Hyperscale database**
+You deploy a Hyperscale database with the AdventureWorksLT sample, which stands in for ReportingDB’s data, and confirm how its storage differs from General Purpose.
 
-1.  Open [***portal.azure.com***](https://portal.azure.com/) and sign in
-    with your lab account.
+### Task 1: Create the Hyperscale database
 
-    ![](./media/image1.png)
+1. Open +++https://portal.azure.com/+++ and sign in with your lab account.
 
-2.  In the portal search bar, type +++SQL databases+++. Under
-    **Services**, select **Azure SQL Database**.
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image1.png)
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image2.png)
+1. In the portal search bar, type +++SQL databases+++. Under +++Services+++, select **Azure SQL Database**.
 
-3.  Click **+ Create**. If a menu opens, select **SQL database**.
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image2.png)
 
-    ![](./media/image3.png)
+1. Click **+ Create**. If a menu opens, select **SQL database**.
 
-4.  On the **Basics** tab, set **Resource group** to **ResourceGroup1**
-    and **Database name** to +++ReportingHS+++. Under **Server**, click **Create new**.
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image3.png)
 
-    ![](./media/image4.png)
+1. On the **Basics** tab, set **Resource group** to **ResourceGroup1** and **Database name** to +++ReportingHS+++. Under **Server**, click **Create new**.
 
-5.  In the **Create SQL Database Server** pane, set **Server name** to
-    +++sql-fabrikam-hs-jd427+++, **Location** to **Central US**,
-    **Authentication method** to **Use SQL authentication**, **Server
-    admin login** to +++sqladminuser+++, and **Password** and **Confirm
-    password** to +++Fabrikam!Lab2026+++. Click **OK**.
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image4.png)
 
-    ![](./media/image5.png)
+1. In the **Create SQL Database Server** pane, set **Server name** to +++sql-fabrikam-hs-jd427+++, **Location** to **Central US**, **Authentication method** to **Use SQL authentication**, **Server admin login** to +++sqladminuser+++, and **Password** and **Confirm password** to +++Fabrikam!Lab2026+++. Click **OK**.
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image6.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image5.png)
 
-6.  Set **Want to use SQL elastic pool?** to **No** and **Workload environment** to **Development**.
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image6.png)
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image7.png)
+1. Set **Want to use SQL elastic pool?** to **No** and **Workload environment** to **Development**.
 
-7.  Under **Compute + storage**, click **Configure database**.
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image7.png)
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image8.png)
+1. Under **Compute + storage**, click **Configure database**.
 
-8.  Set the following:
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image8.png)
 
-    1.  **Service tier:** Hyperscale (On-demand scalable storage)
+1. Set the following:
 
-    2.  **Compute tier:** Provisioned
+    1. **Service tier:** Hyperscale (On-demand scalable storage)
 
-    3.  **Hardware configuration:** Standard-series (Gen5)
+    1. **Compute tier:** Provisioned
 
-    4.  **vCores:** 2
+    1. **Hardware configuration:** Standard-series (Gen5)
 
-    5.  **High-availability secondary replicas:** 0
+    1. **vCores:** 2
 
-    6.  **Would you like to make this database zone redundant?** No
+    1. **High-availability secondary replicas:** 0
+
+    1. **Would you like to make this database zone redundant?** No
 
     Click **Apply**.
 
-    **Why 0 high-availability replicas?** This lab uses a named replica
-    for read scale-out instead, and 0 keeps the cost low. In production,
-    add at least one high-availability replica, so a failover takes
-    seconds instead of minutes.
+    **Why 0 high-availability replicas?** This lab uses a named replica for read scale-out instead, and 0 keeps the cost low. In production, add at least one high-availability replica, so a failover takes seconds instead of minutes.
 
-    **Zone redundancy is a creation-time decision for Hyperscale.** You
-    can’t change it after the database is created, so in production decide
-    it now.
+    **Zone redundancy is a creation-time decision for Hyperscale.** You can’t change it after the database is created, so in production decide it now.
 
-    ![](./media/image9.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image9.png)
 
-    ![](./media/image10.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image10.png)
 
-9.  Under **Backup storage redundancy**, select **Locally-redundant backup storage**.
+1. Under **Backup storage redundancy**, select **Locally-redundant backup storage**.
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image11.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image11.png)
 
-10. Click **Next: Networking**. Set **Connectivity method** to **Public
-    endpoint**, **Allow Azure services and resources to access this
-    server** to **No**, and **Add current client IP address** to
-    **Yes**.
+1. Click **Next: Networking**. Set **Connectivity method** to **Public endpoint**, **Allow Azure services and resources to access this server** to **No**, and **Add current client IP address** to **Yes**.
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image12.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image12.png)
 
-11. Click the **Additional settings** tab. Set **Use existing data** to
-    **Sample**, and click **OK** in the confirmation dialog.
+1. Click the **Additional settings** tab. Set **Use existing data** to **Sample**, and click **OK** in the confirmation dialog.
 
-    ![](./media/image13.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image13.png)
 
-12. Click **Review + create**.
+1. Click **Review + create**.
 
-    ![](./media/image14.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image14.png)
 
-13. Then click on **Create**.
+1. Then click on **Create**.
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image15.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image15.png)
 
-    **Expected result:** **Your deployment is complete** after 3 to 6
-    minutes. Click **Go to resource**.
-    
-    ![](./media/image16.png)
+    **Expected result:** **Your deployment is complete** after 3 to 6 minutes. Click **Go to resource**.
+  
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image16.png)
 
-### **Task 2: Explore the Hyperscale architecture**
 
-1.  On the **ReportingHS** page, in the left menu, click **Query
-    editor**.
+### Task 2: Explore the Hyperscale architecture
 
-    ![](./media/image17.png)
+1. On the **ReportingHS** page, in the left menu, click **Query editor**.
 
-2.  On the **SQL server authentication** tab, enter +++sqladminuser+++ and
-    +++Fabrikam!Lab2026+++, and click **OK**. If you see a firewall error,
-    click **Allowlist IP** in the message, then click **OK** again.
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image17.png)
 
-    ![](./media/image18.png)
+1. On the **SQL server authentication** tab, enter +++sqladminuser+++ and +++Fabrikam!Lab2026+++, and click **OK**. If you see a firewall error, click **Allowlist IP** in the message, then click **OK** again.
 
-3.  Click **New query**.
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image18.png)
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image19.png)
+1. Click **New query**.
 
-4.  Paste this query and click **Run**:
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image19.png)
+
+1. Paste this query and click **Run**:
 
     **T-SQL**
 
@@ -176,13 +141,11 @@ from General Purpose.
        (SELECT COUNT(*) FROM SalesLT.Customer) AS customer_rows;
     ```
 
-    **Expected result:** edition **Hyperscale**, service_objective
-    **HS_Gen5_2**, updateability **READ_WRITE** and customer_rows **847**.
+    **Expected result:** edition **Hyperscale**, service_objective **HS_Gen5_2**, updateability **READ_WRITE** and customer_rows **847**.
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image20.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image20.png)
 
-5.  Clear the editor and run:
+1. Clear the editor and run:
 
     **T-SQL**
 
@@ -192,84 +155,59 @@ from General Purpose.
     ORDER BY type_desc, file_id;
     ```
 
-    **Expected result:** one or more **ROWS** files and one **LOG** file.
-    In Hyperscale, each data file is held by a separate **page server**,
-    and compute nodes read pages from them on demand. That separation of
-    compute from storage is what lets Hyperscale grow to 128 TB and add
-    replicas without copying data.
+    **Expected result:** one or more **ROWS** files and one **LOG** file. In Hyperscale, each data file is held by a separate **page server**, and compute nodes read pages from them on demand. That separation of compute from storage is what lets Hyperscale grow to 128 TB and add replicas without copying data.
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image21.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image21.png)
 
-## **Exercise 2: Isolate Reporting and AI Workloads with a Named Replica**
 
-A named replica is a read-only database with its own name and its own
-compute, sharing the primary’s storage. You create one for the Power BI
-dashboards and the AI forecasting service, so their heavy reads never
-compete with the daily feed on the primary.
+## Exercise 2: Isolate Reporting and AI Workloads with a Named Replica
 
-### **Task 1: Create the named replica**
+A named replica is a read-only database with its own name and its own compute, sharing the primary’s storage. You create one for the Power BI dashboards and the AI forecasting service, so their heavy reads never compete with the daily feed on the primary.
 
-1.  In the left menu, click **Data management \> Replicas**. Click **+ Create replica**.
+### Task 1: Create the named replica
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image22.png)
+1. In the left menu, click **Data management \> Replicas**. Click **+ Create replica**.
 
-2.  The Create **SQL Database** - **Replica** page opens on the
-    **Basics** tab. Subscription, Resource group, Primary database and
-    Region are greyed out because they come from the primary database.
-    Scroll down below **Region**, and under Replica configuration, set
-    **Replica type** to **Named replica**.
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image22.png)
+
+1. The Create **SQL Database** - **Replica** page opens on the **Basics** tab. Subscription, Resource group, Primary database and Region are greyed out because they come from the primary database. Scroll down below **Region**, and under Replica configuration, set **Replica type** to **Named replica**.
 
     Don’t click **Review + create** yet. The settings you need are lower on this tab.
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image23.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image23.png)
 
-3.  Set **Server** to **sql-fabrikam-hs-jd427** (the same server as the
-    primary) and **Database name** to +++ReportingHS_AI+++.
+1. Set **Server** to **sql-fabrikam-hs-jd427** (the same server as the primary) and **Database name** to +++ReportingHS_AI+++.
 
-4.  Under **Compute + storage**, click **Configure database**.
+1. Under **Compute + storage**, click **Configure database**.
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image24.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image24.png)
 
-5.  Check that **vCores** is **2**, set **High-availability secondary
-    replicas** to **0** and **Would you like to make this database zone
-    redundant?** to **No**, and click **Apply**.
+1. Check that **vCores** is **2**, set **High-availability secondary replicas** to **0** and **Would you like to make this database zone redundant?** to **No**, and click **Apply**.
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image25.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image25.png)
 
-6.  Click **Review + create**, then **Create**.
+1. Click **Review + create**, then **Create**.
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image26.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image26.png)
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image27.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image27.png)
 
-    **Expected result:** the deployment completes in about a minute. No
-    data is copied, because the named replica reads the same page servers
-    as the primary.
+    **Expected result:** the deployment completes in about a minute. No data is copied, because the named replica reads the same page servers as the primary.
 
-7.  Navigate to **Home** and open **ReportingHS**.
+1. Navigate to **Home** and open **ReportingHS**.
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image28.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image28.png)
 
-8.  Return to **ReportingHS \> Data management \> Replicas**.
+1. Return to **ReportingHS \> Data management \> Replicas**.
 
     **Expected result:** **ReportingHS_AI** is listed under **Named replicas**.
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image29.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image29.png)
 
-### **Task 2: Prove the replica is read-only and in sync**
 
-1.  On the **ReportingHS** page (the primary), open **Query editor** and
-    run this query. It creates a small table for the daily sales feed
-    and writes two rows:
+### Task 2: Prove the replica is read-only and in sync
+
+1. On the **ReportingHS** page (the primary), open **Query editor** and run this query. It creates a small table for the daily sales feed and writes two rows:
 
     **T-SQL (on ReportingHS)**
 
@@ -281,32 +219,25 @@ compete with the daily feed on the primary.
 
     **Expected result:** two rows.
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image30.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image30.png)
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image31.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image31.png)
 
-2.  In the portal search bar, type +++SQL databases+++, select **Azure SQL Database** under **Services**.
+1. In the portal search bar, type +++SQL databases+++, select **Azure SQL Database** under **Services**.
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image32.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image32.png)
 
-3.  Select **Hyperscale databases** to see **ReportingHS** and
-    **ReportingHS_AI**.
+1. Select **Hyperscale databases** to see **ReportingHS** and **ReportingHS_AI**.
 
     Click **ReportingHS_AI**.
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image33.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image33.png)
 
-4.  In the left menu, click **Query editor** and sign in with
-    +++sqladminuser+++ and +++Fabrikam!Lab2026+++.
+1. In the left menu, click **Query editor** and sign in with +++sqladminuser+++ and +++Fabrikam!Lab2026+++.
 
-    ![A screenshot of a computer screen Description automatically
-    generated](./media/image34.png)
+    ![A screenshot of a computer screen Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image34.png)
 
-5.  Run this query on the named replica:
+1. Run this query on the named replica:
 
     **T-SQL (on ReportingHS_AI)**
 
@@ -316,36 +247,24 @@ compete with the daily feed on the primary.
     SELECT * FROM dbo.DailySalesFeed;
     ```
 
-    **Expected result:** updateability **READ_ONLY**, service_objective
-    **HS_Gen5_2**, and the same two rows you inserted on the primary. The
-    editor may show only the last result set, the two rows; that is
-    expected. The replica sees new data within seconds, without any copy
-    or refresh job.
+    **Expected result:** updateability **READ_ONLY**, service_objective **HS_Gen5_2**, and the same two rows you inserted on the primary. The editor may show only the last result set, the two rows; that is expected. The replica sees new data within seconds, without any copy or refresh job.
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image35.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image35.png)
 
-6.  Clear the editor and try to write to the named replica:
+1. Clear the editor and try to write to the named replica:
 
     **T-SQL (on ReportingHS_AI)**
 
-    ```
-    INSERT dbo.DailySalesFeed VALUES ('2026-07-03', 1400);
-    ```
+    `INSERT dbo.DailySalesFeed VALUES ('2026-07-03', 1400);`
 
-    **Expected result:** the query fails on purpose with an error saying
-    the database is **read-only** (error 3906), followed by **Failed to
-    execute the query**. Named replicas accept reads only, so a dashboard
-    or AI service connected to one can’t change the data.
+    **Expected result:** the query fails on purpose with an error saying the database is **read-only** (error 3906), followed by **Failed to execute the query**. Named replicas accept reads only, so a dashboard or AI service connected to one can’t change the data.
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image36.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image36.png)
 
-### **Task 3: Run an analytics workload on the replica**
 
-1.  Clear the editor and run this aggregation on **ReportingHS_AI**. It
-    is the kind of query the forecasting service would run to build its
-    training data:
+### Task 3: Run an analytics workload on the replica
+
+1. Clear the editor and run this aggregation on **ReportingHS_AI**. It is the kind of query the forecasting service would run to build its training data:
 
     **T-SQL (on ReportingHS_AI)**
 
@@ -362,120 +281,77 @@ compete with the daily feed on the primary.
     ORDER BY revenue DESC;
     ```
 
-    **Expected result:** one row per product category, ordered by revenue.
-    The query ran on the named replica’s own 2 vCores, so it used none of
-    the primary’s CPU or memory.
+    **Expected result:** one row per product category, ordered by revenue. The query ran on the named replica’s own 2 vCores, so it used none of the primary’s CPU or memory.
 
-    **Workload prioritization in practice:** the daily feed on the primary
-    is the business-critical workload. Dashboards and AI forecasting are
-    lower priority and can tolerate a few seconds of data latency. Giving
-    them a named replica means a runaway report or a large AI query can
-    only slow itself down. In production, you can create up to 30 named
-    replicas, for example one per team or application.
+    **Workload prioritization in practice:** the daily feed on the primary is the business-critical workload. Dashboards and AI forecasting are lower priority and can tolerate a few seconds of data latency. Giving them a named replica means a runaway report or a large AI query can only slow itself down. In production, you can create up to 30 named replicas, for example one per team or application.
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image37.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image37.png)
 
-## **Exercise 3: Scale Hyperscale Compute Independently**
 
-The forecasting team expects the daily feed to double during the holiday
-season. You scale up the primary for the busy period while the named
-replica keeps its own size.
+## Exercise 3: Scale Hyperscale Compute Independently
 
-### **Task 1: Scale up the primary**
+The forecasting team expects the daily feed to double during the holiday season. You scale up the primary for the busy period while the named replica keeps its own size.
 
-1.  Open the **ReportingHS** database page. In the left menu, click
-    **Settings \> Compute + storage**.
+### Task 1: Scale up the primary
 
-    ![A screenshot of a computer screen Description automatically
-    generated](./media/image38.png)
+1. Open the **ReportingHS** database page. In the left menu, click **Settings \> Compute + storage**.
 
-2.  Change **vCores** from **2** to **4**. Leave every other setting
-    unchanged and click **Apply**.
+    ![A screenshot of a computer screen Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image38.png)
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image39.png)
+1. Change **vCores** from **2** to **4**. Leave every other setting unchanged and click **Apply**.
 
-3.  Click the **Notifications** (bell) icon and note how long the
-    scaling operation takes.
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image39.png)
 
-    **Expected result:** the operation completes in a few minutes.
-    Hyperscale scales compute in about the same time whatever the database
-    size, because no data is copied; a new compute node attaches to the
-    same page servers. In General Purpose, scaling a large database can
-    take much longer.
+1. Click the **Notifications** (bell) icon and note how long the scaling operation takes.
 
-    ![](./media/image40.png)
+    **Expected result:** the operation completes in a few minutes. Hyperscale scales compute in about the same time whatever the database size, because no data is copied; a new compute node attaches to the same page servers. In General Purpose, scaling a large database can take much longer.
 
-### **Task 2: Confirm the replica kept its own size**
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image40.png)
 
-1.  Open **ReportingHS_AI**, open **Query editor**, and run the same
-    query.
 
-    **Expected result:** database_name **ReportingHS_AI** and
-    service_objective **HS_Gen5_2**. The primary and the named replica
-    scale separately, so you can size each workload for its own demand.
+### Task 2: Confirm the replica kept its own size
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image41.png)
+1. Open **ReportingHS_AI**, open **Query editor**, and run the same query.
 
-2.  On **ReportingHS**, open **Query editor** and run:
+    **Expected result:** database_name **ReportingHS_AI** and service_objective **HS_Gen5_2**. The primary and the named replica scale separately, so you can size each workload for its own demand.
+
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image41.png)
+
+1. On **ReportingHS**, open **Query editor** and run:
 
     **T-SQL (on ReportingHS)**
 
-    ```
-    SELECT DB_NAME() AS database_name, DATABASEPROPERTYEX(DB_NAME(), 'ServiceObjective') AS service_objective;
-    ```
+    `SELECT DB_NAME() AS database_name, DATABASEPROPERTYEX(DB_NAME(), 'ServiceObjective') AS service_objective;`
 
-    **Expected result:** database_name **ReportingHS** and
-    service_objective **HS_Gen5_4**.
+    **Expected result:** database_name **ReportingHS** and service_objective **HS_Gen5_4**.
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image42.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image42.png)
 
-## **Conclusion**
 
-In this lab, you evaluated Azure SQL Database Hyperscale as the new
-destination for Fabrik’s ReportingDB. You deployed a Hyperscale database
-and saw how page servers separate storage from compute, which removes
-the 4 TB limit of General Purpose. You then created a named replica that
-isolates the reporting and AI workloads from the business-critical daily
-feed, and proved it is read-only and stays in sync with the primary.
-Finally, you scaled the primary independently of the replica in minutes,
-and reviewed why choosing Hyperscale is a one-way decision that must be
-justified by real requirements.
+## Conclusion
 
-## **Clean Up Resources**
+In this lab, you evaluated Azure SQL Database Hyperscale as the new destination for Fabrik’s ReportingDB. You deployed a Hyperscale database and saw how page servers separate storage from compute, which removes the 4 TB limit of General Purpose. You then created a named replica that isolates the reporting and AI workloads from the business-critical daily feed, and proved it is read-only and stays in sync with the primary. Finally, you scaled the primary independently of the replica in minutes, and reviewed why choosing Hyperscale is a one-way decision that must be justified by real requirements.
+
+## Clean Up Resources
 
 Delete the Lab 6 resources but keep **ResourceGroup1**:
 
-1.  In the portal search bar, type +++SQL servers+++ and select **SQL
-    servers** under **Services**.
+1. In the portal search bar, type +++SQL servers+++ and select **SQL servers** under **Services**.
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image43.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image43.png)
 
-2.  Click **sql-fabrikam-hs-jd427**.
+1. Click **sql-fabrikam-hs-jd427**.
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image44.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image44.png)
 
-3.  On the toolbar, click **Delete**. Type the server name to confirm
-    and click **Delete**. Deleting the server also deletes
-    **ReportingHS** and **ReportingHS_AI**.
+1. On the toolbar, click **Delete**. Type the server name to confirm and click **Delete**. Deleting the server also deletes **ReportingHS** and **ReportingHS_AI**.
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image45.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image45.png)
 
-    ![A screenshot of a computer screen Description automatically
-    generated](./media/image46.png)
+    ![A screenshot of a computer screen Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image46.png)
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image47.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image47.png)
 
-4.  In the portal search bar, type **All resources** and select **All
-    resources**. Set the **Resource group** filter to **ResourceGroup1**
-    and click **Refresh**.
+1. In the portal search bar, type **All resources** and select **All resources**. Set the **Resource group** filter to **ResourceGroup1** and click **Refresh**.
 
-    **Expected result:** none of the Lab 6 resources is listed, and
-    **ResourceGroup1** still exists.
+    **Expected result:** none of the Lab 6 resources is listed, and **ResourceGroup1** still exists.

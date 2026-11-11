@@ -1,0 +1,1618 @@
+==============================================================================
+IDLx MARKDOWN CLEANUP - CHANGE LOG
+==============================================================================
+Source file : C:\Users\SP\PycharmProjects\Austin_Instruction_CleanUp\DPDB-040-sqlsrvrmgrtnmdrnztnazdepth\Lab Guides\Lab 6\Lab 6.md
+Run time    : 2026-11-11 09:15:18
+Mode        : APPLIED
+Script      : idlx_cleanup.py v1.2
+Ruleset     : IDLx Markdown Formatting Rules v1.42
+
+Auto-fix changes : 204
+Review flags     : 43
+Not logged       : 1 (SK-12=1) - applied but excluded by policy
+
+==============================================================================
+ACTION REQUIRED - LINES FLAGGED FOR REVIEW
+==============================================================================
+
+These lines were NOT changed. Each needs a human decision.
+Resolve all ERROR items before publishing.
+
+------------------------------------------------------------------------------
+SEVERITY: ERROR  (1 finding(s))
+------------------------------------------------------------------------------
+
+  Line 1     [SK-01] Front matter present and delimited
+      REASON : no YAML front matter block found
+      TEXT   : (file start)
+
+------------------------------------------------------------------------------
+SEVERITY: WARNING  (6 finding(s))
+------------------------------------------------------------------------------
+
+  Line 3     [SK-06] Heading hierarchy skips a level
+      REASON : jumped from h1 to h3
+      TEXT   : ### Lab overview
+
+  Line 169   [SK-32] Backslash escape characters
+      REASON : backslash escape may render unexpectedly
+      TEXT   : 1. In the left menu, click **Data management \> Replicas**. Click **+ 
+
+  Line 171   [SK-39b] Multi-word typed value - review
+      REASON : multi-word value after 'type' - confirm whether learner types this
+      TEXT   : ** to **
+
+  Line 201   [SK-32] Backslash escape characters
+      REASON : backslash escape may render unexpectedly
+      TEXT   : 1. Return to **ReportingHS \> Data management \> Replicas**.
+
+  Line 297   [SK-32] Backslash escape characters
+      REASON : backslash escape may render unexpectedly
+      TEXT   : 1. Open the **ReportingHS** database page. In the left menu, click **S
+
+  Line 348   [SK-39b] Multi-word typed value - review
+      REASON : multi-word value after 'type' - confirm whether learner types this
+      TEXT   : **All resources**
+
+------------------------------------------------------------------------------
+SEVERITY: INFO  (36 finding(s))
+------------------------------------------------------------------------------
+
+  Line 1     [SK-16] Relative image path
+      REASON : image base URL verified against GitHub - a sample image resolved successfully
+      TEXT   : https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206
+
+  Line 46    [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 60    [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 64    [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 68    [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 96    [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 100   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 112   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 131   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 146   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 160   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 171   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 177   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 183   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 187   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 191   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 193   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 199   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 205   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 222   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 224   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 228   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 234   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 238   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer screen Description automatically generated
+
+  Line 252   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 262   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 288   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 299   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer screen Description automatically generated
+
+  Line 303   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 318   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 328   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 341   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 345   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 349   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 351   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer screen Description automatically generated
+
+  Line 353   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+==============================================================================
+SUMMARY BY RULE
+==============================================================================
+
+FLAGGED FOR REVIEW:
+  SK-01       1 finding(s)  Front matter present and delimited
+  SK-06       1 finding(s)  Heading hierarchy skips a level
+  SK-14      35 finding(s)  Auto-generated alt text
+  SK-16       1 finding(s)  Relative image path
+  SK-32       3 finding(s)  Backslash escape characters
+  SK-39b      2 finding(s)  Multi-word typed value - review
+
+AUTO-FIX APPLIED:
+  SK-04       2 change(s)   Bold-only label -> ### heading
+  SK-07      48 change(s)   Numbered step -> '1.' format
+  SK-10      44 change(s)   Unwrap hard-wrapped prose
+  SK-110     13 change(s)   Decoration (bold/italic/<u>) stripped from a heading
+  SK-13b     35 change(s)   Rejoin image split across lines
+  SK-16      47 change(s)   Relative image path
+  SK-39       1 change(s)   Typed value -> type-text (+++)
+  SK-47b      2 change(s)   Single-line fence -> inline code
+  SK-53       9 change(s)   Two blank lines close every list
+  SK-79       1 change(s)   Self-referencing URL link -> type-text
+  SK-81       2 change(s)   Compact bullet list (no padding blank lines)
+
+==============================================================================
+DETAILED CHANGES
+==============================================================================
+
+
+------------------------------------------------------------------------------
+PHASE 2 - Character & Token Cleanup
+------------------------------------------------------------------------------
+
+[SK-79] Line 48  |  Self-referencing URL link -> type-text
+    note: link text was its own URL - collapsed to a single type-text value so the learner opens it in the lab environment
+    BEFORE: 1.  Open [***portal.azure.com***](https://portal.azure.com/) and sign in
+    AFTER : 1.  Open +++https://portal.azure.com/+++ and sign in
+
+
+------------------------------------------------------------------------------
+PHASE 3 - Block-Level Structure
+------------------------------------------------------------------------------
+
+[SK-13b] Line 56  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A screenshot of a computer Description automatically
+        |     generated](./media/image2.png)
+    AFTER:
+        |     ![A screenshot of a computer Description automatically generated](./media/image2.png)
+
+[SK-13b] Line 75  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A screenshot of a computer Description automatically
+        |     generated](./media/image6.png)
+    AFTER:
+        |     ![A screenshot of a computer Description automatically generated](./media/image6.png)
+
+[SK-13b] Line 79  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A screenshot of a computer Description automatically
+        |     generated](./media/image7.png)
+    AFTER:
+        |     ![A screenshot of a computer Description automatically generated](./media/image7.png)
+
+[SK-13b] Line 83  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A screenshot of a computer Description automatically
+        |     generated](./media/image8.png)
+    AFTER:
+        |     ![A screenshot of a computer Description automatically generated](./media/image8.png)
+
+[SK-13b] Line 116  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A screenshot of a computer Description automatically
+        |     generated](./media/image11.png)
+    AFTER:
+        |     ![A screenshot of a computer Description automatically generated](./media/image11.png)
+
+[SK-13b] Line 123  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A screenshot of a computer Description automatically
+        |     generated](./media/image12.png)
+    AFTER:
+        |     ![A screenshot of a computer Description automatically generated](./media/image12.png)
+
+[SK-13b] Line 136  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A screenshot of a computer Description automatically
+        |     generated](./media/image15.png)
+    AFTER:
+        |     ![A screenshot of a computer Description automatically generated](./media/image15.png)
+
+[SK-13b] Line 158  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A screenshot of a computer Description automatically
+        |     generated](./media/image19.png)
+    AFTER:
+        |     ![A screenshot of a computer Description automatically generated](./media/image19.png)
+
+[SK-13b] Line 174  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A screenshot of a computer Description automatically
+        |     generated](./media/image20.png)
+    AFTER:
+        |     ![A screenshot of a computer Description automatically generated](./media/image20.png)
+
+[SK-13b] Line 192  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A screenshot of a computer Description automatically
+        |     generated](./media/image21.png)
+    AFTER:
+        |     ![A screenshot of a computer Description automatically generated](./media/image21.png)
+
+[SK-13b] Line 205  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A screenshot of a computer Description automatically
+        |     generated](./media/image22.png)
+    AFTER:
+        |     ![A screenshot of a computer Description automatically generated](./media/image22.png)
+
+[SK-13b] Line 215  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A screenshot of a computer Description automatically
+        |     generated](./media/image23.png)
+    AFTER:
+        |     ![A screenshot of a computer Description automatically generated](./media/image23.png)
+
+[SK-13b] Line 222  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A screenshot of a computer Description automatically
+        |     generated](./media/image24.png)
+    AFTER:
+        |     ![A screenshot of a computer Description automatically generated](./media/image24.png)
+
+[SK-13b] Line 228  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A screenshot of a computer Description automatically
+        |     generated](./media/image25.png)
+    AFTER:
+        |     ![A screenshot of a computer Description automatically generated](./media/image25.png)
+
+[SK-13b] Line 232  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A screenshot of a computer Description automatically
+        |     generated](./media/image26.png)
+    AFTER:
+        |     ![A screenshot of a computer Description automatically generated](./media/image26.png)
+
+[SK-13b] Line 234  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A screenshot of a computer Description automatically
+        |     generated](./media/image27.png)
+    AFTER:
+        |     ![A screenshot of a computer Description automatically generated](./media/image27.png)
+
+[SK-13b] Line 242  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A screenshot of a computer Description automatically
+        |     generated](./media/image28.png)
+    AFTER:
+        |     ![A screenshot of a computer Description automatically generated](./media/image28.png)
+
+[SK-13b] Line 248  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A screenshot of a computer Description automatically
+        |     generated](./media/image29.png)
+    AFTER:
+        |     ![A screenshot of a computer Description automatically generated](./media/image29.png)
+
+[SK-13b] Line 266  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A screenshot of a computer Description automatically
+        |     generated](./media/image30.png)
+    AFTER:
+        |     ![A screenshot of a computer Description automatically generated](./media/image30.png)
+
+[SK-13b] Line 268  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A screenshot of a computer Description automatically
+        |     generated](./media/image31.png)
+    AFTER:
+        |     ![A screenshot of a computer Description automatically generated](./media/image31.png)
+
+[SK-13b] Line 272  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A screenshot of a computer Description automatically
+        |     generated](./media/image32.png)
+    AFTER:
+        |     ![A screenshot of a computer Description automatically generated](./media/image32.png)
+
+[SK-13b] Line 279  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A screenshot of a computer Description automatically
+        |     generated](./media/image33.png)
+    AFTER:
+        |     ![A screenshot of a computer Description automatically generated](./media/image33.png)
+
+[SK-13b] Line 284  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A screenshot of a computer screen Description automatically
+        |     generated](./media/image34.png)
+    AFTER:
+        |     ![A screenshot of a computer screen Description automatically generated](./media/image34.png)
+
+[SK-13b] Line 302  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A screenshot of a computer Description automatically
+        |     generated](./media/image35.png)
+    AFTER:
+        |     ![A screenshot of a computer Description automatically generated](./media/image35.png)
+
+[SK-13b] Line 317  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A screenshot of a computer Description automatically
+        |     generated](./media/image36.png)
+    AFTER:
+        |     ![A screenshot of a computer Description automatically generated](./media/image36.png)
+
+[SK-13b] Line 351  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A screenshot of a computer Description automatically
+        |     generated](./media/image37.png)
+    AFTER:
+        |     ![A screenshot of a computer Description automatically generated](./media/image37.png)
+
+[SK-13b] Line 364  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A screenshot of a computer screen Description automatically
+        |     generated](./media/image38.png)
+    AFTER:
+        |     ![A screenshot of a computer screen Description automatically generated](./media/image38.png)
+
+[SK-13b] Line 369  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A screenshot of a computer Description automatically
+        |     generated](./media/image39.png)
+    AFTER:
+        |     ![A screenshot of a computer Description automatically generated](./media/image39.png)
+
+[SK-13b] Line 391  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A screenshot of a computer Description automatically
+        |     generated](./media/image41.png)
+    AFTER:
+        |     ![A screenshot of a computer Description automatically generated](./media/image41.png)
+
+[SK-13b] Line 404  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A screenshot of a computer Description automatically
+        |     generated](./media/image42.png)
+    AFTER:
+        |     ![A screenshot of a computer Description automatically generated](./media/image42.png)
+
+[SK-13b] Line 425  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A screenshot of a computer Description automatically
+        |     generated](./media/image43.png)
+    AFTER:
+        |     ![A screenshot of a computer Description automatically generated](./media/image43.png)
+
+[SK-13b] Line 429  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A screenshot of a computer Description automatically
+        |     generated](./media/image44.png)
+    AFTER:
+        |     ![A screenshot of a computer Description automatically generated](./media/image44.png)
+
+[SK-13b] Line 435  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A screenshot of a computer Description automatically
+        |     generated](./media/image45.png)
+    AFTER:
+        |     ![A screenshot of a computer Description automatically generated](./media/image45.png)
+
+[SK-13b] Line 437  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A screenshot of a computer screen Description automatically
+        |     generated](./media/image46.png)
+    AFTER:
+        |     ![A screenshot of a computer screen Description automatically generated](./media/image46.png)
+
+[SK-13b] Line 439  |  Rejoin image split across lines
+    note: rejoined image markdown split across 2 lines - an image is one unit from '![' to ')'
+    BEFORE:
+        |     ![A screenshot of a computer Description automatically
+        |     generated](./media/image47.png)
+    AFTER:
+        |     ![A screenshot of a computer Description automatically generated](./media/image47.png)
+
+
+------------------------------------------------------------------------------
+PHASE 2 - Character & Token Cleanup
+------------------------------------------------------------------------------
+
+[SK-16] Line 51  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image1.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image1.png)
+
+[SK-16] Line 56  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image2.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image2.png)
+
+[SK-16] Line 60  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image3.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image3.png)
+
+[SK-16] Line 65  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image4.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image4.png)
+
+[SK-16] Line 73  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image5.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image5.png)
+
+[SK-16] Line 75  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image6.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image6.png)
+
+[SK-16] Line 79  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image7.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image7.png)
+
+[SK-16] Line 83  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image8.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image8.png)
+
+[SK-16] Line 110  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image9.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image9.png)
+
+[SK-16] Line 112  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image10.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image10.png)
+
+[SK-16] Line 116  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image11.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image11.png)
+
+[SK-16] Line 123  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image12.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image12.png)
+
+[SK-16] Line 128  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image13.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image13.png)
+
+[SK-16] Line 132  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image14.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image14.png)
+
+[SK-16] Line 136  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image15.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image15.png)
+
+[SK-16] Line 141  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image16.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image16.png)
+
+[SK-16] Line 148  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image17.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image17.png)
+
+[SK-16] Line 154  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image18.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image18.png)
+
+[SK-16] Line 158  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image19.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image19.png)
+
+[SK-16] Line 174  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image20.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image20.png)
+
+[SK-16] Line 192  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image21.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image21.png)
+
+[SK-16] Line 205  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image22.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image22.png)
+
+[SK-16] Line 215  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image23.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image23.png)
+
+[SK-16] Line 222  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image24.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image24.png)
+
+[SK-16] Line 228  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image25.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image25.png)
+
+[SK-16] Line 232  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image26.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image26.png)
+
+[SK-16] Line 234  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image27.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image27.png)
+
+[SK-16] Line 242  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image28.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image28.png)
+
+[SK-16] Line 248  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image29.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image29.png)
+
+[SK-16] Line 266  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image30.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image30.png)
+
+[SK-16] Line 268  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image31.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image31.png)
+
+[SK-16] Line 272  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image32.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image32.png)
+
+[SK-16] Line 279  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image33.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image33.png)
+
+[SK-16] Line 284  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer screen Description automatically generated](./media/image34.png)
+    AFTER :     ![A screenshot of a computer screen Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image34.png)
+
+[SK-16] Line 302  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image35.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image35.png)
+
+[SK-16] Line 317  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image36.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image36.png)
+
+[SK-16] Line 351  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image37.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image37.png)
+
+[SK-16] Line 364  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer screen Description automatically generated](./media/image38.png)
+    AFTER :     ![A screenshot of a computer screen Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image38.png)
+
+[SK-16] Line 369  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image39.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image39.png)
+
+[SK-16] Line 380  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image40.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image40.png)
+
+[SK-16] Line 391  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image41.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image41.png)
+
+[SK-16] Line 404  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image42.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image42.png)
+
+[SK-16] Line 425  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image43.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image43.png)
+
+[SK-16] Line 429  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image44.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image44.png)
+
+[SK-16] Line 435  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image45.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image45.png)
+
+[SK-16] Line 437  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer screen Description automatically generated](./media/image46.png)
+    AFTER :     ![A screenshot of a computer screen Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image46.png)
+
+[SK-16] Line 439  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image47.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image47.png)
+
+
+------------------------------------------------------------------------------
+PHASE 3 - Block-Level Structure
+------------------------------------------------------------------------------
+
+[SK-47b] Line 308  |  Single-line fence -> inline code
+    note: fenced block held a single line of code - collapsed to inline code
+    BEFORE:
+        |     ```
+        |     INSERT dbo.DailySalesFeed VALUES ('2026-07-03', 1400);
+        |     ```
+    AFTER:
+        |     `INSERT dbo.DailySalesFeed VALUES ('2026-07-03', 1400);`
+
+[SK-47b] Line 395  |  Single-line fence -> inline code
+    note: fenced block held a single line of code - collapsed to inline code
+    BEFORE:
+        |     ```
+        |     SELECT DB_NAME() AS database_name, DATABASEPROPERTYEX(DB_NAME(), 'ServiceObjective') AS service_objective;
+        |     ```
+    AFTER:
+        |     `SELECT DB_NAME() AS database_name, DATABASEPROPERTYEX(DB_NAME(), 'ServiceObjective') AS service_objective;`
+
+
+------------------------------------------------------------------------------
+PHASE 4 - Numbering, Headings, Prose
+------------------------------------------------------------------------------
+
+[SK-10] Line 5  |  Unwrap hard-wrapped prose
+    note: joined 2 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | In Lab 5, Fabrikam Retail deployed ReportingDB to Azure SQL Database
+        | General Purpose. Since then, two things have changed:
+    AFTER:
+        | In Lab 5, Fabrikam Retail deployed ReportingDB to Azure SQL Database General Purpose. Since then, two things have changed:
+
+[SK-10] Line 9  |  Unwrap hard-wrapped prose
+    note: joined 2 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        |   history plus a daily feed. ReportingDB is now forecast to pass 4 TB
+        |   within two years, which is the General Purpose storage limit.
+    AFTER:
+        |   history plus a daily feed. ReportingDB is now forecast to pass 4 TB within two years, which is the General Purpose storage limit.
+
+[SK-10] Line 13  |  Unwrap hard-wrapped prose
+    note: joined 2 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        |   service will run heavy read queries all day. The team doesn’t want
+        |   them to slow down the daily feed that writes to the database.
+    AFTER:
+        |   service will run heavy read queries all day. The team doesn’t want them to slow down the daily feed that writes to the database.
+
+[SK-10] Line 16  |  Unwrap hard-wrapped prose
+    note: joined 4 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | Lab 2’s decision flow sends a database over 4 TB, or one that needs to
+        | scale reads independently, to **Hyperscale**. Your task is to prove that
+        | Hyperscale meets both needs before the team changes ReportingDB’s
+        | destination.
+    AFTER:
+        | Lab 2’s decision flow sends a database over 4 TB, or one that needs to scale reads independently, to **Hyperscale**. Your task is to prove that Hyperscale meets both needs before the team changes ReportingDB’s destination.
+
+[SK-10] Line 42  |  Unwrap hard-wrapped prose
+    note: joined 3 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | You deploy a Hyperscale database with the AdventureWorksLT sample, which
+        | stands in for ReportingDB’s data, and confirm how its storage differs
+        | from General Purpose.
+    AFTER:
+        | You deploy a Hyperscale database with the AdventureWorksLT sample, which stands in for ReportingDB’s data, and confirm how its storage differs from General Purpose.
+
+[SK-10] Line 48  |  Unwrap hard-wrapped prose
+    note: joined 2 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | 1.  Open +++https://portal.azure.com/+++ and sign in
+        |     with your lab account.
+    AFTER:
+        | 1.  Open +++https://portal.azure.com/+++ and sign in with your lab account.
+
+[SK-10] Line 53  |  Unwrap hard-wrapped prose
+    note: joined 2 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | 2.  In the portal search bar, type +++SQL databases+++. Under
+        |     **Services**, select **Azure SQL Database**.
+    AFTER:
+        | 2.  In the portal search bar, type +++SQL databases+++. Under **Services**, select **Azure SQL Database**.
+
+[SK-10] Line 62  |  Unwrap hard-wrapped prose
+    note: joined 2 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | 4.  On the **Basics** tab, set **Resource group** to **ResourceGroup1**
+        |     and **Database name** to +++ReportingHS+++. Under **Server**, click **Create new**.
+    AFTER:
+        | 4.  On the **Basics** tab, set **Resource group** to **ResourceGroup1** and **Database name** to +++ReportingHS+++. Under **Server**, click **Create new**.
+
+[SK-10] Line 67  |  Unwrap hard-wrapped prose
+    note: joined 5 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | 5.  In the **Create SQL Database Server** pane, set **Server name** to
+        |     +++sql-fabrikam-hs-jd427+++, **Location** to **Central US**,
+        |     **Authentication method** to **Use SQL authentication**, **Server
+        |     admin login** to +++sqladminuser+++, and **Password** and **Confirm
+        |     password** to +++Fabrikam!Lab2026+++. Click **OK**.
+    AFTER:
+        | 5.  In the **Create SQL Database Server** pane, set **Server name** to +++sql-fabrikam-hs-jd427+++, **Location** to **Central US**, **Authentication method** to **Use SQL authentication**, **Server admin login** to +++sqladminuser+++, and **Password** and **Confirm password** to +++Fabrikam!Lab2026+++. Click **OK**.
+
+[SK-10] Line 101  |  Unwrap hard-wrapped prose
+    note: joined 4 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        |     **Why 0 high-availability replicas?** This lab uses a named replica
+        |     for read scale-out instead, and 0 keeps the cost low. In production,
+        |     add at least one high-availability replica, so a failover takes
+        |     seconds instead of minutes.
+    AFTER:
+        |     **Why 0 high-availability replicas?** This lab uses a named replica for read scale-out instead, and 0 keeps the cost low. In production, add at least one high-availability replica, so a failover takes seconds instead of minutes.
+
+[SK-10] Line 106  |  Unwrap hard-wrapped prose
+    note: joined 3 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        |     **Zone redundancy is a creation-time decision for Hyperscale.** You
+        |     can’t change it after the database is created, so in production decide
+        |     it now.
+    AFTER:
+        |     **Zone redundancy is a creation-time decision for Hyperscale.** You can’t change it after the database is created, so in production decide it now.
+
+[SK-10] Line 118  |  Unwrap hard-wrapped prose
+    note: joined 4 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | 10. Click **Next: Networking**. Set **Connectivity method** to **Public
+        |     endpoint**, **Allow Azure services and resources to access this
+        |     server** to **No**, and **Add current client IP address** to
+        |     **Yes**.
+    AFTER:
+        | 10. Click **Next: Networking**. Set **Connectivity method** to **Public endpoint**, **Allow Azure services and resources to access this server** to **No**, and **Add current client IP address** to **Yes**.
+
+[SK-10] Line 125  |  Unwrap hard-wrapped prose
+    note: joined 2 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | 11. Click the **Additional settings** tab. Set **Use existing data** to
+        |     **Sample**, and click **OK** in the confirmation dialog.
+    AFTER:
+        | 11. Click the **Additional settings** tab. Set **Use existing data** to **Sample**, and click **OK** in the confirmation dialog.
+
+[SK-10] Line 138  |  Unwrap hard-wrapped prose
+    note: joined 2 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        |     **Expected result:** **Your deployment is complete** after 3 to 6
+        |     minutes. Click **Go to resource**.
+    AFTER:
+        |     **Expected result:** **Your deployment is complete** after 3 to 6 minutes. Click **Go to resource**.
+
+[SK-10] Line 145  |  Unwrap hard-wrapped prose
+    note: joined 2 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | 1.  On the **ReportingHS** page, in the left menu, click **Query
+        |     editor**.
+    AFTER:
+        | 1.  On the **ReportingHS** page, in the left menu, click **Query editor**.
+
+[SK-10] Line 150  |  Unwrap hard-wrapped prose
+    note: joined 3 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | 2.  On the **SQL server authentication** tab, enter +++sqladminuser+++ and
+        |     +++Fabrikam!Lab2026+++, and click **OK**. If you see a firewall error,
+        |     click **Allowlist IP** in the message, then click **OK** again.
+    AFTER:
+        | 2.  On the **SQL server authentication** tab, enter +++sqladminuser+++ and +++Fabrikam!Lab2026+++, and click **OK**. If you see a firewall error, click **Allowlist IP** in the message, then click **OK** again.
+
+[SK-10] Line 171  |  Unwrap hard-wrapped prose
+    note: joined 2 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        |     **Expected result:** edition **Hyperscale**, service_objective
+        |     **HS_Gen5_2**, updateability **READ_WRITE** and customer_rows **847**.
+    AFTER:
+        |     **Expected result:** edition **Hyperscale**, service_objective **HS_Gen5_2**, updateability **READ_WRITE** and customer_rows **847**.
+
+[SK-10] Line 186  |  Unwrap hard-wrapped prose
+    note: joined 5 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        |     **Expected result:** one or more **ROWS** files and one **LOG** file.
+        |     In Hyperscale, each data file is held by a separate **page server**,
+        |     and compute nodes read pages from them on demand. That separation of
+        |     compute from storage is what lets Hyperscale grow to 128 TB and add
+        |     replicas without copying data.
+    AFTER:
+        |     **Expected result:** one or more **ROWS** files and one **LOG** file. In Hyperscale, each data file is held by a separate **page server**, and compute nodes read pages from them on demand. That separation of compute from storage is what lets Hyperscale grow to 128 TB and add replicas without copying data.
+
+[SK-10] Line 196  |  Unwrap hard-wrapped prose
+    note: joined 4 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | A named replica is a read-only database with its own name and its own
+        | compute, sharing the primary’s storage. You create one for the Power BI
+        | dashboards and the AI forecasting service, so their heavy reads never
+        | compete with the daily feed on the primary.
+    AFTER:
+        | A named replica is a read-only database with its own name and its own compute, sharing the primary’s storage. You create one for the Power BI dashboards and the AI forecasting service, so their heavy reads never compete with the daily feed on the primary.
+
+[SK-10] Line 207  |  Unwrap hard-wrapped prose
+    note: joined 5 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | 2.  The Create **SQL Database** - **Replica** page opens on the
+        |     **Basics** tab. Subscription, Resource group, Primary database and
+        |     Region are greyed out because they come from the primary database.
+        |     Scroll down below **Region**, and under Replica configuration, set
+        |     **Replica type** to **Named replica**.
+    AFTER:
+        | 2.  The Create **SQL Database** - **Replica** page opens on the **Basics** tab. Subscription, Resource group, Primary database and Region are greyed out because they come from the primary database. Scroll down below **Region**, and under Replica configuration, set **Replica type** to **Named replica**.
+
+[SK-10] Line 217  |  Unwrap hard-wrapped prose
+    note: joined 2 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | 3.  Set **Server** to **sql-fabrikam-hs-jd427** (the same server as the
+        |     primary) and **Database name** to +++ReportingHS_AI+++.
+    AFTER:
+        | 3.  Set **Server** to **sql-fabrikam-hs-jd427** (the same server as the primary) and **Database name** to +++ReportingHS_AI+++.
+
+[SK-10] Line 224  |  Unwrap hard-wrapped prose
+    note: joined 3 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | 5.  Check that **vCores** is **2**, set **High-availability secondary
+        |     replicas** to **0** and **Would you like to make this database zone
+        |     redundant?** to **No**, and click **Apply**.
+    AFTER:
+        | 5.  Check that **vCores** is **2**, set **High-availability secondary replicas** to **0** and **Would you like to make this database zone redundant?** to **No**, and click **Apply**.
+
+[SK-10] Line 236  |  Unwrap hard-wrapped prose
+    note: joined 3 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        |     **Expected result:** the deployment completes in about a minute. No
+        |     data is copied, because the named replica reads the same page servers
+        |     as the primary.
+    AFTER:
+        |     **Expected result:** the deployment completes in about a minute. No data is copied, because the named replica reads the same page servers as the primary.
+
+[SK-10] Line 252  |  Unwrap hard-wrapped prose
+    note: joined 3 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | 1.  On the **ReportingHS** page (the primary), open **Query editor** and
+        |     run this query. It creates a small table for the daily sales feed
+        |     and writes two rows:
+    AFTER:
+        | 1.  On the **ReportingHS** page (the primary), open **Query editor** and run this query. It creates a small table for the daily sales feed and writes two rows:
+
+[SK-10] Line 274  |  Unwrap hard-wrapped prose
+    note: joined 2 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | 3.  Select **Hyperscale databases** to see **ReportingHS** and
+        |     **ReportingHS_AI**.
+    AFTER:
+        | 3.  Select **Hyperscale databases** to see **ReportingHS** and **ReportingHS_AI**.
+
+[SK-10] Line 281  |  Unwrap hard-wrapped prose
+    note: joined 2 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | 4.  In the left menu, click **Query editor** and sign in with
+        |     +++sqladminuser+++ and +++Fabrikam!Lab2026+++.
+    AFTER:
+        | 4.  In the left menu, click **Query editor** and sign in with +++sqladminuser+++ and +++Fabrikam!Lab2026+++.
+
+[SK-10] Line 296  |  Unwrap hard-wrapped prose
+    note: joined 5 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        |     **Expected result:** updateability **READ_ONLY**, service_objective
+        |     **HS_Gen5_2**, and the same two rows you inserted on the primary. The
+        |     editor may show only the last result set, the two rows; that is
+        |     expected. The replica sees new data within seconds, without any copy
+        |     or refresh job.
+    AFTER:
+        |     **Expected result:** updateability **READ_ONLY**, service_objective **HS_Gen5_2**, and the same two rows you inserted on the primary. The editor may show only the last result set, the two rows; that is expected. The replica sees new data within seconds, without any copy or refresh job.
+
+[SK-10] Line 310  |  Unwrap hard-wrapped prose
+    note: joined 4 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        |     **Expected result:** the query fails on purpose with an error saying
+        |     the database is **read-only** (error 3906), followed by **Failed to
+        |     execute the query**. Named replicas accept reads only, so a dashboard
+        |     or AI service connected to one can’t change the data.
+    AFTER:
+        |     **Expected result:** the query fails on purpose with an error saying the database is **read-only** (error 3906), followed by **Failed to execute the query**. Named replicas accept reads only, so a dashboard or AI service connected to one can’t change the data.
+
+[SK-10] Line 319  |  Unwrap hard-wrapped prose
+    note: joined 3 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | 1.  Clear the editor and run this aggregation on **ReportingHS_AI**. It
+        |     is the kind of query the forecasting service would run to build its
+        |     training data:
+    AFTER:
+        | 1.  Clear the editor and run this aggregation on **ReportingHS_AI**. It is the kind of query the forecasting service would run to build its training data:
+
+[SK-10] Line 338  |  Unwrap hard-wrapped prose
+    note: joined 3 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        |     **Expected result:** one row per product category, ordered by revenue.
+        |     The query ran on the named replica’s own 2 vCores, so it used none of
+        |     the primary’s CPU or memory.
+    AFTER:
+        |     **Expected result:** one row per product category, ordered by revenue. The query ran on the named replica’s own 2 vCores, so it used none of the primary’s CPU or memory.
+
+[SK-10] Line 342  |  Unwrap hard-wrapped prose
+    note: joined 6 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        |     **Workload prioritization in practice:** the daily feed on the primary
+        |     is the business-critical workload. Dashboards and AI forecasting are
+        |     lower priority and can tolerate a few seconds of data latency. Giving
+        |     them a named replica means a runaway report or a large AI query can
+        |     only slow itself down. In production, you can create up to 30 named
+        |     replicas, for example one per team or application.
+    AFTER:
+        |     **Workload prioritization in practice:** the daily feed on the primary is the business-critical workload. Dashboards and AI forecasting are lower priority and can tolerate a few seconds of data latency. Giving them a named replica means a runaway report or a large AI query can only slow itself down. In production, you can create up to 30 named replicas, for example one per team or application.
+
+[SK-10] Line 353  |  Unwrap hard-wrapped prose
+    note: joined 3 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | The forecasting team expects the daily feed to double during the holiday
+        | season. You scale up the primary for the busy period while the named
+        | replica keeps its own size.
+    AFTER:
+        | The forecasting team expects the daily feed to double during the holiday season. You scale up the primary for the busy period while the named replica keeps its own size.
+
+[SK-10] Line 359  |  Unwrap hard-wrapped prose
+    note: joined 2 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | 1.  Open the **ReportingHS** database page. In the left menu, click
+        |     **Settings \> Compute + storage**.
+    AFTER:
+        | 1.  Open the **ReportingHS** database page. In the left menu, click **Settings \> Compute + storage**.
+
+[SK-10] Line 364  |  Unwrap hard-wrapped prose
+    note: joined 2 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | 2.  Change **vCores** from **2** to **4**. Leave every other setting
+        |     unchanged and click **Apply**.
+    AFTER:
+        | 2.  Change **vCores** from **2** to **4**. Leave every other setting unchanged and click **Apply**.
+
+[SK-10] Line 369  |  Unwrap hard-wrapped prose
+    note: joined 2 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | 3.  Click the **Notifications** (bell) icon and note how long the
+        |     scaling operation takes.
+    AFTER:
+        | 3.  Click the **Notifications** (bell) icon and note how long the scaling operation takes.
+
+[SK-10] Line 372  |  Unwrap hard-wrapped prose
+    note: joined 5 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        |     **Expected result:** the operation completes in a few minutes.
+        |     Hyperscale scales compute in about the same time whatever the database
+        |     size, because no data is copied; a new compute node attaches to the
+        |     same page servers. In General Purpose, scaling a large database can
+        |     take much longer.
+    AFTER:
+        |     **Expected result:** the operation completes in a few minutes. Hyperscale scales compute in about the same time whatever the database size, because no data is copied; a new compute node attaches to the same page servers. In General Purpose, scaling a large database can take much longer.
+
+[SK-10] Line 382  |  Unwrap hard-wrapped prose
+    note: joined 2 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | 1.  Open **ReportingHS_AI**, open **Query editor**, and run the same
+        |     query.
+    AFTER:
+        | 1.  Open **ReportingHS_AI**, open **Query editor**, and run the same query.
+
+[SK-10] Line 385  |  Unwrap hard-wrapped prose
+    note: joined 3 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        |     **Expected result:** database_name **ReportingHS_AI** and
+        |     service_objective **HS_Gen5_2**. The primary and the named replica
+        |     scale separately, so you can size each workload for its own demand.
+    AFTER:
+        |     **Expected result:** database_name **ReportingHS_AI** and service_objective **HS_Gen5_2**. The primary and the named replica scale separately, so you can size each workload for its own demand.
+
+[SK-10] Line 397  |  Unwrap hard-wrapped prose
+    note: joined 2 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        |     **Expected result:** database_name **ReportingHS** and
+        |     service_objective **HS_Gen5_4**.
+    AFTER:
+        |     **Expected result:** database_name **ReportingHS** and service_objective **HS_Gen5_4**.
+
+[SK-10] Line 404  |  Unwrap hard-wrapped prose
+    note: joined 9 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | In this lab, you evaluated Azure SQL Database Hyperscale as the new
+        | destination for Fabrik’s ReportingDB. You deployed a Hyperscale database
+        | and saw how page servers separate storage from compute, which removes
+        | the 4 TB limit of General Purpose. You then created a named replica that
+        | isolates the reporting and AI workloads from the business-critical daily
+        | feed, and proved it is read-only and stays in sync with the primary.
+        | Finally, you scaled the primary independently of the replica in minutes,
+        | and reviewed why choosing Hyperscale is a one-way decision that must be
+        | justified by real requirements.
+    AFTER:
+        | In this lab, you evaluated Azure SQL Database Hyperscale as the new destination for Fabrik’s ReportingDB. You deployed a Hyperscale database and saw how page servers separate storage from compute, which removes the 4 TB limit of General Purpose. You then created a named replica that isolates the reporting and AI workloads from the business-critical daily feed, and proved it is read-only and stays in sync with the primary. Finally, you scaled the primary independently of the replica in minutes, and reviewed why choosing Hyperscale is a one-way decision that must be justified by real requirements.
+
+[SK-10] Line 418  |  Unwrap hard-wrapped prose
+    note: joined 2 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | 1.  In the portal search bar, type +++SQL servers+++ and select **SQL
+        |     servers** under **Services**.
+    AFTER:
+        | 1.  In the portal search bar, type +++SQL servers+++ and select **SQL servers** under **Services**.
+
+[SK-10] Line 427  |  Unwrap hard-wrapped prose
+    note: joined 3 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | 3.  On the toolbar, click **Delete**. Type the server name to confirm
+        |     and click **Delete**. Deleting the server also deletes
+        |     **ReportingHS** and **ReportingHS_AI**.
+    AFTER:
+        | 3.  On the toolbar, click **Delete**. Type the server name to confirm and click **Delete**. Deleting the server also deletes **ReportingHS** and **ReportingHS_AI**.
+
+[SK-10] Line 437  |  Unwrap hard-wrapped prose
+    note: joined 3 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        | 4.  In the portal search bar, type **All resources** and select **All
+        |     resources**. Set the **Resource group** filter to **ResourceGroup1**
+        |     and click **Refresh**.
+    AFTER:
+        | 4.  In the portal search bar, type **All resources** and select **All resources**. Set the **Resource group** filter to **ResourceGroup1** and click **Refresh**.
+
+[SK-10] Line 441  |  Unwrap hard-wrapped prose
+    note: joined 2 wrapped lines - hard wrapping prevents images from rendering
+    BEFORE:
+        |     **Expected result:** none of the Lab 6 resources is listed, and
+        |     **ResourceGroup1** still exists.
+    AFTER:
+        |     **Expected result:** none of the Lab 6 resources is listed, and **ResourceGroup1** still exists.
+
+[SK-07] Line 40  |  Numbered step -> '1.' format
+    note: normalize step marker spacing
+    BEFORE: 1.  Open +++https://portal.azure.com/+++ and sign in with your lab account.
+    AFTER : 1. Open +++https://portal.azure.com/+++ and sign in with your lab account.
+
+[SK-07] Line 44  |  Numbered step -> '1.' format
+    note: renumber 2. -> 1. (editor handles display numbering)
+    BEFORE: 2.  In the portal search bar, type +++SQL databases+++. Under **Services**, select **Azure SQL Database**.
+    AFTER : 1. In the portal search bar, type +++SQL databases+++. Under **Services**, select **Azure SQL Database**.
+
+[SK-07] Line 48  |  Numbered step -> '1.' format
+    note: renumber 3. -> 1. (editor handles display numbering)
+    BEFORE: 3.  Click **+ Create**. If a menu opens, select **SQL database**.
+    AFTER : 1. Click **+ Create**. If a menu opens, select **SQL database**.
+
+[SK-07] Line 52  |  Numbered step -> '1.' format
+    note: renumber 4. -> 1. (editor handles display numbering)
+    BEFORE: 4.  On the **Basics** tab, set **Resource group** to **ResourceGroup1** and **Database name** to +++ReportingHS+++. Under **Server**, click **Create new**.
+    AFTER : 1. On the **Basics** tab, set **Resource group** to **ResourceGroup1** and **Database name** to +++ReportingHS+++. Under **Server**, click **Create new**.
+
+[SK-07] Line 56  |  Numbered step -> '1.' format
+    note: renumber 5. -> 1. (editor handles display numbering)
+    BEFORE: 5.  In the **Create SQL Database Server** pane, set **Server name** to +++sql-fabrikam-hs-jd427+++, **Location** to **Central US**, **Authentication method** to **Use SQL authentication**, **Server admin login** to +++sqladminuser+++, and **Password** and **Confirm password** to +++Fabrikam!Lab2026+++. Click **OK**.
+    AFTER : 1. In the **Create SQL Database Server** pane, set **Server name** to +++sql-fabrikam-hs-jd427+++, **Location** to **Central US**, **Authentication method** to **Use SQL authentication**, **Server admin login** to +++sqladminuser+++, and **Password** and **Confirm password** to +++Fabrikam!Lab2026+++. Click **OK**.
+
+[SK-07] Line 62  |  Numbered step -> '1.' format
+    note: renumber 6. -> 1. (editor handles display numbering)
+    BEFORE: 6.  Set **Want to use SQL elastic pool?** to **No** and **Workload environment** to **Development**.
+    AFTER : 1. Set **Want to use SQL elastic pool?** to **No** and **Workload environment** to **Development**.
+
+[SK-07] Line 66  |  Numbered step -> '1.' format
+    note: renumber 7. -> 1. (editor handles display numbering)
+    BEFORE: 7.  Under **Compute + storage**, click **Configure database**.
+    AFTER : 1. Under **Compute + storage**, click **Configure database**.
+
+[SK-07] Line 70  |  Numbered step -> '1.' format
+    note: renumber 8. -> 1. (editor handles display numbering)
+    BEFORE: 8.  Set the following:
+    AFTER : 1. Set the following:
+
+[SK-07] Line 72  |  Numbered step -> '1.' format
+    note: normalize step marker spacing
+    BEFORE:     1.  **Service tier:** Hyperscale (On-demand scalable storage)
+    AFTER :     1. **Service tier:** Hyperscale (On-demand scalable storage)
+
+[SK-07] Line 74  |  Numbered step -> '1.' format
+    note: renumber 2. -> 1. (editor handles display numbering)
+    BEFORE:     2.  **Compute tier:** Provisioned
+    AFTER :     1. **Compute tier:** Provisioned
+
+[SK-07] Line 76  |  Numbered step -> '1.' format
+    note: renumber 3. -> 1. (editor handles display numbering)
+    BEFORE:     3.  **Hardware configuration:** Standard-series (Gen5)
+    AFTER :     1. **Hardware configuration:** Standard-series (Gen5)
+
+[SK-07] Line 78  |  Numbered step -> '1.' format
+    note: renumber 4. -> 1. (editor handles display numbering)
+    BEFORE:     4.  **vCores:** 2
+    AFTER :     1. **vCores:** 2
+
+[SK-07] Line 80  |  Numbered step -> '1.' format
+    note: renumber 5. -> 1. (editor handles display numbering)
+    BEFORE:     5.  **High-availability secondary replicas:** 0
+    AFTER :     1. **High-availability secondary replicas:** 0
+
+[SK-07] Line 82  |  Numbered step -> '1.' format
+    note: renumber 6. -> 1. (editor handles display numbering)
+    BEFORE:     6.  **Would you like to make this database zone redundant?** No
+    AFTER :     1. **Would you like to make this database zone redundant?** No
+
+[SK-07] Line 94  |  Numbered step -> '1.' format
+    note: renumber 9. -> 1. (editor handles display numbering)
+    BEFORE: 9.  Under **Backup storage redundancy**, select **Locally-redundant backup storage**.
+    AFTER : 1. Under **Backup storage redundancy**, select **Locally-redundant backup storage**.
+
+[SK-07] Line 98  |  Numbered step -> '1.' format
+    note: renumber 10. -> 1. (editor handles display numbering)
+    BEFORE: 10. Click **Next: Networking**. Set **Connectivity method** to **Public endpoint**, **Allow Azure services and resources to access this server** to **No**, and **Add current client IP address** to **Yes**.
+    AFTER : 1. Click **Next: Networking**. Set **Connectivity method** to **Public endpoint**, **Allow Azure services and resources to access this server** to **No**, and **Add current client IP address** to **Yes**.
+
+[SK-07] Line 102  |  Numbered step -> '1.' format
+    note: renumber 11. -> 1. (editor handles display numbering)
+    BEFORE: 11. Click the **Additional settings** tab. Set **Use existing data** to **Sample**, and click **OK** in the confirmation dialog.
+    AFTER : 1. Click the **Additional settings** tab. Set **Use existing data** to **Sample**, and click **OK** in the confirmation dialog.
+
+[SK-07] Line 106  |  Numbered step -> '1.' format
+    note: renumber 12. -> 1. (editor handles display numbering)
+    BEFORE: 12. Click **Review + create**.
+    AFTER : 1. Click **Review + create**.
+
+[SK-07] Line 110  |  Numbered step -> '1.' format
+    note: renumber 13. -> 1. (editor handles display numbering)
+    BEFORE: 13. Then click on **Create**.
+    AFTER : 1. Then click on **Create**.
+
+[SK-07] Line 120  |  Numbered step -> '1.' format
+    note: normalize step marker spacing
+    BEFORE: 1.  On the **ReportingHS** page, in the left menu, click **Query editor**.
+    AFTER : 1. On the **ReportingHS** page, in the left menu, click **Query editor**.
+
+[SK-07] Line 124  |  Numbered step -> '1.' format
+    note: renumber 2. -> 1. (editor handles display numbering)
+    BEFORE: 2.  On the **SQL server authentication** tab, enter +++sqladminuser+++ and +++Fabrikam!Lab2026+++, and click **OK**. If you see a firewall error, click **Allowlist IP** in the message, then click **OK** again.
+    AFTER : 1. On the **SQL server authentication** tab, enter +++sqladminuser+++ and +++Fabrikam!Lab2026+++, and click **OK**. If you see a firewall error, click **Allowlist IP** in the message, then click **OK** again.
+
+[SK-07] Line 128  |  Numbered step -> '1.' format
+    note: renumber 3. -> 1. (editor handles display numbering)
+    BEFORE: 3.  Click **New query**.
+    AFTER : 1. Click **New query**.
+
+[SK-07] Line 132  |  Numbered step -> '1.' format
+    note: renumber 4. -> 1. (editor handles display numbering)
+    BEFORE: 4.  Paste this query and click **Run**:
+    AFTER : 1. Paste this query and click **Run**:
+
+[SK-07] Line 147  |  Numbered step -> '1.' format
+    note: renumber 5. -> 1. (editor handles display numbering)
+    BEFORE: 5.  Clear the editor and run:
+    AFTER : 1. Clear the editor and run:
+
+[SK-07] Line 167  |  Numbered step -> '1.' format
+    note: normalize step marker spacing
+    BEFORE: 1.  In the left menu, click **Data management \> Replicas**. Click **+ Create replica**.
+    AFTER : 1. In the left menu, click **Data management \> Replicas**. Click **+ Create replica**.
+
+[SK-07] Line 171  |  Numbered step -> '1.' format
+    note: renumber 2. -> 1. (editor handles display numbering)
+    BEFORE: 2.  The Create **SQL Database** - **Replica** page opens on the **Basics** tab. Subscription, Resource group, Primary database and Region are greyed out because they come from the primary database. Scroll down below **Region**, and under Replica configuration, set **Replica type** to **Named replica**.
+    AFTER : 1. The Create **SQL Database** - **Replica** page opens on the **Basics** tab. Subscription, Resource group, Primary database and Region are greyed out because they come from the primary database. Scroll down below **Region**, and under Replica configuration, set **Replica type** to **Named replica**.
+
+[SK-07] Line 177  |  Numbered step -> '1.' format
+    note: renumber 3. -> 1. (editor handles display numbering)
+    BEFORE: 3.  Set **Server** to **sql-fabrikam-hs-jd427** (the same server as the primary) and **Database name** to +++ReportingHS_AI+++.
+    AFTER : 1. Set **Server** to **sql-fabrikam-hs-jd427** (the same server as the primary) and **Database name** to +++ReportingHS_AI+++.
+
+[SK-07] Line 179  |  Numbered step -> '1.' format
+    note: renumber 4. -> 1. (editor handles display numbering)
+    BEFORE: 4.  Under **Compute + storage**, click **Configure database**.
+    AFTER : 1. Under **Compute + storage**, click **Configure database**.
+
+[SK-07] Line 183  |  Numbered step -> '1.' format
+    note: renumber 5. -> 1. (editor handles display numbering)
+    BEFORE: 5.  Check that **vCores** is **2**, set **High-availability secondary replicas** to **0** and **Would you like to make this database zone redundant?** to **No**, and click **Apply**.
+    AFTER : 1. Check that **vCores** is **2**, set **High-availability secondary replicas** to **0** and **Would you like to make this database zone redundant?** to **No**, and click **Apply**.
+
+[SK-07] Line 187  |  Numbered step -> '1.' format
+    note: renumber 6. -> 1. (editor handles display numbering)
+    BEFORE: 6.  Click **Review + create**, then **Create**.
+    AFTER : 1. Click **Review + create**, then **Create**.
+
+[SK-07] Line 195  |  Numbered step -> '1.' format
+    note: renumber 7. -> 1. (editor handles display numbering)
+    BEFORE: 7.  Navigate to **Home** and open **ReportingHS**.
+    AFTER : 1. Navigate to **Home** and open **ReportingHS**.
+
+[SK-07] Line 199  |  Numbered step -> '1.' format
+    note: renumber 8. -> 1. (editor handles display numbering)
+    BEFORE: 8.  Return to **ReportingHS \> Data management \> Replicas**.
+    AFTER : 1. Return to **ReportingHS \> Data management \> Replicas**.
+
+[SK-07] Line 207  |  Numbered step -> '1.' format
+    note: normalize step marker spacing
+    BEFORE: 1.  On the **ReportingHS** page (the primary), open **Query editor** and run this query. It creates a small table for the daily sales feed and writes two rows:
+    AFTER : 1. On the **ReportingHS** page (the primary), open **Query editor** and run this query. It creates a small table for the daily sales feed and writes two rows:
+
+[SK-07] Line 223  |  Numbered step -> '1.' format
+    note: renumber 2. -> 1. (editor handles display numbering)
+    BEFORE: 2.  In the portal search bar, type +++SQL databases+++, select **Azure SQL Database** under **Services**.
+    AFTER : 1. In the portal search bar, type +++SQL databases+++, select **Azure SQL Database** under **Services**.
+
+[SK-07] Line 227  |  Numbered step -> '1.' format
+    note: renumber 3. -> 1. (editor handles display numbering)
+    BEFORE: 3.  Select **Hyperscale databases** to see **ReportingHS** and **ReportingHS_AI**.
+    AFTER : 1. Select **Hyperscale databases** to see **ReportingHS** and **ReportingHS_AI**.
+
+[SK-07] Line 233  |  Numbered step -> '1.' format
+    note: renumber 4. -> 1. (editor handles display numbering)
+    BEFORE: 4.  In the left menu, click **Query editor** and sign in with +++sqladminuser+++ and +++Fabrikam!Lab2026+++.
+    AFTER : 1. In the left menu, click **Query editor** and sign in with +++sqladminuser+++ and +++Fabrikam!Lab2026+++.
+
+[SK-07] Line 237  |  Numbered step -> '1.' format
+    note: renumber 5. -> 1. (editor handles display numbering)
+    BEFORE: 5.  Run this query on the named replica:
+    AFTER : 1. Run this query on the named replica:
+
+[SK-07] Line 251  |  Numbered step -> '1.' format
+    note: renumber 6. -> 1. (editor handles display numbering)
+    BEFORE: 6.  Clear the editor and try to write to the named replica:
+    AFTER : 1. Clear the editor and try to write to the named replica:
+
+[SK-07] Line 263  |  Numbered step -> '1.' format
+    note: normalize step marker spacing
+    BEFORE: 1.  Clear the editor and run this aggregation on **ReportingHS_AI**. It is the kind of query the forecasting service would run to build its training data:
+    AFTER : 1. Clear the editor and run this aggregation on **ReportingHS_AI**. It is the kind of query the forecasting service would run to build its training data:
+
+[SK-07] Line 292  |  Numbered step -> '1.' format
+    note: normalize step marker spacing
+    BEFORE: 1.  Open the **ReportingHS** database page. In the left menu, click **Settings \> Compute + storage**.
+    AFTER : 1. Open the **ReportingHS** database page. In the left menu, click **Settings \> Compute + storage**.
+
+[SK-07] Line 296  |  Numbered step -> '1.' format
+    note: renumber 2. -> 1. (editor handles display numbering)
+    BEFORE: 2.  Change **vCores** from **2** to **4**. Leave every other setting unchanged and click **Apply**.
+    AFTER : 1. Change **vCores** from **2** to **4**. Leave every other setting unchanged and click **Apply**.
+
+[SK-07] Line 300  |  Numbered step -> '1.' format
+    note: renumber 3. -> 1. (editor handles display numbering)
+    BEFORE: 3.  Click the **Notifications** (bell) icon and note how long the scaling operation takes.
+    AFTER : 1. Click the **Notifications** (bell) icon and note how long the scaling operation takes.
+
+[SK-07] Line 308  |  Numbered step -> '1.' format
+    note: normalize step marker spacing
+    BEFORE: 1.  Open **ReportingHS_AI**, open **Query editor**, and run the same query.
+    AFTER : 1. Open **ReportingHS_AI**, open **Query editor**, and run the same query.
+
+[SK-07] Line 314  |  Numbered step -> '1.' format
+    note: renumber 2. -> 1. (editor handles display numbering)
+    BEFORE: 2.  On **ReportingHS**, open **Query editor** and run:
+    AFTER : 1. On **ReportingHS**, open **Query editor** and run:
+
+[SK-07] Line 332  |  Numbered step -> '1.' format
+    note: normalize step marker spacing
+    BEFORE: 1.  In the portal search bar, type +++SQL servers+++ and select **SQL servers** under **Services**.
+    AFTER : 1. In the portal search bar, type +++SQL servers+++ and select **SQL servers** under **Services**.
+
+[SK-07] Line 336  |  Numbered step -> '1.' format
+    note: renumber 2. -> 1. (editor handles display numbering)
+    BEFORE: 2.  Click **sql-fabrikam-hs-jd427**.
+    AFTER : 1. Click **sql-fabrikam-hs-jd427**.
+
+[SK-07] Line 340  |  Numbered step -> '1.' format
+    note: renumber 3. -> 1. (editor handles display numbering)
+    BEFORE: 3.  On the toolbar, click **Delete**. Type the server name to confirm and click **Delete**. Deleting the server also deletes **ReportingHS** and **ReportingHS_AI**.
+    AFTER : 1. On the toolbar, click **Delete**. Type the server name to confirm and click **Delete**. Deleting the server also deletes **ReportingHS** and **ReportingHS_AI**.
+
+[SK-07] Line 348  |  Numbered step -> '1.' format
+    note: renumber 4. -> 1. (editor handles display numbering)
+    BEFORE: 4.  In the portal search bar, type **All resources** and select **All resources**. Set the **Resource group** filter to **ResourceGroup1** and click **Refresh**.
+    AFTER : 1. In the portal search bar, type **All resources** and select **All resources**. Set the **Resource group** filter to **ResourceGroup1** and click **Refresh**.
+
+[SK-39] Line 44  |  Typed value -> type-text (+++)
+    note: typed value after 'type' - bold dropped, wrapped as type-text
+    BEFORE: 1. In the portal search bar, type +++SQL databases+++. Under **Services**, select **Azure SQL Database**.
+    AFTER : 1. In the portal search bar, type +++SQL databases+++. Under +++Services+++, select **Azure SQL Database**.
+
+[SK-04] Line 3  |  Bold-only label -> ### heading
+    BEFORE: **Lab overview**
+    AFTER : ### Lab overview
+
+[SK-04] Line 15  |  Bold-only label -> ### heading
+    BEFORE: **Objectives**
+    AFTER : ### Objectives
+
+[SK-53] Line 13  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | Lab 2’s decision flow sends a database over 4 TB, or one that needs to scale reads independently, to **Hyperscale**. Your task is to prove that Hyperscale meets both needs before the team changes ReportingDB’s destination.
+    AFTER:
+        | (2 blank lines)
+        | Lab 2’s decision flow sends a database over 4 TB, or one that needs to scale reads independently, to **Hyperscale**. Your task is to prove that Hyperscale meets both needs before the team changes ReportingDB’s destination.
+
+[SK-53] Line 34  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | ## **Exercise 1: Deploy an Azure SQL Database Hyperscale Database**
+    AFTER:
+        | (2 blank lines)
+        | ## **Exercise 1: Deploy an Azure SQL Database Hyperscale Database**
+
+[SK-53] Line 118  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | ### **Task 2: Explore the Hyperscale architecture**
+    AFTER:
+        | (2 blank lines)
+        | ### **Task 2: Explore the Hyperscale architecture**
+
+[SK-53] Line 161  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | ## **Exercise 2: Isolate Reporting and AI Workloads with a Named Replica**
+    AFTER:
+        | (2 blank lines)
+        | ## **Exercise 2: Isolate Reporting and AI Workloads with a Named Replica**
+
+[SK-53] Line 205  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | ### **Task 2: Prove the replica is read-only and in sync**
+    AFTER:
+        | (2 blank lines)
+        | ### **Task 2: Prove the replica is read-only and in sync**
+
+[SK-53] Line 261  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | ### **Task 3: Run an analytics workload on the replica**
+    AFTER:
+        | (2 blank lines)
+        | ### **Task 3: Run an analytics workload on the replica**
+
+[SK-53] Line 286  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | ## **Exercise 3: Scale Hyperscale Compute Independently**
+    AFTER:
+        | (2 blank lines)
+        | ## **Exercise 3: Scale Hyperscale Compute Independently**
+
+[SK-53] Line 306  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | ### **Task 2: Confirm the replica kept its own size**
+    AFTER:
+        | (2 blank lines)
+        | ### **Task 2: Confirm the replica kept its own size**
+
+[SK-53] Line 324  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | ## **Conclusion**
+    AFTER:
+        | (2 blank lines)
+        | ## **Conclusion**
+
+[SK-81] Line 7  |  Compact bullet list (no padding blank lines)
+    note: a bullet list attaches directly to the prose lead-in that introduces it
+    BEFORE:
+        | In Lab 5, Fabrikam Retail deployed ReportingDB to Azure SQL Database General Purpose. Since then, two things have changed:
+        | 
+        | - **Growth:** the analytics team plans to load five years of sales
+    AFTER:
+        | In Lab 5, Fabrikam Retail deployed ReportingDB to Azure SQL Database General Purpose. Since then, two things have changed:
+        | - **Growth:** the analytics team plans to load five years of sales
+
+[SK-81] Line 20  |  Compact bullet list (no padding blank lines)
+    note: a bullet list attaches directly to the prose lead-in that introduces it
+    BEFORE:
+        | After completing this lab, you will be able to:
+        | 
+        | - Deploy an Azure SQL Database Hyperscale database and identify its
+    AFTER:
+        | After completing this lab, you will be able to:
+        | - Deploy an Azure SQL Database Hyperscale database and identify its
+
+[SK-110] Line 1  |  Decoration (bold/italic/<u>) stripped from a heading
+    note: decoration removed from a heading - a heading is already styled by the IDLx theme, so bold, italics and Word's '<u>' underline add nothing and render inconsistently
+    BEFORE: # **Lab 6: Evaluate Azure SQL Database Hyperscale as a Migration Destination**
+    AFTER : # Lab 6: Evaluate Azure SQL Database Hyperscale as a Migration Destination
+
+[SK-110] Line 34  |  Decoration (bold/italic/<u>) stripped from a heading
+    note: decoration removed from a heading - a heading is already styled by the IDLx theme, so bold, italics and Word's '<u>' underline add nothing and render inconsistently
+    BEFORE: ## **Exercise 1: Deploy an Azure SQL Database Hyperscale Database**
+    AFTER : ## Exercise 1: Deploy an Azure SQL Database Hyperscale Database
+
+[SK-110] Line 38  |  Decoration (bold/italic/<u>) stripped from a heading
+    note: decoration removed from a heading - a heading is already styled by the IDLx theme, so bold, italics and Word's '<u>' underline add nothing and render inconsistently
+    BEFORE: ### **Task 1: Create the Hyperscale database**
+    AFTER : ### Task 1: Create the Hyperscale database
+
+[SK-110] Line 119  |  Decoration (bold/italic/<u>) stripped from a heading
+    note: decoration removed from a heading - a heading is already styled by the IDLx theme, so bold, italics and Word's '<u>' underline add nothing and render inconsistently
+    BEFORE: ### **Task 2: Explore the Hyperscale architecture**
+    AFTER : ### Task 2: Explore the Hyperscale architecture
+
+[SK-110] Line 163  |  Decoration (bold/italic/<u>) stripped from a heading
+    note: decoration removed from a heading - a heading is already styled by the IDLx theme, so bold, italics and Word's '<u>' underline add nothing and render inconsistently
+    BEFORE: ## **Exercise 2: Isolate Reporting and AI Workloads with a Named Replica**
+    AFTER : ## Exercise 2: Isolate Reporting and AI Workloads with a Named Replica
+
+[SK-110] Line 167  |  Decoration (bold/italic/<u>) stripped from a heading
+    note: decoration removed from a heading - a heading is already styled by the IDLx theme, so bold, italics and Word's '<u>' underline add nothing and render inconsistently
+    BEFORE: ### **Task 1: Create the named replica**
+    AFTER : ### Task 1: Create the named replica
+
+[SK-110] Line 208  |  Decoration (bold/italic/<u>) stripped from a heading
+    note: decoration removed from a heading - a heading is already styled by the IDLx theme, so bold, italics and Word's '<u>' underline add nothing and render inconsistently
+    BEFORE: ### **Task 2: Prove the replica is read-only and in sync**
+    AFTER : ### Task 2: Prove the replica is read-only and in sync
+
+[SK-110] Line 265  |  Decoration (bold/italic/<u>) stripped from a heading
+    note: decoration removed from a heading - a heading is already styled by the IDLx theme, so bold, italics and Word's '<u>' underline add nothing and render inconsistently
+    BEFORE: ### **Task 3: Run an analytics workload on the replica**
+    AFTER : ### Task 3: Run an analytics workload on the replica
+
+[SK-110] Line 291  |  Decoration (bold/italic/<u>) stripped from a heading
+    note: decoration removed from a heading - a heading is already styled by the IDLx theme, so bold, italics and Word's '<u>' underline add nothing and render inconsistently
+    BEFORE: ## **Exercise 3: Scale Hyperscale Compute Independently**
+    AFTER : ## Exercise 3: Scale Hyperscale Compute Independently
+
+[SK-110] Line 295  |  Decoration (bold/italic/<u>) stripped from a heading
+    note: decoration removed from a heading - a heading is already styled by the IDLx theme, so bold, italics and Word's '<u>' underline add nothing and render inconsistently
+    BEFORE: ### **Task 1: Scale up the primary**
+    AFTER : ### Task 1: Scale up the primary
+
+[SK-110] Line 312  |  Decoration (bold/italic/<u>) stripped from a heading
+    note: decoration removed from a heading - a heading is already styled by the IDLx theme, so bold, italics and Word's '<u>' underline add nothing and render inconsistently
+    BEFORE: ### **Task 2: Confirm the replica kept its own size**
+    AFTER : ### Task 2: Confirm the replica kept its own size
+
+[SK-110] Line 331  |  Decoration (bold/italic/<u>) stripped from a heading
+    note: decoration removed from a heading - a heading is already styled by the IDLx theme, so bold, italics and Word's '<u>' underline add nothing and render inconsistently
+    BEFORE: ## **Conclusion**
+    AFTER : ## Conclusion
+
+[SK-110] Line 335  |  Decoration (bold/italic/<u>) stripped from a heading
+    note: decoration removed from a heading - a heading is already styled by the IDLx theme, so bold, italics and Word's '<u>' underline add nothing and render inconsistently
+    BEFORE: ## **Clean Up Resources**
+    AFTER : ## Clean Up Resources
+
+==============================================================================
+END OF LOG
+==============================================================================

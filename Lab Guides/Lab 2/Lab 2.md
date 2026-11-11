@@ -1,18 +1,10 @@
-# Lab 2: Assess and Select Azure SQL Destinations with Azure Arc 
+# Lab 2: Assess and Select Azure SQL Destinations with Azure Arc
 
-**Introduction**
+## Introduction
 
-Lab 1 told Fabrikam Retail what's on SQLVM01 and what stands in the way
-of moving it. Leadership now wants the next answer: where should each
-database go, what size does it need, and roughly what will it cost? As
-Fabrikam's migration DBA, you connect SQLVM01 to Azure Arc so Azure can
-discover and assess it continuously, then read the Arc migration
-assessment for compatibility, sizing and cost. Finally, you test Arc's
-verdict against dependencies you trace yourself, and finish with a
-per-database recommendation, backed by evidence, that Lab 3 uses to
-choose migration tooling.
+Lab 1 told Fabrikam Retail what's on SQLVM01 and what stands in the way of moving it. Leadership now wants the next answer: where should each database go, what size does it need, and roughly what will it cost? As Fabrikam's migration DBA, you connect SQLVM01 to Azure Arc so Azure can discover and assess it continuously, then read the Arc migration assessment for compatibility, sizing and cost. Finally, you test Arc's verdict against dependencies you trace yourself, and finish with a per-database recommendation, backed by evidence, that Lab 3 uses to choose migration tooling.
 
-**Objectives**
+### Objectives
 
 - Connect a SQL Server host to Azure Arc and confirm Arc discovers its
   instance and databases.
@@ -24,92 +16,64 @@ choose migration tooling.
   recommended target and cost.
 
 - Trace which databases and server-level objects must move together.
-
 - Produce a recommendation matrix and compare it with Arc's
   recommendation.
 
-## **Exercise 1: Connect the SQL Estate to Azure Arc**
 
-**Goal:** put SQLVM01 under Azure Arc so Azure discovers and assesses it
-continuously, the way you'd onboard a customer's on-premises SQL Server.
-Because SQLVM01 is an Azure VM, you first make it behave like a server
-outside Azure.
+## Exercise 1: Connect the SQL Estate to Azure Arc
 
-### **Task 1: Remove the Azure VM extensions** 
+**Goal:** put SQLVM01 under Azure Arc so Azure discovers and assesses it continuously, the way you'd onboard a customer's on-premises SQL Server. Because SQLVM01 is an Azure VM, you first make it behave like a server outside Azure.
 
-1.  In the Azure portal, open **Virtual machines** \> **SQLVM01**.
+### Task 1: Remove the Azure VM extensions
 
-2.  In the left menu, select **Settings** \> **Extensions +
-    applications**.
+1. In the Azure portal, open **Virtual machines** \> **SQLVM01**.
 
-3.  Observe that the only extension is **SqlIaasExtension**. Don't
-    uninstall it here: it belongs to a separate **SQL virtual machine**
-    resource, and deleting that resource is how you unregister it.
+1. In the left menu, select **Settings** \> **Extensions + applications**.
 
-    ![](./media/image1.png)
+1. Observe that the only extension is **SqlIaasExtension**. Don't uninstall it here: it belongs to a separate **SQL virtual machine** resource, and deleting that resource is how you unregister it.
 
-4.  In the portal top bar, click the **Cloud Shell icon (\>\_).** If
-    asked, choose **Bash**.
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image1.png)
 
-    ![](./media/image2.png)
+1. In the portal top bar, click the **Cloud Shell icon (\>\_).** If asked, choose **Bash**.
 
-5.  Then, No storage account required and select your lab
-    **subscription** and click **Apply**.
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image2.png)
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image3.png)
+1. Then, No storage account required and select your lab **subscription** and click **Apply**.
 
-6.  Paste this command and press **Enter**. It removes only the SQL
-    virtual machine registration; it can't delete the VM or its disks.
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image3.png)
 
-    ```
-    az sql vm delete --name SQLVM01 --resource-group ResourceGroup1 --yes
-    ```
+1. Paste this command and press **Enter**. It removes only the SQL virtual machine registration; it can't delete the VM or its disks.
 
-    ![](./media/image4.png)
+    `az sql vm delete --name SQLVM01 --resource-group ResourceGroup1 --yes`
 
-    ![](./media/image5.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image4.png)
 
-7.  Confirm the command returns to the prompt without an error. Then run
-    this check, which should return an error saying the SQL virtual
-    machine wasn't found:
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image5.png)
 
-    ```
-    az sql vm show --name SQLVM01 --resource-group ResourceGroup1 --query name
-    ```
+1. Confirm the command returns to the prompt without an error. Then run this check, which should return an error saying the SQL virtual machine wasn't found:
 
-    ![](./media/image6.png)
+    `az sql vm show --name SQLVM01 --resource-group ResourceGroup1 --query name`
 
-8.  Close Cloud Shell. Return to **Virtual machines** \> **SQLVM01** \>
-    **Extensions + applications** and click **Refresh** until the list
-    is empty (a few minutes).
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image6.png)
 
-    **Note**: If SqlIaasExtension is still listed after 5 minutes, select it
-    and click **Uninstall**.
+1. Close Cloud Shell. Return to **Virtual machines** \> **SQLVM01** \> **Extensions + applications** and click **Refresh** until the list is empty (a few minutes).
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image7.png)
+    >[!Note] If SqlIaasExtension is still listed after 5 minutes, select it and click **Uninstall**.
 
-    The VM, SQL Server and your databases are unchanged. You only lose SQL
-    features in the portal, such as automated patching and backup. From
-    here on, Azure Arc is how Azure manages this SQL Server.
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image7.png)
 
-    From here on, **run command** no longer works on SQLVM01. You use RDP
-    instead.
+    The VM, SQL Server and your databases are unchanged. You only lose SQL features in the portal, such as automated patching and backup. From here on, Azure Arc is how Azure manages this SQL Server.
 
-### **Task 2: Connect SQL Server to Azure Arc** 
+    From here on, **run command** no longer works on SQLVM01. You use RDP instead.
 
-You don't sign in to SQLVM01 for this. One Cloud Shell command sends a
-script to the VM through **Run command**, the same mechanism you used in
-Lab 1. The script prepares the VM for Arc evaluation, installs the Azure
-Connected Machine agent, connects it to Arc with your own sign-in, and
-then switches off the Azure guest agent.
 
-1.  In the portal top bar, click the **Cloud Shell** icon (**\>\_**) and
-    make sure it's in **Bash** mode.
+### Task 2: Connect SQL Server to Azure Arc
 
-2.  Paste the whole block below and press **Enter**. Copy it with the
-    code block's copy button so the double hyphens (--) stay intact.
+You don't sign in to SQLVM01 for this. One Cloud Shell command sends a script to the VM through **Run command**, the same mechanism you used in Lab 1. The script prepares the VM for Arc evaluation, installs the Azure Connected Machine agent, connects it to Arc with your own sign-in, and then switches off the Azure guest agent.
+
+1. In the portal top bar, click the **Cloud Shell** icon (**\>\_**) and make sure it's in **Bash** mode.
+
+1. Paste the whole block below and press **Enter**. Copy it with the code block's copy button so the double hyphens (--) stay intact.
 
     ```
     # Your sign-in token, subscription and tenant, passed to the VM
@@ -146,109 +110,75 @@ then switches off the Azure guest agent.
     --query "value[].message" -o tsv
     ```
 
-    ![A screenshot of a computer screen Description automatically
-    generated](./media/image8.png)
+    ![A screenshot of a computer screen Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image8.png)
 
-3.  Wait for the command to return (about 3–5 minutes; the cursor sits still while it runs).
+1. Wait for the command to return (about 3–5 minutes; the cursor sits still while it runs).
 
-4.  Confirm the output ends with **Arc onboarding complete**.
+1. Confirm the output ends with **Arc onboarding complete**.
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image9.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image9.png)
 
-5.  **Close** the Cloud Shell.
+1. **Close** the Cloud Shell.
 
-From now on, **Run command** no longer works on SQLVM01, because its
-Azure guest agent is switched off. Nothing later in this course needs
-it.
+    From now on, **Run command** no longer works on SQLVM01, because its Azure guest agent is switched off. Nothing later in this course needs it.
 
-The ResourceGroup1 and eastus values must match your lab. If your
-resource group or region is named differently, change them in both the
-script and the az command before you run it.
+    The ResourceGroup1 and eastus values must match your lab. If your resource group or region is named differently, change them in both the script and the az command before you run it.
 
-### **Task 3: Confirm discovery and start the assessments**
 
-1.  In the portal, search for **Azure Arc.**
+### Task 3: Confirm discovery and start the assessments
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image10.png)
+1. In the portal, search for **Azure Arc.**
 
-2.  Expand **Infrastructure \>** **Machines**. Confirm **SQLVM01** shows
-    Status **Connected**.
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image10.png)
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image11.png)
+1. Expand **Infrastructure \>** **Machines**. Confirm **SQLVM01** shows Status **Connected**.
 
-3.  Open **Azure Arc** \> **Data services** \> **SQL Server instances**.
-    Select **Refresh** until **SQLVM01** appears; the Azure extension
-    for SQL Server can take a few minutes to install and report in.
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image11.png)
 
-    ![](./media/image12.png)
+1. Open **Azure Arc** \> **Data services** \> **SQL Server instances**. Select **Refresh** until **SQLVM01** appears; the Azure extension for SQL Server can take a few minutes to install and report in.
 
-4.  Open the SQLVM01 SQL Server instance. In the left menu, under
-    **Migration**, select **Assessments**, then click **Run
-    assessment**.
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image12.png)
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image13.png)
+1. Open the SQLVM01 SQL Server instance. In the left menu, under **Migration**, select **Assessments**, then click **Run assessment**.
 
-5.  Create the Azure Migrate project that reads the same Arc data. Go
-    back to Azure Arc by the top navigation.
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image13.png)
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image14.png)
+1. Create the Azure Migrate project that reads the same Arc data. Go back to Azure Arc by the top navigation.
 
-6.  In **Azure Arc**, under **Migration**, select **Savings and
-    Readiness (Preview)** and click **Create a migration** project.
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image14.png)
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image15.png)
+1. In **Azure Arc**, under **Migration**, select **Savings and Readiness (Preview)** and click **Create a migration** project.
 
-7.  Set Name +++fabrikam-arc-migrate+++, your lab **Subscription**,
-    Resource group **ResourceGroup1** and Region **West US 2**.
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image15.png)
 
-    ![](./media/image16.png)
+1. Set Name +++fabrikam-arc-migrate+++, your lab +++Subscription+++, Resource group **ResourceGroup1** and Region **West US 2**.
 
-8.  Under **Scope**, select your lab subscription, set **Target region**
-    to **West US 2**, and click **Create**.
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image16.png)
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image17.png)
+1. Under **Scope**, select your lab subscription, set **Target region** to **West US 2**, and click **Create**.
 
-    Both assessments now compute in the background. Azure Migrate typically
-    produces its default assessments and business case within an hour, so
-    you check it in the Wrap-up.
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image17.png)
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image18.png)
+    Both assessments now compute in the background. Azure Migrate typically produces its default assessments and business case within an hour, so you check it in the Wrap-up.
 
-    **Note**: The project itself usually finishes in a few minutes, and the
-    “Running” notification will turn green when it’s done. The slower part
-    is what happens afterwards. Azure Migrate syncs SQLVM01’s data from Arc
-    and builds the default assessment and two business cases, which can take
-    up to an hour.
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image18.png)
 
-    **Proceed with the next exercise. You’ll come back to Azure Arc Assessment in Exercise 3.**
+    >[!Note] The project itself usually finishes in a few minutes, and the “Running” notification will turn green when it’s done. The slower part is what happens afterwards. Azure Migrate syncs SQLVM01’s data from Arc and builds the default assessment and two business cases, which can take up to an hour.
 
-## **Exercise 2: Map workload dependencies**
 
-**Goal:** find what no assessment tool reports, namely which databases
-and server-level objects must move together. Lab 1 counted the
-server-level objects; now you find out which database each one serves.
-This runs on SQLVM01 while Azure computes your Arc assessment.
+### Proceed with the next exercise. You’ll come back to Azure Arc Assessment in Exercise 3.
 
-### **Task 1: Trace dependencies across databases and server objects**
+## Exercise 2: Map workload dependencies
 
-1.  In SSMS, use the **sqladmin** connection to SQLVM01 and open a **New
-    Query**.
+**Goal:** find what no assessment tool reports, namely which databases and server-level objects must move together. Lab 1 counted the server-level objects; now you find out which database each one serves. This runs on SQLVM01 while Azure computes your Arc assessment.
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image19.png)
+### Task 1: Trace dependencies across databases and server objects
 
-2.  Paste the script and click **Execute**. It collects the code from
-    every user database, then checks which database each Agent job,
-    linked server and mail profile touches, and which databases
-    reference each other.
+1. In SSMS, use the **sqladmin** connection to SQLVM01 and open a **New Query**.
+
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image19.png)
+
+1. Paste the script and click **Execute**. It collects the code from every user database, then checks which database each Agent job, linked server and mail profile touches, and which databases reference each other.
 
     ```
     SET NOCOUNT ON;
@@ -284,9 +214,9 @@ This runs on SQLVM01 while Azure computes your Arc assessment.
     ORDER BY d.name;
     ```
 
-    ![](./media/image20.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image20.png)
 
-3.  Confirm that **Grid 1** returns these three rows:
+1. Confirm that **Grid 1** returns these three rows:
 
     |object_type|object_name |detail| used_by|
     |------|--------|-------|-------|
@@ -294,26 +224,20 @@ This runs on SQLVM01 while Azure computes your Arc assessment.
     |Linked server |ORA_GL	|Oracle  |(no code references it)  |
     |Database Mail profile |FabrikamOps	|Database Mail  |(no code references it)  |
 
-4.  In **Grid 2**, confirm that only SalesDB has a value in
-    referenced_by: **InventoryDB.usp_StockVsOrders**. Every other
-    database is self-contained.
+1. In **Grid 2**, confirm that only SalesDB has a value in referenced_by: **InventoryDB.usp_StockVsOrders**. Every other database is self-contained.
 
-    ![](./media/image21.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image21.png)
 
-### **Task 2: Prove what dependencies mean**
 
-Task 1 found the links. Now test them: what breaks when the databases
-are split up, and whether the server-level objects are actually in use.
+### Task 2: Prove what dependencies mean
 
-1.  **Break the affinity on purpose.** Open a **New Query** on the
-    sqladmin connection.
+Task 1 found the links. Now test them: what breaks when the databases are split up, and whether the server-level objects are actually in use.
 
-    ![](./media/image22.png)
+1. **Break the affinity on purpose.** Open a **New Query** on the sqladmin connection.
 
-2.  Paste the script and click **Execute**. It runs InventoryDB's
-    procedure, takes SalesDB offline as if SalesDB had moved to a
-    different target, runs the procedure again, and brings SalesDB back
-    online.
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image22.png)
+
+1. Paste the script and click **Execute**. It runs InventoryDB's procedure, takes SalesDB offline as if SalesDB had moved to a different target, runs the procedure again, and brings SalesDB back online.
 
     ```
     SET NOCOUNT ON;
@@ -329,19 +253,13 @@ are split up, and whether the server-level objects are actually in use.
     SELECT name, state_desc FROM sys.databases WHERE name = N'SalesDB';
     ```
 
-    ![](./media/image23.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image23.png)
 
-3.  In the **Results** tab, confirm the second grid shows error **942**,
-    saying SalesDB can't be opened because it's offline. That's what
-    InventoryDB hits if SalesDB lands on a different target. Confirm the
-    last grid shows SalesDB **ONLINE** again.
+1. In the **Results** tab, confirm the second grid shows error **942**, saying SalesDB can't be opened because it's offline. That's what InventoryDB hits if SalesDB lands on a different target. Confirm the last grid shows SalesDB **ONLINE** again.
 
-    ![](./media/image24.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image24.png)
 
-4.  **Check whether the server-level objects are used.** Open a **New
-    Query**, paste the script and click **Execute**. It checks the GL
-    export job's schedule and run history, the Database Mail history,
-    and whether ORA_GL can reach its Oracle server.
+1. **Check whether the server-level objects are used.** Open a **New Query**, paste the script and click **Execute**. It checks the GL export job's schedule and run history, the Database Mail history, and whether ORA_GL can reach its Oracle server.
 
     ```
     SET NOCOUNT ON;
@@ -364,9 +282,9 @@ are split up, and whether the server-level objects are actually in use.
     END CATCH;
     ```
 
-    ![](./media/image25.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image25.png)
 
-5.  Confirm the three grids show:
+1. Confirm the three grids show:
 
     |Check	|Expected result|What it tells you|
     |-------|-------|-------|
@@ -374,275 +292,187 @@ are split up, and whether the server-level objects are actually in use.
     |Database Mail |Valmails_sent 0ue	|FabrikamOps has never sent mail, so it's a candidate to retire.  |
     |ORA_GL |Unreachable, with a provider or connection error	|It can't work as configured, so nothing can depend on it today. That's evidence for retiring it rather than letting it force a VM.  |
 
-    ![](./media/image26.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image26.png)
 
-5.  **Save the job definition for Lab 3.** In Object Explorer, expand
-    **SQL Server Agent** \> **Jobs**.
+1. **Save the job definition for Lab 3.** In Object Explorer, expand **SQL Server Agent** \> **Jobs**.
 
-    ![](./media/image27.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image27.png)
 
-6.  Right-click **Finance - nightly GL export** and select **Script Job
-    as** \> **CREATE To** \> **File**.
+1. Right-click **Finance - nightly GL export** and select **Script Job as** \> **CREATE To** \> **File**.
 
-    ![](./media/image28.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image28.png)
 
-7.  Save it as +++GL_export_job.sql+++ in your Documents folder.
+1. Save it as +++GL_export_job.sql+++ in your Documents folder.
 
-    ![](./media/image29.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image29.png)
 
-8.  In the saved script, find **@subsystem=N'CmdExec'**: this is the
-    definition that has to be rebuilt outside SQL Server, because a
-    database backup never carries it. In **SSMS**, click **File \> Open
-    \> File**.
+1. In the saved script, find **@subsystem=N'CmdExec'**: this is the definition that has to be rebuilt outside SQL Server, because a database backup never carries it. In **SSMS**, click **File \> Open \> File**.
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image30.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image30.png)
 
-9.  Open **GL_export_job.sql**.
+1. Open **GL_export_job.sql**.
 
-    ![A computer screen shot of a computer screen Description
-    automatically generated](./media/image31.png)
+    ![A computer screen shot of a computer screen Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image31.png)
 
-10. then press **Ctrl+F** and search for **CmdExec** to find
-    **@subsystem=N'CmdExec'**. Don't execute the script; the job already
-    exists: this is the definition that has to be rebuilt outside SQL
-    Server, because a database backup never carries it.
+1. then press **Ctrl+F** and search for **CmdExec** to find **@subsystem=N'CmdExec'**. Don't execute the script; the job already exists: this is the definition that has to be rebuilt outside SQL Server, because a database backup never carries it.
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image32.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image32.png)
 
-Now return to the **portal** and check whether your Arc assessment has
-finished.
+    Now return to the **portal** and check whether your Arc assessment has finished.
 
-## **Exercise 3: Review the Arc assessment: compatibility, sizing, and cost**
 
-**Goal:** read the Arc migration assessment the way you'd present it to
-a customer. You check what Arc discovered, compare readiness across the
-three Azure SQL targets, and see how sizing, pricing options and
-migration strategy shape its recommendation.
+## Exercise 3: Review the Arc assessment: compatibility, sizing, and cost
 
-**If the assessment still shows as running, select Refresh every minute.
-If it hasn't finished by Task 2, tell your instructor, who will share a
-completed assessment for SQLVM01 so you can continue.**
+**Goal:** read the Arc migration assessment the way you'd present it to a customer. You check what Arc discovered, compare readiness across the three Azure SQL targets, and see how sizing, pricing options and migration strategy shape its recommendation.
 
-### **Task 1: Check what Arc discovered**
+### If the assessment still shows as running, select Refresh every minute. If it hasn't finished by Task 2, tell your instructor, who will share a completed assessment for SQLVM01 so you can continue.
 
-1.  In **Azure Arc** \> **Data services** \> **SQL Server instances**,
-    open **SQLVM01**.
+### Task 1: Check what Arc discovered
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image33.png)
+1. In **Azure Arc** \> **Data services** \> **SQL Server instances**, open **SQLVM01**.
 
-2.  In the left menu, under **Migration**, select **Assessments**, then
-    click **Refresh**.
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image33.png)
 
-    The assessment has **finished**, and you can start Exercise 3. The
-    **Recommended Target: Azure SQL MI** card and **User databases (6)**
-    only appear once results exist, and the **Assessment completed** time
-    sits at the top right.
+1. In the left menu, under **Migration**, select **Assessments**, then click **Refresh**.
 
-    ![](./media/image34.png)
+    The assessment has **finished**, and you can start Exercise 3. The **Recommended Target: Azure SQL MI** card and **User databases (6)** only appear once results exist, and the **Assessment completed** time sits at the top right.
 
-3.  On the **Overview** page, note the version, edition and license type
-    that Arc reports.
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image34.png)
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image35.png)
+1. On the **Overview** page, note the version, edition and license type that Arc reports.
 
-4.  In the left menu, select **Data Management \>** **Databases**.
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image35.png)
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image36.png)
+1. In the left menu, select **Data Management \>** **Databases**.
 
-5.  Confirm Arc lists all **six Fabrikam databases**, including
-    **LegacyHR**. Arc found them without any query from you, and it
-    keeps the list current as databases are added.
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image36.png)
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image37.png)
+1. Confirm Arc lists all **six Fabrikam databases**, including **LegacyHR**. Arc found them without any query from you, and it keeps the list current as databases are added.
 
-#### **Task 2: Read the recommendation and readiness**
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image37.png)
 
-1.  In the left menu, under **Migration**, select **Assessments**. Check
-    **Assessment completed at** to confirm you're looking at today's
-    run.
 
-    ![](./media/image38.png)
+### Task 2: Read the recommendation and readiness
 
-2.  Read the **Recommended Target** banner and the reasoning beside it.
-    By default Arc uses the **Modernize to PaaS** strategy, so it
-    prefers Managed Instance or Azure SQL Database if they're ready.
+1. In the left menu, under **Migration**, select **Assessments**. Check **Assessment completed at** to confirm you're looking at today's run.
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image39.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image38.png)
 
-3.  In the details section, review the readiness summary for each
-    target: **Azure SQL Managed Instance**, **SQL Server on Azure
-    Virtual Machines** and **Azure SQL Database**. Observe that SQL
-    Server on Azure VM is the most ready target, since it runs every
-    feature SQLVM01 uses.
+1. Read the **Recommended Target** banner and the reasoning beside it. By default Arc uses the **Modernize to PaaS** strategy, so it prefers Managed Instance or Azure SQL Database if they're ready.
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image40.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image39.png)
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image41.png)
+1. In the details section, review the readiness summary for each target: **Azure SQL Managed Instance**, **SQL Server on Azure Virtual Machines** and **Azure SQL Database**. Observe that SQL Server on Azure VM is the most ready target, since it runs every feature SQLVM01 uses.
 
-### **Task 3: Compare compatibility by target**
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image40.png)
 
-1.  In the target drop-down, select **Azure SQL Managed Instance**, then
-    open the **Compatibility** tab.
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image41.png)
 
-    ![](./media/image42.png)
 
-2.  Select the **Findings** Under **Instance** **compatibility**, select
-    Trace flags not supported in Azure SQL Managed Instance were found.
-    In the Finding details pane, confirm Type Warning and Impacted
-    object **TraceFlag** **1117**, the trace flag Lab 1 found. Close the
-    pane.
+### Task 3: Compare compatibility by target
 
-    ![](./media/image43.png)
+1. In the target drop-down, select **Azure SQL Managed Instance**, then open the **Compatibility** tab.
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image44.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image42.png)
 
-3.  Scroll down to **Database compatibility** and confirm it shows
-    **Warnings: 0 | Issues: 0**.
+1. Select the **Findings** Under **Instance** **compatibility**, select Trace flags not supported in Azure SQL Managed Instance were found. In the Finding details pane, confirm Type Warning and Impacted object +++TraceFlag+++ **1117**, the trace flag Lab 1 found. Close the pane.
 
-    ![](./media/image45.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image43.png)
 
-4.  Switch **Migration target type** to **Azure SQL Database**. Read the
-    **Database migration readiness** card as Not ready.
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image44.png)
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image46.png)
+1. Scroll down to **Database compatibility** and confirm it shows **Warnings: 0 | Issues: 0**.
 
-5.  The findings on the **Database** **Compatibility** tab, and check
-    whether InventoryDB's cross-database query from Exercise 2 is
-    reported.
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image45.png)
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image47.png)
+1. Switch **Migration target type** to **Azure SQL Database**. Read the **Database migration readiness** card as Not ready.
 
-"**Ready**" in an assessment means the database can be moved, not that
-everything around it will work afterwards. That's why Exercise 2 traced
-the dependencies, and why Exercise 4 builds your own recommendation
-instead of copying Arc's.
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image46.png)
 
-### **Task 4: Review the sizing recommendation**
+1. The findings on the **Database** **Compatibility** tab, and check whether InventoryDB's cross-database query from Exercise 2 is reported.
 
-1.  With **Azure SQL Managed Instance** selected, open the **SKU
-    recommendation** tab. Note the recommended service tier, vCores and
-    storage, and read the reasoning.
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image47.png)
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image48.png)
+    "**Ready**" in an assessment means the database can be moved, not that everything around it will work afterwards. That's why Exercise 2 traced the dependencies, and why Exercise 4 builds your own recommendation instead of copying Arc's.
 
-2.  Switch to **Azure SQL Database**. Observe that Arc gives a separate
-    recommendation for each database rather than one for the instance.
-    Select a **Recommendation reason** link to see why.
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image49.png)
+### Task 4: Review the sizing recommendation
 
-    ![](./media/image50.png)
+1. With **Azure SQL Managed Instance** selected, open the **SKU recommendation** tab. Note the recommended service tier, vCores and storage, and read the reasoning.
 
-#### **Task 5: Change the pricing options and strategy**
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image48.png)
 
-1.  On **Assessment results for SQLVM01**, read the **Monthly cost
-    estimate** card (the third summary card). Switch **Migration target
-    type** between **Azure SQL MI**, **SQL Server on Azure VM** and
-    **Azure SQL Database** to see each target's cost. If the card shows
-    no price yet, prices are still being calculated; select **Refresh**
-    after a minute.
+1. Switch to **Azure SQL Database**. Observe that Arc gives a separate recommendation for each database rather than one for the instance. Select a **Recommendation reason** link to see why.
 
-    ![](./media/image51.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image49.png)
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image52.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image50.png)
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image53.png)
 
-2.  Navigate back to **Assessments** page.
+### Task 5: Change the pricing options and strategy
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image54.png)
+1. On **Assessment results for SQLVM01**, read the **Monthly cost estimate** card (the third summary card). Switch **Migration target type** between **Azure SQL MI**, **SQL Server on Azure VM** and **Azure SQL Database** to see each target's cost. If the card shows no price yet, prices are still being calculated; select **Refresh** after a minute.
 
-3.  Click **Assessment settings**.
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image51.png)
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image55.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image52.png)
 
-4.  Click **Assessment settings**. **Azure Hybrid Benefit for SQL
-    Server** is on by default. Turn it **off**, then click **Update**.
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image53.png)
 
-    ![](./media/image56.png)
+1. Navigate back to **Assessments** page.
 
-    ![](./media/image57.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image54.png)
 
-5.  Allow a minute for prices to recalculate, open the assessment
-    details.
+1. Click **Assessment settings**.
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image58.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image55.png)
 
-6.  Then check the **Monthly cost estimate** card for each target again.
-    Observe how the costs rise: the difference is what Fabrikam saves by
-    bringing its existing SQL Server licenses with Software Assurance to
-    Azure.
+1. Click **Assessment settings**. **Azure Hybrid Benefit for SQL Server** is on by default. Turn it **off**, then click **Update**.
 
-    ![](./media/image59.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image56.png)
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image60.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image57.png)
 
-    ![](./media/image61.png)
+1. Allow a minute for prices to recalculate, open the assessment details.
 
-7.  Open **Assessment settings** again, change the migration strategy to
-    **Minimize cost**, and click **Update**.
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image58.png)
 
-    ![](./media/image62.png)
+1. Then check the **Monthly cost estimate** card for each target again. Observe how the costs rise: the difference is what Fabrikam saves by bringing its existing SQL Server licenses with Software Assurance to Azure.
 
-8.  Observe whether the **Recommended Target** banner changes. This
-    strategy picks the cheapest target with the fewest issues and
-    ignores the operational benefits of PaaS.
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image59.png)
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image63.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image60.png)
 
-9.  Open **Assessment settings** once more, set the strategy back to
-    **Modernize to PaaS**, turn **Azure Hybrid Benefit for SQL Server**
-    off, and click **Update**.
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image61.png)
 
-    ![](./media/image64.png)
+1. Open **Assessment settings** again, change the migration strategy to **Minimize cost**, and click **Update**.
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image65.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image62.png)
 
-Arc gives you one recommendation for the whole instance. It can't see
-the CmdExec job's business owner, the SalesDB–InventoryDB affinity, or
-that LegacyHR may not be needed. Exercise 4 adds that judgment.
+1. Observe whether the **Recommended Target** banner changes. This strategy picks the cheapest target with the fewest issues and ignores the operational benefits of PaaS.
 
-## **Exercise 4: Create a destination recommendation matric**
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image63.png)
 
-**Goal:** produce the per-database recommendation Arc can't give you.
-You store the facts from Exercises 2 and 3 in a small **MigrationPlan**
-database on SQLVM01, apply the decision flow below as a view, score each
-target, and compare the result with Arc.
+1. Open **Assessment settings** once more, set the strategy back to **Modernize to PaaS**, turn **Azure Hybrid Benefit for SQL Server** off, and click **Update**.
 
-MigrationPlan is a working database for this course. Arc will list it in
-later assessments; leave it out of any migration.
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image64.png)
 
-### **Task 1: Record the workload profile and run the decision flow**
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image65.png)
 
-1.  In SSMS, use the **sqladmin** connection to SQLVM01 and open a **New
-    Query**.
+    Arc gives you one recommendation for the whole instance. It can't see the CmdExec job's business owner, the SalesDB–InventoryDB affinity, or that LegacyHR may not be needed. Exercise 4 adds that judgment.
 
-2.  Paste the script and click **Execute**. It creates MigrationPlan,
-    records what you've proved about each database and server-level
-    object, and applies the decision flow. A database inherits the
-    instance-scoped features of its affinity group.
+
+## Exercise 4: Create a destination recommendation matric
+
+**Goal:** produce the per-database recommendation Arc can't give you. You store the facts from Exercises 2 and 3 in a small **MigrationPlan** database on SQLVM01, apply the decision flow below as a view, score each target, and compare the result with Arc.
+
+MigrationPlan is a working database for this course. Arc will list it in later assessments; leave it out of any migration.
+
+### Task 1: Record the workload profile and run the decision flow
+
+1. In SSMS, use the **sqladmin** connection to SQLVM01 and open a **New Query**.
+
+1. Paste the script and click **Execute**. It creates MigrationPlan, records what you've proved about each database and server-level object, and applies the decision flow. A database inherits the instance-scoped features of its affinity group.
 
     ```
     CREATE DATABASE MigrationPlan;
@@ -701,10 +531,9 @@ later assessments; leave it out of any migration.
     SELECT * FROM dbo.vDestinationFlow ORDER BY destination, database_name;
     ```
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image66.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image66.png)
 
-3.  Confirm the grid matches this:
+1. Confirm the grid matches this:
 
     |database_name	|rule_matched|destination|
     |-------|-------|-------|
@@ -715,17 +544,12 @@ later assessments; leave it out of any migration.
     |LegacyHR |1. Not needed	|Retire  |
     |DocsArchive |2. VM-only feature: FILESTREAM	|SQL Server on Azure VM  |
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image67.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image67.png)
 
-#### **Task 2: Score the targets and publish the recommendation**
 
-1.  Open a **New Query** on the sqladmin connection, paste the script
-    and click Execute. It loads the weights and scores, builds a
-    weighted matrix that excludes any target with compatibility 1, and
-    publishes dbo.vRecommendation. Scores run from 1 (poor) to 5
-    (excellent); a compatibility of 4 means the target works after the
-    change in condition_note.
+### Task 2: Score the targets and publish the recommendation
+
+1. Open a **New Query** on the sqladmin connection, paste the script and click Execute. It loads the weights and scores, builds a weighted matrix that excludes any target with compatibility 1, and publishes dbo.vRecommendation. Scores run from 1 (poor) to 5 (excellent); a compatibility of 4 means the target works after the change in condition_note.
 
     ```
     USE MigrationPlan;
@@ -793,10 +617,9 @@ later assessments; leave it out of any migration.
     SELECT * FROM dbo.vRecommendation ORDER BY recommended_destination, database_name;
     ```
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image68.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image68.png)
 
-2.  Confirm the first grid (the score matrix) matches this:
+1. Confirm the first grid (the score matrix) matches this:
 
     |database_name	|azure_sql_database|managed_instance|sql_server_on_vm|best_by_score|
     |-------|-------|-------|-------|-------|
@@ -806,37 +629,24 @@ later assessments; leave it out of any migration.
     |ReportingDB |4.35	|3.90 |3.60	|Azure SQL Database |
     |SalesDB |4.35	|4.30 |3.60	|Azure SQL Database |
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image69.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image69.png)
 
-3.  In the second grid, confirm **Score agrees** for DocsArchive,
-    FinanceDB, InventoryDB and ReportingDB, and **Not scored: retiring**
-    for LegacyHR.
+1. In the second grid, confirm **Score agrees** for DocsArchive, FinanceDB, InventoryDB and ReportingDB, and **Not scored: retiring** for LegacyHR.
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image70.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image70.png)
 
-4.  Find **SalesDB**: its check_result is **Score differs: see
-    rule_matched**. Scored alone it picks Azure SQL Database (4.65), but
-    it inherits InventoryDB's instance-scoped features, so it goes to
-    Managed Instance.
+1. Find **SalesDB**: its check_result is **Score differs: see rule_matched**. Scored alone it picks Azure SQL Database (4.65), but it inherits InventoryDB's instance-scoped features, so it goes to Managed Instance.
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image71.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image71.png)
 
-### **Task 3: Compare your plan with Arc**
 
-1.  In the portal, open the Arc **Assessment results for SQLVM01** page
-    with **Migration target type** set to **Azure SQL MI**. Read the
-    **SKU recommendation** and **Monthly cost estimate** cards.
+### Task 3: Compare your plan with Arc
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image72.png)
+1. In the portal, open the Arc **Assessment results for SQLVM01** page with **Migration target type** set to **Azure SQL MI**. Read the **SKU recommendation** and **Monthly cost estimate** cards.
 
-2.  In SSMS, open a **New Query** on the sqladmin connection and paste
-    the script below. If your portal shows a different SKU or cost from
-    the values in the INSERT line, change them to match. Then click
-    **Execute**.
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image72.png)
+
+1. In SSMS, open a **New Query** on the sqladmin connection and paste the script below. If your portal shows a different SKU or cost from the values in the INSERT line, change them to match. Then click **Execute**.
 
     ```
     USE MigrationPlan;
@@ -868,10 +678,9 @@ later assessments; leave it out of any migration.
     FROM dbo.vPlanVsArc ORDER BY comparison, database_name;
     ```
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image73.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image73.png)
 
-3.  Confirm the grid matches this:
+1. Confirm the grid matches this:
 
     |database_name	|our_plan|arc_recommends|comparison|
     |-------|-------|
@@ -882,34 +691,17 @@ later assessments; leave it out of any migration.
     |Value |Value	|Value  |Value |
     |Value |Value	|Value  |Value |
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image74.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image74.png)
 
-4.  Read the **why** column for the four **Differs** rows. Each names
-    the evidence Arc didn't have: a feature it didn't flag, a business
-    decision, or a database that doesn't need an instance.
+1. Read the **why** column for the four **Differs** rows. Each names the evidence Arc didn't have: a feature it didn't flag, a business decision, or a database that doesn't need an instance.
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image75.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image75.png)
 
-5.  Check the **starting_size** column for **InventoryDB** and
-    **SalesDB**. Arc's Managed Instance SKU is where the InventoryDB and
-    SalesDB group starts.
+1. Check the **starting_size** column for **InventoryDB** and **SalesDB**. Arc's Managed Instance SKU is where the InventoryDB and SalesDB group starts.
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image76.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image76.png)
 
-## **Conclusion**
 
-In this lab, you connected a SQL Server host to Azure Arc and watched
-Azure discover its instance and databases without a single query from
-you. You read the Arc migration assessment across all three Azure SQL
-targets and saw how sizing, Azure Hybrid Benefit and the migration
-strategy shape its recommendation and cost. You also saw its limits: Arc
-rated every database Ready for Managed Instance, yet FILESTREAM, the
-Oracle linked server, the CmdExec job and xp_cmdshell would all break
-there. By tracing dependencies, testing them and scoring each target,
-you built a recommendation that splits the estate across Azure SQL
-Database, Managed Instance and SQL Server on Azure VM, and retires a
-database nobody uses. An assessment tells you what can move; your
-evidence tells you where it should go.
+## Conclusion
+
+In this lab, you connected a SQL Server host to Azure Arc and watched Azure discover its instance and databases without a single query from you. You read the Arc migration assessment across all three Azure SQL targets and saw how sizing, Azure Hybrid Benefit and the migration strategy shape its recommendation and cost. You also saw its limits: Arc rated every database Ready for Managed Instance, yet FILESTREAM, the Oracle linked server, the CmdExec job and xp_cmdshell would all break there. By tracing dependencies, testing them and scoring each target, you built a recommendation that splits the estate across Azure SQL Database, Managed Instance and SQL Server on Azure VM, and retires a database nobody uses. An assessment tells you what can move; your evidence tells you where it should go.

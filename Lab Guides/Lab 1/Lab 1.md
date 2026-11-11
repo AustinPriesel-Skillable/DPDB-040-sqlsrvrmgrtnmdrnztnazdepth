@@ -1,16 +1,10 @@
 # Lab 1: Assess Migration Readiness for a SQL Server Estate
 
-**Introduction**
+## Introduction
 
-You've just joined Fabrikam Retail as the migration DBA. The company
-plans to move its SQL Server estate to Azure, but the server SQLVM01 has
-grown for years without documentation, and the DBA who built it has
-left. Before anyone picks an Azure destination, leadership wants a clear
-answer: what's on this server, which databases are ready to migrate, and
-what stands in the way? Your job is to find out, using the same tools
-and checks you'd use on a real customer engagement.
+You've just joined Fabrikam Retail as the migration DBA. The company plans to move its SQL Server estate to Azure, but the server SQLVM01 has grown for years without documentation, and the DBA who built it has left. Before anyone picks an Azure destination, leadership wants a clear answer: what's on this server, which databases are ready to migrate, and what stands in the way? Your job is to find out, using the same tools and checks you'd use on a real customer engagement.
 
-**Objectives**
+### Objectives
 
 - Discover the SQL services, databases and server-level objects on a
   host, including ones that are easy to miss.
@@ -26,149 +20,115 @@ and checks you'd use on a real customer engagement.
 
 - Log the remaining risks as inputs for Lab 2.
 
-## **Exercise 1: Set up your Environment**
 
-### **Task 1: Deploy the VM**
+## Exercise 1: Set up your Environment
 
-1.  Open [portal.azure.com](https://portal.azure.com) and sign in with
-    your lab account.
+### Task 1: Deploy the VM
 
-    ![](./media/image1.png)
+1. Open +++https://portal.azure.com+++ and sign in with your lab account.
 
-2.  In the search bar at the top, type **Azure SQL** and select **Azure
-    SQL** under Services.
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image1.png)
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image2.png)
+1. In the search bar at the top, type **Azure SQL** and select **Azure SQL** under Services.
 
-3.  In the left menu of the **Azure SQL** page, expand **SQL Server**
-    and click **SQL Server on Azure VMs**. On that page, click **+Create**.
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image2.png)
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image3.png)
+1. In the left menu of the **Azure SQL** page, expand **SQL Server** and click **SQL Server on Azure VMs**. On that page, click **+Create**.
 
-4.  In the **Image** drop-down, select **Free SQL Server License: SQL 2022 Developer on Windows Server 2022** from the list.
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image3.png)
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image4.png)
+1. In the **Image** drop-down, select **Free SQL Server License: SQL 2022 Developer on Windows Server 2022** from the list.
 
-5.  Select **Create SQL Virtual Machine** to proceed.
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image4.png)
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image5.png)
+1. Select **Create SQL Virtual Machine** to proceed.
 
-6.  On the **Basics** tab, set:
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image5.png)
+
+1. On the **Basics** tab, set:
 
     - **Resource group**: your group - **ResourceGroup1**
-
-    - **Virtual machine name**: +++SQLVM01+++
-
+    - **Virtual machine name**: `SQLVM01`
     - **Region**: East US
-
     - **Availability options**: No infrastructure redundancy required
-
     - **Size**: click **See all sizes**, search and select **D4s_v5**
-
-    - **Username**: +++labadmin+++
-
-    - **Password**: +++P@ssword12345+++
-
+    - **Username**: `labadmin`
+    - **Password**: `P@ssword12345`
     - **Public inbound ports**: Allow selected ports, with **RDP
-      (3389)** selected
+    (3389)** selected
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image6.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image6.png)
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image7.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image7.png)
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image8.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image8.png)
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image9.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image9.png)
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image10.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image10.png)
 
-7.  Click the **SQL Server settings** tab at the top (skip the tabs in between). Set:
+
+1. Click the **SQL Server settings** tab at the top (skip the tabs in between). Set:
 
     - **SQL connectivity**: Public (Internet)
-
     - **Enable SQL Authentication**
-
     - **SQL Authentication**: Enable, with **Login name-** +++labadmin+++
-      and the password – +++P@ssword12345+++
+    and the password – +++P@ssword12345+++
 
-    ![](./media/image11.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image11.png)
 
-8.  Click **Review + create**. When validation passes, click **Create**.
-    Go to the lecture while it deploys.
 
-    ![](./media/image12.png)
+1. Click **Review + create**. When validation passes, click **Create**. Go to the lecture while it deploys.
 
-9.  When you return, click **Go to resource**.
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image12.png)
 
-    ![](./media/image13.png)
+1. When you return, click **Go to resource**.
 
-### **Task 2: Lock port 1433 to your own IP**
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image13.png)
 
-The SQL port is open to the whole internet until you do this. Don't skip
-it.
 
-1.  On the VM's Overview page, copy the **Public IP address** and keep
-    it handy. This is the Azure VM's address, the one SSMS connects to.
-    Don't put it in the port rule. The rule's source is a different IP:
-    your system’s VM address, the one SSMS connects from.
+### Task 2: Lock port 1433 to your own IP
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image14.png)
+The SQL port is open to the whole internet until you do this. Don't skip it.
 
-2.  In the left menu, click Networking \   Network settings. click **+
-    Create port rule \   Inbound port rule**.
+1. On the VM's Overview page, copy the **Public IP address** and keep it handy. This is the Azure VM's address, the one SSMS connects to. Don't put it in the port rule. The rule's source is a different IP: your system’s VM address, the one SSMS connects from.
 
-    ![](./media/image15.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image14.png)
 
-3.  Set the following settings:
+1. In the left menu, click Networking \   Network settings. click **+ Create port rule \   Inbound port rule**.
 
-- **Source**: Select **My IP address**
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image15.png)
 
-- **Source port ranges**: \*
+1. Set the following settings:
 
-- **Destination**: Any
+    - **Source**: Select **My IP address**
+    - **Source port ranges**: \*
+    - **Destination**: Any
+    - **Service**: MS SQL (this fills in port 1433 and protocol TCP)
+    - **Action**: Allow
+    - **Priority**: 310
+    - **Name**: `Allow-SQL-MyIP`
+    - Click **Add**.
 
-- **Service**: MS SQL (this fills in port 1433 and protocol TCP)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image16.png)
 
-- **Action**: Allow
+    ![A screenshot of a computer screen Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image17.png)
 
-- **Priority**: 310
 
-- **Name**: +++Allow-SQL-MyIP+++
+1. Make sure Inbound port rule for 1433 port is created.
 
-- Click **Add**.
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image18.png)
 
-    ![](./media/image16.png)
 
-    ![A screenshot of a computer screen Description automatically
-    generated](./media/image17.png)
+### Task 3: Run the setup script through the portal
 
-4.  Make sure Inbound port rule for 1433 port is created.
+1. On the left menu, click **Operations** and then, **Run command**, then click **RunPowerShellScript**.
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image18.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image19.png)
 
-### **Task 3: Run the setup script through the portal**
+1. Paste it into the **PowerShell Script** box and click **Run**. Leave the page open. When it finishes, the **Output** box ends with **Seed complete**.
 
-1.  On the left menu, click **Operations** and then, **Run command**, then click **RunPowerShellScript**.
-
-    ![A screenshot of a computer Description automatically
-    generated](./media/image19.png)
-
-2.  Paste it into the **PowerShell Script** box and click **Run**. Leave
-    the page open. When it finishes, the **Output** box ends with **Seed complete**.
-
-   **Note: Make sure to replace the **<your sqladmin password>** with
-   your password **at the first line of the script:**
+    >[!Note] Make sure to replace the **<your sqladmin password>** with your password **at the first line of the script:**
   
     ```
     $SqlPwd = '<your sqladmin password>'
@@ -308,93 +268,70 @@ it.
     Write-Output 'Seed complete.'
     ```
   
-   ![](./media/image20.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image20.png)
   
-   ![](./media/image21.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image21.png)
 
-### **Task 4: Connect to Server**
 
-1.  Open **SQL Server Management Studio** (SSMS 22) and select login
-    with **Work or school account**.
+### Task 4: Connect to Server
 
-   ![](./media/image22.png)
+1. Open **SQL Server Management Studio** (SSMS 22) and select login with **Work or school account**.
 
-2.  Sign in with the credentials.
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image22.png)
 
-   ![A screenshot of a login box Description automatically
-   generated](./media/image23.png)
+1. Sign in with the credentials.
 
-3.  In the **Connect to Server** dialog:
+    ![A screenshot of a login box Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image23.png)
+
+1. In the **Connect to Server** dialog:
 
     - **Server type**: Database Engine
-
     - **Server name**: the VM's **public IP address** from Setup step 2
-
     - **Authentication**: SQL Server Authentication
-
-    - **Login**: +++labadmin+++
-
+    - **Login**: `labadmin`
     - **Password**- +++P@ssword12345+++
-
     - Tick **Trust server certificate**
-
     - Click **Connect**
 
-    ![A screenshot of a computer screen Description automatically
-    generated](./media/image24.png)
+    ![A screenshot of a computer screen Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image24.png)
 
-4.  In **Object Explorer**, expand the server node, then **Databases**.
-    You should see six user databases, with **LegacyHR** marked
-    **(Offline)**. In the rest of this guide, this connection is called
-    the **sqladmin connection**.
 
-   ![](./media/image25.png)
+1. In **Object Explorer**, expand the server node, then **Databases**. You should see six user databases, with **LegacyHR** marked **(Offline)**. In the rest of this guide, this connection is called the **sqladmin connection**.
 
-## **Exercise 2: Discover SQL Server instances and databases**
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image25.png)
 
-**Goal**: build an inventory that includes what a quick look misses,
-both forgotten databases and the server-level objects that don't travel
-with a database backup.
 
-#### **Task 1: Enumerate SQL components on the host**
+## Exercise 2: Discover SQL Server instances and databases
 
-1.  In the Azure portal, open your **SQLVM01** VM and click **Operations
-    \   Run command \   RunPowerShellScript**.
+**Goal**: build an inventory that includes what a quick look misses, both forgotten databases and the server-level objects that don't travel with a database backup.
 
-2.  Paste the command below and click **Run**:
+### Task 1: Enumerate SQL components on the host
+
+1. In the Azure portal, open your **SQLVM01** VM and click **Operations \   Run command \   RunPowerShellScript**.
+
+1. Paste the command below and click **Run**:
 
     ```
     Get-Service | Where-Object { $_.Name -match '^(MSSQL|SQLAgent|SQLSERVERAGENT|MsDtsServer|ReportServer|MSOLAP|SQLBrowser)' } |
     Select-Object Name, DisplayName, Status, StartType | Format-Table -AutoSize | Out-String -Width 200
     ```
   
-   ![](./media/image26.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image26.png)
 
-3.  In the **Output** box, write down how many **database engine**
-    instances there are (names starting with MSSQL). Then note every
-    other SQL service (Agent, Browser, SSIS) that a migration would also
-    have to account for.
+1. In the **Output** box, write down how many **database engine** instances there are (names starting with MSSQL). Then note every other SQL service (Agent, Browser, SSIS) that a migration would also have to account for.
 
-    This host runs one database engine instance, MSSQLSERVER, but seven
-    SQL services in total. That’s the lesson: a SQL Server migration is
-    rarely just the databases. The Agent is running, so there are
-    scheduled jobs to move. SSIS is running, so there may be ETL packages
-    that need their own migration path. Analysis Services, full-text
-    search and ML Services are installed too. Each is either a dependency
-    to plan for or something to confirm is unused and can be left behind.
-    If we inventoried only databases, we’d miss all of this.
+    This host runs one database engine instance, MSSQLSERVER, but seven SQL services in total. That’s the lesson: a SQL Server migration is rarely just the databases. The Agent is running, so there are scheduled jobs to move. SSIS is running, so there may be ETL packages that need their own migration path. Analysis Services, full-text search and ML Services are installed too. Each is either a dependency to plan for or something to confirm is unused and can be left behind. If we inventoried only databases, we’d miss all of this.
   
-    ![](./media/image27.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image27.png)
 
-### **Task 2: Inventory every database, including offline ones**
 
-1.  Switch to **SSMS**. In **Object Explorer**, click the server node of
-    your **sqladmin connection** (it shows the VM's IP address) and
-    select the **New Query**.
+### Task 2: Inventory every database, including offline ones
 
-   ![](./media/image28.png)
+1. Switch to **SSMS**. In **Object Explorer**, click the server node of your **sqladmin connection** (it shows the VM's IP address) and select the **New Query**.
 
-2.  Paste the query below and click on **Execute**:
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image28.png)
+
+1. Paste the query below and click on **Execute**:
 
     ```
     SELECT  d.name AS database_name,
@@ -411,37 +348,32 @@ with a database backup.
     ORDER BY d.state_desc DESC, size_mb DESC;
     ```
   
-   ![](./media/image29.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image29.png)
 
-3.  In the Results grid, check these three things:
+1. In the Results grid, check these three things:
 
     - **state_desc:** one database shows OFFLINE. Note its name.
-
     - **has_filestream:** one database shows 1. That's a FILESTREAM database.
-
     - **compatibility_level:** find the lowest value. That database will
     need an upgrade test before any migration.
 
-   ![](./media/image30.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image30.png)
 
-3.  In **Object Explorer**, expand **Databases** under the server node
-    and find **LegacyHR**. Note the grey icon and the **(Offline)**
-    label. Your query found it because **sys.master**\_files reads from
-    master. Tools and scripts that open each database in turn skip it
-    silently.
 
-   ![](./media/image31.png)
+1. In **Object Explorer**, expand **Databases** under the server node and find **LegacyHR**. Note the grey icon and the **(Offline)** label. Your query found it because **sys.master**\_files reads from master. Tools and scripts that open each database in turn skip it silently.
 
-#### **Task 3: Inventory server-level dependencies**
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image31.png)
 
-These objects live in master or msdb. They don't move when a database is
-backed up and restored somewhere else.
 
-1.  Open a new query editor.
+### Task 3: Inventory server-level dependencies
 
-   ![](./media/image32.png)
+These objects live in master or msdb. They don't move when a database is backed up and restored somewhere else.
 
-2.  **Run** the query:
+1. Open a new query editor.
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image32.png)
+
+1. **Run** the query:
 
     ```
     SELECT 'SQL logins'             AS object_type, COUNT(*) AS cnt FROM sys.server_principals WHERE type = 'S' AND name NOT LIKE '##%'
@@ -452,174 +384,127 @@ backed up and restored somewhere else.
     UNION ALL SELECT 'Credentials',           COUNT(*) FROM sys.credentials;
     ```
   
-   ![A screenshot of a computer Description automatically
-   generated](./media/image33.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image33.png)
 
-2.  Confirm the counts in the GUI. In **Object Explorer**:
+1. Confirm the counts in the GUI. In **Object Explorer**:
 
     - Expand **Server Objects \   Linked Servers** and find **ORA_GL**.
 
-   ![A screenshot of a computer Description automatically
-   generated](./media/image34.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image34.png)
 
     - Expand **SQL Server Agent \   Jobs** and find **Finance - nightly GL
-  export**. syspolicy_purge_history is a built-in job, so ignore it.
+    export**. syspolicy_purge_history is a built-in job, so ignore it.
 
-   ![](./media/image35.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image35.png)
 
     - Expand **Management \   Database Mail**, right-click it, and select
-    **Configure Database Mail**. Choose **Manage profile security** to see
-    **FabrikamOps**, then click **Cancel**.
+    **Configure Database Mail**. Choose **Manage profile security** to see **FabrikamOps**, then click **Cancel**.
 
-   ![](./media/image36.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image36.png)
   
-   ![A screenshot of a computer Description automatically
-   generated](./media/image37.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image37.png)
   
-   ![A screenshot of a computer Description automatically
-   generated](./media/image38.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image38.png)
   
-   ![A screenshot of a computer Description automatically
-   generated](./media/image39.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image39.png)
   
-   ![A screenshot of a computer Description automatically
-   generated](./media/image40.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image40.png)
 
-## **Exercise 3: Run an Azure SQL migration assessment**
 
-**Goal**: assess every database under a least-privilege login, then
-prove that the assessment's coverage matches the inventory from Exercise 1.
+## Exercise 3: Run an Azure SQL migration assessment
 
-### **Task 1: Run the assessment** 
+**Goal**: assess every database under a least-privilege login, then prove that the assessment's coverage matches the inventory from Exercise 1.
 
-1.  In **Object Explorer**, right-click the **sqladmin** server node and
-    select **Migrate SQL Server**. The assessment runs as sqladmin,
-    because it needs sysadmin to read the databases.
+### Task 1: Run the assessment
 
-   ![A screenshot of a computer Description automatically
-   generated](./media/image41.png)
+1. In **Object Explorer**, right-click the **sqladmin** server node and select **Migrate SQL Server**. The assessment runs as sqladmin, because it needs sysadmin to read the databases.
 
-2.  On the **Migrate SQL Server to Azure** page, find the **Migration
-    readiness assessment** card (**Step 1 of 4**) and click **Run
-    readiness assessment**. It takes about a minute. Don't use the
-    **Provision target** or **Migrate data** cards; they belong to later
-    labs.
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image41.png)
 
-   ![A screenshot of a computer Description automatically
-   generated](./media/image42.png)
+1. On the **Migrate SQL Server to Azure** page, find the **Migration readiness assessment** card (**Step 1 of 4**) and click **Run readiness assessment**. It takes about a minute. Don't use the **Provision target** or **Migrate data** cards; they belong to later labs.
+
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image42.png)
   
-   ![A screenshot of a computer Description automatically
-   generated](./media/image43.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image43.png)
 
-3.  Review the file.
+1. Review the file.
 
-   ![A screenshot of a computer Description automatically
-   generated](./media/image44.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image44.png)
 
-4.  Check the report and drill into one blocker:
+1. Check the report and drill into one blocker:
 
-- Under **Source instance**, **User databases** should read **5/6**.
-  LegacyHR is offline, so it isn't assessed yet; Task 2 fixes that.
+    - Under **Source instance**, **User databases** should read **5/6**.
+    LegacyHR is offline, so it isn't assessed yet; Task 2 fixes that.
 
-   ![A screenshot of a computer Description automatically
-   generated](./media/image45.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image45.png)
 
-- On the **Azure SQL Database** card, click **View details**. Select
-  **Compatibility findings** tab and select **SQL CLR assemblies**
-  finding and look at the **impacted objects**; it names the
-  **FabrikamClr** assembly.
+    - On the **Azure SQL Database** card, click **View details**. Select
+    **Compatibility findings** tab and select **SQL CLR assemblies** finding and look at the **impacted objects**; it names the **FabrikamClr** assembly.
 
-   ![A screenshot of a computer Description automatically
-   generated](./media/image46.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image46.png)
   
-   ![A screenshot of a computer Description automatically
-   generated](./media/image47.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image47.png)
   
-   ![A screenshot of a computer Description automatically
-   generated](./media/image48.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image48.png)
 
-- Go back and click **View details** on the **Azure SQL Managed
-  Instance** card. One database is **Ready with warnings**. Switch to
-  **Compatibility findings** and read the warning. Then compare: the
-  same database is **Not ready** for Azure SQL Database. The same
-  feature can block one target and only warn on another.
+    - Go back and click **View details** on the **Azure SQL Managed
+    Instance** card. One database is **Ready with warnings**. Switch to **Compatibility findings** and read the warning. Then compare: the same database is **Not ready** for Azure SQL Database. The same feature can block one target and only warn on another.
 
-   ![A screenshot of a computer Description automatically
-   generated](./media/image49.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image49.png)
   
-   ![A screenshot of a computer Description automatically
-   generated](./media/image50.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image50.png)
   
-   ![A screenshot of a computer Description automatically
-   generated](./media/image51.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image51.png)
   
-   ![A screenshot of a computer Description automatically
-   generated](./media/image52.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image52.png)
 
-### **Task 2: Check coverage against your inventory**
 
-1.  **View the details** for the **SQL Server on Azure VM**.
+### Task 2: Check coverage against your inventory
 
-   ![A screenshot of a computer Description automatically
-   generated](./media/image53.png)
+1. **View the details** for the **SQL Server on Azure VM**.
 
-2.  Compare the databases in the report with your Exercise 1 inventory.
-    One is missing. Observe which one, and why.
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image53.png)
 
-   **Answer**: LegacyHR wasn’t assessed because it’s offline, and the
-   tool can only assess databases it can open. so, it's skipped. The
-   report still counts it but gives it no readiness result.
+1. Compare the databases in the report with your Exercise 1 inventory. One is missing. Observe which one, and why.
+
+    **Answer**: LegacyHR wasn’t assessed because it’s offline, and the tool can only assess databases it can open. so, it's skipped. The report still counts it but gives it no readiness result.
   
-   ![A screenshot of a computer Description automatically
-   generated](./media/image54.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image54.png)
 
-3.  Bring it online now. Navigate to **SSMS**.
+1. Bring it online now. Navigate to **SSMS**.
 
-4.  In **Object Explorer**, under the **sqladmin** server node, expand
-    **Databases**, right-click **LegacyHR**, and select **Tasks \   Bring
-    Online**.
+1. In **Object Explorer**, under the **sqladmin** server node, expand **Databases**, right-click **LegacyHR**, and select **Tasks \   Bring Online**.
 
-   ![A screenshot of a computer Description automatically
-   generated](./media/image55.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image55.png)
 
-5.  Click **Close** when it shows **Success**.
+1. Click **Close** when it shows **Success**.
 
-   ![A screenshot of a computer Description automatically
-   generated](./media/image56.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image56.png)
 
-6.  Go back to the **Migration** tab and click **Run readiness
-    assessment** again.
+1. Go back to the **Migration** tab and click **Run readiness assessment** again.
 
-   ![A screenshot of a computer Description automatically
-   generated](./media/image57.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image57.png)
 
-7.  Then confirm that LegacyHR now appears in the report. To compare
-    runs later, use **View assessment history** on the same card.
+1. Then confirm that LegacyHR now appears in the report. To compare runs later, use **View assessment history** on the same card.
 
-   ![A screenshot of a computer Description automatically
-   generated](./media/image58.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image58.png)
   
-   ![A screenshot of a computer Description automatically
-   generated](./media/image59.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image59.png)
 
-## **Exercise 4: Find, fix, prove compatibility issues**
 
-**Goal**: work like a migration DBA. Scan for issues, fix the ones that
-can be fixed before any destination is chosen, prove the fixes with a
-fresh assessment, and log what remains for Lab 2.
+## Exercise 4: Find, fix, prove compatibility issues
 
-Use the **sqladmin server node** for every task. Each task ends with a
-**Log it** line. Add that row to the **Remediation log** at the end of
-this exercise as you go.
+**Goal**: work like a migration DBA. Scan for issues, fix the ones that can be fixed before any destination is chosen, prove the fixes with a fresh assessment, and log what remains for Lab 2.
 
-#### **Task 1: Scan: Run the probe pack**
+Use the **sqladmin server node** for every task. Each task ends with a **Log it** line. Add that row to the **Remediation log** at the end of this exercise as you go.
 
-1.  In SSMS, open a new query editor.
+### Task 1: Scan: Run the probe pack
 
-   ![](./media/image60.png)
+1. In SSMS, open a new query editor.
 
-2.  Run the query. Each numbered probe returns its own result grid, so
-    scroll through the **Results** tab to see them all.
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image60.png)
+
+1. Run the query. Each numbered probe returns its own result grid, so scroll through the **Results** tab to see them all.
 
     ```
     -- P1. Cross-database references in code
@@ -647,40 +532,26 @@ this exercise as you go.
     DBCC TRACESTATUS(-1);	
     ```
   
-   ![A screenshot of a computer Description automatically
-   generated](./media/image61.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image61.png)
 
-3.  Scroll through the **Results** tab. Most grids are empty, because
-    each probe returns one grid per database and only some databases
-    have hits. Look for the rows labelled P1 to P6. Then **leave this
-    tab open**.
+1. Scroll through the **Results** tab. Most grids are empty, because each probe returns one grid per database and only some databases have hits. Look for the rows labelled P1 to P6. Then **leave this tab open**.
 
-### **Task 2: Fix the orphaned user**
 
-1.  ***Investigate --*** In **Object Explorer**, click the + next to
-    **InventoryDB** to expand it. Under InventoryDB, click + next to its
-    own **Security** folder, then + next to **Users**. This is the
-    database's **Security** folder, not the server-level Security folder
-    lower down.
+### Task 2: Fix the orphaned user
 
-   ![A screenshot of a computer Description automatically
-   generated](./media/image62.png)
+1. ***Investigate --*** In **Object Explorer**, click the + next to **InventoryDB** to expand it. Under InventoryDB, click + next to its own **Security** folder, then + next to **Users**. This is the database's **Security** folder, not the server-level Security folder lower down.
 
-2.  Right-click **inv_app** and select **Properties**.
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image62.png)
 
-   ![A screenshot of a computer Description automatically
-   generated](./media/image63.png)
+1. Right-click **inv_app** and select **Properties**.
 
-3.  On the **General** page, **User type** shows **SQL user without
-    login**, and there's no Login name field. That confirms the user is
-    orphaned: it was created for a login that no longer exists. Click
-    **Cancel**.
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image63.png)
 
-   ![A screenshot of a computer Description automatically
-   generated](./media/image64.png)
+1. On the **General** page, **User type** shows **SQL user without login**, and there's no Login name field. That confirms the user is orphaned: it was created for a login that no longer exists. Click **Cancel**.
 
-4.  ***Fix --*** Run the query below, which creates the missing login
-    and remaps the user:
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image64.png)
+
+1. ***Fix --*** Run the query below, which creates the missing login and remaps the user:
 
     ```
     USE master;
@@ -689,48 +560,36 @@ this exercise as you go.
     ALTER USER inv_app WITH LOGIN = inv_app;
     ```
   
-   ![A screenshot of a computer Description automatically
-   generated](./media/image65.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image65.png)
   
-   ![A screenshot of a computer Description automatically
-   generated](./media/image66.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image66.png)
 
-3.  ***Verify --*** Go back to the probe tab, select the **P4** lines,
-    and press **Execute**. It should return no rows.
+1. ***Verify --*** Go back to the probe tab, select the **P4** lines, and press **Execute**. It should return no rows.
 
-   ![A screenshot of a computer Description automatically
-   generated](./media/image67.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image67.png)
 
-4.  ***Fixed --*** In **Object Explorer**, click **inv_app**, select
-    **Properties**, and check that **User** type now shows **SQL user with login** and **Login name** shows **inv_app**. Click **Cancel**.
+1. ***Fixed --*** In **Object Explorer**, click **inv_app**, select **Properties**, and check that **User** type now shows **SQL user with login** and **Login name** shows **inv_app**. Click **Cancel**.
 
-   ![](./media/image68.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image68.png)
 
-5.  **Log it:** R01, orphaned user, status Fixed. In a real migration,
-    you'd recreate the login with its original SID from the source
-    server, so users in every database match automatically.
+1. **Log it:** R01, orphaned user, status Fixed. In a real migration, you'd recreate the login with its original SID from the source server, so users in every database match automatically.
 
-#### **Task 3: Retire the unused CLR assembly**
 
-1.  ***Investigate --*** Expand **Databases \   FinanceDB \  
-    Programmability \   Functions \   Scalar-valued Functions**.
+### Task 3: Retire the unused CLR assembly
 
-   ![A screenshot of a computer Description automatically
-   generated](./media/image69.png)
+1. ***Investigate --*** Expand **Databases \   FinanceDB \ Programmability \   Functions \   Scalar-valued Functions**.
 
-2.  Right-click **dbo.fn_FileExists** and select **View Dependencies**.
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image69.png)
 
-   ![A screenshot of a computer Description automatically
-   generated](./media/image70.png)
+1. Right-click **dbo.fn_FileExists** and select **View Dependencies**.
 
-3.  With **Objects that depend on \[fn_FileExists\]** selected, the list
-    is empty. Click **OK**.
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image70.png)
 
-   ![A screenshot of a computer Description automatically
-   generated](./media/image71.png)
+1. With **Objects that depend on \[fn_FileExists\]** selected, the list is empty. Click **OK**.
 
-4.  Confirm nothing outside the database calls it either. *Run the
-    query*:
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image71.png)
+
+1. Confirm nothing outside the database calls it either. *Run the query*:
 
     ```
     SELECT 'job step' AS found_in, step_name FROM msdb.dbo.sysjobsteps WHERE command LIKE '%fn_FileExists%'
@@ -738,10 +597,9 @@ this exercise as you go.
     SELECT 'module', OBJECT_NAME(object_id) FROM FinanceDB.sys.sql_modules WHERE definition LIKE '%fn_FileExists%';
     ```
   
-   ![](./media/image72.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image72.png)
 
-3.  ***Fix --*** No rows means the assembly is dead code. *Run the
-    query* to remove it and turn off CLR:
+1. ***Fix --*** No rows means the assembly is dead code. *Run the query* to remove it and turn off CLR:
 
     ```
     USE FinanceDB;
@@ -752,46 +610,34 @@ this exercise as you go.
     EXEC sp_configure 'clr enabled', 0; RECONFIGURE;
     ```
   
-   ![A screenshot of a computer Description automatically
-   generated](./media/image73.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image73.png)
 
-4.  ***Verify --*** Expand **FinanceDB \   Programmability \  
-    Assemblies** and Refresh. **FabrikamClr** is gone.
-    **Microsoft.SqlServer.Types** stays; it's a built-in system assembly
-    in every database, not user code.
+1. ***Verify --*** Expand **FinanceDB \   Programmability \ Assemblies** and Refresh. **FabrikamClr** is gone. **Microsoft.SqlServer.Types** stays; it's a built-in system assembly in every database, not user code.
 
-   ![A screenshot of a computer Description automatically
-   generated](./media/image74.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image74.png)
 
-5.  **Rerun** probe **P2**; it returns no rows.
+1. **Rerun** probe **P2**; it returns no rows.
 
-   ![A screenshot of a computer Description automatically
-   generated](./media/image75.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image75.png)
 
-4.  **Log it:** status *Fixed (removed)*.
+1. **Log it:** status *Fixed (removed)*.
 
-#### **Task 4: Remove the hard-coded file share**
 
-1.  ***Investigate --*** Expand **Databases \   ReportingDB \  
-    Programmability \   Stored Procedures**.
+### Task 4: Remove the hard-coded file share
 
-   ![A screenshot of a computer Description automatically
-   generated](./media/image76.png)
+1. ***Investigate --*** Expand **Databases \   ReportingDB \ Programmability \   Stored Procedures**.
 
-2.  Right-click **dbo.usp_LoadDailyFeed** and select **Modify**.
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image76.png)
 
-   ![A screenshot of a computer Description automatically
-   generated](./media/image77.png)
+1. Right-click **dbo.usp_LoadDailyFeed** and select **Modify**.
 
-3.  The script shows the server name **SQLVM01** written into the file
-    path. That breaks the day the server’s name changes.
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image77.png)
 
-   ![A screenshot of a computer Description automatically
-   generated](./media/image78.png)
+1. The script shows the server name +++SQLVM01+++ written into the file path. That breaks the day the server’s name changes.
 
-4.  ***Fix --*** In that script window, press **Ctrl+A**, and paste the
-    version below, and press **Execute**. The path becomes a parameter,
-    so the caller supplies it.
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image78.png)
+
+1. ***Fix --*** In that script window, press **Ctrl+A**, and paste the version below, and press **Execute**. The path becomes a parameter, so the caller supplies it.
 
     ```
     ALTER PROCEDURE dbo.usp_LoadDailyFeed
@@ -803,45 +649,30 @@ this exercise as you go.
     EXEC sys.sp_executesql @sql;
     ```
   
-   ![A screenshot of a computer Description automatically
-   generated](./media/image79.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image79.png)
 
-3.  ***Verify --*** Rerun probe **P3**. ReportingDB now shows *file
-    load* instead of *host name*. The host dependency is gone, but the
-    procedure still loads from a file. Where that file can live depends
-    on the destination.
+1. ***Verify --*** Rerun probe **P3**. ReportingDB now shows *file load* instead of *host name*. The host dependency is gone, but the procedure still loads from a file. Where that file can live depends on the destination.
 
-   ![A screenshot of a computer Description automatically
-   generated](./media/image80.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image80.png)
 
-#### **Task 5: Inspect the Agent job, but don’t fix it**
 
-1.  Expand **SQL Server Agent \   Jobs**. Right-click **Finance - nightly
-    GL export**.
+### Task 5: Inspect the Agent job, but don’t fix it
 
-   ![](./media/image81.png)
+1. Expand **SQL Server Agent \   Jobs**. Right-click **Finance - nightly GL export**.
 
-2.  Select **Properties**.
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image81.png)
 
-   ![A screenshot of a computer Description automatically
-   generated](./media/image82.png)
+1. Select **Properties**.
 
-3.  In the left pane, click **Steps**. Select the step and click
-    **Edit**. Note that **Type** is **Operating system (CmdExec)**, and
-    that the command writes to C:\exports.
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image82.png)
 
-   ![A screenshot of a computer Description automatically
-   generated](./media/image83.png)
+1. In the left pane, click **Steps**. Select the step and click **Edit**. Note that **Type** is **Operating system (CmdExec)**, and that the command writes to C:\exports.
 
-4.  Click **Cancel** twice. Don't change anything: the export feeds
-    another team's process, so it needs that team's sign-off.
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image83.png)
+
+1. Click **Cancel** twice. Don't change anything: the export feeds another team's process, so it needs that team's sign-off.
+
 
 ## Conclusion
 
-In this lab, you learned that migration readiness starts with discovery:
-the host's services, offline databases and server-level objects that
-don't travel with a backup. You ran an SSMS readiness assessment, read
-its results across Azure targets, and saw its limits. You then confirmed
-findings with your own queries, fixed the issues that are safe to fix
-before choosing a destination, proved each fix, and logged the rest as
-inputs.
+In this lab, you learned that migration readiness starts with discovery: the host's services, offline databases and server-level objects that don't travel with a backup. You ran an SSMS readiness assessment, read its results across Azure targets, and saw its limits. You then confirmed findings with your own queries, fixed the issues that are safe to fix before choosing a destination, proved each fix, and logged the rest as inputs.

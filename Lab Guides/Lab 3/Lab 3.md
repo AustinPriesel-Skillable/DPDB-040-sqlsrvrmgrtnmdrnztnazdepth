@@ -1,34 +1,18 @@
 # Lab 3: Design a Migration Strategy
 
-**Lab overview**
+### Lab overview
 
-Lab 3 is based on **Module 2: Migration tooling and best practices**. It
-covers Microsoft migration tooling, destination-specific approaches,
-online versus offline strategies, and cutover planning. It is fully
-standalone: it builds its own source database and Azure target, and
-reuses nothing from Lab 1 or Lab 2.
+Lab 3 is based on **Module 2: Migration tooling and best practices**. It covers Microsoft migration tooling, destination-specific approaches, online versus offline strategies, and cutover planning. It is fully standalone: it builds its own source database and Azure target, and reuses nothing from Lab 1 or Lab 2.
 
-**Scenario.** Zava Retail sells home and lifestyle products through 140
-stores and an online store that runs around the clock. Every sale, from
-store tills and the website, is written to one SQL Server database in a
-co-located datacenter whose contract ends in six months.
+**Scenario.** Zava Retail sells home and lifestyle products through 140 stores and an online store that runs around the clock. Every sale, from store tills and the website, is written to one SQL Server database in a co-located datacenter whose contract ends in six months.
 
-Leadership has chosen Azure SQL Database to cut hardware and patching
-work for a two-person DBA team. The business has set two limits: the
-finance reporting copy can be offline over a weekend, but the live order
-system can stop taking orders for no more than 15 minutes, inside a
-Sunday 02:00 maintenance window.
+Leadership has chosen Azure SQL Database to cut hardware and patching work for a two-person DBA team. The business has set two limits: the finance reporting copy can be offline over a weekend, but the live order system can stop taking orders for no more than 15 minutes, inside a Sunday 02:00 maintenance window.
 
-You are the migration engineer running the pilot. Before the full
-migration is approved, you must prove three things: which tool and
-target fit the database, how offline and online migrations compare in
-real downtime, and that a gated cutover with a rollback path stays
-inside the 15-minute limit.
+You are the migration engineer running the pilot. Before the full migration is approved, you must prove three things: which tool and target fit the database, how offline and online migrations compare in real downtime, and that a gated cutover with a rollback path stays inside the 15-minute limit.
 
-**Objectives**
+### Objectives
 
 By the end of the lab you will be able to:
-
 - Profile a SQL Server database and find blockers that affect the choice
   of migration tool and target
 
@@ -47,9 +31,9 @@ By the end of the lab you will be able to:
 - Validate data, gate a cutover with readiness checks, and plan a
   rollback path
 
-**Verify the tools (1 minute).** Open **Windows PowerShell as
-Administrator** and run:
-    
+
+**Verify the tools (1 minute).** Open **Windows PowerShell as Administrator** and run:
+  
     ```
     sqlcmd -? | Select-Object -First 2  
     bcp -v  
@@ -59,71 +43,55 @@ Administrator** and run:
 
     Each command should print a version.
 
-    ![A computer screen with red and blue text Description automatically
-    generated](./media/image1.png)
+    ![A computer screen with red and blue text Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image1.png)
 
-**If SqlPackage is not recognised or fails with "You must install or
-update .NET".** SqlPackage 170.x runs on .NET 10 and needs the latest
-.NET 10 runtime under **C:\Program Files\dotnet.** Run these steps in
-order, in the same Administrator PowerShell window:
-
-1.  Install the latest .NET 10 SDK and runtime machine-wide:
+**If SqlPackage is not recognised or fails with "You must install or update .NET".** SqlPackage 170.x runs on .NET 10 and needs the latest .NET 10 runtime under **C:\Program Files\dotnet.** Run these steps in order, in the same Administrator PowerShell window:
+- Install the latest .NET 10 SDK and runtime machine-wide:
 
     ```
     winget install Microsoft.DotNet.SDK.10 --accept-source-agreements --accept-package-agreements
     winget install Microsoft.DotNet.Runtime.10 --accept-source-agreements --accept-package-agreements
     ```
 
-    ![A screenshot of a computer screen Description automatically
-    generated](./media/image2.png)
+    ![A screenshot of a computer screen Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image2.png)
 
-    ![](./media/image3.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image3.png)
 
-    ![A computer screen shot of a program Description automatically
-    generated](./media/image4.png)
+    ![A computer screen shot of a program Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image4.png)
 
-2.  Install SqlPackage as a .NET global tool, or update it if it is
-    already there:
+- Install SqlPackage as a .NET global tool, or update it if it is already there:
 
-    +++dotnet tool update -g microsoft.sqlpackage+++
+    `dotnet tool update -g microsoft.sqlpackage`
 
-    ![](./media/image5.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image5.png)
 
-3.  Add the tools folder to this window's PATH so you do not need to
-    reopen PowerShell:
+- Add the tools folder to this window's PATH so you do not need to reopen PowerShell:
 
-    +++$env:Path += ";$env:USERPROFILE\\dotnet\tools"+++
+    `$env:Path += ";$env:USERPROFILE\\dotnet\tools"`
 
-    ![A screenshot of a computer program Description automatically
-    generated](./media/image6.png)
+    ![A screenshot of a computer program Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image6.png)
 
-4.  Verify:
+- Verify:
 
     ```
     dotnet --list-runtimes
     sqlpackage /version
     ```
 
-    ![](./media/image7.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image7.png)
 
-    **Expected result:** the runtime list includes a Microsoft.NETCore.App
-    10.0.x version at least as high as the one in any earlier error message,
-    and SqlPackage prints its version (for example 170.5.96).
+    **Expected result:** the runtime list includes a Microsoft.NETCore.App 10.0.x version at least as high as the one in any earlier error message, and SqlPackage prints its version (for example 170.5.96).
 
-    **Keep one PowerShell window open for the whole lab.** Later steps reuse
-    variables set in Exercise 0. If you close the window, rerun Exercise 0,
-    Task 1 (variables only) before continuing.
+    **Keep one PowerShell window open for the whole lab.** Later steps reuse variables set in Exercise 0. If you close the window, rerun Exercise 0, Task 1 (variables only) before continuing.
+
 
 ## Exercise 0: Set up the source and target
 
-You create ZavaOrders on the local SQL Server with 1,000 customers and
-20,000 orders, then start deploying two empty Azure SQL databases: one
-for the offline migration and one for the online migration.
+You create ZavaOrders on the local SQL Server with 1,000 customers and 20,000 orders, then start deploying two empty Azure SQL databases: one for the offline migration and one for the online migration.
 
 ### Task 1: Set lab variables
 
-1.  In the PowerShell window, run the block below. Replace \<initials\>
-    with your initials :
+1. In the PowerShell window, run the block below. Replace *{initials}* with your initials :
 
     ```
     New-Item -ItemType Directory -Path C:\Lab3 -Force | Out-Null  
@@ -137,25 +105,20 @@ for the offline migration and one for the online migration.
     $server \# note this name down
     ```
 
-    Enter a strong password when prompted (12+ characters, upper, lower,
-    number, symbol) as +++Zava#Lab2026!+++
+    Enter a strong password when prompted (12+ characters, upper, lower, number, symbol) as +++Zava#Lab2026!+++
 
-    ![A computer screen with a black background Description automatically
-    generated](./media/image8.png)
+    ![A computer screen with a black background Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image8.png)
 
-2.  Write the **server’s name** on the notepad. If you reopen PowerShell
-    later, set $server back to this exact name instead of generating a
-    new one.
+1. Write the **server’s name** on the notepad. If you reopen PowerShell later, set $server back to this exact name instead of generating a new one.
 
-    **NOTE: Make sure don’t close the powershell. Keep it open.**
+    >[!Note] Make sure don’t close the powershell. Keep it open.
 
-    ![A computer screen with text on it Description automatically
-    generated](./media/image9.png)
+    ![A computer screen with text on it Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image9.png)
 
-#### Task 2: Start the Azure deployment
 
-1.  Start this now; the databases deploy while you build the source. Run
-    this command in the same powershell window:
+### Task 2: Start the Azure deployment
+
+1. Start this now; the databases deploy while you build the source. Run this command in the same powershell window:
 
     ```
     az login
@@ -173,52 +136,40 @@ for the offline migration and one for the online migration.
     }
     ```
 
-    The server takes about 1 to 2 minutes. The two az sql db create calls
-    return at once and keep deploying in the background. Both provider
-    checks must print Registered before the server is created; without
-    them the server create fails with MissingSubscriptionRegistration.
+    The server takes about 1 to 2 minutes. The two az sql db create calls return at once and keep deploying in the background. Both provider checks must print Registered before the server is created; without them the server create fails with MissingSubscriptionRegistration.
 
-    ![](./media/image10.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image10.png)
 
-    ![](./media/image11.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image11.png)
 
-    The server takes about 1 to 2 minutes. The two **az sql db** create
-    calls return at once and keep deploying in the background.
+    The server takes about 1 to 2 minutes. The two **az sql db** create calls return at once and keep deploying in the background.
 
-    ![](./media/image12.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image12.png)
 
     **If nothing happens for more than 10 minutes**, press **Ctrl+C**, then check:
 
-    +++az provider show -n Microsoft.Sql --query registrationState -o tsv+++
+    `az provider show -n Microsoft.Sql --query registrationState -o tsv`
 
-    ![](./media/image13.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image13.png)
 
     Everything worked:
-
     - Both providers show Registered.
-
     - The resource group rg-lab3-sd was created.
-
     - The SQL server **sql-lab3-sd-1186** was created. Note this name down.
-
     - The firewall rule Allow lets your VM’s IP connect.
 
     Once the prompt is back, check that both databases are deploying:
 
-    +++az sql db list -g $rg -s $server --query "[?name!='master'].{name:name, status:status}" -o table+++
+    `az sql db list -g $rg -s $server --query "[?name!='master'].{name:name, status:status}" -o table`
 
-You should see **ZavaOrders_Offline** and **ZavaOrders_Online**, either
-Online already or still being created. If they’re still being created,
-they’ll finish in the background. Either way, you can continue with
-**Task 3**.
+    You should see **ZavaOrders_Offline** and **ZavaOrders_Online**, either Online already or still being created. If they’re still being created, they’ll finish in the background. Either way, you can continue with **Task 3**.
 
-    ![](./media/image14.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image14.png)
+
 
 ### Task 3: Build the source database
 
-**Before you start, check the source SQL Server.** Every source command
-in this lab connects to $src, which Task 1 set to localhost (the default
-instance). Run:
+**Before you start, check the source SQL Server.** Every source command in this lab connects to $src, which Task 1 set to localhost (the default instance). Run:
 
     ```
     Get-Service | Where-Object { $\_.Name -like 'MSSQL\*' } | Format-Table
@@ -229,41 +180,27 @@ instance). Run:
     IS_SRVROLEMEMBER('sysadmin') AS IsSysadmin;"
     ```
 
-    **Result:** You’ll see that Server is not found or not accessible.
-    Proceed with installing SQL Server first.
+    **Result:** You’ll see that Server is not found or not accessible. Proceed with installing SQL Server first.
 
-    ![A screenshot of a computer program Description automatically
-    generated](./media/image15.png)
+    ![A screenshot of a computer program Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image15.png)
 
-**Install SQL Server Developer (only if no MSSQL service exists).** This
-takes 10 to 20 minutes. The Basic install creates the default instance
-MSSQLSERVER and adds your Windows account to the sysadmin role, which is
-what this lab expects.
+**Install SQL Server Developer (only if no MSSQL service exists).** This takes 10 to 20 minutes. The Basic install creates the default instance MSSQLSERVER and adds your Windows account to the sysadmin role, which is what this lab expects.
 
-Do not use winget or a previously saved SQL2022-SSEI-Dev.exe: that
-installer has been retired and stops with "This version of the installer
-is no longer supported". Use the current installer from Microsoft
-instead:
+Do not use winget or a previously saved SQL2022-SSEI-Dev.exe: that installer has been retired and stops with "This version of the installer is no longer supported". Use the current installer from Microsoft instead:
 
-1.  In the VM's browser, open
-    <https://www.microsoft.com/sql-server/sql-server-downloads> . In the
-    **Developer** section, choose **Enterprise Developer** and the
-    installer file will be downloaded.
+1. In the VM's browser, open <https://www.microsoft.com/sql-server/sql-server-downloads> . In the **Developer** section, choose **Enterprise Developer** and the installer file will be downloaded.
 
-    ![](./media/image16.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image16.png)
 
-2.  Run the downloaded installer (for example SQL2025-SSEI-EntDev.exe)
-    as administrator. Choose **Basic**, accept the licence terms, keep
-    the default install location, and select **Install**.
+1. Run the downloaded installer (for example SQL2025-SSEI-EntDev.exe) as administrator. Choose **Basic**, accept the licence terms, keep the default install location, and select **Install**.
 
-    ![A screenshot of a software update Description automatically
-    generated](./media/image17.png)
+    ![A screenshot of a software update Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image17.png)
 
-3.  Wait for **Installation has completed successfully**, then close the installer.
+1. Wait for **Installation has completed successfully**, then close the installer.
 
-    ![](./media/image18.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image18.png)
 
-4.  Confirm the service is running and connect:
+1. Confirm the service is running and connect:
 
     ```
     Get-Service MSSQLSERVER
@@ -271,23 +208,17 @@ instead:
     sqlcmd -S $src -E -C -Q "SELECT @@SERVERNAME AS ServerName, SERVERPROPERTY('ProductVersion') AS Version, IS_SRVROLEMEMBER('sysadmin') AS IsSysadmin;"
     ```
 
-    ![A black screen with blue text Description automatically
-    generated](./media/image19.png)
+    ![A black screen with blue text Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image19.png)
 
-    ![A black screen with white lines Description automatically
-    generated](./media/image20.png)
+    ![A black screen with white lines Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image20.png)
 
-    ![A black screen with a black background Description automatically
-    generated](./media/image21.png)
+    ![A black screen with a black background Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image21.png)
 
-5.  **NOTE**: If setup asks you to restart, restart the VM, open
-    PowerShell as Administrator, and rerun Exercise 0, Task 1 with
-    $server set to your noted server name and the same password. Your
-    Azure resources from Task 2 are not affected.
+1. **NOTE**: If setup asks you to restart, restart the VM, open PowerShell as Administrator, and rerun Exercise 0, Task 1 with $server set to your noted server name and the same password. Your Azure resources from Task 2 are not affected.
 
     Continue only when the check returns a server name and IsSysadmin = 1.
 
-6.  Create the setup script and run it against the local instance:
+1. Create the setup script and run it against the local instance:
 
     ```
     @'
@@ -331,32 +262,27 @@ instead:
 
     sqlcmd -S $src -E -C -b -i C:\Lab3\01_source.sql
     ```
-    
-    ![](./media/image22.png)
+  
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image22.png)
 
-2.  Confirm the row counts:
+1. Confirm the row counts:
 
-    ```
-    sqlcmd -S $src -d ZavaOrders -E -C -Q "SELECT (SELECT COUNT(*) FROM dbo.Customers) AS Customers, (SELECT COUNT(*) FROM dbo.Orders) AS Orders;"
-    ```
+    `sqlcmd -S $src -d ZavaOrders -E -C -Q "SELECT (SELECT COUNT(*) FROM dbo.Customers) AS Customers, (SELECT COUNT(*) FROM dbo.Orders) AS Orders;"`
 
-    ![](./media/image23.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image23.png)
 
-**Expected result:** Customers = 1000, Orders = 20000.
+    **Expected result:** Customers = 1000, Orders = 20000.
 
-The view dbo.vServerLogins is intentional. It stands in for the kind of
-legacy object that decides which tool and target you can use; you will
-find it in Exercise 1.
+    The view dbo.vServerLogins is intentional. It stands in for the kind of legacy object that decides which tool and target you can use; you will find it in Exercise 1.
 
-### Exercise 1: Evaluate and provision migration tooling
 
-You profile the source, hit a real SqlPackage export blocker and resolve
-it, then provision Azure Database Migration Service (DMS) to see how a
-managed migration service reaches an on-premises SQL Server.
+## Exercise 1: Evaluate and provision migration tooling
 
-#### Task 1: Profile the source
+You profile the source, hit a real SqlPackage export blocker and resolve it, then provision Azure Database Migration Service (DMS) to see how a managed migration service reaches an on-premises SQL Server.
 
-1.  Run the profiling queries:
+### Task 1: Profile the source
+
+1. Run the profiling queries:
 
     ```
     sqlcmd -S $src -d ZavaOrders -E -C -Q "EXEC sp_spaceused;"
@@ -364,40 +290,26 @@ managed migration service reaches an on-premises SQL Server.
     sqlcmd -S $src -d ZavaOrders -E -C -W -Q "SELECT OBJECT_SCHEMA_NAME(object_id) + '.' + OBJECT_NAME(object_id) AS ObjectName FROM sys.sql_modules WHERE definition LIKE '%master.%' OR definition LIKE '%msdb.%' OR definition LIKE '%tempdb.%';"
     ```
 
-    ![A computer screen with text on it Description automatically
-    generated](./media/image24.png)
+    ![A computer screen with text on it Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image24.png)
 
-2.  Record on your lab sheet: database size, number of user tables, and
-    any cross-database references.
+1. Record on your lab sheet: database size, number of user tables, and any cross-database references.
 
-    **Expected result:** about 16 MB, 2 user tables and 1 view, and one
-    blocker: **dbo.vServerLogins** reads **master.sys.server_principals**.
-    Size tells you whether a quick offline copy is realistic. The object
-    count sets what you must migrate and validate. The blocker matters
-    because Azure SQL Database can’t query master, so the view must be
-    fixed or the target changed. You’ll see it stop the export in Task 2.
+    **Expected result:** about 16 MB, 2 user tables and 1 view, and one blocker: **dbo.vServerLogins** reads **master.sys.server_principals**. Size tells you whether a quick offline copy is realistic. The object count sets what you must migrate and validate. The blocker matters because Azure SQL Database can’t query master, so the view must be fixed or the target changed. You’ll see it stop the export in Task 2.
+
 
 ### Task 2: Try an offline export with SqlPackage
 
-1.  Attempt a BACPAC export:
+1. Attempt a BACPAC export:
 
-    ```
-    sqlpackage /Action:Export /SourceServerName:localhost /SourceDatabaseName:ZavaOrders /SourceTrustServerCertificate:True /TargetFile:C:\Lab3\ZavaOrders.bacpac
-    ```
+    `sqlpackage /Action:Export /SourceServerName:localhost /SourceDatabaseName:ZavaOrders /SourceTrustServerCertificate:True /TargetFile:C:\Lab3\ZavaOrders.bacpac`
 
-    ![A computer screen shot of a computer screen Description automatically
-    generated](./media/image25.png)
+    ![A computer screen shot of a computer screen Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image25.png)
 
-2.  Read the error. **Expected result:** the export fails with error
-    SQL71562. SqlPackage reports that vServerLogins has an unresolved
-    reference to master.sys.server_principals and that external
-    references are not supported. A BACPAC must be self-contained, and
-    Azure SQL Database has no instance-level master to query.
+1. Read the error. **Expected result:** the export fails with error SQL71562. SqlPackage reports that vServerLogins has an unresolved reference to master.sys.server_principals and that external references are not supported. A BACPAC must be self-contained, and Azure SQL Database has no instance-level master to query.
 
-    ![A screen shot of a computer Description automatically
-    generated](./media/image26.png)
+    ![A screen shot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image26.png)
 
-3.  Make the migration decision. You have two options:
+1. Make the migration decision. You have two options:
 
     - **Change the target** to Azure SQL Managed Instance, which keeps
     instance-level features and cross-database queries.
@@ -406,14 +318,12 @@ managed migration service reaches an on-premises SQL Server.
 
     Zava's reporting team confirms the view is an unused admin report. Remediate it:
 
-    ```
-    sqlcmd -S localhost -d ZavaOrders -E -C -Q "DROP VIEW dbo.vServerLogins;"
-    ```
+    `sqlcmd -S localhost -d ZavaOrders -E -C -Q "DROP VIEW dbo.vServerLogins;"`
 
-    ![A screen shot of a computer Description automatically
-    generated](./media/image27.png)
+    ![A screen shot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image27.png)
 
-4.  Rerun the export and time it:
+
+1. Rerun the export and time it:
 
     ```
     $exportTime = Measure-Command { sqlpackage /Action:Export /SourceServerName:$src /SourceDatabaseName:ZavaOrders /SourceTrustServerCertificate:True /TargetFile:C:\Lab3\ZavaOrders.bacpac | Out-Host }
@@ -423,17 +333,14 @@ managed migration service reaches an on-premises SQL Server.
 
     **Expected result:** the export succeeds and the BACPAC file exists. Keep it; Exercise 2 imports it.
 
-    ![A computer screen with text on it Description automatically
-    generated](./media/image28.png)
+    ![A computer screen with text on it Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image28.png)
 
-#### Task 3: Provision Azure Database Migration Service
 
-SqlPackage runs on your VM and connects to both ends directly. DMS is an
-Azure service: it orchestrates and monitors migrations, and reaches
-on-premises sources through a self-hosted integration runtime that you
-install near the source.
+### Task 3: Provision Azure Database Migration Service
 
-1.  Create the DMS instance in your lab resource group:
+SqlPackage runs on your VM and connects to both ends directly. DMS is an Azure service: it orchestrates and monitors migrations, and reaches on-premises sources through a self-hosted integration runtime that you install near the source.
+
+1. Create the DMS instance in your lab resource group:
 
     ```
     az config set extension.use_dynamic_install=yes_without_prompt
@@ -441,73 +348,52 @@ install near the source.
     az datamigration sql-service create --resource-group $rg --sql-migration-service-name $dms --location $loc -o table
     ```
 
-    ![A screen shot of a computer program Description automatically
-    generated](./media/image29.png)
+    ![A screen shot of a computer program Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image29.png)
 
-2.  Check its state and retrieve the integration runtime authentication
-    keys:
+1. Check its state and retrieve the integration runtime authentication keys:
 
     ```
     az datamigration sql-service show --resource-group $rg --sql-migration-service-name $dms -o jsonc
     az datamigration sql-service list-auth-key --resource-group $rg --sql-migration-service-name $dms -o table
     ```
 
-    **Expected result:** provisioningState is Succeeded, the integration
-    runtime state shows it still needs registration, and two
-    authentication keys are returned. Treat the keys as secrets.
+    **Expected result:** provisioningState is Succeeded, the integration runtime state shows it still needs registration, and two authentication keys are returned. Treat the keys as secrets.
 
-    ![A screen shot of a computer Description automatically
-    generated](./media/image30.png)
+    ![A screen shot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image30.png)
 
-3.  In the **Azure portal**, open your resource group.
+1. In the **Azure portal**, open your resource group.
 
-    ![](./media/image31.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image31.png)
 
-4.  Select the DMS resource and review its integration runtime status on
-    the **Overview** page.
+1. Select the DMS resource and review its integration runtime status on the **Overview** page.
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image32.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image32.png)
 
-The Overview page shows what the CLI reported:
+    The Overview page shows what the CLI reported:
+    - **Integration Runtime State: “Integration Runtime not registered”.**
+    This is the same status as NeedRegistration in PowerShell. DMS can’t reach an on-premises SQL Server until a self-hosted integration runtime is installed near the source and registered with one of the auth keys.
 
-- **Integration Runtime State: “Integration Runtime not registered”.**
-  This is the same status as NeedRegistration in PowerShell. DMS can’t
-  reach an on-premises SQL Server until a self-hosted integration
-  runtime is installed near the source and registered with one of the
-  auth keys.
+    - **Target: Azure SQL.** The service is ready to run migrations into
+    Azure SQL once a runtime is connected.
 
-- **Target: Azure SQL.** The service is ready to run migrations into
-  Azure SQL once a runtime is connected.
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image33.png)
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image33.png)
+    In production you would install the self-hosted integration runtime on a machine that can reach SQL Server, register it with one of these keys, then start migrations from the portal or CLI. DMS supports offline migrations to Azure SQL Database, and online or offline migrations to SQL Managed Instance and SQL Server on Azure VMs. That limit is why Exercise 2 builds the online pattern to Azure SQL Database by hand.
 
-In production you would install the self-hosted integration runtime on a
-machine that can reach SQL Server, register it with one of these keys,
-then start migrations from the portal or CLI. DMS supports offline
-migrations to Azure SQL Database, and online or offline migrations to
-SQL Managed Instance and SQL Server on Azure VMs. That limit is why
-Exercise 2 builds the online pattern to Azure SQL Database by hand.
 
 ## Exercise 2: Run offline and online migrations to Azure SQL Database
 
-You migrate the same database twice. The offline path copies a frozen
-snapshot; the online path seeds the target, keeps it in sync while the
-application writes, and leaves only a short final sync for cutover.
+You migrate the same database twice. The offline path copies a frozen snapshot; the online path seeds the target, keeps it in sync while the application writes, and leaves only a short final sync for cutover.
 
 ### Task 1: Offline migration with BACPAC import
 
-1.  Confirm both Azure databases finished deploying (status Online):
+1. Confirm both Azure databases finished deploying (status Online):
 
-    ```
-    az sql db list -g $rg -s $server --query "[?name!='master'].{name:name, status:status}" -o table
-    ```
+    `az sql db list -g $rg -s $server --query "[?name!='master'].{name:name, status:status}" -o table`
 
-    ![](./media/image34.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image34.png)
 
-2.  If in case, you databases also shows the status as paused, run the
-    below command to wake them up:
+1. If in case, you databases also shows the status as paused, run the below command to wake them up:
 
     ```
     foreach ($db in "ZavaOrders_Offline","ZavaOrders_Online") {
@@ -515,19 +401,15 @@ application writes, and leaves only a short final sync for cutover.
     }
     ```
 
-    ![A screen shot of a computer code Description automatically
-    generated](./media/image35.png)
+    ![A screen shot of a computer code Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image35.png)
 
-3.  Check the status again to see if databases are now Online:
+1. Check the status again to see if databases are now Online:
 
-    ```
-    az sql db list -g $rg -s $server --query "[?name!='master'].{name:name, status:status}" -o table
-    ```
+    `az sql db list -g $rg -s $server --query "[?name!='master'].{name:name, status:status}" -o table`
 
-    ![A computer screen with blue text Description automatically
-    generated](./media/image36.png)
+    ![A computer screen with blue text Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image36.png)
 
-4.  Import the BACPAC from Exercise 1 and time it:
+1. Import the BACPAC from Exercise 1 and time it:
 
     ```
     $importTime = Measure-Command { sqlpackage /Action:Import /SourceFile:C:\Lab3\ZavaOrders.bacpac /TargetServerName:$azHost /TargetDatabaseName:ZavaOrders_Offline /TargetUser:$admin /TargetPassword:$sqlPass | Out-Host }
@@ -535,27 +417,20 @@ application writes, and leaves only a short final sync for cutover.
     "Offline downtime = export + import = {0:N0} seconds" -f ($exportTime.TotalSeconds + $importTime.TotalSeconds)
     ```
 
-    ![A screenshot of a computer program Description automatically
-    generated](./media/image37.png)
+    ![A screenshot of a computer program Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image37.png)
 
-3.  Validate the copy:
+1. Validate the copy:
 
-    ```
-    sqlcmd -S $azHost -d ZavaOrders_Offline -U $admin -P $sqlPass -Q "SELECT COUNT(*) AS Orders FROM dbo.Orders;"
-    ```
+    `sqlcmd -S $azHost -d ZavaOrders_Offline -U $admin -P $sqlPass -Q "SELECT COUNT(*) AS Orders FROM dbo.Orders;"`
 
-    ![A computer screen with text on it Description automatically
-    generated](./media/image38.png)
+    ![A computer screen with text on it Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image38.png)
 
-    **Expected result:** Orders = 20000. Record the offline downtime. In
-    production the source would be read-only for that whole window, and it
-    grows with data size.
+    **Expected result:** Orders = 20000. Record the offline downtime. In production the source would be read-only for that whole window, and it grows with data size.
+
 
 ### Task 2: Online (minimal-downtime) migration
 
-1.  Deploy the schema only (no data) to the online target. Do this
-    before enabling Change Tracking, so the dacpac carries no tracking
-    settings that Azure SQL Database would reject:
+1. Deploy the schema only (no data) to the online target. Do this before enabling Change Tracking, so the dacpac carries no tracking settings that Azure SQL Database would reject:
 
     ```
     sqlpackage /Action:Extract /SourceServerName:$src /SourceDatabaseName:ZavaOrders /SourceTrustServerCertificate:True /TargetFile:C:\Lab3\ZavaOrders.dacpac
@@ -564,21 +439,18 @@ application writes, and leaves only a short final sync for cutover.
     sqlcmd -S $azHost -d ZavaOrders_Online -U $admin -P $sqlPass -b -Q "IF OBJECT_ID('stg.OrdersDelta') IS NULL CREATE TABLE stg.OrdersDelta(OrderID INT NOT NULL, Op NCHAR(1) NOT NULL, CustomerID INT NULL, OrderDate DATETIME2 NULL, Amount DECIMAL(10,2) NULL, ModifiedDate DATETIME2 NULL);"
     ```
 
-    ![](./media/image39.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image39.png)
 
-2.  Enable Change Tracking on the source so you can capture changes made
-    after the initial copy:
+1. Enable Change Tracking on the source so you can capture changes made after the initial copy:
 
     ```
     sqlcmd -S $src -d ZavaOrders -E -C -b -Q "IF NOT EXISTS (SELECT 1 FROM sys.change_tracking_databases WHERE database_id = DB_ID()) ALTER DATABASE ZavaOrders SET CHANGE_TRACKING = ON (CHANGE_RETENTION = 2 DAYS, AUTO_CLEANUP = ON);"
     sqlcmd -S $src -d ZavaOrders -E -C -b -Q "IF NOT EXISTS (SELECT 1 FROM sys.change_tracking_tables WHERE object_id = OBJECT_ID('dbo.Orders')) ALTER TABLE dbo.Orders ENABLE CHANGE_TRACKING;"
     ```
 
-    ![A computer screen with blue text Description automatically
-    generated](./media/image40.png)
+    ![A computer screen with blue text Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image40.png)
 
-3.  Create the helper scripts and functions (workload, merge, version,
-    sync, compare):
+1. Create the helper scripts and functions (workload, merge, version, sync, compare):
 
     ```
     @'
@@ -625,10 +497,9 @@ application writes, and leaves only a short final sync for cutover.
     }
     ```
 
-    ![](./media/image41.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image41.png)
 
-4.  Capture the baseline version **before** the initial copy, then seed
-    the target:
+1. Capture the baseline version **before** the initial copy, then seed the target:
 
     ```
     $lastVersion = Get-CTVersion
@@ -639,63 +510,49 @@ application writes, and leaves only a short final sync for cutover.
     }
     ```
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image42.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image42.png)
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image43.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image43.png)
 
-Capturing the version first means any write that lands during the copy
-is picked up by the next sync rather than lost. -E keeps the source
-identity values. Customers is static in this scenario, so only Orders is
-tracked.
+    Capturing the version first means any write that lands during the copy is picked up by the next sync rather than lost. -E keeps the source identity values. Customers is static in this scenario, so only Orders is tracked.
 
-5.  Simulate the application still writing to the source, then check the
-    drift:
+1. Simulate the application still writing to the source, then check the drift:
 
     ```
     sqlcmd -S $src -d ZavaOrders -E -C -W -i C:\Lab3\workload.sql
     Compare-Orders
     ```
 
-    ![](./media/image44.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image44.png)
 
-    **Expected result:** source has 20045 rows, target has 20000. Totals
-    and checksums differ.
+    **Expected result:** source has 20045 rows, target has 20000. Totals and checksums differ.
 
-6.  Run a change sync and compare again:
+1. Run a change sync and compare again:
 
     ```
     $lastVersion = Sync-OrdersDelta $lastVersion
     Compare-Orders
     ```
 
-    ![A screen shot of a computer Description automatically
-    generated](./media/image45.png)
+    ![A screen shot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image45.png)
 
-**Expected result:** DeltaRows is about 64 (50 inserts, 10 updates, 4
-deletes). Source and target now show the same Rows, Total and Chk. The
-source stayed fully writable the whole time.
+    **Expected result:** DeltaRows is about 64 (50 inserts, 10 updates, 4 deletes). Source and target now show the same Rows, Total and Chk. The source stayed fully writable the whole time.
 
-#### Task 3: Apply destination-specific settings for Azure SQL Database
 
-Azure SQL Database is scoped to the database: there is no SQL Agent,
-apps should not depend on server logins, and Query Store is on by
-default. Prepare the online target for go-live.
+### Task 3: Apply destination-specific settings for Azure SQL Database
 
-1.  Compare compatibility levels on source and target:
+Azure SQL Database is scoped to the database: there is no SQL Agent, apps should not depend on server logins, and Query Store is on by default. Prepare the online target for go-live.
+
+1. Compare compatibility levels on source and target:
 
     ```
     sqlcmd -S $src -E -C -W -Q "SELECT name, compatibility_level FROM sys.databases WHERE name = 'ZavaOrders';"
     sqlcmd -S $azHost -d ZavaOrders_Online -U $admin -P $sqlPass -W -Q "SELECT compatibility_level, DATABASEPROPERTYEX(DB_NAME(),'ServiceObjective') AS ServiceObjective FROM sys.databases WHERE name = DB_NAME();"
     ```
 
-    ![A screen shot of a computer Description automatically
-    generated](./media/image46.png)
+    ![A screen shot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image46.png)
 
-2.  Set the target to the source's level so queries behave the same at
-    go-live. Raise it only after go-live, once Query Store has a
-    performance baseline:
+1. Set the target to the source's level so queries behave the same at go-live. Raise it only after go-live, once Query Store has a performance baseline:
 
     ```
     $srcCompat = @(sqlcmd -S $src -E -C -h -1 -W -Q "SET NOCOUNT ON; SELECT compatibility_level FROM sys.databases WHERE name = 'ZavaOrders';" | Where-Object { $_.Trim() })[0].Trim()
@@ -703,72 +560,57 @@ default. Prepare the online target for go-live.
     sqlcmd -S $azHost -d ZavaOrders_Online -U $admin -P $sqlPass -Q "ALTER DATABASE CURRENT SET COMPATIBILITY_LEVEL = $srcCompat;"
     ```
 
-    ![A screen shot of a computer Description automatically
-    generated](./media/image47.png)
+    ![A screen shot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image47.png)
 
-3.  Confirm Query Store is capturing, and refresh statistics after the
-    bulk load:
+1. Confirm Query Store is capturing, and refresh statistics after the bulk load:
 
-    ```
-    sqlcmd -S $azHost -d ZavaOrders_Online -U $admin -P $sqlPass -W -Q "SELECT actual_state_desc FROM sys.database_query_store_options; EXEC sp_updatestats;"
-    ```
+    `sqlcmd -S $azHost -d ZavaOrders_Online -U $admin -P $sqlPass -W -Q "SELECT actual_state_desc FROM sys.database_query_store_options; EXEC sp_updatestats;"`
 
-    **Expected result:** READ_WRITE, followed by the statistics update
-    messages.
+    **Expected result:** READ_WRITE, followed by the statistics update messages.
 
-    ![A screenshot of a computer Description automatically
-    generated](./media/image48.png)
+    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image48.png)
 
-4.  Create a contained database user for the application instead of a
-    server login. Exercise 3 uses it for the smoke test:
+1. Create a contained database user for the application instead of a server login. Exercise 3 uses it for the smoke test:
 
     ```
     $appPass = "Zx#" + [guid]::NewGuid().ToString("N").Substring(0,12) + "9Q"
     sqlcmd -S $azHost -d ZavaOrders_Online -U $admin -P $sqlPass -Q "IF USER_ID('app_orders') IS NULL CREATE USER app_orders WITH PASSWORD = '$appPass' ELSE ALTER USER app_orders WITH PASSWORD = '$appPass'; ALTER ROLE db_datareader ADD MEMBER app_orders; ALTER ROLE db_datawriter ADD MEMBER app_orders;"
     ```
 
-    ![A computer screen shot of a computer Description automatically
-    generated](./media/image49.png)
+    ![A computer screen shot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image49.png)
 
-5.  Check the source for SQL Agent jobs that touch this database, since
-    they will not move with it:
+1. Check the source for SQL Agent jobs that touch this database, since they will not move with it:
 
-    ```
-    sqlcmd -S $src -E -C -W -Q "SELECT DISTINCT j.name FROM msdb.dbo.sysjobs AS j JOIN msdb.dbo.sysjobsteps AS s ON s.job_id = j.job_id WHERE s.database_name = 'ZavaOrders';"
-    ```
+    `sqlcmd -S $src -E -C -W -Q "SELECT DISTINCT j.name FROM msdb.dbo.sysjobs AS j JOIN msdb.dbo.sysjobsteps AS s ON s.job_id = j.job_id WHERE s.database_name = 'ZavaOrders';"`
 
-    **Expected result:** no rows in this lab. In production, each job
-    found here is rebuilt as an elastic job or an Azure Automation runbook
-    before cutover.
+    **Expected result:** no rows in this lab. In production, each job found here is rebuilt as an elastic job or an Azure Automation runbook before cutover.
 
-    ![A computer screen with blue text Description automatically
-    generated](./media/image50.png)
+    ![A computer screen with blue text Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image50.png)
 
-### Exercise 3: Run readiness checks and execute the cutover
 
-You build an automated go/no-go check, then execute a timed cutover
-against your online target and measure the real application downtime.
+## Exercise 3: Run readiness checks and execute the cutover
 
-#### Task 1: Build a cutover readiness check
+You build an automated go/no-go check, then execute a timed cutover against your online target and measure the real application downtime.
 
-A cutover should start only when checks say GO, not when someone feels
-ready. The T-0 sequence you execute in Task 2 is:
+### Task 1: Build a cutover readiness check
 
-1.  Run the readiness check
+A cutover should start only when checks say GO, not when someone feels ready. The T-0 sequence you execute in Task 2 is:
 
-2.  Final sync while the application still writes
+1. Run the readiness check
 
-3.  Stop writes on the source
+1. Final sync while the application still writes
 
-4.  Final sync and identity reseed
+1. Stop writes on the source
 
-5.  Validate source against target
+1. Final sync and identity reseed
 
-6.  Switch the application and smoke test
+1. Validate source against target
 
-7.  Keep the source as fallback, or roll back
+1. Switch the application and smoke test
 
-Create the readiness check:
+1. Keep the source as fallback, or roll back
+
+    Create the readiness check:
 
     ```
     function Get-Scalar($Query) {
@@ -789,44 +631,33 @@ Create the readiness check:
     }
     ```
 
-![A computer screen with text Description automatically
-generated](./media/image51.png)
+    ![A computer screen with text Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image51.png)
 
     Simulate more application traffic, then run the check:
 
-    sqlcmd -S localhost -d ZavaOrders -E -C -W -i C:\Lab3\workload.sql  
-    Test-CutoverReadiness
+    sqlcmd -S localhost -d ZavaOrders -E -C -W -i C:\Lab3\workload.sql Test-CutoverReadiness
 
-    ![A screen shot of a computer Description automatically
-    generated](./media/image52.png)
+    ![A screen shot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image52.png)
 
-**Expected result:** three GO lines, a pending delta of about 65 rows,
-and OVERALL: GO. If the target shows Paused (serverless auto-pause), run
-any query against it and check again.
+    **Expected result:** three GO lines, a pending delta of about 65 rows, and OVERALL: GO. If the target shows Paused (serverless auto-pause), run any query against it and check again.
 
-**Rollback rule:** if any T-0 check fails, set the source back to
-read-write and point the application at it. Nothing has changed on the
-source, so rollback takes seconds.
+    **Rollback rule:** if any T-0 check fails, set the source back to read-write and point the application at it. Nothing has changed on the source, so rollback takes seconds.
+
 
 ### Task 2: Rehearse the cutover
 
-**Read steps 2 to 6 before you start, then run them back to back without
-pausing.** The downtime clock starts in step 2 and stops in step 6, and
-it counts every second in between, including reading time. Run without
-stops, the online cutover takes well under a minute; with pauses it can
-wrongly look slower than the offline migration.
+**Read steps 2 to 6 before you start, then run them back to back without pausing.** The downtime clock starts in step 2 and stops in step 6, and it counts every second in between, including reading time. Run without stops, the online cutover takes well under a minute; with pauses it can wrongly look slower than the offline migration.
 
-1.  **T-0 pre-cutover sync.** The application is still writing:
+1. **T-0 pre-cutover sync.** The application is still writing:
 
     ```
     Test-CutoverReadiness
     $lastVersion = Sync-OrdersDelta $lastVersion
     ```
 
-    ![A screen shot of a computer Description automatically
-    generated](./media/image53.png)
+    ![A screen shot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image53.png)
 
-2.  **Start the downtime clock and stop writes on the source:**
+1. **Start the downtime clock and stop writes on the source:**
 
     ```
     $freeze = Get-Date
@@ -834,52 +665,38 @@ wrongly look slower than the offline migration.
     sqlcmd -S localhost -d ZavaOrders -E -C -W -i C:\Lab3\workload.sql
     ```
 
-    **Expected result:** the workload must fail with an error that the
-    database is read-only. If it succeeds, stop and check the first
-    command.
+    **Expected result:** the workload must fail with an error that the database is read-only. If it succeeds, stop and check the first command.
 
-    ![A screen shot of a computer Description automatically
-    generated](./media/image54.png)
+    ![A screen shot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image54.png)
 
-3.  **Final sync and identity reseed:**
+1. **Final sync and identity reseed:**
 
     ```
     $lastVersion = Sync-OrdersDelta $lastVersion
     sqlcmd -S $azHost -d ZavaOrders_Online -U $admin -P $sqlPass -Q "DBCC CHECKIDENT ('dbo.Orders'); DBCC CHECKIDENT ('dbo.Customers');"
     ```
 
-    The reseed makes sure new orders created in Azure get IDs above the
-    highest migrated ID.
+    The reseed makes sure new orders created in Azure get IDs above the highest migrated ID.
 
-    ![A screen shot of a computer code Description automatically
-    generated](./media/image55.png)
+    ![A screen shot of a computer code Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image55.png)
 
-4.  **Validate.** This is the main go/no-go gate:
+1. **Validate.** This is the main go/no-go gate:
 
-    ```
-    Compare-Orders
-    ```
+    `Compare-Orders`
 
-    **Go/no-go:** Rows, Total and Chk must match exactly. If they do not,
-    run the rollback in step 7 and investigate.
+    **Go/no-go:** Rows, Total and Chk must match exactly. If they do not, run the rollback in step 7 and investigate.
 
-    ![A screen shot of a computer Description automatically
-    generated](./media/image56.png)
+    ![A screen shot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image56.png)
 
-5.  **Switch and smoke test.** Connect as the contained user app_orders,
-    as the application would after the switch:
+1. **Switch and smoke test.** Connect as the contained user app_orders, as the application would after the switch:
 
-    ```
-    sqlcmd -S $azHost -d ZavaOrders_Online -U app_orders -P $appPass -W -Q "SET NOCOUNT ON; INSERT dbo.Orders(CustomerID, Amount) VALUES (1, 1.00); SELECT TOP (1) OrderID, Amount, OrderDate FROM dbo.Orders ORDER BY OrderID DESC;"
-    ```
+    `sqlcmd -S $azHost -d ZavaOrders_Online -U app_orders -P $appPass -W -Q "SET NOCOUNT ON; INSERT dbo.Orders(CustomerID, Amount) VALUES (1, 1.00); SELECT TOP (1) OrderID, Amount, OrderDate FROM dbo.Orders ORDER BY OrderID DESC;"`
 
-    **Expected result:** a new order is returned with an OrderID higher
-    than any source order.
+    **Expected result:** a new order is returned with an OrderID higher than any source order.
 
-    ![A computer screen with text Description automatically
-    generated](./media/image57.png)
+    ![A computer screen with text Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image57.png)
 
-6.  **Stop the clock:**
+1. **Stop the clock:**
 
     ```
     $downtime = (Get-Date) - $freeze
@@ -887,23 +704,18 @@ wrongly look slower than the offline migration.
     "Offline downtime (Exercise 2): {0:N0} seconds" -f ($exportTime.TotalSeconds + $importTime.TotalSeconds)
     ```
 
-    Record both numbers. The online downtime covers only the last few
-    seconds of changes; the offline downtime covers the whole database. On
-    a 400 GB database, that difference is minutes versus hours.
+    Record both numbers. The online downtime covers only the last few seconds of changes; the offline downtime covers the whole database. On a 400 GB database, that difference is minutes versus hours.
 
-    ![A screen shot of a computer code Description automatically
-    generated](./media/image58.png)
+    ![A screen shot of a computer code Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image58.png)
 
-7.  **Rollback drill (run only if a go/no-go check failed):**
+1. **Rollback drill (run only if a go/no-go check failed):**
 
-    ```
-    sqlcmd -S localhost -E -C -Q "ALTER DATABASE ZavaOrders SET READ_WRITE WITH ROLLBACK IMMEDIATE;"
-    ```
+    `sqlcmd -S localhost -E -C -Q "ALTER DATABASE ZavaOrders SET READ_WRITE WITH ROLLBACK IMMEDIATE;"`
 
-    If all checks passed, leave the source read-only. It is now your
-    fallback copy, as in the T+7 days row.
+    If all checks passed, leave the source read-only. It is now your fallback copy, as in the T+7 days row.
 
-    ![](./media/image59.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image59.png)
+
 
 ## Clean up and review
 
@@ -918,15 +730,4 @@ wrongly look slower than the offline migration.
 
 ## Conclusion
 
-In this lab you took Zava Retail’s order database from SQL Server to
-Azure SQL Database. Profiling the source turned up a blocker before it
-could cause trouble, and you resolved it. You provisioned Azure Database
-Migration Service and saw how it reaches on-premises sources. Running an
-offline migration and an online migration side by side showed the
-trade-off: the offline copy is simpler, but downtime grows with data
-size, while the online approach keeps the source writable and shrinks
-downtime to a short final sync. Finally, you applied settings specific
-to Azure SQL Database, gated the cutover with automated readiness
-checks, and finished with a validated switch and a rollback path.
-Together these steps form a repeatable migration strategy you can apply
-to larger databases.
+In this lab you took Zava Retail’s order database from SQL Server to Azure SQL Database. Profiling the source turned up a blocker before it could cause trouble, and you resolved it. You provisioned Azure Database Migration Service and saw how it reaches on-premises sources. Running an offline migration and an online migration side by side showed the trade-off: the offline copy is simpler, but downtime grows with data size, while the online approach keeps the source writable and shrinks downtime to a short final sync. Finally, you applied settings specific to Azure SQL Database, gated the cutover with automated readiness checks, and finished with a validated switch and a rollback path. Together these steps form a repeatable migration strategy you can apply to larger databases.

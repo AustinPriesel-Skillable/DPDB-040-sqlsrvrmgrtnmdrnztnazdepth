@@ -1,0 +1,2689 @@
+==============================================================================
+IDLx MARKDOWN CLEANUP - CHANGE LOG
+==============================================================================
+Source file : C:\Users\SP\PycharmProjects\Austin_Instruction_CleanUp\DPDB-040-sqlsrvrmgrtnmdrnztnazdepth\Lab Guides\Lab 9\Lab 9.md
+Run time    : 2026-11-11 09:15:22
+Mode        : APPLIED
+Script      : idlx_cleanup.py v1.2
+Ruleset     : IDLx Markdown Formatting Rules v1.42
+
+Auto-fix changes : 444
+Review flags     : 6
+Not logged       : 41 (P1=18, SK-12=23) - applied but excluded by policy
+
+==============================================================================
+ACTION REQUIRED - LINES FLAGGED FOR REVIEW
+==============================================================================
+
+These lines were NOT changed. Each needs a human decision.
+Resolve all ERROR items before publishing.
+
+------------------------------------------------------------------------------
+SEVERITY: ERROR  (1 finding(s))
+------------------------------------------------------------------------------
+
+  Line 1     [SK-01] Front matter present and delimited
+      REASON : no YAML front matter block found
+      TEXT   : (file start)
+
+------------------------------------------------------------------------------
+SEVERITY: WARNING  (4 finding(s))
+------------------------------------------------------------------------------
+
+  Line 296   [SK-06] Heading hierarchy skips a level
+      REASON : jumped from h3 to h5
+      TEXT   : ##### Option A: SQL Server Management Studio (SSMS) (Optional)
+
+  Line 327   [SK-46b] Bare <placeholder> may render as HTML
+      REASON : looks like a placeholder - IDLx may swallow it as HTML; consider *{your account}*
+      TEXT   : <your account>
+
+  Line 786   [SK-19b] Prose paragraph after alert - inside box?
+      REASON : prose paragraph directly follows a [!Note] alert - if it belongs inside the alert box, prefix it with '> ' and add a '>' separator line above it
+      TEXT   : **What you see at first:** Immediately after you enable Defender, the page shows
+
+  Line 893   [SK-06] Heading hierarchy skips a level
+      REASON : jumped from h3 to h5
+      TEXT   : ##### If the vulnerability count still shows 0
+
+------------------------------------------------------------------------------
+SEVERITY: INFO  (1 finding(s))
+------------------------------------------------------------------------------
+
+  Line 1     [SK-16] Relative image path
+      REASON : image base URL verified against GitHub - a sample image resolved successfully
+      TEXT   : https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209
+
+==============================================================================
+SUMMARY BY RULE
+==============================================================================
+
+FLAGGED FOR REVIEW:
+  SK-01       1 finding(s)  Front matter present and delimited
+  SK-06       2 finding(s)  Heading hierarchy skips a level
+  SK-16       1 finding(s)  Relative image path
+  SK-19b      1 finding(s)  Prose paragraph after alert - inside box?
+  SK-46b      1 finding(s)  Bare <placeholder> may render as HTML
+
+AUTO-FIX APPLIED:
+  SK-04       3 change(s)   Bold-only label -> ### heading
+  SK-07     179 change(s)   Numbered step -> '1.' format
+  SK-11       7 change(s)   Collapse consecutive blank lines
+  SK-110     24 change(s)   Decoration (bold/italic/<u>) stripped from a heading
+  SK-16     118 change(s)   Relative image path
+  SK-39       4 change(s)   Typed value -> type-text (+++)
+  SK-46       1 change(s)   Angle-bracket placeholder -> *{curly}*
+  SK-53      38 change(s)   Two blank lines close every list
+  SK-57b      3 change(s)   Prose 'Tip:' label -> alert block
+  SK-59       2 change(s)   Blank line after closing fence
+  SK-66       5 change(s)   Command after 'type/run the following command' -> inline code
+  SK-81      41 change(s)   Compact bullet list (no padding blank lines)
+  SK-82      18 change(s)   Exercise -> h2, Task -> h3 heading hierarchy
+  SK-86       1 change(s)   Standard section heading forced to its fixed level
+
+==============================================================================
+DETAILED CHANGES
+==============================================================================
+
+
+------------------------------------------------------------------------------
+PHASE 2 - Character & Token Cleanup
+------------------------------------------------------------------------------
+
+[SK-46] Line 293  |  Angle-bracket placeholder -> *{curly}*
+    note: angle-bracket placeholder converted to italicised curly braces
+    BEFORE:     **If you cannot create groups:** Some lab tenants do not allow learners to create groups (**+ New group** is greyed out or fails). Ask your instructor to create the group or to give you another lab user’s email address. In Task 4, replace **[SQL-Analysts]** with **[\<that user’s email\>]**. The user then appears as **EXTERNAL_USER** instead of **EXTERNAL_GROUP**.
+    AFTER :     **If you cannot create groups:** Some lab tenants do not allow learners to create groups (**+ New group** is greyed out or fails). Ask your instructor to create the group or to give you another lab user’s email address. In Task 4, replace **[SQL-Analysts]** with **[*{that user’s email}*]**. The user then appears as **EXTERNAL_USER** instead of **EXTERNAL_GROUP**.
+
+[SK-16] Line 39  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image1.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image1.png)
+
+[SK-16] Line 49  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image2.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image2.png)
+
+[SK-16] Line 53  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image3.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image3.png)
+
+[SK-16] Line 59  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image4.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image4.png)
+
+[SK-16] Line 69  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image5.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image5.png)
+
+[SK-16] Line 87  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image6.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image6.png)
+
+[SK-16] Line 95  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image7.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image7.png)
+
+[SK-16] Line 107  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image8.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image8.png)
+
+[SK-16] Line 111  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image9.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image9.png)
+
+[SK-16] Line 115  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image11.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image11.png)
+
+[SK-16] Line 125  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image12.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image12.png)
+
+[SK-16] Line 129  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image13.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image13.png)
+
+[SK-16] Line 135  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image14.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image14.png)
+
+[SK-16] Line 141  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image15.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image15.png)
+
+[SK-16] Line 145  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image16.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image16.png)
+
+[SK-16] Line 149  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image17.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image17.png)
+
+[SK-16] Line 153  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image18.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image18.png)
+
+[SK-16] Line 161  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image19.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image19.png)
+
+[SK-16] Line 165  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image20.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image20.png)
+
+[SK-16] Line 169  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image21.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image21.png)
+
+[SK-16] Line 175  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image22.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image22.png)
+
+[SK-16] Line 179  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image23.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image23.png)
+
+[SK-16] Line 183  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image24.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image24.png)
+
+[SK-16] Line 187  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image25.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image25.png)
+
+[SK-16] Line 195  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image26.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image26.png)
+
+[SK-16] Line 203  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image27.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image27.png)
+
+[SK-16] Line 207  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image28.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image28.png)
+
+[SK-16] Line 211  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image29.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image29.png)
+
+[SK-16] Line 215  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image30.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image30.png)
+
+[SK-16] Line 225  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image32.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image32.png)
+
+[SK-16] Line 229  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image33.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image33.png)
+
+[SK-16] Line 237  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image34.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image34.png)
+
+[SK-16] Line 243  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image35.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image35.png)
+
+[SK-16] Line 251  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image36.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image36.png)
+
+[SK-16] Line 255  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image37.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image37.png)
+
+[SK-16] Line 259  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image38.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image38.png)
+
+[SK-16] Line 263  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image39.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image39.png)
+
+[SK-16] Line 277  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image40.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image40.png)
+
+[SK-16] Line 285  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image41.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image41.png)
+
+[SK-16] Line 289  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image42.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image42.png)
+
+[SK-16] Line 295  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image43.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image43.png)
+
+[SK-16] Line 325  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image44.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image44.png)
+
+[SK-16] Line 330  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image45.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image45.png)
+
+[SK-16] Line 335  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image46.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image46.png)
+
+[SK-16] Line 339  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image47.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image47.png)
+
+[SK-16] Line 363  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image49.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image49.png)
+
+[SK-16] Line 373  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image50.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image50.png)
+
+[SK-16] Line 377  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image51.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image51.png)
+
+[SK-16] Line 390  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image52.png)  
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image52.png)  
+
+[SK-16] Line 398  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image53.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image53.png)
+
+[SK-16] Line 402  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image54.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image54.png)
+
+[SK-16] Line 408  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image55.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image55.png)
+
+[SK-16] Line 414  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image56.png)  
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image56.png)  
+
+[SK-16] Line 418  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image57.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image57.png)
+
+[SK-16] Line 428  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image61.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image61.png)
+
+[SK-16] Line 432  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image62.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image62.png)
+
+[SK-16] Line 444  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image63.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image63.png)
+
+[SK-16] Line 448  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image64.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image64.png)
+
+[SK-16] Line 453  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image65.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image65.png)
+
+[SK-16] Line 460  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image66.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image66.png)
+
+[SK-16] Line 464  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image67.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image67.png)
+
+[SK-16] Line 468  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image68.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image68.png)
+
+[SK-16] Line 474  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image69.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image69.png)
+
+[SK-16] Line 480  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image70.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image70.png)
+
+[SK-16] Line 484  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image71.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image71.png)
+
+[SK-16] Line 489  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image72.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image72.png)
+
+[SK-16] Line 503  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image73.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image73.png)
+
+[SK-16] Line 507  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image74.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image74.png)
+
+[SK-16] Line 515  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image75.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image75.png)
+
+[SK-16] Line 534  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image76.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image76.png)
+
+[SK-16] Line 538  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image46.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image46.png)
+
+[SK-16] Line 548  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image78.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image78.png)
+
+[SK-16] Line 554  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image80.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image80.png)
+
+[SK-16] Line 558  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image81.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image81.png)
+
+[SK-16] Line 562  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image82.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image82.png)
+
+[SK-16] Line 566  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image83.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image83.png)
+
+[SK-16] Line 570  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image84.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image84.png)
+
+[SK-16] Line 574  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image85.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image85.png)
+
+[SK-16] Line 593  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image86.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image86.png)
+
+[SK-16] Line 614  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image87.png)  
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image87.png)  
+
+[SK-16] Line 622  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image88.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image88.png)
+
+[SK-16] Line 626  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image89.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image89.png)
+
+[SK-16] Line 636  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image90.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image90.png)
+
+[SK-16] Line 644  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image91.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image91.png)
+
+[SK-16] Line 652  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image92.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image92.png)
+
+[SK-16] Line 658  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image93.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image93.png)
+
+[SK-16] Line 662  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image94.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image94.png)
+
+[SK-16] Line 684  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image95.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image95.png)
+
+[SK-16] Line 696  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image96.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image96.png)
+
+[SK-16] Line 700  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image97.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image97.png)
+
+[SK-16] Line 704  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image98.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image98.png)
+
+[SK-16] Line 710  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image100.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image100.png)
+
+[SK-16] Line 714  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image99.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image99.png)
+
+[SK-16] Line 718  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image101.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image101.png)
+
+[SK-16] Line 722  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image102.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image102.png)
+
+[SK-16] Line 727  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image103.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image103.png)
+
+[SK-16] Line 733  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image104.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image104.png)
+
+[SK-16] Line 752  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image105.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image105.png)
+
+[SK-16] Line 760  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image106.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image106.png)
+
+[SK-16] Line 766  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image107.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image107.png)
+
+[SK-16] Line 772  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image108.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image108.png)
+
+[SK-16] Line 776  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image109.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image109.png)
+
+[SK-16] Line 782  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image110.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image110.png)
+
+[SK-16] Line 809  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image111.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image111.png)
+
+[SK-16] Line 815  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image121.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image121.png)
+
+[SK-16] Line 819  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image112.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image112.png)
+
+[SK-16] Line 823  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image113.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image113.png)
+
+[SK-16] Line 831  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image114.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image114.png)
+
+[SK-16] Line 858  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image111.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image111.png)
+
+[SK-16] Line 862  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image112.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image112.png)
+
+[SK-16] Line 866  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image113.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image113.png)
+
+[SK-16] Line 870  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image115.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image115.png)
+
+[SK-16] Line 874  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image116.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image116.png)
+
+[SK-16] Line 878  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image117.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image117.png)
+
+[SK-16] Line 886  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image118.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image118.png)
+
+[SK-16] Line 894  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image123.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image123.png)
+
+[SK-16] Line 908  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE: ![](./media/image119.png)
+    AFTER : ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image119.png)
+
+[SK-16] Line 922  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image120.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image120.png)
+
+
+------------------------------------------------------------------------------
+PHASE 3 - Block-Level Structure
+------------------------------------------------------------------------------
+
+[SK-57b] Line 517  |  Prose 'Tip:' label -> alert block
+    note: prose 'Note:' label converted to an IDLx Note block
+    BEFORE:     **Note:** Server-level auditing covers every database on the server, including future ones. Do not also enable database-level auditing; it duplicates records.
+    AFTER :     >[!Note] Server-level auditing covers every database on the server, including future ones. Do not also enable database-level auditing; it duplicates records.
+
+[SK-57b] Line 784  |  Prose 'Tip:' label -> alert block
+    note: prose 'Note:' label converted to an IDLx Note block
+    BEFORE:     **Note:** Email notifications for security alerts are set for the whole subscription in **Defender for Cloud > Environment settings >** your subscription **> Email notifications**. You do not need to change them for this lab.
+    AFTER :     >[!Note] Email notifications for security alerts are set for the whole subscription in **Defender for Cloud > Environment settings >** your subscription **> Email notifications**. You do not need to change them for this lab.
+
+[SK-57b] Line 924  |  Prose 'Tip:' label -> alert block
+    note: prose 'Note:' label converted to an IDLx Note block
+    BEFORE:     **Note: Do not delete these resources.** Lab 10 and Lab 11 use them.
+    AFTER :     >[!Note] Do not delete these resources.** Lab 10 and Lab 11 use them.
+
+[SK-66] Line 346  |  Command after 'type/run the following command' -> inline code
+    note: command following an explicit 'run/type the following command' step converted to inline code; blockquote, bold and type-text markers removed
+    BEFORE:     **T-SQL**
+    AFTER :     `T-SQL`
+
+[SK-66] Line 525  |  Command after 'type/run the following command' -> inline code
+    note: command following an explicit 'run/type the following command' step converted to inline code; blockquote, bold and type-text markers removed
+    BEFORE:     **T-SQL**
+    AFTER :     `T-SQL`
+
+[SK-66] Line 739  |  Command after 'type/run the following command' -> inline code
+    note: command following an explicit 'run/type the following command' step converted to inline code; blockquote, bold and type-text markers removed
+    BEFORE:     **T-SQL**
+    AFTER :     `T-SQL`
+
+[SK-66] Line 792  |  Command after 'type/run the following command' -> inline code
+    note: command following an explicit 'run/type the following command' step converted to inline code; blockquote, bold and type-text markers removed
+    BEFORE:     **T-SQL**
+    AFTER :     `T-SQL`
+
+[SK-66] Line 843  |  Command after 'type/run the following command' -> inline code
+    note: command following an explicit 'run/type the following command' step converted to inline code; blockquote, bold and type-text markers removed
+    BEFORE:     **T-SQL**
+    AFTER :     `T-SQL`
+
+[SK-59] Line 534  |  Blank line after closing fence
+    note: inserted blank line after closing fence
+    BEFORE:
+        |     ```
+        |     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image76.png)
+    AFTER:
+        |     ```
+        | 
+        |     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image76.png)
+
+[SK-59] Line 859  |  Blank line after closing fence
+    note: inserted blank line after closing fence
+    BEFORE:
+        |     ```
+        |     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image111.png)
+    AFTER:
+        |     ```
+        | 
+        |     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image111.png)
+
+
+------------------------------------------------------------------------------
+PHASE 4 - Numbering, Headings, Prose
+------------------------------------------------------------------------------
+
+[SK-07] Line 37  |  Numbered step -> '1.' format
+    note: normalize step marker spacing
+    BEFORE: 1.  Open +++https://portal.azure.com/+++.
+    AFTER : 1. Open +++https://portal.azure.com/+++.
+
+[SK-07] Line 41  |  Numbered step -> '1.' format
+    note: renumber 2. -> 1. (editor handles display numbering)
+    BEFORE: 2.  Sign in with your lab account.
+    AFTER : 1. Sign in with your lab account.
+
+[SK-07] Line 43  |  Numbered step -> '1.' format
+    note: renumber 3. -> 1. (editor handles display numbering)
+    BEFORE: 3.  On the portal **Home** page, under **Azure services**, click **SQL databases**.
+    AFTER : 1. On the portal **Home** page, under **Azure services**, click **SQL databases**.
+
+[SK-07] Line 51  |  Numbered step -> '1.' format
+    note: renumber 4. -> 1. (editor handles display numbering)
+    BEFORE: 4.  On the **SQL databases** page, click **+ Create** on the toolbar.
+    AFTER : 1. On the **SQL databases** page, click **+ Create** on the toolbar.
+
+[SK-07] Line 55  |  Numbered step -> '1.' format
+    note: renumber 5. -> 1. (editor handles display numbering)
+    BEFORE: 5.  From the drop-down list, select **SQL database**.
+    AFTER : 1. From the drop-down list, select **SQL database**.
+
+[SK-07] Line 61  |  Numbered step -> '1.' format
+    note: renumber 6. -> 1. (editor handles display numbering)
+    BEFORE: 6.  On the **Basics** tab, set the following values:
+    AFTER : 1. On the **Basics** tab, set the following values:
+
+[SK-07] Line 67  |  Numbered step -> '1.' format
+    note: renumber 7. -> 1. (editor handles display numbering)
+    BEFORE: 7.  Under **Server**, click **Create new**.
+    AFTER : 1. Under **Server**, click **Create new**.
+
+[SK-07] Line 71  |  Numbered step -> '1.' format
+    note: renumber 8. -> 1. (editor handles display numbering)
+    BEFORE: 8.  In the **Create SQL Database Server** pane, set the following values:
+    AFTER : 1. In the **Create SQL Database Server** pane, set the following values:
+
+[SK-07] Line 85  |  Numbered step -> '1.' format
+    note: renumber 9. -> 1. (editor handles display numbering)
+    BEFORE: 9.  Click **OK**.
+    AFTER : 1. Click **OK**.
+
+[SK-07] Line 89  |  Numbered step -> '1.' format
+    note: renumber 10. -> 1. (editor handles display numbering)
+    BEFORE: 10. Set **Want to use SQL elastic pool?** to **No**.
+    AFTER : 1. Set **Want to use SQL elastic pool?** to **No**.
+
+[SK-07] Line 91  |  Numbered step -> '1.' format
+    note: renumber 11. -> 1. (editor handles display numbering)
+    BEFORE: 11. Set **Workload environment** to **Development**.
+    AFTER : 1. Set **Workload environment** to **Development**.
+
+[SK-07] Line 93  |  Numbered step -> '1.' format
+    note: renumber 12. -> 1. (editor handles display numbering)
+    BEFORE: 12. Under **Compute + storage**, click **Configure database**.
+    AFTER : 1. Under **Compute + storage**, click **Configure database**.
+
+[SK-07] Line 97  |  Numbered step -> '1.' format
+    note: renumber 13. -> 1. (editor handles display numbering)
+    BEFORE: 13. Set **Service tier** to **General Purpose**.
+    AFTER : 1. Set **Service tier** to **General Purpose**.
+
+[SK-07] Line 105  |  Numbered step -> '1.' format
+    note: renumber 14. -> 1. (editor handles display numbering)
+    BEFORE: 14. Click **Apply**.
+    AFTER : 1. Click **Apply**.
+
+[SK-07] Line 109  |  Numbered step -> '1.' format
+    note: renumber 15. -> 1. (editor handles display numbering)
+    BEFORE: 15. Set **Backup storage redundancy** to **Locally-redundant backup storage**.
+    AFTER : 1. Set **Backup storage redundancy** to **Locally-redundant backup storage**.
+
+[SK-07] Line 113  |  Numbered step -> '1.' format
+    note: renumber 16. -> 1. (editor handles display numbering)
+    BEFORE: 16. Click the **Networking** tab.
+    AFTER : 1. Click the **Networking** tab.
+
+[SK-07] Line 117  |  Numbered step -> '1.' format
+    note: renumber 17. -> 1. (editor handles display numbering)
+    BEFORE: 17. Set the following values:
+    AFTER : 1. Set the following values:
+
+[SK-07] Line 127  |  Numbered step -> '1.' format
+    note: renumber 18. -> 1. (editor handles display numbering)
+    BEFORE: 18. Click the **Security** tab.
+    AFTER : 1. Click the **Security** tab.
+
+[SK-07] Line 131  |  Numbered step -> '1.' format
+    note: renumber 19. -> 1. (editor handles display numbering)
+    BEFORE: 19. Set **Enable Microsoft Defender for SQL** to **Not now**. You enable it in Exercise 3.
+    AFTER : 1. Set **Enable Microsoft Defender for SQL** to **Not now**. You enable it in Exercise 3.
+
+[SK-07] Line 133  |  Numbered step -> '1.' format
+    note: renumber 20. -> 1. (editor handles display numbering)
+    BEFORE: 20. Click the **Additional settings** tab.
+    AFTER : 1. Click the **Additional settings** tab.
+
+[SK-07] Line 137  |  Numbered step -> '1.' format
+    note: renumber 21. -> 1. (editor handles display numbering)
+    BEFORE: 21. Under **Data source**, set **Use existing data** to **Sample**. This loads the AdventureWorksLT sample database.
+    AFTER : 1. Under **Data source**, set **Use existing data** to **Sample**. This loads the AdventureWorksLT sample database.
+
+[SK-07] Line 139  |  Numbered step -> '1.' format
+    note: renumber 22. -> 1. (editor handles display numbering)
+    BEFORE: 22. In the confirmation dialog, click **OK**.
+    AFTER : 1. In the confirmation dialog, click **OK**.
+
+[SK-07] Line 143  |  Numbered step -> '1.' format
+    note: renumber 23. -> 1. (editor handles display numbering)
+    BEFORE: 23. Click **Review + create**.
+    AFTER : 1. Click **Review + create**.
+
+[SK-07] Line 147  |  Numbered step -> '1.' format
+    note: renumber 24. -> 1. (editor handles display numbering)
+    BEFORE: 24. On the **Review + create** tab, click **Create**.
+    AFTER : 1. On the **Review + create** tab, click **Create**.
+
+[SK-07] Line 151  |  Numbered step -> '1.' format
+    note: renumber 25. -> 1. (editor handles display numbering)
+    BEFORE: 25. Wait for the deployment to complete. This takes 2 to 3 minutes.
+    AFTER : 1. Wait for the deployment to complete. This takes 2 to 3 minutes.
+
+[SK-07] Line 159  |  Numbered step -> '1.' format
+    note: normalize step marker spacing
+    BEFORE: 1.  Click **Go to resource**.
+    AFTER : 1. Click **Go to resource**.
+
+[SK-07] Line 163  |  Numbered step -> '1.' format
+    note: renumber 2. -> 1. (editor handles display numbering)
+    BEFORE: 2.  On the database **Overview** page, click the **Server name** link to open the logical server.
+    AFTER : 1. On the database **Overview** page, click the **Server name** link to open the logical server.
+
+[SK-07] Line 167  |  Numbered step -> '1.' format
+    note: renumber 3. -> 1. (editor handles display numbering)
+    BEFORE: 3.  In the left menu, click **Security > Networking**.
+    AFTER : 1. In the left menu, click **Security > Networking**.
+
+[SK-07] Line 171  |  Numbered step -> '1.' format
+    note: renumber 4. -> 1. (editor handles display numbering)
+    BEFORE: 4.  On the **Public access** tab, confirm that **Public network access** is set to **Selected networks**.
+    AFTER : 1. On the **Public access** tab, confirm that **Public network access** is set to **Selected networks**.
+
+[SK-07] Line 173  |  Numbered step -> '1.' format
+    note: renumber 5. -> 1. (editor handles display numbering)
+    BEFORE: 5.  Under **Firewall rules**, confirm that one rule named **ClientIPAddress_<date>** exists.
+    AFTER : 1. Under **Firewall rules**, confirm that one rule named **ClientIPAddress_<date>** exists.
+
+[SK-07] Line 177  |  Numbered step -> '1.' format
+    note: renumber 6. -> 1. (editor handles display numbering)
+    BEFORE: 6.  In the **Rule name** box, rename the rule to +++AllowMyPC+++.
+    AFTER : 1. In the **Rule name** box, rename the rule to +++AllowMyPC+++.
+
+[SK-07] Line 181  |  Numbered step -> '1.' format
+    note: renumber 7. -> 1. (editor handles display numbering)
+    BEFORE: 7.  Confirm that **Allow Azure services and resources to access this server** is cleared. Leaving it selected would let resources in any Azure tenant reach the server’s login prompt.
+    AFTER : 1. Confirm that **Allow Azure services and resources to access this server** is cleared. Leaving it selected would let resources in any Azure tenant reach the server’s login prompt.
+
+[SK-07] Line 185  |  Numbered step -> '1.' format
+    note: renumber 8. -> 1. (editor handles display numbering)
+    BEFORE: 8.  Click **Save**.
+    AFTER : 1. Click **Save**.
+
+[SK-07] Line 189  |  Numbered step -> '1.' format
+    note: renumber 9. -> 1. (editor handles display numbering)
+    BEFORE: 9.  Click the **Connectivity** tab.
+    AFTER : 1. Click the **Connectivity** tab.
+
+[SK-07] Line 191  |  Numbered step -> '1.' format
+    note: renumber 10. -> 1. (editor handles display numbering)
+    BEFORE: 10. Confirm that **Minimum TLS version** is **1.2**.
+    AFTER : 1. Confirm that **Minimum TLS version** is **1.2**.
+
+[SK-07] Line 193  |  Numbered step -> '1.' format
+    note: renumber 11. -> 1. (editor handles display numbering)
+    BEFORE: 11. Under **Outbound networking**, confirm that **Restrict outbound networking** shows **Restrictions disabled**. Lab 11 calls Azure OpenAI from the database and needs this outbound access.
+    AFTER : 1. Under **Outbound networking**, confirm that **Restrict outbound networking** shows **Restrictions disabled**. Lab 11 calls Azure OpenAI from the database and needs this outbound access.
+
+[SK-07] Line 201  |  Numbered step -> '1.' format
+    note: normalize step marker spacing
+    BEFORE: 1.  In the logical server’s left menu, click **Security > Identity**.
+    AFTER : 1. In the logical server’s left menu, click **Security > Identity**.
+
+[SK-07] Line 205  |  Numbered step -> '1.' format
+    note: renumber 2. -> 1. (editor handles display numbering)
+    BEFORE: 2.  Under **System assigned managed identity**, set **Status** to **On**.
+    AFTER : 1. Under **System assigned managed identity**, set **Status** to **On**.
+
+[SK-07] Line 209  |  Numbered step -> '1.' format
+    note: renumber 3. -> 1. (editor handles display numbering)
+    BEFORE: 3.  Click **Save**.
+    AFTER : 1. Click **Save**.
+
+[SK-07] Line 213  |  Numbered step -> '1.' format
+    note: renumber 4. -> 1. (editor handles display numbering)
+    BEFORE: 4.  Confirm that **Status** is **On** and that **Save** is greyed out, which means the change is saved.
+    AFTER : 1. Confirm that **Status** is **On** and that **Save** is greyed out, which means the change is saved.
+
+[SK-07] Line 223  |  Numbered step -> '1.' format
+    note: normalize step marker spacing
+    BEFORE: 1.  On the logical server’s left menu, click **Settings > Microsoft Entra ID**.
+    AFTER : 1. On the logical server’s left menu, click **Settings > Microsoft Entra ID**.
+
+[SK-07] Line 227  |  Numbered step -> '1.' format
+    note: renumber 2. -> 1. (editor handles display numbering)
+    BEFORE: 2.  Click **Set admin**.
+    AFTER : 1. Click **Set admin**.
+
+[SK-07] Line 231  |  Numbered step -> '1.' format
+    note: renumber 3. -> 1. (editor handles display numbering)
+    BEFORE: 3.  In the search box, search for your lab account.
+    AFTER : 1. In the search box, search for your lab account.
+
+[SK-07] Line 233  |  Numbered step -> '1.' format
+    note: renumber 4. -> 1. (editor handles display numbering)
+    BEFORE: 4.  Select your lab account.
+    AFTER : 1. Select your lab account.
+
+[SK-07] Line 235  |  Numbered step -> '1.' format
+    note: renumber 5. -> 1. (editor handles display numbering)
+    BEFORE: 5.  Click **Select**.
+    AFTER : 1. Click **Select**.
+
+[SK-07] Line 239  |  Numbered step -> '1.' format
+    note: renumber 6. -> 1. (editor handles display numbering)
+    BEFORE: 6.  Leave **Support only Microsoft Entra authentication for this server** cleared for now.
+    AFTER : 1. Leave **Support only Microsoft Entra authentication for this server** cleared for now.
+
+[SK-07] Line 241  |  Numbered step -> '1.' format
+    note: renumber 7. -> 1. (editor handles display numbering)
+    BEFORE: 7.  Click **Save**.
+    AFTER : 1. Click **Save**.
+
+[SK-07] Line 249  |  Numbered step -> '1.' format
+    note: normalize step marker spacing
+    BEFORE: 1.  In the portal search bar, type +++Microsoft Entra ID+++.
+    AFTER : 1. In the portal search bar, type +++Microsoft Entra ID+++.
+
+[SK-07] Line 253  |  Numbered step -> '1.' format
+    note: renumber 2. -> 1. (editor handles display numbering)
+    BEFORE: 2.  Under **Services**, select **Microsoft Entra ID**.
+    AFTER : 1. Under **Services**, select **Microsoft Entra ID**.
+
+[SK-07] Line 257  |  Numbered step -> '1.' format
+    note: renumber 3. -> 1. (editor handles display numbering)
+    BEFORE: 3.  In the left menu, click **Manage > Groups**.
+    AFTER : 1. In the left menu, click **Manage > Groups**.
+
+[SK-07] Line 261  |  Numbered step -> '1.' format
+    note: renumber 4. -> 1. (editor handles display numbering)
+    BEFORE: 4.  Search for +++SQL-Analysts+++.
+    AFTER : 1. Search for +++SQL-Analysts+++.
+
+[SK-07] Line 265  |  Numbered step -> '1.' format
+    note: renumber 5. -> 1. (editor handles display numbering)
+    BEFORE: 5.  If the group exists, note its exact name and go to Task 3. Otherwise, continue with the next step.
+    AFTER : 1. If the group exists, note its exact name and go to Task 3. Otherwise, continue with the next step.
+
+[SK-07] Line 267  |  Numbered step -> '1.' format
+    note: renumber 6. -> 1. (editor handles display numbering)
+    BEFORE: 6.  Click **+ New group**.
+    AFTER : 1. Click **+ New group**.
+
+[SK-07] Line 269  |  Numbered step -> '1.' format
+    note: renumber 7. -> 1. (editor handles display numbering)
+    BEFORE: 7.  Set the following values:
+    AFTER : 1. Set the following values:
+
+[SK-07] Line 279  |  Numbered step -> '1.' format
+    note: renumber 8. -> 1. (editor handles display numbering)
+    BEFORE: 8.  Under **Members**, click **No members selected**.
+    AFTER : 1. Under **Members**, click **No members selected**.
+
+[SK-07] Line 281  |  Numbered step -> '1.' format
+    note: renumber 9. -> 1. (editor handles display numbering)
+    BEFORE: 9.  Search for and select your lab account.
+    AFTER : 1. Search for and select your lab account.
+
+[SK-07] Line 283  |  Numbered step -> '1.' format
+    note: renumber 10. -> 1. (editor handles display numbering)
+    BEFORE: 10. Click **Select**.
+    AFTER : 1. Click **Select**.
+
+[SK-07] Line 287  |  Numbered step -> '1.' format
+    note: renumber 11. -> 1. (editor handles display numbering)
+    BEFORE: 11. Click **Create**.
+    AFTER : 1. Click **Create**.
+
+[SK-07] Line 291  |  Numbered step -> '1.' format
+    note: renumber 12. -> 1. (editor handles display numbering)
+    BEFORE: 12. Wait about one minute for the group to be created before you continue.
+    AFTER : 1. Wait about one minute for the group to be created before you continue.
+
+[SK-07] Line 303  |  Numbered step -> '1.' format
+    note: normalize step marker spacing
+    BEFORE: 1.  On your lab machine, open **SQL Server Management Studio**.
+    AFTER : 1. On your lab machine, open **SQL Server Management Studio**.
+
+[SK-07] Line 305  |  Numbered step -> '1.' format
+    note: renumber 2. -> 1. (editor handles display numbering)
+    BEFORE: 2.  In the **Connect to Server** dialog, set **Server name** to +++sql-zava-jd427.database.windows.net+++.
+    AFTER : 1. In the **Connect to Server** dialog, set **Server name** to +++sql-zava-jd427.database.windows.net+++.
+
+[SK-07] Line 307  |  Numbered step -> '1.' format
+    note: renumber 3. -> 1. (editor handles display numbering)
+    BEFORE: 3.  Set **Authentication** to **Microsoft Entra MFA**.
+    AFTER : 1. Set **Authentication** to **Microsoft Entra MFA**.
+
+[SK-07] Line 309  |  Numbered step -> '1.' format
+    note: renumber 4. -> 1. (editor handles display numbering)
+    BEFORE: 4.  In **User name**, enter your lab account.
+    AFTER : 1. In **User name**, enter your lab account.
+
+[SK-07] Line 311  |  Numbered step -> '1.' format
+    note: renumber 5. -> 1. (editor handles display numbering)
+    BEFORE: 5.  Set **Database name** to +++sqldb-zava+++.
+    AFTER : 1. Set **Database name** to +++sqldb-zava+++.
+
+[SK-07] Line 313  |  Numbered step -> '1.' format
+    note: renumber 6. -> 1. (editor handles display numbering)
+    BEFORE: 6.  Click **Connect**.
+    AFTER : 1. Click **Connect**.
+
+[SK-07] Line 315  |  Numbered step -> '1.' format
+    note: renumber 7. -> 1. (editor handles display numbering)
+    BEFORE: 7.  Complete the Microsoft Entra sign-in prompt with your lab account.
+    AFTER : 1. Complete the Microsoft Entra sign-in prompt with your lab account.
+
+[SK-07] Line 317  |  Numbered step -> '1.' format
+    note: renumber 8. -> 1. (editor handles display numbering)
+    BEFORE: 8.  In **Object Explorer**, expand **Databases**.
+    AFTER : 1. In **Object Explorer**, expand **Databases**.
+
+[SK-07] Line 319  |  Numbered step -> '1.' format
+    note: renumber 9. -> 1. (editor handles display numbering)
+    BEFORE: 9.  Right-click **sqldb-zava** and select **New Query**.
+    AFTER : 1. Right-click **sqldb-zava** and select **New Query**.
+
+[SK-07] Line 323  |  Numbered step -> '1.' format
+    note: normalize step marker spacing
+    BEFORE: 1.  Open the logical server **sql-zava-jd427**. Click **sqldb-zava**. In the left menu, expand **Settings** and click **SQL databases**.
+    AFTER : 1. Open the logical server **sql-zava-jd427**. Click **sqldb-zava**. In the left menu, expand **Settings** and click **SQL databases**.
+
+[SK-07] Line 328  |  Numbered step -> '1.' format
+    note: renumber 2. -> 1. (editor handles display numbering)
+    BEFORE: 2.  In the database’s left menu, click **Query editor**.
+    AFTER : 1. In the database’s left menu, click **Query editor**.
+
+[SK-07] Line 333  |  Numbered step -> '1.' format
+    note: renumber 5. -> 1. (editor handles display numbering)
+    BEFORE: 5.  On the **Microsoft Entra authentication** tab, click **Connect as <your account>**.
+    AFTER : 1. On the **Microsoft Entra authentication** tab, click **Connect as <your account>**.
+
+[SK-07] Line 337  |  Numbered step -> '1.' format
+    note: renumber 6. -> 1. (editor handles display numbering)
+    BEFORE: 6.  Click **New query**.
+    AFTER : 1. Click **New query**.
+
+[SK-07] Line 344  |  Numbered step -> '1.' format
+    note: normalize step marker spacing
+    BEFORE: 1.  In your query window, run the following code:
+    AFTER : 1. In your query window, run the following code:
+
+[SK-07] Line 367  |  Numbered step -> '1.' format
+    note: normalize step marker spacing
+    BEFORE: 1.  In the portal, return to the server’s **Settings > Microsoft Entra ID** page.
+    AFTER : 1. In the portal, return to the server’s **Settings > Microsoft Entra ID** page.
+
+[SK-07] Line 369  |  Numbered step -> '1.' format
+    note: renumber 2. -> 1. (editor handles display numbering)
+    BEFORE: 2.  Select **Support only Microsoft Entra authentication for this server**.
+    AFTER : 1. Select **Support only Microsoft Entra authentication for this server**.
+
+[SK-07] Line 371  |  Numbered step -> '1.' format
+    note: renumber 3. -> 1. (editor handles display numbering)
+    BEFORE: 3.  In the **Enable Microsoft Entra-only authentication** dialog, click **Yes**.
+    AFTER : 1. In the **Enable Microsoft Entra-only authentication** dialog, click **Yes**.
+
+[SK-07] Line 375  |  Numbered step -> '1.' format
+    note: renumber 4. -> 1. (editor handles display numbering)
+    BEFORE: 4.  Click **Save**.
+    AFTER : 1. Click **Save**.
+
+[SK-07] Line 379  |  Numbered step -> '1.' format
+    note: renumber 5. -> 1. (editor handles display numbering)
+    BEFORE: 5.  In your query window, run the following check:
+    AFTER : 1. In your query window, run the following check:
+
+[SK-07] Line 392  |  Numbered step -> '1.' format
+    note: renumber 6. -> 1. (editor handles display numbering)
+    BEFORE: 6.  If you use the **Query editor**, test that SQL authentication is now refused:
+    AFTER : 1. If you use the **Query editor**, test that SQL authentication is now refused:
+
+[SK-07] Line 394  |  Numbered step -> '1.' format
+    note: normalize step marker spacing
+    BEFORE:     1.  In the logical server’s left menu, expand **Settings** and click **SQL databases**.
+    AFTER :     1. In the logical server’s left menu, expand **Settings** and click **SQL databases**.
+
+[SK-07] Line 396  |  Numbered step -> '1.' format
+    note: renumber 2. -> 1. (editor handles display numbering)
+    BEFORE:     2.  Click **sqldb-zava**.
+    AFTER :     1. Click **sqldb-zava**.
+
+[SK-07] Line 400  |  Numbered step -> '1.' format
+    note: renumber 3. -> 1. (editor handles display numbering)
+    BEFORE:     3.  In the database’s left menu, click **Query editor**.
+    AFTER :     1. In the database’s left menu, click **Query editor**.
+
+[SK-07] Line 404  |  Numbered step -> '1.' format
+    note: renumber 4. -> 1. (editor handles display numbering)
+    BEFORE:     4.  On the toolbar, click **Sign out**.
+    AFTER :     1. On the toolbar, click **Sign out**.
+
+[SK-07] Line 406  |  Numbered step -> '1.' format
+    note: renumber 5. -> 1. (editor handles display numbering)
+    BEFORE:     5.  Select the **SQL authentication** tab.
+    AFTER :     1. Select the **SQL authentication** tab.
+
+[SK-07] Line 410  |  Numbered step -> '1.' format
+    note: renumber 6. -> 1. (editor handles display numbering)
+    BEFORE:     6.  In **Username**, enter +++sqladminuser+++. In **Password**, enter +++P@ssword12345+++.
+    AFTER :     1. In **Username**, enter +++sqladminuser+++. In **Password**, enter +++P@ssword12345+++.
+
+[SK-07] Line 412  |  Numbered step -> '1.' format
+    note: renumber 7. -> 1. (editor handles display numbering)
+    BEFORE:     7.  Click **Connect**.
+    AFTER :     1. Click **Connect**.
+
+[SK-07] Line 416  |  Numbered step -> '1.' format
+    note: renumber 8. -> 1. (editor handles display numbering)
+    BEFORE:     8.  Confirm that the conection is refused with a message that the server supports only Microsoft Entra authentication.
+    AFTER :     1. Confirm that the conection is refused with a message that the server supports only Microsoft Entra authentication.
+
+[SK-07] Line 424  |  Numbered step -> '1.' format
+    note: normalize step marker spacing
+    BEFORE: 1.  In the portal search bar, type +++Log Analytics workspaces+++.
+    AFTER : 1. In the portal search bar, type +++Log Analytics workspaces+++.
+
+[SK-07] Line 426  |  Numbered step -> '1.' format
+    note: renumber 2. -> 1. (editor handles display numbering)
+    BEFORE: 2.  Under **Services**, select **Log Analytics workspaces**.
+    AFTER : 1. Under **Services**, select **Log Analytics workspaces**.
+
+[SK-07] Line 430  |  Numbered step -> '1.' format
+    note: renumber 3. -> 1. (editor handles display numbering)
+    BEFORE: 3.  Click **+ Create**.
+    AFTER : 1. Click **+ Create**.
+
+[SK-07] Line 434  |  Numbered step -> '1.' format
+    note: renumber 4. -> 1. (editor handles display numbering)
+    BEFORE: 4.  On the **Basics** tab, set the following values:
+    AFTER : 1. On the **Basics** tab, set the following values:
+
+[SK-07] Line 442  |  Numbered step -> '1.' format
+    note: renumber 5. -> 1. (editor handles display numbering)
+    BEFORE: 5.  Click **Review + Create**.
+    AFTER : 1. Click **Review + Create**.
+
+[SK-07] Line 446  |  Numbered step -> '1.' format
+    note: renumber 6. -> 1. (editor handles display numbering)
+    BEFORE: 6.  Click **Create**.
+    AFTER : 1. Click **Create**.
+
+[SK-07] Line 451  |  Numbered step -> '1.' format
+    note: renumber 7. -> 1. (editor handles display numbering)
+    BEFORE: 7.  Wait for the deployment to complete. This takes less than a minute.
+    AFTER : 1. Wait for the deployment to complete. This takes less than a minute.
+
+[SK-07] Line 458  |  Numbered step -> '1.' format
+    note: normalize step marker spacing
+    BEFORE: 1.  Open the logical server **sql-zava-jd427**.
+    AFTER : 1. Open the logical server **sql-zava-jd427**.
+
+[SK-07] Line 462  |  Numbered step -> '1.' format
+    note: renumber 2. -> 1. (editor handles display numbering)
+    BEFORE: 2.  In the left menu, click **Security > Auditing**.
+    AFTER : 1. In the left menu, click **Security > Auditing**.
+
+[SK-07] Line 466  |  Numbered step -> '1.' format
+    note: renumber 3. -> 1. (editor handles display numbering)
+    BEFORE: 3.  Turn on **Enable Azure SQL Auditing**.
+    AFTER : 1. Turn on **Enable Azure SQL Auditing**.
+
+[SK-07] Line 470  |  Numbered step -> '1.' format
+    note: renumber 4. -> 1. (editor handles display numbering)
+    BEFORE: 4.  Under **Audit log destination**, select **Log Analytics**.
+    AFTER : 1. Under **Audit log destination**, select **Log Analytics**.
+
+[SK-07] Line 472  |  Numbered step -> '1.' format
+    note: renumber 5. -> 1. (editor handles display numbering)
+    BEFORE: 5.  Select the **law-zava-jd427** workspace.
+    AFTER : 1. Select the **law-zava-jd427** workspace.
+
+[SK-07] Line 476  |  Numbered step -> '1.' format
+    note: renumber 6. -> 1. (editor handles display numbering)
+    BEFORE: 6.  Turn on **Enable Auditing of Microsoft support operations**.
+    AFTER : 1. Turn on **Enable Auditing of Microsoft support operations**.
+
+[SK-07] Line 478  |  Numbered step -> '1.' format
+    note: renumber 7. -> 1. (editor handles display numbering)
+    BEFORE: 7.  Send these audit logs to the same Log Analytics workspace, **law-zava-jd427**. Click **Save**.
+    AFTER : 1. Send these audit logs to the same Log Analytics workspace, **law-zava-jd427**. Click **Save**.
+
+[SK-07] Line 482  |  Numbered step -> '1.' format
+    note: renumber 8. -> 1. (editor handles display numbering)
+    BEFORE: 8.  Open the database **sqldb-zava**.
+    AFTER : 1. Open the database **sqldb-zava**.
+
+[SK-07] Line 487  |  Numbered step -> '1.' format
+    note: renumber 9. -> 1. (editor handles display numbering)
+    BEFORE: 9. In the left menu, click **Monitoring > Diagnostic settings**. Click **+ Add diagnostic setting**.
+    AFTER : 1. In the left menu, click **Monitoring > Diagnostic settings**. Click **+ Add diagnostic setting**.
+
+[SK-07] Line 491  |  Numbered step -> '1.' format
+    note: renumber 10. -> 1. (editor handles display numbering)
+    BEFORE: 10. In **Diagnostic setting name**, enter +++diag-to-law+++.
+    AFTER : 1. In **Diagnostic setting name**, enter +++diag-to-law+++.
+
+[SK-07] Line 493  |  Numbered step -> '1.' format
+    note: renumber 11. -> 1. (editor handles display numbering)
+    BEFORE: 11. Under **Categories**, select the following checkboxes:
+    AFTER : 1. Under **Categories**, select the following checkboxes:
+
+[SK-07] Line 505  |  Numbered step -> '1.' format
+    note: renumber 12. -> 1. (editor handles display numbering)
+    BEFORE: 12. Under **Metrics**, select **Basic**.
+    AFTER : 1. Under **Metrics**, select **Basic**.
+
+[SK-07] Line 509  |  Numbered step -> '1.' format
+    note: renumber 13. -> 1. (editor handles display numbering)
+    BEFORE: 13. Under **Destination details**, select **Send to Log Analytics workspace**.
+    AFTER : 1. Under **Destination details**, select **Send to Log Analytics workspace**.
+
+[SK-07] Line 511  |  Numbered step -> '1.' format
+    note: renumber 14. -> 1. (editor handles display numbering)
+    BEFORE: 14. Select the **law-zava-jd427** workspace.
+    AFTER : 1. Select the **law-zava-jd427** workspace.
+
+[SK-07] Line 513  |  Numbered step -> '1.' format
+    note: renumber 15. -> 1. (editor handles display numbering)
+    BEFORE: 15. Click **Save**.
+    AFTER : 1. Click **Save**.
+
+[SK-07] Line 521  |  Numbered step -> '1.' format
+    note: normalize step marker spacing
+    BEFORE: 1.  Return to your query window.
+    AFTER : 1. Return to your query window.
+
+[SK-07] Line 523  |  Numbered step -> '1.' format
+    note: renumber 2. -> 1. (editor handles display numbering)
+    BEFORE: 2.  Run the following code. You must be signed in with Microsoft Entra authentication.
+    AFTER : 1. Run the following code. You must be signed in with Microsoft Entra authentication.
+
+[SK-07] Line 537  |  Numbered step -> '1.' format
+    note: renumber 3. -> 1. (editor handles display numbering)
+    BEFORE: 3. Sign back in with **Microsoft Entra authentication**.
+    AFTER : 1. Sign back in with **Microsoft Entra authentication**.
+
+[SK-07] Line 547  |  Numbered step -> '1.' format
+    note: normalize step marker spacing
+    BEFORE: 1.  On the portal **Home** page, click **Log Analytics workspaces**.
+    AFTER : 1. On the portal **Home** page, click **Log Analytics workspaces**.
+
+[SK-07] Line 551  |  Numbered step -> '1.' format
+    note: renumber 2. -> 1. (editor handles display numbering)
+    BEFORE: 2.  Click **law-zava-jd427**.
+    AFTER : 1. Click **law-zava-jd427**.
+
+[SK-07] Line 553  |  Numbered step -> '1.' format
+    note: renumber 3. -> 1. (editor handles display numbering)
+    BEFORE: 3.  In the left menu, select **Logs**.
+    AFTER : 1. In the left menu, select **Logs**.
+
+[SK-07] Line 557  |  Numbered step -> '1.' format
+    note: renumber 4. -> 1. (editor handles display numbering)
+    BEFORE: 4.  If the **Welcome to Log Analytics** window opens, close it.
+    AFTER : 1. If the **Welcome to Log Analytics** window opens, close it.
+
+[SK-07] Line 561  |  Numbered step -> '1.' format
+    note: renumber 5. -> 1. (editor handles display numbering)
+    BEFORE: 5.  If the **Queries hub** window opens, close it.
+    AFTER : 1. If the **Queries hub** window opens, close it.
+
+[SK-07] Line 565  |  Numbered step -> '1.' format
+    note: renumber 6. -> 1. (editor handles display numbering)
+    BEFORE: 6.  Turn off the **Agent** toggle.
+    AFTER : 1. Turn off the **Agent** toggle.
+
+[SK-07] Line 569  |  Numbered step -> '1.' format
+    note: renumber 7. -> 1. (editor handles display numbering)
+    BEFORE: 7.  At the top right of the query pane, open the **Simple mode** drop-down list.
+    AFTER : 1. At the top right of the query pane, open the **Simple mode** drop-down list.
+
+[SK-07] Line 573  |  Numbered step -> '1.' format
+    note: renumber 8. -> 1. (editor handles display numbering)
+    BEFORE: 8.  Select **KQL mode**.
+    AFTER : 1. Select **KQL mode**.
+
+[SK-07] Line 577  |  Numbered step -> '1.' format
+    note: renumber 9. -> 1. (editor handles display numbering)
+    BEFORE: 9.  Paste the following query into the query pane:
+    AFTER : 1. Paste the following query into the query pane:
+
+[SK-07] Line 590  |  Numbered step -> '1.' format
+    note: renumber 10. -> 1. (editor handles display numbering)
+    BEFORE: 10. Click **Run**.
+    AFTER : 1. Click **Run**.
+
+[SK-07] Line 592  |  Numbered step -> '1.' format
+    note: renumber 11. -> 1. (editor handles display numbering)
+    BEFORE: 11. In the results, find your **SELECT**, **CREATE TABLE** and **DROP TABLE** statements with your account name.
+    AFTER : 1. In the results, find your **SELECT**, **CREATE TABLE** and **DROP TABLE** statements with your account name.
+
+[SK-07] Line 596  |  Numbered step -> '1.' format
+    note: renumber 12. -> 1. (editor handles display numbering)
+    BEFORE: 12. Replace the query with the following query:
+    AFTER : 1. Replace the query with the following query:
+
+[SK-07] Line 607  |  Numbered step -> '1.' format
+    note: renumber 13. -> 1. (editor handles display numbering)
+    BEFORE: 13. Click **Run**.
+    AFTER : 1. Click **Run**.
+
+[SK-07] Line 609  |  Numbered step -> '1.' format
+    note: renumber 14. -> 1. (editor handles display numbering)
+    BEFORE: 14. Confirm that the failed sign-ins appear with your client IP address (SSMS users).
+    AFTER : 1. Confirm that the failed sign-ins appear with your client IP address (SSMS users).
+
+[SK-07] Line 621  |  Numbered step -> '1.' format
+    note: normalize step marker spacing
+    BEFORE: 1.  Open the database **sqldb-zava**.
+    AFTER : 1. Open the database **sqldb-zava**.
+
+[SK-07] Line 625  |  Numbered step -> '1.' format
+    note: renumber 2. -> 1. (editor handles display numbering)
+    BEFORE: 2.  In the left menu, click **Monitoring > Metrics**.
+    AFTER : 1. In the left menu, click **Monitoring > Metrics**.
+
+[SK-07] Line 629  |  Numbered step -> '1.' format
+    note: renumber 3. -> 1. (editor handles display numbering)
+    BEFORE: 3.  Set **Metric** to **App CPU percentage**.
+    AFTER : 1. Set **Metric** to **App CPU percentage**.
+
+[SK-07] Line 633  |  Numbered step -> '1.' format
+    note: renumber 4. -> 1. (editor handles display numbering)
+    BEFORE: 4.  Set **Aggregation** to **Avg**.
+    AFTER : 1. Set **Aggregation** to **Avg**.
+
+[SK-07] Line 639  |  Numbered step -> '1.' format
+    note: renumber 5. -> 1. (editor handles display numbering)
+    BEFORE: 5.  Click **+ Add metric**.
+    AFTER : 1. Click **+ Add metric**.
+
+[SK-07] Line 647  |  Numbered step -> '1.' format
+    note: renumber 6. -> 1. (editor handles display numbering)
+    BEFORE: 6.  Click **+ Add metric** again.
+    AFTER : 1. Click **+ Add metric** again.
+
+[SK-07] Line 655  |  Numbered step -> '1.' format
+    note: renumber 7. -> 1. (editor handles display numbering)
+    BEFORE: 7. In the left menu, click **Monitoring > Alerts**.
+    AFTER : 1. In the left menu, click **Monitoring > Alerts**.
+
+[SK-07] Line 665  |  Numbered step -> '1.' format
+    note: renumber 8. -> 1. (editor handles display numbering)
+    BEFORE: 8. Under **Alert logic**, set the following values:
+    AFTER : 1. Under **Alert logic**, set the following values:
+
+[SK-07] Line 677  |  Numbered step -> '1.' format
+    note: renumber 7. -> 1. (editor handles display numbering)
+    BEFORE: 7. Under **When to evaluate**, set the following values:
+    AFTER : 1. Under **When to evaluate**, set the following values:
+
+[SK-07] Line 687  |  Numbered step -> '1.' format
+    note: renumber 8. -> 1. (editor handles display numbering)
+    BEFORE: 8. Skip the **Actions** tab. Add an action group with your email address only if your instructor asks you to.
+    AFTER : 1. Skip the **Actions** tab. Add an action group with your email address only if your instructor asks you to.
+
+[SK-07] Line 689  |  Numbered step -> '1.' format
+    note: renumber 9. -> 1. (editor handles display numbering)
+    BEFORE: 9. Click the **Details** tab.
+    AFTER : 1. Click the **Details** tab.
+
+[SK-07] Line 695  |  Numbered step -> '1.' format
+    note: renumber 10. -> 1. (editor handles display numbering)
+    BEFORE: 10. Click **Review + create**.
+    AFTER : 1. Click **Review + create**.
+
+[SK-07] Line 699  |  Numbered step -> '1.' format
+    note: renumber 11. -> 1. (editor handles display numbering)
+    BEFORE: 11. Click **Create**.
+    AFTER : 1. Click **Create**.
+
+[SK-07] Line 703  |  Numbered step -> '1.' format
+    note: renumber 12. -> 1. (editor handles display numbering)
+    BEFORE: 12.    After creating the alert rule, select Alert rules to view the alert rules configured for the Azure SQL database and verify that the newly created rule appears in the list.
+    AFTER : 1. After creating the alert rule, select Alert rules to view the alert rules configured for the Azure SQL database and verify that the newly created rule appears in the list.
+
+[SK-07] Line 707  |  Numbered step -> '1.' format
+    note: renumber 13. -> 1. (editor handles display numbering)
+    BEFORE: 13. In the database’s left menu, click **Intelligent performance > Query performance insight**.
+    AFTER : 1. In the database’s left menu, click **Intelligent performance > Query performance insight**.
+
+[SK-07] Line 709  |  Numbered step -> '1.' format
+    note: renumber 14. -> 1. (editor handles display numbering)
+    BEFORE: 14. Review the top queries by CPU.
+    AFTER : 1. Review the top queries by CPU.
+
+[SK-07] Line 713  |  Numbered step -> '1.' format
+    note: renumber 15. -> 1. (editor handles display numbering)
+    BEFORE: 15. If the page shows “There is no performance data available”, wait a few minutes and click **Refresh**. The chart fills once Query Store has collected data.
+    AFTER : 1. If the page shows “There is no performance data available”, wait a few minutes and click **Refresh**. The chart fills once Query Store has collected data.
+
+[SK-07] Line 717  |  Numbered step -> '1.' format
+    note: renumber 16. -> 1. (editor handles display numbering)
+    BEFORE: 16. Click **Intelligent performance > Automatic tuning**.
+    AFTER : 1. Click **Intelligent performance > Automatic tuning**.
+
+[SK-07] Line 726  |  Numbered step -> '1.' format
+    note: renumber 17. -> 1. (editor handles display numbering)
+    BEFORE: 17. Click **Apply**.
+    AFTER : 1. Click **Apply**.
+
+[SK-07] Line 730  |  Numbered step -> '1.' format
+    note: renumber 18. -> 1. (editor handles display numbering)
+    BEFORE: 18. In the **Do you want to continue?** dialog, click **OK**.
+    AFTER : 1. In the **Do you want to continue?** dialog, click **OK**.
+
+[SK-07] Line 732  |  Numbered step -> '1.' format
+    note: renumber 19. -> 1. (editor handles display numbering)
+    BEFORE: 19. Confirm that **Current state** for **FORCE PLAN** is **ON**. It shows **Inherited from server** or **Forced by user**; both are correct.
+    AFTER : 1. Confirm that **Current state** for **FORCE PLAN** is **ON**. It shows **Inherited from server** or **Forced by user**; both are correct.
+
+[SK-07] Line 736  |  Numbered step -> '1.' format
+    note: renumber 20. -> 1. (editor handles display numbering)
+    BEFORE: 20. Return to your query window.
+    AFTER : 1. Return to your query window.
+
+[SK-07] Line 738  |  Numbered step -> '1.' format
+    note: renumber 21. -> 1. (editor handles display numbering)
+    BEFORE: 21. Run the following code to confirm that Query Store and automatic tuning are active:
+    AFTER : 1. Run the following code to confirm that Query Store and automatic tuning are active:
+
+[SK-07] Line 759  |  Numbered step -> '1.' format
+    note: normalize step marker spacing
+    BEFORE: 1.  Open the database **sqldb-zava**.
+    AFTER : 1. Open the database **sqldb-zava**.
+
+[SK-07] Line 763  |  Numbered step -> '1.' format
+    note: renumber 2. -> 1. (editor handles display numbering)
+    BEFORE: 2.  In the left menu, click **Security > Microsoft Defender for Cloud**.
+    AFTER : 1. In the left menu, click **Security > Microsoft Defender for Cloud**.
+
+[SK-07] Line 765  |  Numbered step -> '1.' format
+    note: renumber 3. -> 1. (editor handles display numbering)
+    BEFORE: 3.  Click **Enable**.
+    AFTER : 1. Click **Enable**.
+
+[SK-07] Line 769  |  Numbered step -> '1.' format
+    note: renumber 4. -> 1. (editor handles display numbering)
+    BEFORE: 4.  Wait 1 to 2 minutes, then refresh the page.
+    AFTER : 1. Wait 1 to 2 minutes, then refresh the page.
+
+[SK-07] Line 771  |  Numbered step -> '1.' format
+    note: renumber 5. -> 1. (editor handles display numbering)
+    BEFORE: 5.  Confirm that the page shows **Microsoft Defender for SQL: On** and **Enabled at the server-level**.
+    AFTER : 1. Confirm that the page shows **Microsoft Defender for SQL: On** and **Enabled at the server-level**.
+
+[SK-07] Line 775  |  Numbered step -> '1.' format
+    note: renumber 6. -> 1. (editor handles display numbering)
+    BEFORE: 6.  Under **Microsoft Defender for SQL**, click **Settings**.
+    AFTER : 1. Under **Microsoft Defender for SQL**, click **Settings**.
+
+[SK-07] Line 779  |  Numbered step -> '1.' format
+    note: renumber 7. -> 1. (editor handles display numbering)
+    BEFORE: 7.  Confirm that vulnerability assessment uses the **Express configuration** (the default; it needs no storage account).
+    AFTER : 1. Confirm that vulnerability assessment uses the **Express configuration** (the default; it needs no storage account).
+
+[SK-07] Line 791  |  Numbered step -> '1.' format
+    note: normalize step marker spacing
+    BEFORE: 1.  In your query window, connected to **sqldb-zava** (not master), run the following code to introduce a deliberate weakness and confirm that it took effect:
+    AFTER : 1. In your query window, connected to **sqldb-zava** (not master), run the following code to introduce a deliberate weakness and confirm that it took effect:
+
+[SK-07] Line 812  |  Numbered step -> '1.' format
+    note: renumber 2. -> 1. (editor handles display numbering)
+    BEFORE: 2.  Return to the database’s **Security > Microsoft Defender for Cloud** page.
+    AFTER : 1. Return to the database’s **Security > Microsoft Defender for Cloud** page.
+
+[SK-07] Line 814  |  Numbered step -> '1.' format
+    note: renumber 3. -> 1. (editor handles display numbering)
+    BEFORE: 3.  Under **Vulnerabilities on this database**, click **Scan now**.
+    AFTER : 1. Under **Vulnerabilities on this database**, click **Scan now**.
+
+[SK-07] Line 818  |  Numbered step -> '1.' format
+    note: renumber 4. -> 1. (editor handles display numbering)
+    BEFORE: 4.  Wait for the scan to finish. This usually takes 1 to 5 minutes.
+    AFTER : 1. Wait for the scan to finish. This usually takes 1 to 5 minutes.
+
+[SK-07] Line 822  |  Numbered step -> '1.' format
+    note: renumber 5. -> 1. (editor handles display numbering)
+    BEFORE: 5.  Click **View database vulnerability summary**.
+    AFTER : 1. Click **View database vulnerability summary**.
+
+[SK-07] Line 826  |  Numbered step -> '1.' format
+    note: renumber 6. -> 1. (editor handles display numbering)
+    BEFORE: 6.  On the **Vulnerability Assessment** page, confirm that the **Last scan time** is later than the time you ran the **GRANT**.
+    AFTER : 1. On the **Vulnerability Assessment** page, confirm that the **Last scan time** is later than the time you ran the **GRANT**.
+
+[SK-07] Line 834  |  Numbered step -> '1.' format
+    note: renumber 7. -> 1. (editor handles display numbering)
+    BEFORE: 7.  On the **Findings** tab, clear any severity or status filter.
+    AFTER : 1. On the **Findings** tab, clear any severity or status filter.
+
+[SK-07] Line 836  |  Numbered step -> '1.' format
+    note: renumber 8. -> 1. (editor handles display numbering)
+    BEFORE: 8.  In the search box, enter +++PUBLIC+++.
+    AFTER : 1. In the search box, enter +++PUBLIC+++.
+
+[SK-07] Line 838  |  Numbered step -> '1.' format
+    note: renumber 9. -> 1. (editor handles display numbering)
+    BEFORE: 9.  Open the finding **Minimal set of principals should be members of fixed low impact database roles in SQL databases** (rule VA2109).
+    AFTER : 1. Open the finding **Minimal set of principals should be members of fixed low impact database roles in SQL databases** (rule VA2109).
+
+[SK-07] Line 840  |  Numbered step -> '1.' format
+    note: renumber 10. -> 1. (editor handles display numbering)
+    BEFORE: 10. Review its description, the query results (**SalesLT.Customer**, **SELECT**) and the remediation script.
+    AFTER : 1. Review its description, the query results (**SalesLT.Customer**, **SELECT**) and the remediation script.
+
+[SK-07] Line 842  |  Numbered step -> '1.' format
+    note: renumber 11. -> 1. (editor handles display numbering)
+    BEFORE: 11. In your query window, run the following code to remediate the finding:
+    AFTER : 1. In your query window, run the following code to remediate the finding:
+
+[SK-07] Line 862  |  Numbered step -> '1.' format
+    note: renumber 12. -> 1. (editor handles display numbering)
+    BEFORE: 12. Return to the **Vulnerability Assessment** page.
+    AFTER : 1. Return to the **Vulnerability Assessment** page.
+
+[SK-07] Line 866  |  Numbered step -> '1.' format
+    note: renumber 13. -> 1. (editor handles display numbering)
+    BEFORE: 13. Open a finding that lists configuration you intend to keep: **VA2109 - Minimal set of principals should be members of fixed low impact database roles in SQL databases**. It lists **SQL-Analysts** in **db_datareader**, which you granted on purpose in Exercise 1.
+    AFTER : 1. Open a finding that lists configuration you intend to keep: **VA2109 - Minimal set of principals should be members of fixed low impact database roles in SQL databases**. It lists **SQL-Analysts** in **db_datareader**, which you granted on purpose in Exercise 1.
+
+[SK-07] Line 870  |  Numbered step -> '1.' format
+    note: renumber 14. -> 1. (editor handles display numbering)
+    BEFORE: 14. Click **Add all results as baseline**.
+    AFTER : 1. Click **Add all results as baseline**.
+
+[SK-07] Line 874  |  Numbered step -> '1.' format
+    note: renumber 15. -> 1. (editor handles display numbering)
+    BEFORE: 15. In the **Set baseline** dialog, click **Yes**.
+    AFTER : 1. In the **Set baseline** dialog, click **Yes**.
+
+[SK-07] Line 878  |  Numbered step -> '1.' format
+    note: renumber 16. -> 1. (editor handles display numbering)
+    BEFORE: 16. Confirm that the result status shows **In Baseline**.
+    AFTER : 1. Confirm that the result status shows **In Baseline**.
+
+[SK-07] Line 882  |  Numbered step -> '1.' format
+    note: renumber 17. -> 1. (editor handles display numbering)
+    BEFORE: 17. Click **Scan** again.
+    AFTER : 1. Click **Scan** again.
+
+[SK-07] Line 884  |  Numbered step -> '1.' format
+    note: renumber 18. -> 1. (editor handles display numbering)
+    BEFORE: 18. Wait for the scan to complete.
+    AFTER : 1. Wait for the scan to complete.
+
+[SK-07] Line 886  |  Numbered step -> '1.' format
+    note: renumber 19. -> 1. (editor handles display numbering)
+    BEFORE: 19. Click the **Passed** tab.
+    AFTER : 1. Click the **Passed** tab.
+
+[SK-07] Line 890  |  Numbered step -> '1.' format
+    note: renumber 20. -> 1. (editor handles display numbering)
+    BEFORE: 20. Confirm that the PUBLIC finding (VA1054) now appears under **Passed** checks.
+    AFTER : 1. Confirm that the PUBLIC finding (VA1054) now appears under **Passed** checks.
+
+[SK-07] Line 892  |  Numbered step -> '1.' format
+    note: renumber 21. -> 1. (editor handles display numbering)
+    BEFORE: 21. Confirm that the baselined finding (VA2109) shows **Passed per custom baseline**.
+    AFTER : 1. Confirm that the baselined finding (VA2109) shows **Passed per custom baseline**.
+
+[SK-07] Line 914  |  Numbered step -> '1.' format
+    note: normalize step marker spacing
+    BEFORE: 1.  In the portal, open **Resource Manager > Recent resources**.
+    AFTER : 1. In the portal, open **Resource Manager > Recent resources**.
+
+[SK-07] Line 916  |  Numbered step -> '1.' format
+    note: renumber 2. -> 1. (editor handles display numbering)
+    BEFORE: 2.  Confirm that the following resources exist:
+    AFTER : 1. Confirm that the following resources exist:
+
+[SK-39] Line 173  |  Typed value -> type-text (+++)
+    note: typed value after 'named' - bold dropped, wrapped as type-text
+    BEFORE: 1. Under **Firewall rules**, confirm that one rule named **ClientIPAddress_<date>** exists.
+    AFTER : 1. Under **Firewall rules**, confirm that one rule named +++ClientIPAddress_<date>+++ exists.
+
+[SK-39] Line 359  |  Typed value -> type-text (+++)
+    note: typed value after 'type' - bold dropped, wrapped as type-text
+    BEFORE:     **Expected result:** one row for **SQL-Analysts** with type **EXTERNAL_GROUP** and authentication type **EXTERNAL**.
+    AFTER :     **Expected result:** one row for **SQL-Analysts** with type +++EXTERNAL_GROUP+++ and authentication type **EXTERNAL**.
+
+[SK-39] Line 359  |  Typed value -> type-text (+++)
+    note: typed value after 'type' - bold dropped, wrapped as type-text
+    BEFORE:     **Expected result:** one row for **SQL-Analysts** with type +++EXTERNAL_GROUP+++ and authentication type **EXTERNAL**.
+    AFTER :     **Expected result:** one row for **SQL-Analysts** with type +++EXTERNAL_GROUP+++ and authentication type +++EXTERNAL+++.
+
+[SK-39] Line 410  |  Typed value -> type-text (+++)
+    note: typed value after 'enter' - bold dropped, wrapped as type-text
+    BEFORE:     1. In **Username**, enter +++sqladminuser+++. In **Password**, enter +++P@ssword12345+++.
+    AFTER :     1. In **Username**, enter +++sqladminuser+++. In +++Password+++, enter +++P@ssword12345+++.
+
+[SK-04] Line 3  |  Bold-only label -> ### heading
+    BEFORE: **Introduction**
+    AFTER : ### Introduction
+
+[SK-04] Line 11  |  Bold-only label -> ### heading
+    BEFORE: **Objectives**
+    AFTER : ### Objectives
+
+[SK-04] Line 23  |  Bold-only label -> ### heading
+    BEFORE: **Prerequisites**
+    AFTER : ### Prerequisites
+
+[SK-82] Line 35  |  Exercise -> h2, Task -> h3 heading hierarchy
+    note: a Task-number heading is always an h3 (###) in the standard lab outline
+    BEFORE: #### **Task 1: Create the Azure SQL Database**
+    AFTER : ### **Task 1: Create the Azure SQL Database**
+
+[SK-82] Line 155  |  Exercise -> h2, Task -> h3 heading hierarchy
+    note: a Task-number heading is always an h3 (###) in the standard lab outline
+    BEFORE: #### **Task 2: Confirm network security**
+    AFTER : ### **Task 2: Confirm network security**
+
+[SK-82] Line 197  |  Exercise -> h2, Task -> h3 heading hierarchy
+    note: a Task-number heading is always an h3 (###) in the standard lab outline
+    BEFORE: #### **Task 3: Turn on the server’s managed identity**
+    AFTER : ### **Task 3: Turn on the server’s managed identity**
+
+[SK-82] Line 217  |  Exercise -> h2, Task -> h3 heading hierarchy
+    note: a Exercise-number heading is always an h2 (##) in the standard lab outline
+    BEFORE: ### **Exercise 1: Configure Microsoft Entra authentication**
+    AFTER : ## **Exercise 1: Configure Microsoft Entra authentication**
+
+[SK-82] Line 221  |  Exercise -> h2, Task -> h3 heading hierarchy
+    note: a Task-number heading is always an h3 (###) in the standard lab outline
+    BEFORE: #### **Task 1: Set the Microsoft Entra administrator**
+    AFTER : ### **Task 1: Set the Microsoft Entra administrator**
+
+[SK-82] Line 245  |  Exercise -> h2, Task -> h3 heading hierarchy
+    note: a Task-number heading is always an h3 (###) in the standard lab outline
+    BEFORE: #### **Task 2: Create the SQL-Analysts group**
+    AFTER : ### **Task 2: Create the SQL-Analysts group**
+
+[SK-82] Line 297  |  Exercise -> h2, Task -> h3 heading hierarchy
+    note: a Task-number heading is always an h3 (###) in the standard lab outline
+    BEFORE: #### **Task 3: Connect to the database**
+    AFTER : ### **Task 3: Connect to the database**
+
+[SK-82] Line 342  |  Exercise -> h2, Task -> h3 heading hierarchy
+    note: a Task-number heading is always an h3 (###) in the standard lab outline
+    BEFORE: #### **Task 4: Create contained users for Entra identities**
+    AFTER : ### **Task 4: Create contained users for Entra identities**
+
+[SK-82] Line 365  |  Exercise -> h2, Task -> h3 heading hierarchy
+    note: a Task-number heading is always an h3 (###) in the standard lab outline
+    BEFORE: #### **Task 5: Enforce Entra-only authentication and validate**
+    AFTER : ### **Task 5: Enforce Entra-only authentication and validate**
+
+[SK-82] Line 420  |  Exercise -> h2, Task -> h3 heading hierarchy
+    note: a Exercise-number heading is always an h2 (##) in the standard lab outline
+    BEFORE: ### **Exercise 2: Enable SQL auditing and monitoring**
+    AFTER : ## **Exercise 2: Enable SQL auditing and monitoring**
+
+[SK-82] Line 422  |  Exercise -> h2, Task -> h3 heading hierarchy
+    note: a Task-number heading is always an h3 (###) in the standard lab outline
+    BEFORE: #### **Task 1: Create a Log Analytics workspace**
+    AFTER : ### **Task 1: Create a Log Analytics workspace**
+
+[SK-82] Line 456  |  Exercise -> h2, Task -> h3 heading hierarchy
+    note: a Task-number heading is always an h3 (###) in the standard lab outline
+    BEFORE: #### **Task 2: Enable server auditing and diagnostics**
+    AFTER : ### **Task 2: Enable server auditing and diagnostics**
+
+[SK-82] Line 519  |  Exercise -> h2, Task -> h3 heading hierarchy
+    note: a Task-number heading is always an h3 (###) in the standard lab outline
+    BEFORE: #### **Task 3: Generate activity**
+    AFTER : ### **Task 3: Generate activity**
+
+[SK-82] Line 545  |  Exercise -> h2, Task -> h3 heading hierarchy
+    note: a Task-number heading is always an h3 (###) in the standard lab outline
+    BEFORE: #### **Task 4: Review audit logs (after Exercise 3)**
+    AFTER : ### **Task 4: Review audit logs (after Exercise 3)**
+
+[SK-82] Line 617  |  Exercise -> h2, Task -> h3 heading hierarchy
+    note: a Task-number heading is always an h3 (###) in the standard lab outline
+    BEFORE: #### **Task 5: Monitor and manage the operational environment**
+    AFTER : ### **Task 5: Monitor and manage the operational environment**
+
+[SK-82] Line 755  |  Exercise -> h2, Task -> h3 heading hierarchy
+    note: a Exercise-number heading is always an h2 (##) in the standard lab outline
+    BEFORE: ### **Exercise 3: Configure Microsoft Defender for SQL**
+    AFTER : ## **Exercise 3: Configure Microsoft Defender for SQL**
+
+[SK-82] Line 757  |  Exercise -> h2, Task -> h3 heading hierarchy
+    note: a Task-number heading is always an h3 (###) in the standard lab outline
+    BEFORE: #### **Task 1: Enable Defender for SQL**
+    AFTER : ### **Task 1: Enable Defender for SQL**
+
+[SK-82] Line 789  |  Exercise -> h2, Task -> h3 heading hierarchy
+    note: a Task-number heading is always an h3 (###) in the standard lab outline
+    BEFORE: #### **Task 2: Run a vulnerability assessment**
+    AFTER : ### **Task 2: Run a vulnerability assessment**
+
+[SK-86] Line 3  |  Standard section heading forced to its fixed level
+    note: 'Introduction' is a standard lab section - always an h2 (##)
+    BEFORE: ### Introduction
+    AFTER : ## Introduction
+
+[SK-11] Line 327  |  Collapse consecutive blank lines
+    note: collapsed consecutive blank lines
+    BEFORE: (blank line)
+    AFTER : (line removed)
+
+[SK-11] Line 332  |  Collapse consecutive blank lines
+    note: collapsed consecutive blank lines
+    BEFORE: (blank line)
+    AFTER : (line removed)
+
+[SK-11] Line 341  |  Collapse consecutive blank lines
+    note: collapsed consecutive blank lines
+    BEFORE: (blank line)
+    AFTER : (line removed)
+
+[SK-11] Line 450  |  Collapse consecutive blank lines
+    note: collapsed consecutive blank lines
+    BEFORE: (blank line)
+    AFTER : (line removed)
+
+[SK-11] Line 455  |  Collapse consecutive blank lines
+    note: collapsed consecutive blank lines
+    BEFORE: (blank line)
+    AFTER : (line removed)
+
+[SK-11] Line 486  |  Collapse consecutive blank lines
+    note: collapsed consecutive blank lines
+    BEFORE: (blank line)
+    AFTER : (line removed)
+
+[SK-11] Line 725  |  Collapse consecutive blank lines
+    note: collapsed consecutive blank lines
+    BEFORE: (blank line)
+    AFTER : (line removed)
+
+[SK-53] Line 23  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | ### Prerequisites
+    AFTER:
+        | (2 blank lines)
+        | ### Prerequisites
+
+[SK-53] Line 31  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | **Instructor note:** Log Analytics takes 5 to 10 minutes to show audit data. Learners enable auditing early in Exercise 2, complete Exercise 3, then return to Exercise 2, Task 4. The guide tells them when.
+    AFTER:
+        | (2 blank lines)
+        | **Instructor note:** Log Analytics takes 5 to 10 minutes to show audit data. Learners enable auditing early in Exercise 2, complete Exercise 3, then return to Exercise 2, Task 4. The guide tells them when.
+
+[SK-53] Line 51  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | 1. On the **SQL databases** page, click **+ Create** on the toolbar.
+    AFTER:
+        | (2 blank lines)
+        | 1. On the **SQL databases** page, click **+ Create** on the toolbar.
+
+[SK-53] Line 61  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | 1. On the **Basics** tab, set the following values:
+    AFTER:
+        | (2 blank lines)
+        | 1. On the **Basics** tab, set the following values:
+
+[SK-53] Line 67  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | 1. Under **Server**, click **Create new**.
+    AFTER:
+        | (2 blank lines)
+        | 1. Under **Server**, click **Create new**.
+
+[SK-53] Line 85  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | 1. Click **OK**.
+    AFTER:
+        | (2 blank lines)
+        | 1. Click **OK**.
+
+[SK-53] Line 105  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | 1. Click **Apply**.
+    AFTER:
+        | (2 blank lines)
+        | 1. Click **Apply**.
+
+[SK-53] Line 127  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | 1. Click the **Security** tab.
+    AFTER:
+        | (2 blank lines)
+        | 1. Click the **Security** tab.
+
+[SK-53] Line 155  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | ### **Task 2: Confirm network security**
+    AFTER:
+        | (2 blank lines)
+        | ### **Task 2: Confirm network security**
+
+[SK-53] Line 197  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | ### **Task 3: Turn on the server’s managed identity**
+    AFTER:
+        | (2 blank lines)
+        | ### **Task 3: Turn on the server’s managed identity**
+
+[SK-53] Line 217  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | ## **Exercise 1: Configure Microsoft Entra authentication**
+    AFTER:
+        | (2 blank lines)
+        | ## **Exercise 1: Configure Microsoft Entra authentication**
+
+[SK-53] Line 245  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | ### **Task 2: Create the SQL-Analysts group**
+    AFTER:
+        | (2 blank lines)
+        | ### **Task 2: Create the SQL-Analysts group**
+
+[SK-53] Line 279  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | 1. Under **Members**, click **No members selected**.
+    AFTER:
+        | (2 blank lines)
+        | 1. Under **Members**, click **No members selected**.
+
+[SK-53] Line 297  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | ### **Task 3: Connect to the database**
+    AFTER:
+        | (2 blank lines)
+        | ### **Task 3: Connect to the database**
+
+[SK-53] Line 321  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | ##### **Option B: Azure portal Query editor (no installation)**
+    AFTER:
+        | (2 blank lines)
+        | ##### **Option B: Azure portal Query editor (no installation)**
+
+[SK-53] Line 339  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | ### **Task 4: Create contained users for Entra identities**
+    AFTER:
+        | (2 blank lines)
+        | ### **Task 4: Create contained users for Entra identities**
+
+[SK-53] Line 362  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | ### **Task 5: Enforce Entra-only authentication and validate**
+    AFTER:
+        | (2 blank lines)
+        | ### **Task 5: Enforce Entra-only authentication and validate**
+
+[SK-53] Line 417  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | ## **Exercise 2: Enable SQL auditing and monitoring**
+    AFTER:
+        | (2 blank lines)
+        | ## **Exercise 2: Enable SQL auditing and monitoring**
+
+[SK-53] Line 439  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | 1. Click **Review + Create**.
+    AFTER:
+        | (2 blank lines)
+        | 1. Click **Review + Create**.
+
+[SK-53] Line 451  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | ### **Task 2: Enable server auditing and diagnostics**
+    AFTER:
+        | (2 blank lines)
+        | ### **Task 2: Enable server auditing and diagnostics**
+
+[SK-53] Line 499  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | 1. Under **Metrics**, select **Basic**.
+    AFTER:
+        | (2 blank lines)
+        | 1. Under **Metrics**, select **Basic**.
+
+[SK-53] Line 513  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | ### **Task 3: Generate activity**
+    AFTER:
+        | (2 blank lines)
+        | ### **Task 3: Generate activity**
+
+[SK-53] Line 539  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | ### **Task 4: Review audit logs (after Exercise 3)**
+    AFTER:
+        | (2 blank lines)
+        | ### **Task 4: Review audit logs (after Exercise 3)**
+
+[SK-53] Line 611  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | ### **Task 5: Monitor and manage the operational environment**
+    AFTER:
+        | (2 blank lines)
+        | ### **Task 5: Monitor and manage the operational environment**
+
+[SK-53] Line 627  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | 1. Set **Aggregation** to **Avg**.
+    AFTER:
+        | (2 blank lines)
+        | 1. Set **Aggregation** to **Avg**.
+
+[SK-53] Line 633  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | 1. Click **+ Add metric**.
+    AFTER:
+        | (2 blank lines)
+        | 1. Click **+ Add metric**.
+
+[SK-53] Line 641  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | 1. Click **+ Add metric** again.
+    AFTER:
+        | (2 blank lines)
+        | 1. Click **+ Add metric** again.
+
+[SK-53] Line 649  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | 1. In the left menu, click **Monitoring > Alerts**.
+    AFTER:
+        | (2 blank lines)
+        | 1. In the left menu, click **Monitoring > Alerts**.
+
+[SK-53] Line 659  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | 1. Under **Alert logic**, set the following values:
+    AFTER:
+        | (2 blank lines)
+        | 1. Under **Alert logic**, set the following values:
+
+[SK-53] Line 671  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | 1. Under **When to evaluate**, set the following values:
+    AFTER:
+        | (2 blank lines)
+        | 1. Under **When to evaluate**, set the following values:
+
+[SK-53] Line 681  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | 1. Skip the **Actions** tab. Add an action group with your email address only if your instructor asks you to.
+    AFTER:
+        | (2 blank lines)
+        | 1. Skip the **Actions** tab. Add an action group with your email address only if your instructor asks you to.
+
+[SK-53] Line 689  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | 1. Click **Review + create**.
+    AFTER:
+        | (2 blank lines)
+        | 1. Click **Review + create**.
+
+[SK-53] Line 719  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | 1. Click **Apply**.
+    AFTER:
+        | (2 blank lines)
+        | 1. Click **Apply**.
+
+[SK-53] Line 748  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | ## **Exercise 3: Configure Microsoft Defender for SQL**
+    AFTER:
+        | (2 blank lines)
+        | ## **Exercise 3: Configure Microsoft Defender for SQL**
+
+[SK-53] Line 782  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | ### **Task 2: Run a vulnerability assessment**
+    AFTER:
+        | (2 blank lines)
+        | ### **Task 2: Run a vulnerability assessment**
+
+[SK-53] Line 827  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | 1. On the **Findings** tab, clear any severity or status filter.
+    AFTER:
+        | (2 blank lines)
+        | 1. On the **Findings** tab, clear any severity or status filter.
+
+[SK-53] Line 891  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | ##### **If the vulnerability count still shows 0**
+    AFTER:
+        | (2 blank lines)
+        | ##### **If the vulnerability count still shows 0**
+
+[SK-53] Line 903  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image119.png)
+    AFTER:
+        | (2 blank lines)
+        | ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image119.png)
+
+[SK-81] Line 15  |  Compact bullet list (no padding blank lines)
+    note: sibling bullets in one list need no blank line between them
+    BEFORE:
+        | - Deploy Azure SQL Database with network access limited to your own IP address.
+        | 
+        | - Configure a Microsoft Entra administrator, grant access through an Entra group, and enforce Entra-only authentication.
+    AFTER:
+        | - Deploy Azure SQL Database with network access limited to your own IP address.
+        | - Configure a Microsoft Entra administrator, grant access through an Entra group, and enforce Entra-only authentication.
+
+[SK-81] Line 17  |  Compact bullet list (no padding blank lines)
+    note: sibling bullets in one list need no blank line between them
+    BEFORE:
+        | - Configure a Microsoft Entra administrator, grant access through an Entra group, and enforce Entra-only authentication.
+        | 
+        | - Send server audit events to Log Analytics and trace queries, schema changes and failed sign-ins to a specific identity.
+    AFTER:
+        | - Configure a Microsoft Entra administrator, grant access through an Entra group, and enforce Entra-only authentication.
+        | - Send server audit events to Log Analytics and trace queries, schema changes and failed sign-ins to a specific identity.
+
+[SK-81] Line 19  |  Compact bullet list (no padding blank lines)
+    note: sibling bullets in one list need no blank line between them
+    BEFORE:
+        | - Send server audit events to Log Analytics and trace queries, schema changes and failed sign-ins to a specific identity.
+        | 
+        | - Monitor the database with metrics, an alert rule, Query Store and automatic tuning.
+    AFTER:
+        | - Send server audit events to Log Analytics and trace queries, schema changes and failed sign-ins to a specific identity.
+        | - Monitor the database with metrics, an alert rule, Query Store and automatic tuning.
+
+[SK-81] Line 21  |  Compact bullet list (no padding blank lines)
+    note: sibling bullets in one list need no blank line between them
+    BEFORE:
+        | - Monitor the database with metrics, an alert rule, Query Store and automatic tuning.
+        | 
+        | - Enable Microsoft Defender for SQL, remediate a vulnerability, and investigate a security alert.
+    AFTER:
+        | - Monitor the database with metrics, an alert rule, Query Store and automatic tuning.
+        | - Enable Microsoft Defender for SQL, remediate a vulnerability, and investigate a security alert.
+
+[SK-81] Line 28  |  Compact bullet list (no padding blank lines)
+    note: sibling bullets in one list need no blank line between them
+    BEFORE:
+        | - An Azure subscription where you have **Contributor** rights on your resource group.
+        | 
+        | - Permission to create security groups in Microsoft Entra ID. If your lab account does not have this permission, your instructor will create the **SQL-Analysts** group for you (Exercise 1, Task 2).
+    AFTER:
+        | - An Azure subscription where you have **Contributor** rights on your resource group.
+        | - Permission to create security groups in Microsoft Entra ID. If your lab account does not have this permission, your instructor will create the **SQL-Analysts** group for you (Exercise 1, Task 2).
+
+[SK-81] Line 30  |  Compact bullet list (no padding blank lines)
+    note: sibling bullets in one list need no blank line between them
+    BEFORE:
+        | - Permission to create security groups in Microsoft Entra ID. If your lab account does not have this permission, your instructor will create the **SQL-Analysts** group for you (Exercise 1, Task 2).
+        | 
+        | - A query tool: SQL Server Management Studio (SSMS) 21 or later (SSMS 22 recommended) on your lab machine, **or** the Azure portal **Query editor**, which needs no installation. Exercise 1, Task 3 covers both.
+    AFTER:
+        | - Permission to create security groups in Microsoft Entra ID. If your lab account does not have this permission, your instructor will create the **SQL-Analysts** group for you (Exercise 1, Task 2).
+        | - A query tool: SQL Server Management Studio (SSMS) 21 or later (SSMS 22 recommended) on your lab machine, **or** the Azure portal **Query editor**, which needs no installation. Exercise 1, Task 3 covers both.
+
+[SK-81] Line 49  |  Compact bullet list (no padding blank lines)
+    note: sibling bullets in one list need no blank line between them
+    BEFORE:
+        |     - If the tile is not shown, type +++Azure SQL Database+++ in the search bar at the top, and then select **Azure SQL Database** under **Services**.
+        | 
+        |     - Do not select **Azure SQL** (a hub page with no **Create** button), **Azure SQL Database Hyperscale** (it pre-selects the Hyperscale tier), or **SQL Server databases** (Azure Arc).
+    AFTER:
+        |     - If the tile is not shown, type +++Azure SQL Database+++ in the search bar at the top, and then select **Azure SQL Database** under **Services**.
+        |     - Do not select **Azure SQL** (a hub page with no **Create** button), **Azure SQL Database Hyperscale** (it pre-selects the Hyperscale tier), or **SQL Server databases** (Azure Arc).
+
+[SK-81] Line 69  |  Compact bullet list (no padding blank lines)
+    note: sibling bullets in one list need no blank line between them
+    BEFORE:
+        |     - **Resource group:** Select your lab resource group.
+        | 
+        |     - **Database name:** Enter +++sqldb-zava+++.
+    AFTER:
+        |     - **Resource group:** Select your lab resource group.
+        |     - **Database name:** Enter +++sqldb-zava+++.
+
+[SK-81] Line 80  |  Compact bullet list (no padding blank lines)
+    note: sibling bullets in one list need no blank line between them
+    BEFORE:
+        |     - **Server name:** +++sql-zava-jd427+++
+        | 
+        |     - **Location:** East US (or the region your instructor gives you)
+    AFTER:
+        |     - **Server name:** +++sql-zava-jd427+++
+        |     - **Location:** East US (or the region your instructor gives you)
+
+[SK-81] Line 82  |  Compact bullet list (no padding blank lines)
+    note: sibling bullets in one list need no blank line between them
+    BEFORE:
+        |     - **Location:** East US (or the region your instructor gives you)
+        | 
+        |     - **Authentication method:** Use SQL authentication
+    AFTER:
+        |     - **Location:** East US (or the region your instructor gives you)
+        |     - **Authentication method:** Use SQL authentication
+
+[SK-81] Line 84  |  Compact bullet list (no padding blank lines)
+    note: sibling bullets in one list need no blank line between them
+    BEFORE:
+        |     - **Authentication method:** Use SQL authentication
+        | 
+        |     - **Server admin login:** +++sqladminuser+++
+    AFTER:
+        |     - **Authentication method:** Use SQL authentication
+        |     - **Server admin login:** +++sqladminuser+++
+
+[SK-81] Line 86  |  Compact bullet list (no padding blank lines)
+    note: sibling bullets in one list need no blank line between them
+    BEFORE:
+        |     - **Server admin login:** +++sqladminuser+++
+        | 
+        |     - **Password:** +++P@ssword12345+++
+    AFTER:
+        |     - **Server admin login:** +++sqladminuser+++
+        |     - **Password:** +++P@ssword12345+++
+
+[SK-81] Line 88  |  Compact bullet list (no padding blank lines)
+    note: sibling bullets in one list need no blank line between them
+    BEFORE:
+        |     - **Password:** +++P@ssword12345+++
+        | 
+        |     - **Confirm password:** +++P@ssword12345+++
+    AFTER:
+        |     - **Password:** +++P@ssword12345+++
+        |     - **Confirm password:** +++P@ssword12345+++
+
+[SK-81] Line 107  |  Compact bullet list (no padding blank lines)
+    note: sibling bullets in one list need no blank line between them
+    BEFORE:
+        |     - Set **Compute tier** to **Serverless**.
+        | 
+        |     - Set **Max vCores** to **2**.
+    AFTER:
+        |     - Set **Compute tier** to **Serverless**.
+        |     - Set **Max vCores** to **2**.
+
+[SK-81] Line 109  |  Compact bullet list (no padding blank lines)
+    note: sibling bullets in one list need no blank line between them
+    BEFORE:
+        |     - Set **Max vCores** to **2**.
+        | 
+        |     - Set **Auto-pause delay** to **1 hour**.
+    AFTER:
+        |     - Set **Max vCores** to **2**.
+        |     - Set **Auto-pause delay** to **1 hour**.
+
+[SK-81] Line 128  |  Compact bullet list (no padding blank lines)
+    note: sibling bullets in one list need no blank line between them
+    BEFORE:
+        |     - **Connectivity method:** Public endpoint
+        | 
+        |     - **Allow Azure services and resources to access this server:** No
+    AFTER:
+        |     - **Connectivity method:** Public endpoint
+        |     - **Allow Azure services and resources to access this server:** No
+
+[SK-81] Line 130  |  Compact bullet list (no padding blank lines)
+    note: sibling bullets in one list need no blank line between them
+    BEFORE:
+        |     - **Allow Azure services and resources to access this server:** No
+        | 
+        |     - **Add current client IP address:** Yes
+    AFTER:
+        |     - **Allow Azure services and resources to access this server:** No
+        |     - **Add current client IP address:** Yes
+
+[SK-81] Line 285  |  Compact bullet list (no padding blank lines)
+    note: sibling bullets in one list need no blank line between them
+    BEFORE:
+        |     - **Group type:** Security
+        | 
+        |     - **Group name:** +++SQL-Analysts+++
+    AFTER:
+        |     - **Group type:** Security
+        |     - **Group name:** +++SQL-Analysts+++
+
+[SK-81] Line 287  |  Compact bullet list (no padding blank lines)
+    note: sibling bullets in one list need no blank line between them
+    BEFORE:
+        |     - **Group name:** +++SQL-Analysts+++
+        | 
+        |     - **Membership type:** Assigned
+    AFTER:
+        |     - **Group name:** +++SQL-Analysts+++
+        |     - **Membership type:** Assigned
+
+[SK-81] Line 453  |  Compact bullet list (no padding blank lines)
+    note: sibling bullets in one list need no blank line between them
+    BEFORE:
+        |     - **Resource group:** Select your lab resource group.
+        | 
+        |     - **Name:** Enter +++law-zava-jd427+++.
+    AFTER:
+        |     - **Resource group:** Select your lab resource group.
+        |     - **Name:** Enter +++law-zava-jd427+++.
+
+[SK-81] Line 455  |  Compact bullet list (no padding blank lines)
+    note: sibling bullets in one list need no blank line between them
+    BEFORE:
+        |     - **Name:** Enter +++law-zava-jd427+++.
+        | 
+        |     - **Region:** Select the same region as your server.
+    AFTER:
+        |     - **Name:** Enter +++law-zava-jd427+++.
+        |     - **Region:** Select the same region as your server.
+
+[SK-81] Line 511  |  Compact bullet list (no padding blank lines)
+    note: sibling bullets in one list need no blank line between them
+    BEFORE:
+        |     - **SQL Insights**
+        | 
+        |     - **Errors**
+    AFTER:
+        |     - **SQL Insights**
+        |     - **Errors**
+
+[SK-81] Line 513  |  Compact bullet list (no padding blank lines)
+    note: sibling bullets in one list need no blank line between them
+    BEFORE:
+        |     - **Errors**
+        | 
+        |     - **Timeouts**
+    AFTER:
+        |     - **Errors**
+        |     - **Timeouts**
+
+[SK-81] Line 515  |  Compact bullet list (no padding blank lines)
+    note: sibling bullets in one list need no blank line between them
+    BEFORE:
+        |     - **Timeouts**
+        | 
+        |     - **Deadlocks**
+    AFTER:
+        |     - **Timeouts**
+        |     - **Deadlocks**
+
+[SK-81] Line 630  |  Compact bullet list (no padding blank lines)
+    note: sibling bullets in one list need no blank line between them
+    BEFORE:
+        |     - Query editor users may see no rows; see the note in Task 3.
+        | 
+        |     - If neither query returns rows, wait 5 minutes and run both queries again. Audit data takes 5 to 10 minutes to arrive.
+    AFTER:
+        |     - Query editor users may see no rows; see the note in Task 3.
+        |     - If neither query returns rows, wait 5 minutes and run both queries again. Audit data takes 5 to 10 minutes to arrive.
+
+[SK-81] Line 663  |  Compact bullet list (no padding blank lines)
+    note: sibling bullets in one list need no blank line between them
+    BEFORE:
+        |     - Set **Metric** to **Data IO percentage**.
+        | 
+        |     - Set **Aggregation** to **Avg**.
+    AFTER:
+        |     - Set **Metric** to **Data IO percentage**.
+        |     - Set **Aggregation** to **Avg**.
+
+[SK-81] Line 672  |  Compact bullet list (no padding blank lines)
+    note: sibling bullets in one list need no blank line between them
+    BEFORE:
+        |     - Set **Metric** to **Failed Connections : User Errors**.
+        | 
+        |     - Set **Aggregation** to **Sum**.
+    AFTER:
+        |     - Set **Metric** to **Failed Connections : User Errors**.
+        |     - Set **Aggregation** to **Sum**.
+
+[SK-81] Line 692  |  Compact bullet list (no padding blank lines)
+    note: sibling bullets in one list need no blank line between them
+    BEFORE:
+        |     - **Threshold type:** Static
+        | 
+        |     - **Aggregation type:** Total
+    AFTER:
+        |     - **Threshold type:** Static
+        |     - **Aggregation type:** Total
+
+[SK-81] Line 694  |  Compact bullet list (no padding blank lines)
+    note: sibling bullets in one list need no blank line between them
+    BEFORE:
+        |     - **Aggregation type:** Total
+        | 
+        |     - **Value is:** Greater than
+    AFTER:
+        |     - **Aggregation type:** Total
+        |     - **Value is:** Greater than
+
+[SK-81] Line 696  |  Compact bullet list (no padding blank lines)
+    note: sibling bullets in one list need no blank line between them
+    BEFORE:
+        |     - **Value is:** Greater than
+        | 
+        |     - **Unit:** Count
+    AFTER:
+        |     - **Value is:** Greater than
+        |     - **Unit:** Count
+
+[SK-81] Line 698  |  Compact bullet list (no padding blank lines)
+    note: sibling bullets in one list need no blank line between them
+    BEFORE:
+        |     - **Unit:** Count
+        | 
+        |     - **Threshold value:** +++5+++
+    AFTER:
+        |     - **Unit:** Count
+        |     - **Threshold value:** +++5+++
+
+[SK-81] Line 705  |  Compact bullet list (no padding blank lines)
+    note: sibling bullets in one list need no blank line between them
+    BEFORE:
+        |     - **Check every:** 1 minute
+        | 
+        |     - **Lookback period:** 5 minutes
+    AFTER:
+        |     - **Check every:** 1 minute
+        |     - **Lookback period:** 5 minutes
+
+[SK-81] Line 707  |  Compact bullet list (no padding blank lines)
+    note: sibling bullets in one list need no blank line between them
+    BEFORE:
+        |     - **Lookback period:** 5 minutes
+        | 
+        |     - Review the estimated cost in the **Preview** pane (about USD 0.10 per month).
+    AFTER:
+        |     - **Lookback period:** 5 minutes
+        |     - Review the estimated cost in the **Preview** pane (about USD 0.10 per month).
+
+[SK-81] Line 718  |  Compact bullet list (no padding blank lines)
+    note: sibling bullets in one list need no blank line between them
+    BEFORE:
+        |     - Set **Severity** to **2 - Warning**.
+        | 
+        |     - Set **Alert rule name** to +++alert-failed-connections+++.
+    AFTER:
+        |     - Set **Severity** to **2 - Warning**.
+        |     - Set **Alert rule name** to +++alert-failed-connections+++.
+
+[SK-81] Line 858  |  Compact bullet list (no padding blank lines)
+    note: sibling bullets in one list need no blank line between them
+    BEFORE:
+        |     - If it is not, click **Scan history**.
+        | 
+        |     - If the latest scan is still in progress, wait, and then click **Refresh**.
+    AFTER:
+        |     - If it is not, click **Scan history**.
+        |     - If the latest scan is still in progress, wait, and then click **Refresh**.
+
+[SK-81] Line 932  |  Compact bullet list (no padding blank lines)
+    note: sibling bullets in one list need no blank line between them
+    BEFORE:
+        |     - **No scan has completed yet.** Click **Scan now**, wait for the notification (1 to 5 minutes), and then open **View database vulnerability summary**. Ignore the **Recommendations (0)** counter; it is not used in this lab.
+        | 
+        |     - **The scan ran before the GRANT.** Run the confirmation query again, and then scan again.
+    AFTER:
+        |     - **No scan has completed yet.** Click **Scan now**, wait for the notification (1 to 5 minutes), and then open **View database vulnerability summary**. Ignore the **Recommendations (0)** counter; it is not used in this lab.
+        |     - **The scan ran before the GRANT.** Run the confirmation query again, and then scan again.
+
+[SK-81] Line 934  |  Compact bullet list (no padding blank lines)
+    note: sibling bullets in one list need no blank line between them
+    BEFORE:
+        |     - **The scan ran before the GRANT.** Run the confirmation query again, and then scan again.
+        | 
+        |     - **The GRANT ran in master.** In the Query editor, the connection is always to the database you opened it from; in SSMS, check the database drop-down on the toolbar.
+    AFTER:
+        |     - **The scan ran before the GRANT.** Run the confirmation query again, and then scan again.
+        |     - **The GRANT ran in master.** In the Query editor, the connection is always to the database you opened it from; in SSMS, check the database drop-down on the toolbar.
+
+[SK-81] Line 936  |  Compact bullet list (no padding blank lines)
+    note: sibling bullets in one list need no blank line between them
+    BEFORE:
+        |     - **The GRANT ran in master.** In the Query editor, the connection is always to the database you opened it from; in SSMS, check the database drop-down on the toolbar.
+        | 
+        |     - **Defender is still provisioning, or vulnerability assessment is not configured.** On the Defender for Cloud page, confirm **On** and **Enabled at the server-level**, and then check **Settings** for the express configuration (Task 1, step 7). If you enabled Defender less than 2 minutes ago, wait, refresh the page, and scan again.
+    AFTER:
+        |     - **The GRANT ran in master.** In the Query editor, the connection is always to the database you opened it from; in SSMS, check the database drop-down on the toolbar.
+        |     - **Defender is still provisioning, or vulnerability assessment is not configured.** On the Defender for Cloud page, confirm **On** and **Enabled at the server-level**, and then check **Settings** for the express configuration (Task 1, step 7). If you enabled Defender less than 2 minutes ago, wait, refresh the page, and scan again.
+
+[SK-81] Line 938  |  Compact bullet list (no padding blank lines)
+    note: sibling bullets in one list need no blank line between them
+    BEFORE:
+        |     - **Defender is still provisioning, or vulnerability assessment is not configured.** On the Defender for Cloud page, confirm **On** and **Enabled at the server-level**, and then check **Settings** for the express configuration (Task 1, step 7). If you enabled Defender less than 2 minutes ago, wait, refresh the page, and scan again.
+        | 
+        |     - **A filter hides the finding.** Clear the search box and any severity filter, and look in both the failed and passed lists.
+    AFTER:
+        |     - **Defender is still provisioning, or vulnerability assessment is not configured.** On the Defender for Cloud page, confirm **On** and **Enabled at the server-level**, and then check **Settings** for the express configuration (Task 1, step 7). If you enabled Defender less than 2 minutes ago, wait, refresh the page, and scan again.
+        |     - **A filter hides the finding.** Clear the search box and any severity filter, and look in both the failed and passed lists.
+
+[SK-81] Line 951  |  Compact bullet list (no padding blank lines)
+    note: sibling bullets in one list need no blank line between them
+    BEFORE:
+        |     - **sqldb-zava** (SQL database)
+        | 
+        |     - **sql-zava-jd427** (SQL server)
+    AFTER:
+        |     - **sqldb-zava** (SQL database)
+        |     - **sql-zava-jd427** (SQL server)
+
+[SK-81] Line 953  |  Compact bullet list (no padding blank lines)
+    note: sibling bullets in one list need no blank line between them
+    BEFORE:
+        |     - **sql-zava-jd427** (SQL server)
+        | 
+        |     - **law-zava-jd427** (Log Analytics workspace)
+    AFTER:
+        |     - **sql-zava-jd427** (SQL server)
+        |     - **law-zava-jd427** (Log Analytics workspace)
+
+[SK-110] Line 1  |  Decoration (bold/italic/<u>) stripped from a heading
+    note: decoration removed from a heading - a heading is already styled by the IDLx theme, so bold, italics and Word's '<u>' underline add nothing and render inconsistently
+    BEFORE: # **Lab 9: Secure Azure SQL workloads**
+    AFTER : # Lab 9: Secure Azure SQL workloads
+
+[SK-110] Line 29  |  Decoration (bold/italic/<u>) stripped from a heading
+    note: decoration removed from a heading - a heading is already styled by the IDLx theme, so bold, italics and Word's '<u>' underline add nothing and render inconsistently
+    BEFORE: ### **Getting started: Set up your environment**
+    AFTER : ### Getting started: Set up your environment
+
+[SK-110] Line 31  |  Decoration (bold/italic/<u>) stripped from a heading
+    note: decoration removed from a heading - a heading is already styled by the IDLx theme, so bold, italics and Word's '<u>' underline add nothing and render inconsistently
+    BEFORE: ### **Task 1: Create the Azure SQL Database**
+    AFTER : ### Task 1: Create the Azure SQL Database
+
+[SK-110] Line 147  |  Decoration (bold/italic/<u>) stripped from a heading
+    note: decoration removed from a heading - a heading is already styled by the IDLx theme, so bold, italics and Word's '<u>' underline add nothing and render inconsistently
+    BEFORE: ### **Task 2: Confirm network security**
+    AFTER : ### Task 2: Confirm network security
+
+[SK-110] Line 190  |  Decoration (bold/italic/<u>) stripped from a heading
+    note: decoration removed from a heading - a heading is already styled by the IDLx theme, so bold, italics and Word's '<u>' underline add nothing and render inconsistently
+    BEFORE: ### **Task 3: Turn on the server’s managed identity**
+    AFTER : ### Task 3: Turn on the server’s managed identity
+
+[SK-110] Line 211  |  Decoration (bold/italic/<u>) stripped from a heading
+    note: decoration removed from a heading - a heading is already styled by the IDLx theme, so bold, italics and Word's '<u>' underline add nothing and render inconsistently
+    BEFORE: ## **Exercise 1: Configure Microsoft Entra authentication**
+    AFTER : ## Exercise 1: Configure Microsoft Entra authentication
+
+[SK-110] Line 215  |  Decoration (bold/italic/<u>) stripped from a heading
+    note: decoration removed from a heading - a heading is already styled by the IDLx theme, so bold, italics and Word's '<u>' underline add nothing and render inconsistently
+    BEFORE: ### **Task 1: Set the Microsoft Entra administrator**
+    AFTER : ### Task 1: Set the Microsoft Entra administrator
+
+[SK-110] Line 240  |  Decoration (bold/italic/<u>) stripped from a heading
+    note: decoration removed from a heading - a heading is already styled by the IDLx theme, so bold, italics and Word's '<u>' underline add nothing and render inconsistently
+    BEFORE: ### **Task 2: Create the SQL-Analysts group**
+    AFTER : ### Task 2: Create the SQL-Analysts group
+
+[SK-110] Line 292  |  Decoration (bold/italic/<u>) stripped from a heading
+    note: decoration removed from a heading - a heading is already styled by the IDLx theme, so bold, italics and Word's '<u>' underline add nothing and render inconsistently
+    BEFORE: ### **Task 3: Connect to the database**
+    AFTER : ### Task 3: Connect to the database
+
+[SK-110] Line 296  |  Decoration (bold/italic/<u>) stripped from a heading
+    note: decoration removed from a heading - a heading is already styled by the IDLx theme, so bold, italics and Word's '<u>' underline add nothing and render inconsistently
+    BEFORE: ##### **Option A: SQL Server Management Studio (SSMS)** (Optional)
+    AFTER : ##### Option A: SQL Server Management Studio (SSMS) (Optional)
+
+[SK-110] Line 317  |  Decoration (bold/italic/<u>) stripped from a heading
+    note: decoration removed from a heading - a heading is already styled by the IDLx theme, so bold, italics and Word's '<u>' underline add nothing and render inconsistently
+    BEFORE: ##### **Option B: Azure portal Query editor (no installation)**
+    AFTER : ##### Option B: Azure portal Query editor (no installation)
+
+[SK-110] Line 336  |  Decoration (bold/italic/<u>) stripped from a heading
+    note: decoration removed from a heading - a heading is already styled by the IDLx theme, so bold, italics and Word's '<u>' underline add nothing and render inconsistently
+    BEFORE: ### **Task 4: Create contained users for Entra identities**
+    AFTER : ### Task 4: Create contained users for Entra identities
+
+[SK-110] Line 360  |  Decoration (bold/italic/<u>) stripped from a heading
+    note: decoration removed from a heading - a heading is already styled by the IDLx theme, so bold, italics and Word's '<u>' underline add nothing and render inconsistently
+    BEFORE: ### **Task 5: Enforce Entra-only authentication and validate**
+    AFTER : ### Task 5: Enforce Entra-only authentication and validate
+
+[SK-110] Line 416  |  Decoration (bold/italic/<u>) stripped from a heading
+    note: decoration removed from a heading - a heading is already styled by the IDLx theme, so bold, italics and Word's '<u>' underline add nothing and render inconsistently
+    BEFORE: ## **Exercise 2: Enable SQL auditing and monitoring**
+    AFTER : ## Exercise 2: Enable SQL auditing and monitoring
+
+[SK-110] Line 418  |  Decoration (bold/italic/<u>) stripped from a heading
+    note: decoration removed from a heading - a heading is already styled by the IDLx theme, so bold, italics and Word's '<u>' underline add nothing and render inconsistently
+    BEFORE: ### **Task 1: Create a Log Analytics workspace**
+    AFTER : ### Task 1: Create a Log Analytics workspace
+
+[SK-110] Line 450  |  Decoration (bold/italic/<u>) stripped from a heading
+    note: decoration removed from a heading - a heading is already styled by the IDLx theme, so bold, italics and Word's '<u>' underline add nothing and render inconsistently
+    BEFORE: ### **Task 2: Enable server auditing and diagnostics**
+    AFTER : ### Task 2: Enable server auditing and diagnostics
+
+[SK-110] Line 511  |  Decoration (bold/italic/<u>) stripped from a heading
+    note: decoration removed from a heading - a heading is already styled by the IDLx theme, so bold, italics and Word's '<u>' underline add nothing and render inconsistently
+    BEFORE: ### **Task 3: Generate activity**
+    AFTER : ### Task 3: Generate activity
+
+[SK-110] Line 538  |  Decoration (bold/italic/<u>) stripped from a heading
+    note: decoration removed from a heading - a heading is already styled by the IDLx theme, so bold, italics and Word's '<u>' underline add nothing and render inconsistently
+    BEFORE: ### **Task 4: Review audit logs (after Exercise 3)**
+    AFTER : ### Task 4: Review audit logs (after Exercise 3)
+
+[SK-110] Line 610  |  Decoration (bold/italic/<u>) stripped from a heading
+    note: decoration removed from a heading - a heading is already styled by the IDLx theme, so bold, italics and Word's '<u>' underline add nothing and render inconsistently
+    BEFORE: ### **Task 5: Monitor and manage the operational environment**
+    AFTER : ### Task 5: Monitor and manage the operational environment
+
+[SK-110] Line 748  |  Decoration (bold/italic/<u>) stripped from a heading
+    note: decoration removed from a heading - a heading is already styled by the IDLx theme, so bold, italics and Word's '<u>' underline add nothing and render inconsistently
+    BEFORE: ## **Exercise 3: Configure Microsoft Defender for SQL**
+    AFTER : ## Exercise 3: Configure Microsoft Defender for SQL
+
+[SK-110] Line 750  |  Decoration (bold/italic/<u>) stripped from a heading
+    note: decoration removed from a heading - a heading is already styled by the IDLx theme, so bold, italics and Word's '<u>' underline add nothing and render inconsistently
+    BEFORE: ### **Task 1: Enable Defender for SQL**
+    AFTER : ### Task 1: Enable Defender for SQL
+
+[SK-110] Line 783  |  Decoration (bold/italic/<u>) stripped from a heading
+    note: decoration removed from a heading - a heading is already styled by the IDLx theme, so bold, italics and Word's '<u>' underline add nothing and render inconsistently
+    BEFORE: ### **Task 2: Run a vulnerability assessment**
+    AFTER : ### Task 2: Run a vulnerability assessment
+
+[SK-110] Line 893  |  Decoration (bold/italic/<u>) stripped from a heading
+    note: decoration removed from a heading - a heading is already styled by the IDLx theme, so bold, italics and Word's '<u>' underline add nothing and render inconsistently
+    BEFORE: ##### **If the vulnerability count still shows 0**
+    AFTER : ##### If the vulnerability count still shows 0
+
+[SK-110] Line 904  |  Decoration (bold/italic/<u>) stripped from a heading
+    note: decoration removed from a heading - a heading is already styled by the IDLx theme, so bold, italics and Word's '<u>' underline add nothing and render inconsistently
+    BEFORE: ### **Review your lab resources**
+    AFTER : ### Review your lab resources
+
+==============================================================================
+END OF LOG
+==============================================================================

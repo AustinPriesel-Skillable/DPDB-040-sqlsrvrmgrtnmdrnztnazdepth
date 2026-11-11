@@ -1,0 +1,1352 @@
+==============================================================================
+IDLx MARKDOWN CLEANUP - CHANGE LOG
+==============================================================================
+Source file : C:\Users\SP\PycharmProjects\Austin_Instruction_CleanUp\DPDB-040-sqlsrvrmgrtnmdrnztnazdepth\Lab Guides\Lab 8\Lab 8.md
+Run time    : 2026-11-11 09:15:21
+Mode        : APPLIED
+Script      : idlx_cleanup.py v1.2
+Ruleset     : IDLx Markdown Formatting Rules v1.42
+
+Auto-fix changes : 185
+Review flags     : 50
+
+==============================================================================
+ACTION REQUIRED - LINES FLAGGED FOR REVIEW
+==============================================================================
+
+These lines were NOT changed. Each needs a human decision.
+Resolve all ERROR items before publishing.
+
+------------------------------------------------------------------------------
+SEVERITY: ERROR  (1 finding(s))
+------------------------------------------------------------------------------
+
+  Line 1     [SK-01] Front matter present and delimited
+      REASON : no YAML front matter block found
+      TEXT   : (file start)
+
+------------------------------------------------------------------------------
+SEVERITY: WARNING  (7 finding(s))
+------------------------------------------------------------------------------
+
+  Line 3     [SK-06] Heading hierarchy skips a level
+      REASON : jumped from h1 to h3
+      TEXT   : ### Lab overview
+
+  Line 203   [SK-39b] Multi-word typed value - review
+      REASON : multi-word value after 'type' - confirm whether learner types this
+      TEXT   : ** in the **
+
+  Line 205   [SK-39b] Multi-word typed value - review
+      REASON : multi-word value after 'type' - confirm whether learner types this
+      TEXT   : ** is **
+
+  Line 207   [SK-39b] Multi-word typed value - review
+      REASON : multi-word value after 'type' - confirm whether learner types this
+      TEXT   : ** the failover group pane didn’t set it. On the secondary OrdersDB, click **
+
+  Line 227   [SK-39b] Multi-word typed value - review
+      REASON : multi-word value after 'name' - confirm whether learner types this
+      TEXT   : ** shows **
+
+  Line 356   [SK-39b] Multi-word typed value - review
+      REASON : multi-word value after 'type' - confirm whether learner types this
+      TEXT   : ** on the **
+
+  Line 368   [SK-39b] Multi-word typed value - review
+      REASON : multi-word value after 'type' - confirm whether learner types this
+      TEXT   : **), select **
+
+------------------------------------------------------------------------------
+SEVERITY: INFO  (42 finding(s))
+------------------------------------------------------------------------------
+
+  Line 1     [SK-16] Relative image path
+      REASON : image base URL verified against GitHub - a sample image resolved successfully
+      TEXT   : https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208
+
+  Line 34    [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 38    [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 48    [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 54    [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 56    [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 70    [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 74    [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 76    [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 78    [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 85    [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 87    [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 105   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 109   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 113   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 128   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 132   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 142   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 147   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 153   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 157   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 168   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 183   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 202   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 217   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 221   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 225   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 241   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 247   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 257   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer screen Description automatically generated
+
+  Line 299   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 311   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 322   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 337   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 341   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 343   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 349   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 355   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 362   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 366   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 377   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+  Line 381   [SK-14] Auto-generated alt text
+      REASON : boilerplate alt text from Word export
+      TEXT   : A screenshot of a computer Description automatically generated
+
+==============================================================================
+SUMMARY BY RULE
+==============================================================================
+
+FLAGGED FOR REVIEW:
+  SK-01       1 finding(s)  Front matter present and delimited
+  SK-06       1 finding(s)  Heading hierarchy skips a level
+  SK-14      41 finding(s)  Auto-generated alt text
+  SK-16       1 finding(s)  Relative image path
+  SK-39b      6 finding(s)  Multi-word typed value - review
+
+AUTO-FIX APPLIED:
+  SK-04       2 change(s)   Bold-only label -> ### heading
+  SK-07      59 change(s)   Numbered step -> '1.' format
+  SK-110     18 change(s)   Decoration (bold/italic/<u>) stripped from a heading
+  SK-16      56 change(s)   Relative image path
+  SK-39       1 change(s)   Typed value -> type-text (+++)
+  SK-47b      2 change(s)   Single-line fence -> inline code
+  SK-53      15 change(s)   Two blank lines close every list
+  SK-81      17 change(s)   Compact bullet list (no padding blank lines)
+  SK-82      14 change(s)   Exercise -> h2, Task -> h3 heading hierarchy
+  SK-86       1 change(s)   Standard section heading forced to its fixed level
+
+==============================================================================
+DETAILED CHANGES
+==============================================================================
+
+
+------------------------------------------------------------------------------
+PHASE 2 - Character & Token Cleanup
+------------------------------------------------------------------------------
+
+[SK-16] Line 37  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image1.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image1.png)
+
+[SK-16] Line 41  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image2.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image2.png)
+
+[SK-16] Line 45  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image3.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image3.png)
+
+[SK-16] Line 49  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image4.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image4.png)
+
+[SK-16] Line 55  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image5.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image5.png)
+
+[SK-16] Line 61  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image6.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image6.png)
+
+[SK-16] Line 63  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image7.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image7.png)
+
+[SK-16] Line 69  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image8.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image8.png)
+
+[SK-16] Line 73  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image9.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image9.png)
+
+[SK-16] Line 77  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image10.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image10.png)
+
+[SK-16] Line 81  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image11.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image11.png)
+
+[SK-16] Line 83  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image12.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image12.png)
+
+[SK-16] Line 85  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image13.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image13.png)
+
+[SK-16] Line 91  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image14.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image14.png)
+
+[SK-16] Line 93  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image15.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image15.png)
+
+[SK-16] Line 109  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image16.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image16.png)
+
+[SK-16] Line 111  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image17.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image17.png)
+
+[SK-16] Line 115  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image18.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image18.png)
+
+[SK-16] Line 119  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image19.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image19.png)
+
+[SK-16] Line 123  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image20.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image20.png)
+
+[SK-16] Line 137  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image21.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image21.png)
+
+[SK-16] Line 141  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image22.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image22.png)
+
+[SK-16] Line 153  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image23.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image23.png)
+
+[SK-16] Line 157  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image24.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image24.png)
+
+[SK-16] Line 163  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image25.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image25.png)
+
+[SK-16] Line 167  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image26.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image26.png)
+
+[SK-16] Line 169  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image27.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image27.png)
+
+[SK-16] Line 177  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image28.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image28.png)
+
+[SK-16] Line 183  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image29.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image29.png)
+
+[SK-16] Line 193  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image30.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image30.png)
+
+[SK-16] Line 201  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image31.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image31.png)
+
+[SK-16] Line 211  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image32.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image32.png)
+
+[SK-16] Line 225  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image33.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image33.png)
+
+[SK-16] Line 229  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image34.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image34.png)
+
+[SK-16] Line 233  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image35.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image35.png)
+
+[SK-16] Line 249  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image36.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image36.png)
+
+[SK-16] Line 253  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image37.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image37.png)
+
+[SK-16] Line 255  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image38.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image38.png)
+
+[SK-16] Line 267  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer screen Description automatically generated](./media/image39.png)
+    AFTER :     ![A screenshot of a computer screen Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image39.png)
+
+[SK-16] Line 275  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image40.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image40.png)
+
+[SK-16] Line 283  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image41.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image41.png)
+
+[SK-16] Line 287  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image42.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image42.png)
+
+[SK-16] Line 293  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image43.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image43.png)
+
+[SK-16] Line 309  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image44.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image44.png)
+
+[SK-16] Line 317  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![](./media/image45.png)
+    AFTER :     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image45.png)
+
+[SK-16] Line 321  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image46.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image46.png)
+
+[SK-16] Line 332  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image47.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image47.png)
+
+[SK-16] Line 346  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image48.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image48.png)
+
+[SK-16] Line 350  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image49.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image49.png)
+
+[SK-16] Line 352  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image50.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image50.png)
+
+[SK-16] Line 358  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image51.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image51.png)
+
+[SK-16] Line 364  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image52.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image52.png)
+
+[SK-16] Line 370  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image53.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image53.png)
+
+[SK-16] Line 374  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image54.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image54.png)
+
+[SK-16] Line 384  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image55.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image55.png)
+
+[SK-16] Line 388  |  Relative image path
+    note: relative image path rewritten to an absolute raw URL
+    BEFORE:     ![A screenshot of a computer Description automatically generated](./media/image56.png)
+    AFTER :     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image56.png)
+
+
+------------------------------------------------------------------------------
+PHASE 3 - Block-Level Structure
+------------------------------------------------------------------------------
+
+[SK-47b] Line 261  |  Single-line fence -> inline code
+    note: fenced block held a single line of code - collapsed to inline code
+    BEFORE:
+        |     ```
+        |     nslookup fog-fabrikam-jd427.database.windows.net
+        |     ```
+    AFTER:
+        |     `nslookup fog-fabrikam-jd427.database.windows.net`
+
+[SK-47b] Line 301  |  Single-line fence -> inline code
+    note: fenced block held a single line of code - collapsed to inline code
+    BEFORE:
+        |     ```
+        |     nslookup fog-fabrikam-jd427.database.windows.net
+        |     ```
+    AFTER:
+        |     `nslookup fog-fabrikam-jd427.database.windows.net`
+
+
+------------------------------------------------------------------------------
+PHASE 4 - Numbering, Headings, Prose
+------------------------------------------------------------------------------
+
+[SK-07] Line 35  |  Numbered step -> '1.' format
+    note: normalize step marker spacing
+    BEFORE: 1.  In the portal search bar, type +++SQL databases+++. Under **Services**, select **Azure SQL Database**.
+    AFTER : 1. In the portal search bar, type +++SQL databases+++. Under **Services**, select **Azure SQL Database**.
+
+[SK-07] Line 39  |  Numbered step -> '1.' format
+    note: renumber 2. -> 1. (editor handles display numbering)
+    BEFORE: 2.  Click **+ Create**. If a menu opens, select **SQL database**.
+    AFTER : 1. Click **+ Create**. If a menu opens, select **SQL database**.
+
+[SK-07] Line 43  |  Numbered step -> '1.' format
+    note: renumber 3. -> 1. (editor handles display numbering)
+    BEFORE: 3.  On the **Basics** tab, set **Resource group** to **ResourceGroup1** and **Database name** to +++OrdersDB+++. Under **Server**, click **Create new**.
+    AFTER : 1. On the **Basics** tab, set **Resource group** to **ResourceGroup1** and **Database name** to +++OrdersDB+++. Under **Server**, click **Create new**.
+
+[SK-07] Line 47  |  Numbered step -> '1.' format
+    note: renumber 4. -> 1. (editor handles display numbering)
+    BEFORE: 4.  In the **Create SQL Database Server** pane, set **Server name** to +++sql-fabrikam-pri-jd427+++, **Location** to **Central US**, **Authentication method** to **Use SQL authentication**, **Server admin login** to +++sqladminuser+++, and **Password** and **Confirm password** to +++Fabrikam!Lab2026+++. Click **OK**.
+    AFTER : 1. In the **Create SQL Database Server** pane, set **Server name** to +++sql-fabrikam-pri-jd427+++, **Location** to **Central US**, **Authentication method** to **Use SQL authentication**, **Server admin login** to +++sqladminuser+++, and **Password** and **Confirm password** to +++Fabrikam!Lab2026+++. Click **OK**.
+
+[SK-07] Line 51  |  Numbered step -> '1.' format
+    note: renumber 5. -> 1. (editor handles display numbering)
+    BEFORE: 5.  Set **Want to use SQL elastic pool?** to **No** and **Workload environment** to **Development**.
+    AFTER : 1. Set **Want to use SQL elastic pool?** to **No** and **Workload environment** to **Development**.
+
+[SK-07] Line 53  |  Numbered step -> '1.' format
+    note: renumber 6. -> 1. (editor handles display numbering)
+    BEFORE: 6.  Under **Compute + storage**, click **Configure database**.
+    AFTER : 1. Under **Compute + storage**, click **Configure database**.
+
+[SK-07] Line 57  |  Numbered step -> '1.' format
+    note: renumber 7. -> 1. (editor handles display numbering)
+    BEFORE: 7.  Set **Service tier** to **General Purpose**, **Compute tier** to **Provisioned**, **Hardware configuration** to **Standard-series (Gen5)** and **vCores** to **2**. Set **Would you like to make this database zone redundant?** to **No**. Click **Apply**.
+    AFTER : 1. Set **Service tier** to **General Purpose**, **Compute tier** to **Provisioned**, **Hardware configuration** to **Standard-series (Gen5)** and **vCores** to **2**. Set **Would you like to make this database zone redundant?** to **No**. Click **Apply**.
+
+[SK-07] Line 65  |  Numbered step -> '1.' format
+    note: renumber 8. -> 1. (editor handles display numbering)
+    BEFORE: 8.  Under **Backup storage redundancy**, select **Locally-redundant backup storage**. The failover group, not the backups, protects this database against a regional outage.
+    AFTER : 1. Under **Backup storage redundancy**, select **Locally-redundant backup storage**. The failover group, not the backups, protects this database against a regional outage.
+
+[SK-07] Line 71  |  Numbered step -> '1.' format
+    note: renumber 9. -> 1. (editor handles display numbering)
+    BEFORE: 9.  Set **Connectivity method** to **Public endpoint**, **Allow Azure services and resources to access this server** to **No**, and **Add current client IP address** to **Yes**.
+    AFTER : 1. Set **Connectivity method** to **Public endpoint**, **Allow Azure services and resources to access this server** to **No**, and **Add current client IP address** to **Yes**.
+
+[SK-07] Line 75  |  Numbered step -> '1.' format
+    note: renumber 10. -> 1. (editor handles display numbering)
+    BEFORE: 10. Click the **Additional settings** tab. Set **Use existing data** to **Sample** and click **OK** in the confirmation dialog.
+    AFTER : 1. Click the **Additional settings** tab. Set **Use existing data** to **Sample** and click **OK** in the confirmation dialog.
+
+[SK-07] Line 79  |  Numbered step -> '1.' format
+    note: renumber 11. -> 1. (editor handles display numbering)
+    BEFORE: 11. Click **Review + create**, then **Create**. Don’t wait; go straight to Task 2.
+    AFTER : 1. Click **Review + create**, then **Create**. Don’t wait; go straight to Task 2.
+
+[SK-07] Line 89  |  Numbered step -> '1.' format
+    note: normalize step marker spacing
+    BEFORE: 1.  In the portal search bar, type +++SQL servers+++, select **SQL servers** under **Services**, and click **+ Create**.
+    AFTER : 1. In the portal search bar, type +++SQL servers+++, select **SQL servers** under **Services**, and click **+ Create**.
+
+[SK-07] Line 95  |  Numbered step -> '1.' format
+    note: renumber 2. -> 1. (editor handles display numbering)
+    BEFORE: 2.  On the **Basics** tab, set:
+    AFTER : 1. On the **Basics** tab, set:
+
+[SK-07] Line 113  |  Numbered step -> '1.' format
+    note: renumber 3. -> 1. (editor handles display numbering)
+    BEFORE: 3.  Click **Next: Networking**. Set **Allow Azure services and resources to access this server** to **No**.
+    AFTER : 1. Click **Next: Networking**. Set **Allow Azure services and resources to access this server** to **No**.
+
+[SK-07] Line 117  |  Numbered step -> '1.' format
+    note: renumber 4. -> 1. (editor handles display numbering)
+    BEFORE: 4.  Click **Review + create**, then **Create**.
+    AFTER : 1. Click **Review + create**, then **Create**.
+
+[SK-07] Line 135  |  Numbered step -> '1.' format
+    note: normalize step marker spacing
+    BEFORE: 1.  Open the primary server **sql-fabrikam-pri-jd427**.
+    AFTER : 1. Open the primary server **sql-fabrikam-pri-jd427**.
+
+[SK-07] Line 139  |  Numbered step -> '1.' format
+    note: renumber 2. -> 1. (editor handles display numbering)
+    BEFORE: 2.  In the left menu, click **Data management > Failover groups**, then click **+ Add group**.
+    AFTER : 1. In the left menu, click **Data management > Failover groups**, then click **+ Add group**.
+
+[SK-07] Line 143  |  Numbered step -> '1.' format
+    note: renumber 3. -> 1. (editor handles display numbering)
+    BEFORE: 3.  Set:
+    AFTER : 1. Set:
+
+[SK-07] Line 155  |  Numbered step -> '1.' format
+    note: renumber 4. -> 1. (editor handles display numbering)
+    BEFORE: 4.  Under **Databases within the group**, click **Configure database**.
+    AFTER : 1. Under **Databases within the group**, click **Configure database**.
+
+[SK-07] Line 159  |  Numbered step -> '1.' format
+    note: renumber 5. -> 1. (editor handles display numbering)
+    BEFORE: 5.  Select **OrdersDB**.
+    AFTER : 1. Select **OrdersDB**.
+
+[SK-07] Line 165  |  Numbered step -> '1.' format
+    note: renumber 6. -> 1. (editor handles display numbering)
+    BEFORE: 6.  Click **Create**.
+    AFTER : 1. Click **Create**.
+
+[SK-07] Line 175  |  Numbered step -> '1.' format
+    note: normalize step marker spacing
+    BEFORE: 1.  Open the primary server **sql-fabrikam-pri-jd427** (if you left it, type +++SQL servers+++ in the portal search bar, select **SQL servers** under **Services**, and click the server). In the server’s left menu, click **Data management > Failover groups**, then click **fog-fabrikam-jd427**. If it isn’t listed yet, click **Refresh**.
+    AFTER : 1. Open the primary server **sql-fabrikam-pri-jd427** (if you left it, type +++SQL servers+++ in the portal search bar, select **SQL servers** under **Services**, and click the server). In the server’s left menu, click **Data management > Failover groups**, then click **fog-fabrikam-jd427**. If it isn’t listed yet, click **Refresh**.
+
+[SK-07] Line 179  |  Numbered step -> '1.' format
+    note: renumber 2. -> 1. (editor handles display numbering)
+    BEFORE: 2.  Click the **Databases within group** tab.
+    AFTER : 1. Click the **Databases within group** tab.
+
+[SK-07] Line 185  |  Numbered step -> '1.' format
+    note: renumber 3. -> 1. (editor handles display numbering)
+    BEFORE: 3.  Click the **Configuration details** tab and find the two listener endpoints:
+    AFTER : 1. Click the **Configuration details** tab and find the two listener endpoints:
+
+[SK-07] Line 197  |  Numbered step -> '1.' format
+    note: normalize step marker spacing
+    BEFORE: 1.  Open the secondary server **sql-fabrikam-dr-jd427** and, in the left menu, click **Settings > SQL databases**.
+    AFTER : 1. Open the secondary server **sql-fabrikam-dr-jd427** and, in the left menu, click **Settings > SQL databases**.
+
+[SK-07] Line 203  |  Numbered step -> '1.' format
+    note: renumber 2. -> 1. (editor handles display numbering)
+    BEFORE: 2.  On the **Overview** page, check **Replica type** in the **Essentials** section.
+    AFTER : 1. On the **Overview** page, check **Replica type** in the **Essentials** section.
+
+[SK-07] Line 219  |  Numbered step -> '1.' format
+    note: normalize step marker spacing
+    BEFORE: 1.  Click the search bar at the top of the portal and type +++SQL databases+++.
+    AFTER : 1. Click the search bar at the top of the portal and type +++SQL databases+++.
+
+[SK-07] Line 221  |  Numbered step -> '1.' format
+    note: renumber 2. -> 1. (editor handles display numbering)
+    BEFORE: 2.  Under **Services**, click **Azure SQL Database**.
+    AFTER : 1. Under **Services**, click **Azure SQL Database**.
+
+[SK-07] Line 223  |  Numbered step -> '1.' format
+    note: renumber 3. -> 1. (editor handles display numbering)
+    BEFORE: 3.  The list shows two rows called **OrdersDB**. Look at the **Server** column and click the **OrdersDB** whose server is **sql-fabrikam-pri-jd427**, with **Location** **Central US**.
+    AFTER : 1. The list shows two rows called **OrdersDB**. Look at the **Server** column and click the **OrdersDB** whose server is **sql-fabrikam-pri-jd427**, with **Location** **Central US**.
+
+[SK-07] Line 227  |  Numbered step -> '1.' format
+    note: renumber 4. -> 1. (editor handles display numbering)
+    BEFORE: 4.  The OrdersDB **Overview** page opens. In **Essentials**, check that **Server name** shows **sql-fabrikam-pri-jd427.database.windows.net**.
+    AFTER : 1. The OrdersDB **Overview** page opens. In **Essentials**, check that **Server name** shows **sql-fabrikam-pri-jd427.database.windows.net**.
+
+[SK-07] Line 231  |  Numbered step -> '1.' format
+    note: renumber 5. -> 1. (editor handles display numbering)
+    BEFORE: 5.  In the left menu, click **Query editor**.
+    AFTER : 1. In the left menu, click **Query editor**.
+
+[SK-07] Line 235  |  Numbered step -> '1.' format
+    note: renumber 6. -> 1. (editor handles display numbering)
+    BEFORE: 6.  Sign in with +++sqladminuser+++ and +++Fabrikam!Lab2026+++ and click **Connect**.
+    AFTER : 1. Sign in with +++sqladminuser+++ and +++Fabrikam!Lab2026+++ and click **Connect**.
+
+[SK-07] Line 237  |  Numbered step -> '1.' format
+    note: renumber 7. -> 1. (editor handles display numbering)
+    BEFORE: 7.  Run:
+    AFTER : 1. Run:
+
+[SK-07] Line 251  |  Numbered step -> '1.' format
+    note: renumber 8. -> 1. (editor handles display numbering)
+    BEFORE: 8.  On the portal toolbar, click the **Cloud Shell** icon (**>_**) and choose **Bash**. If this is your first time, select **No storage account required**, choose your subscription and click **Apply**.
+    AFTER : 1. On the portal toolbar, click the **Cloud Shell** icon (**>_**) and choose **Bash**. If this is your first time, select **No storage account required**, choose your subscription and click **Apply**.
+
+[SK-07] Line 257  |  Numbered step -> '1.' format
+    note: renumber 9. -> 1. (editor handles display numbering)
+    BEFORE: 9.  Run this, replacing **jd427** with your suffix:
+    AFTER : 1. Run this, replacing **jd427** with your suffix:
+
+[SK-07] Line 271  |  Numbered step -> '1.' format
+    note: normalize step marker spacing
+    BEFORE: 1.  Return to **sql-fabrikam-pri-jd427 > Data management > Failover groups > fog-fabrikam-jd427**.
+    AFTER : 1. Return to **sql-fabrikam-pri-jd427 > Data management > Failover groups > fog-fabrikam-jd427**.
+
+[SK-07] Line 275  |  Numbered step -> '1.' format
+    note: renumber 2. -> 1. (editor handles display numbering)
+    BEFORE: 2.  Stay on the **Configuration details** tab.
+    AFTER : 1. Stay on the **Configuration details** tab.
+
+[SK-07] Line 277  |  Numbered step -> '1.' format
+    note: renumber 3. -> 1. (editor handles display numbering)
+    BEFORE: 3.  Scroll right along the **sql-fabrikam-dr-jd427** (**East US**) row, the **Secondary** row.
+    AFTER : 1. Scroll right along the **sql-fabrikam-dr-jd427** (**East US**) row, the **Secondary** row.
+
+[SK-07] Line 279  |  Numbered step -> '1.' format
+    note: renumber 4. -> 1. (editor handles display numbering)
+    BEFORE: 4.  If there’s an ellipsis (**…**) at the end of that row, click it and select **Failover** (not **Forced failover**).
+    AFTER : 1. If there’s an ellipsis (**…**) at the end of that row, click it and select **Failover** (not **Forced failover**).
+
+[SK-07] Line 283  |  Numbered step -> '1.' format
+    note: renumber 5. -> 1. (editor handles display numbering)
+    BEFORE: 5.  Read the warning and click **Yes**. Note the time.
+    AFTER : 1. Read the warning and click **Yes**. Note the time.
+
+[SK-07] Line 289  |  Numbered step -> '1.' format
+    note: renumber 6. -> 1. (editor handles display numbering)
+    BEFORE: 6.  Click **Refresh** until the roles swap.
+    AFTER : 1. Click **Refresh** until the roles swap.
+
+[SK-07] Line 297  |  Numbered step -> '1.' format
+    note: normalize step marker spacing
+    BEFORE: 1.  In Cloud Shell, run the same command again:
+    AFTER : 1. In Cloud Shell, run the same command again:
+
+[SK-07] Line 307  |  Numbered step -> '1.' format
+    note: renumber 2. -> 1. (editor handles display numbering)
+    BEFORE: 2.  In the portal search bar, type +++SQL databases+++.
+    AFTER : 1. In the portal search bar, type +++SQL databases+++.
+
+[SK-07] Line 309  |  Numbered step -> '1.' format
+    note: renumber 3. -> 1. (editor handles display numbering)
+    BEFORE: 3.  Under **Services**, click **Azure SQL Database**.
+    AFTER : 1. Under **Services**, click **Azure SQL Database**.
+
+[SK-07] Line 311  |  Numbered step -> '1.' format
+    note: renumber 4. -> 1. (editor handles display numbering)
+    BEFORE: 4.  In the list, click the **OrdersDB** whose **Server** column shows **sql-fabrikam-dr-jd427**, with **Location** **East US**.
+    AFTER : 1. In the list, click the **OrdersDB** whose **Server** column shows **sql-fabrikam-dr-jd427**, with **Location** **East US**.
+
+[SK-07] Line 315  |  Numbered step -> '1.' format
+    note: renumber 5. -> 1. (editor handles display numbering)
+    BEFORE: 5.  In the left menu, click **Query editor**.
+    AFTER : 1. In the left menu, click **Query editor**.
+
+[SK-07] Line 319  |  Numbered step -> '1.' format
+    note: renumber 6. -> 1. (editor handles display numbering)
+    BEFORE: 6.  Sign in with +++sqladminuser+++ and +++Fabrikam!Lab2026+++. If you see a firewall error, click **Allowlist IP**, then **OK**. Run:
+    AFTER : 1. Sign in with +++sqladminuser+++ and +++Fabrikam!Lab2026+++. If you see a firewall error, click **Allowlist IP**, then **OK**. Run:
+
+[SK-07] Line 340  |  Numbered step -> '1.' format
+    note: normalize step marker spacing
+    BEFORE: 1.  Open **sql-fabrikam-dr-jd427** (now the primary). In the left menu, click **Data management > Failover groups** and click **fog-fabrikam-jd427**.
+    AFTER : 1. Open **sql-fabrikam-dr-jd427** (now the primary). In the left menu, click **Data management > Failover groups** and click **fog-fabrikam-jd427**.
+
+[SK-07] Line 344  |  Numbered step -> '1.' format
+    note: renumber 2. -> 1. (editor handles display numbering)
+    BEFORE: 2.  On the toolbar, click **Failover** and click **Yes**.
+    AFTER : 1. On the toolbar, click **Failover** and click **Yes**.
+
+[SK-07] Line 350  |  Numbered step -> '1.' format
+    note: renumber 3. -> 1. (editor handles display numbering)
+    BEFORE: 3.  Click **Refresh** until the roles swap back.
+    AFTER : 1. Click **Refresh** until the roles swap back.
+
+[SK-07] Line 356  |  Numbered step -> '1.' format
+    note: renumber 4. -> 1. (editor handles display numbering)
+    BEFORE: 4.  Open **sql-fabrikam-dr-jd427 > OrdersDB** (the secondary again) and check **Replica type** on the **Overview** page.
+    AFTER : 1. Open **sql-fabrikam-dr-jd427 > OrdersDB** (the secondary again) and check **Replica type** on the **Overview** page.
+
+[SK-07] Line 364  |  Numbered step -> '1.' format
+    note: normalize step marker spacing
+    BEFORE: 1.  Open **sql-fabrikam-pri-jd427 > OrdersDB** (the primary). In the left menu, click **Settings > Compute + storage**.
+    AFTER : 1. Open **sql-fabrikam-pri-jd427 > OrdersDB** (the primary). In the left menu, click **Settings > Compute + storage**.
+
+[SK-07] Line 368  |  Numbered step -> '1.' format
+    note: renumber 2. -> 1. (editor handles display numbering)
+    BEFORE: 2.  Under **Save money** (or **License type**), select **Yes** for **Already have a SQL Server License?** and select the check box confirming that you have SQL Server licenses with Software Assurance. Leave every other setting unchanged and click **Apply**.
+    AFTER : 1. Under **Save money** (or **License type**), select **Yes** for **Already have a SQL Server License?** and select the check box confirming that you have SQL Server licenses with Software Assurance. Leave every other setting unchanged and click **Apply**.
+
+[SK-07] Line 378  |  Numbered step -> '1.' format
+    note: normalize step marker spacing
+    BEFORE: 1.  On the same **Compute + storage** page, look at the **Cost summary** and note the **Estimated cost/month** and the **Azure Hybrid Benefit discount** line.
+    AFTER : 1. On the same **Compute + storage** page, look at the **Cost summary** and note the **Estimated cost/month** and the **Azure Hybrid Benefit discount** line.
+
+[SK-07] Line 382  |  Numbered step -> '1.' format
+    note: renumber 2. -> 1. (editor handles display numbering)
+    BEFORE: 2.  Open the secondary, **sql-fabrikam-dr-jd427 > OrdersDB**, click **Settings > Compute + storage**, and look at its **Cost summary**.
+    AFTER : 1. Open the secondary, **sql-fabrikam-dr-jd427 > OrdersDB**, click **Settings > Compute + storage**, and look at its **Cost summary**.
+
+[SK-07] Line 396  |  Numbered step -> '1.' format
+    note: normalize step marker spacing
+    BEFORE: 1.  **Delete the failover group:** open **sql-fabrikam-pri-jd427 > Data management > Failover groups**, click **fog-fabrikam-jd427**, click **Delete** on the toolbar, and click **Yes**.
+    AFTER : 1. **Delete the failover group:** open **sql-fabrikam-pri-jd427 > Data management > Failover groups**, click **fog-fabrikam-jd427**, click **Delete** on the toolbar, and click **Yes**.
+
+[SK-07] Line 400  |  Numbered step -> '1.' format
+    note: renumber 2. -> 1. (editor handles display numbering)
+    BEFORE: 2.  **Delete the secondary server:** open **sql-fabrikam-dr-jd427**, click **Delete** on the toolbar, type +++sql-fabrikam-dr-jd427+++ and click **Delete**. This also deletes its copy of OrdersDB.
+    AFTER : 1. **Delete the secondary server:** open **sql-fabrikam-dr-jd427**, click **Delete** on the toolbar, type +++sql-fabrikam-dr-jd427+++ and click **Delete**. This also deletes its copy of OrdersDB.
+
+[SK-07] Line 402  |  Numbered step -> '1.' format
+    note: renumber 3. -> 1. (editor handles display numbering)
+    BEFORE: 3.  **Delete the primary server:** open **sql-fabrikam-pri-jd427**, click **Delete**, type +++sql-fabrikam-pri-jd427+++ and click **Delete**.
+    AFTER : 1. **Delete the primary server:** open **sql-fabrikam-pri-jd427**, click **Delete**, type +++sql-fabrikam-pri-jd427+++ and click **Delete**.
+
+[SK-07] Line 404  |  Numbered step -> '1.' format
+    note: renumber 4. -> 1. (editor handles display numbering)
+    BEFORE: 4.  In the portal search bar, type +++All resources+++ and select **All resources**. Set the **Resource group** filter to **ResourceGroup1** and click **Refresh**.
+    AFTER : 1. In the portal search bar, type +++All resources+++ and select **All resources**. Set the **Resource group** filter to **ResourceGroup1** and click **Refresh**.
+
+[SK-39] Line 35  |  Typed value -> type-text (+++)
+    note: typed value after 'type' - bold dropped, wrapped as type-text
+    BEFORE: 1. In the portal search bar, type +++SQL databases+++. Under **Services**, select **Azure SQL Database**.
+    AFTER : 1. In the portal search bar, type +++SQL databases+++. Under +++Services+++, select **Azure SQL Database**.
+
+[SK-04] Line 3  |  Bold-only label -> ### heading
+    BEFORE: **Lab overview**
+    AFTER : ### Lab overview
+
+[SK-04] Line 17  |  Bold-only label -> ### heading
+    BEFORE: **Objectives**
+    AFTER : ### Objectives
+
+[SK-82] Line 33  |  Exercise -> h2, Task -> h3 heading hierarchy
+    note: a Task-number heading is always an h3 (###) in the standard lab outline
+    BEFORE: #### **Task 1: Create OrdersDB on the primary server**
+    AFTER : ### **Task 1: Create OrdersDB on the primary server**
+
+[SK-82] Line 87  |  Exercise -> h2, Task -> h3 heading hierarchy
+    note: a Task-number heading is always an h3 (###) in the standard lab outline
+    BEFORE: #### **Task 2: Create the secondary server**
+    AFTER : ### **Task 2: Create the secondary server**
+
+[SK-82] Line 129  |  Exercise -> h2, Task -> h3 heading hierarchy
+    note: a Exercise-number heading is always an h2 (##) in the standard lab outline
+    BEFORE: ### **Exercise 1: Create a Failover Group with a License-Free Standby Replica**
+    AFTER : ## **Exercise 1: Create a Failover Group with a License-Free Standby Replica**
+
+[SK-82] Line 133  |  Exercise -> h2, Task -> h3 heading hierarchy
+    note: a Task-number heading is always an h3 (###) in the standard lab outline
+    BEFORE: #### **Task 1: Create the failover group**
+    AFTER : ### **Task 1: Create the failover group**
+
+[SK-82] Line 173  |  Exercise -> h2, Task -> h3 heading hierarchy
+    note: a Task-number heading is always an h3 (###) in the standard lab outline
+    BEFORE: #### **Task 2: Check the replication and the listeners**
+    AFTER : ### **Task 2: Check the replication and the listeners**
+
+[SK-82] Line 195  |  Exercise -> h2, Task -> h3 heading hierarchy
+    note: a Task-number heading is always an h3 (###) in the standard lab outline
+    BEFORE: #### **Task 3: Confirm the standby replica**
+    AFTER : ### **Task 3: Confirm the standby replica**
+
+[SK-82] Line 213  |  Exercise -> h2, Task -> h3 heading hierarchy
+    note: a Exercise-number heading is always an h2 (##) in the standard lab outline
+    BEFORE: ### **Exercise 2: Rehearse a Planned Failover**
+    AFTER : ## **Exercise 2: Rehearse a Planned Failover**
+
+[SK-82] Line 217  |  Exercise -> h2, Task -> h3 heading hierarchy
+    note: a Task-number heading is always an h3 (###) in the standard lab outline
+    BEFORE: #### **Task 1: Write an order and check where the listener points**
+    AFTER : ### **Task 1: Write an order and check where the listener points**
+
+[SK-82] Line 269  |  Exercise -> h2, Task -> h3 heading hierarchy
+    note: a Task-number heading is always an h3 (###) in the standard lab outline
+    BEFORE: #### **Task 2: Fail over to East US**
+    AFTER : ### **Task 2: Fail over to East US**
+
+[SK-82] Line 295  |  Exercise -> h2, Task -> h3 heading hierarchy
+    note: a Task-number heading is always an h3 (###) in the standard lab outline
+    BEFORE: #### **Task 3: Confirm no data loss and the new listener target**
+    AFTER : ### **Task 3: Confirm no data loss and the new listener target**
+
+[SK-82] Line 334  |  Exercise -> h2, Task -> h3 heading hierarchy
+    note: a Exercise-number heading is always an h2 (##) in the standard lab outline
+    BEFORE: ### **Exercise 3: Fail Back and Optimize the Cost of the DR Pair**
+    AFTER : ## **Exercise 3: Fail Back and Optimize the Cost of the DR Pair**
+
+[SK-82] Line 338  |  Exercise -> h2, Task -> h3 heading hierarchy
+    note: a Task-number heading is always an h3 (###) in the standard lab outline
+    BEFORE: #### **Task 1: Fail back to Central US**
+    AFTER : ### **Task 1: Fail back to Central US**
+
+[SK-82] Line 362  |  Exercise -> h2, Task -> h3 heading hierarchy
+    note: a Task-number heading is always an h3 (###) in the standard lab outline
+    BEFORE: #### **Task 2: Apply Azure Hybrid Benefit to the primary**
+    AFTER : ### **Task 2: Apply Azure Hybrid Benefit to the primary**
+
+[SK-82] Line 376  |  Exercise -> h2, Task -> h3 heading hierarchy
+    note: a Task-number heading is always an h3 (###) in the standard lab outline
+    BEFORE: #### **Task 3: Review the cost of the DR pair**
+    AFTER : ### **Task 3: Review the cost of the DR pair**
+
+[SK-86] Line 388  |  Standard section heading forced to its fixed level
+    note: 'Conclusion' is a standard lab section - always an h2 (##)
+    BEFORE: ### **Conclusion**
+    AFTER : ## **Conclusion**
+
+[SK-53] Line 15  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | You build and rehearse the DR configuration before go-live.
+    AFTER:
+        | (2 blank lines)
+        | You build and rehearse the DR configuration before go-live.
+
+[SK-53] Line 31  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | ### **Getting Started: Deploy the Primary Database and the Secondary Server**
+    AFTER:
+        | (2 blank lines)
+        | ### **Getting Started: Deploy the Primary Database and the Secondary Server**
+
+[SK-53] Line 87  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | ### **Task 2: Create the secondary server**
+    AFTER:
+        | (2 blank lines)
+        | ### **Task 2: Create the secondary server**
+
+[SK-53] Line 113  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | 1. Click **Next: Networking**. Set **Allow Azure services and resources to access this server** to **No**.
+    AFTER:
+        | (2 blank lines)
+        | 1. Click **Next: Networking**. Set **Allow Azure services and resources to access this server** to **No**.
+
+[SK-53] Line 129  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | ## **Exercise 1: Create a Failover Group with a License-Free Standby Replica**
+    AFTER:
+        | (2 blank lines)
+        | ## **Exercise 1: Create a Failover Group with a License-Free Standby Replica**
+
+[SK-53] Line 155  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | 1. Under **Databases within the group**, click **Configure database**.
+    AFTER:
+        | (2 blank lines)
+        | 1. Under **Databases within the group**, click **Configure database**.
+
+[SK-53] Line 173  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | ### **Task 2: Check the replication and the listeners**
+    AFTER:
+        | (2 blank lines)
+        | ### **Task 2: Check the replication and the listeners**
+
+[SK-53] Line 195  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | ### **Task 3: Confirm the standby replica**
+    AFTER:
+        | (2 blank lines)
+        | ### **Task 3: Confirm the standby replica**
+
+[SK-53] Line 213  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | ## **Exercise 2: Rehearse a Planned Failover**
+    AFTER:
+        | (2 blank lines)
+        | ## **Exercise 2: Rehearse a Planned Failover**
+
+[SK-53] Line 269  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | ### **Task 2: Fail over to East US**
+    AFTER:
+        | (2 blank lines)
+        | ### **Task 2: Fail over to East US**
+
+[SK-53] Line 295  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | ### **Task 3: Confirm no data loss and the new listener target**
+    AFTER:
+        | (2 blank lines)
+        | ### **Task 3: Confirm no data loss and the new listener target**
+
+[SK-53] Line 334  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | ## **Exercise 3: Fail Back and Optimize the Cost of the DR Pair**
+    AFTER:
+        | (2 blank lines)
+        | ## **Exercise 3: Fail Back and Optimize the Cost of the DR Pair**
+
+[SK-53] Line 362  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | ### **Task 2: Apply Azure Hybrid Benefit to the primary**
+    AFTER:
+        | (2 blank lines)
+        | ### **Task 2: Apply Azure Hybrid Benefit to the primary**
+
+[SK-53] Line 376  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | ### **Task 3: Review the cost of the DR pair**
+    AFTER:
+        | (2 blank lines)
+        | ### **Task 3: Review the cost of the DR pair**
+
+[SK-53] Line 388  |  Two blank lines close every list
+    note: a list needs two blank lines before the next block
+    BEFORE:
+        | (1 blank line(s))
+        | ## **Conclusion**
+    AFTER:
+        | (2 blank lines)
+        | ## **Conclusion**
+
+[SK-81] Line 7  |  Compact bullet list (no padding blank lines)
+    note: a bullet list attaches directly to the prose lead-in that introduces it
+    BEFORE:
+        | Fabrikam Retail’s OrdersDB takes orders from the web storefront around the clock. The business has set these disaster recovery targets for a regional outage:
+        | 
+        | - **RPO:** lose no more than a few seconds of orders.
+    AFTER:
+        | Fabrikam Retail’s OrdersDB takes orders from the web storefront around the clock. The business has set these disaster recovery targets for a regional outage:
+        | - **RPO:** lose no more than a few seconds of orders.
+
+[SK-81] Line 9  |  Compact bullet list (no padding blank lines)
+    note: sibling bullets in one list need no blank line between them
+    BEFORE:
+        | - **RPO:** lose no more than a few seconds of orders.
+        | 
+        | - **RTO:** be taking orders again within 1 hour.
+    AFTER:
+        | - **RPO:** lose no more than a few seconds of orders.
+        | - **RTO:** be taking orders again within 1 hour.
+
+[SK-81] Line 11  |  Compact bullet list (no padding blank lines)
+    note: sibling bullets in one list need no blank line between them
+    BEFORE:
+        | - **RTO:** be taking orders again within 1 hour.
+        | 
+        | - **No application changes after a failover:** the storefront must keep using the same connection string.
+    AFTER:
+        | - **RTO:** be taking orders again within 1 hour.
+        | - **No application changes after a failover:** the storefront must keep using the same connection string.
+
+[SK-81] Line 13  |  Compact bullet list (no padding blank lines)
+    note: sibling bullets in one list need no blank line between them
+    BEFORE:
+        | - **No application changes after a failover:** the storefront must keep using the same connection string.
+        | 
+        | - **Cost:** the standby copy exists only for disaster recovery, so Fabrikam doesn’t want to pay SQL Server licensing for it. Fabrikam also has SQL Server Standard core licenses with Software Assurance that it can bring to Azure.
+    AFTER:
+        | - **No application changes after a failover:** the storefront must keep using the same connection string.
+        | - **Cost:** the standby copy exists only for disaster recovery, so Fabrikam doesn’t want to pay SQL Server licensing for it. Fabrikam also has SQL Server Standard core licenses with Software Assurance that it can bring to Azure.
+
+[SK-81] Line 22  |  Compact bullet list (no padding blank lines)
+    note: a bullet list attaches directly to the prose lead-in that introduces it
+    BEFORE:
+        | After completing this lab, you will be able to:
+        | 
+        | - Create a failover group that replicates a database to a second region.
+    AFTER:
+        | After completing this lab, you will be able to:
+        | - Create a failover group that replicates a database to a second region.
+
+[SK-81] Line 24  |  Compact bullet list (no padding blank lines)
+    note: sibling bullets in one list need no blank line between them
+    BEFORE:
+        | - Create a failover group that replicates a database to a second region.
+        | 
+        | - Designate the secondary database as a license-free standby replica.
+    AFTER:
+        | - Create a failover group that replicates a database to a second region.
+        | - Designate the secondary database as a license-free standby replica.
+
+[SK-81] Line 26  |  Compact bullet list (no padding blank lines)
+    note: sibling bullets in one list need no blank line between them
+    BEFORE:
+        | - Designate the secondary database as a license-free standby replica.
+        | 
+        | - Use the failover group’s listener endpoint so that applications don’t change after a failover.
+    AFTER:
+        | - Designate the secondary database as a license-free standby replica.
+        | - Use the failover group’s listener endpoint so that applications don’t change after a failover.
+
+[SK-81] Line 28  |  Compact bullet list (no padding blank lines)
+    note: sibling bullets in one list need no blank line between them
+    BEFORE:
+        | - Use the failover group’s listener endpoint so that applications don’t change after a failover.
+        | 
+        | - Perform and time a planned failover and a failback, and confirm that no data was lost.
+    AFTER:
+        | - Use the failover group’s listener endpoint so that applications don’t change after a failover.
+        | - Perform and time a planned failover and a failback, and confirm that no data was lost.
+
+[SK-81] Line 30  |  Compact bullet list (no padding blank lines)
+    note: sibling bullets in one list need no blank line between them
+    BEFORE:
+        | - Perform and time a planned failover and a failback, and confirm that no data was lost.
+        | 
+        | - Apply Azure Hybrid Benefit and explain how both licensing benefits change the cost of a DR pair.
+    AFTER:
+        | - Perform and time a planned failover and a failback, and confirm that no data was lost.
+        | - Apply Azure Hybrid Benefit and explain how both licensing benefits change the cost of a DR pair.
+
+[SK-81] Line 102  |  Compact bullet list (no padding blank lines)
+    note: sibling bullets in one list need no blank line between them
+    BEFORE:
+        |     - **Resource group:** ResourceGroup1
+        | 
+        |     - **Server name:** +++sql-fabrikam-dr-jd427+++
+    AFTER:
+        |     - **Resource group:** ResourceGroup1
+        |     - **Server name:** +++sql-fabrikam-dr-jd427+++
+
+[SK-81] Line 104  |  Compact bullet list (no padding blank lines)
+    note: sibling bullets in one list need no blank line between them
+    BEFORE:
+        |     - **Server name:** +++sql-fabrikam-dr-jd427+++
+        | 
+        |     - **Location:** East US
+    AFTER:
+        |     - **Server name:** +++sql-fabrikam-dr-jd427+++
+        |     - **Location:** East US
+
+[SK-81] Line 106  |  Compact bullet list (no padding blank lines)
+    note: sibling bullets in one list need no blank line between them
+    BEFORE:
+        |     - **Location:** East US
+        | 
+        |     - **Authentication method:** Use SQL authentication
+    AFTER:
+        |     - **Location:** East US
+        |     - **Authentication method:** Use SQL authentication
+
+[SK-81] Line 108  |  Compact bullet list (no padding blank lines)
+    note: sibling bullets in one list need no blank line between them
+    BEFORE:
+        |     - **Authentication method:** Use SQL authentication
+        | 
+        |     - **Server admin login:** +++sqladminuser+++
+    AFTER:
+        |     - **Authentication method:** Use SQL authentication
+        |     - **Server admin login:** +++sqladminuser+++
+
+[SK-81] Line 110  |  Compact bullet list (no padding blank lines)
+    note: sibling bullets in one list need no blank line between them
+    BEFORE:
+        |     - **Server admin login:** +++sqladminuser+++
+        | 
+        |     - **Password** and **Confirm password:** +++Fabrikam!Lab2026+++
+    AFTER:
+        |     - **Server admin login:** +++sqladminuser+++
+        |     - **Password** and **Confirm password:** +++Fabrikam!Lab2026+++
+
+[SK-81] Line 152  |  Compact bullet list (no padding blank lines)
+    note: sibling bullets in one list need no blank line between them
+    BEFORE:
+        |     - **Failover group name:** +++fog-fabrikam-jd427+++
+        | 
+        |     - **Server:** select **sql-fabrikam-dr-jd427** (East US)
+    AFTER:
+        |     - **Failover group name:** +++fog-fabrikam-jd427+++
+        |     - **Server:** select **sql-fabrikam-dr-jd427** (East US)
+
+[SK-81] Line 154  |  Compact bullet list (no padding blank lines)
+    note: sibling bullets in one list need no blank line between them
+    BEFORE:
+        |     - **Server:** select **sql-fabrikam-dr-jd427** (East US)
+        | 
+        |     - A blue banner at the top of the pane says **Failover policy has been set to the recommended value of Customer managed**. There is no field to change; the portal sets it for you.
+    AFTER:
+        |     - **Server:** select **sql-fabrikam-dr-jd427** (East US)
+        |     - A blue banner at the top of the pane says **Failover policy has been set to the recommended value of Customer managed**. There is no field to change; the portal sets it for you.
+
+[SK-81] Line 196  |  Compact bullet list (no padding blank lines)
+    note: sibling bullets in one list need no blank line between them
+    BEFORE:
+        |     - **Read/write listener endpoint:** fog-fabrikam-jd427.database.windows.net
+        | 
+        |     - **Read-only listener endpoint:** fog-fabrikam-jd427.secondary.database.windows.net
+    AFTER:
+        |     - **Read/write listener endpoint:** fog-fabrikam-jd427.database.windows.net
+        |     - **Read-only listener endpoint:** fog-fabrikam-jd427.secondary.database.windows.net
+
+[SK-110] Line 1  |  Decoration (bold/italic/<u>) stripped from a heading
+    note: decoration removed from a heading - a heading is already styled by the IDLx theme, so bold, italics and Word's '<u>' underline add nothing and render inconsistently
+    BEFORE: # **Lab 8: Configure Cross-Region Disaster Recovery with Failover Groups**
+    AFTER : # Lab 8: Configure Cross-Region Disaster Recovery with Failover Groups
+
+[SK-110] Line 24  |  Decoration (bold/italic/<u>) stripped from a heading
+    note: decoration removed from a heading - a heading is already styled by the IDLx theme, so bold, italics and Word's '<u>' underline add nothing and render inconsistently
+    BEFORE: ### **Getting Started: Deploy the Primary Database and the Secondary Server**
+    AFTER : ### Getting Started: Deploy the Primary Database and the Secondary Server
+
+[SK-110] Line 26  |  Decoration (bold/italic/<u>) stripped from a heading
+    note: decoration removed from a heading - a heading is already styled by the IDLx theme, so bold, italics and Word's '<u>' underline add nothing and render inconsistently
+    BEFORE: ### **Task 1: Create OrdersDB on the primary server**
+    AFTER : ### Task 1: Create OrdersDB on the primary server
+
+[SK-110] Line 81  |  Decoration (bold/italic/<u>) stripped from a heading
+    note: decoration removed from a heading - a heading is already styled by the IDLx theme, so bold, italics and Word's '<u>' underline add nothing and render inconsistently
+    BEFORE: ### **Task 2: Create the secondary server**
+    AFTER : ### Task 2: Create the secondary server
+
+[SK-110] Line 120  |  Decoration (bold/italic/<u>) stripped from a heading
+    note: decoration removed from a heading - a heading is already styled by the IDLx theme, so bold, italics and Word's '<u>' underline add nothing and render inconsistently
+    BEFORE: ## **Exercise 1: Create a Failover Group with a License-Free Standby Replica**
+    AFTER : ## Exercise 1: Create a Failover Group with a License-Free Standby Replica
+
+[SK-110] Line 124  |  Decoration (bold/italic/<u>) stripped from a heading
+    note: decoration removed from a heading - a heading is already styled by the IDLx theme, so bold, italics and Word's '<u>' underline add nothing and render inconsistently
+    BEFORE: ### **Task 1: Create the failover group**
+    AFTER : ### Task 1: Create the failover group
+
+[SK-110] Line 164  |  Decoration (bold/italic/<u>) stripped from a heading
+    note: decoration removed from a heading - a heading is already styled by the IDLx theme, so bold, italics and Word's '<u>' underline add nothing and render inconsistently
+    BEFORE: ### **Task 2: Check the replication and the listeners**
+    AFTER : ### Task 2: Check the replication and the listeners
+
+[SK-110] Line 186  |  Decoration (bold/italic/<u>) stripped from a heading
+    note: decoration removed from a heading - a heading is already styled by the IDLx theme, so bold, italics and Word's '<u>' underline add nothing and render inconsistently
+    BEFORE: ### **Task 3: Confirm the standby replica**
+    AFTER : ### Task 3: Confirm the standby replica
+
+[SK-110] Line 205  |  Decoration (bold/italic/<u>) stripped from a heading
+    note: decoration removed from a heading - a heading is already styled by the IDLx theme, so bold, italics and Word's '<u>' underline add nothing and render inconsistently
+    BEFORE: ## **Exercise 2: Rehearse a Planned Failover**
+    AFTER : ## Exercise 2: Rehearse a Planned Failover
+
+[SK-110] Line 209  |  Decoration (bold/italic/<u>) stripped from a heading
+    note: decoration removed from a heading - a heading is already styled by the IDLx theme, so bold, italics and Word's '<u>' underline add nothing and render inconsistently
+    BEFORE: ### **Task 1: Write an order and check where the listener points**
+    AFTER : ### Task 1: Write an order and check where the listener points
+
+[SK-110] Line 262  |  Decoration (bold/italic/<u>) stripped from a heading
+    note: decoration removed from a heading - a heading is already styled by the IDLx theme, so bold, italics and Word's '<u>' underline add nothing and render inconsistently
+    BEFORE: ### **Task 2: Fail over to East US**
+    AFTER : ### Task 2: Fail over to East US
+
+[SK-110] Line 289  |  Decoration (bold/italic/<u>) stripped from a heading
+    note: decoration removed from a heading - a heading is already styled by the IDLx theme, so bold, italics and Word's '<u>' underline add nothing and render inconsistently
+    BEFORE: ### **Task 3: Confirm no data loss and the new listener target**
+    AFTER : ### Task 3: Confirm no data loss and the new listener target
+
+[SK-110] Line 329  |  Decoration (bold/italic/<u>) stripped from a heading
+    note: decoration removed from a heading - a heading is already styled by the IDLx theme, so bold, italics and Word's '<u>' underline add nothing and render inconsistently
+    BEFORE: ## **Exercise 3: Fail Back and Optimize the Cost of the DR Pair**
+    AFTER : ## Exercise 3: Fail Back and Optimize the Cost of the DR Pair
+
+[SK-110] Line 333  |  Decoration (bold/italic/<u>) stripped from a heading
+    note: decoration removed from a heading - a heading is already styled by the IDLx theme, so bold, italics and Word's '<u>' underline add nothing and render inconsistently
+    BEFORE: ### **Task 1: Fail back to Central US**
+    AFTER : ### Task 1: Fail back to Central US
+
+[SK-110] Line 358  |  Decoration (bold/italic/<u>) stripped from a heading
+    note: decoration removed from a heading - a heading is already styled by the IDLx theme, so bold, italics and Word's '<u>' underline add nothing and render inconsistently
+    BEFORE: ### **Task 2: Apply Azure Hybrid Benefit to the primary**
+    AFTER : ### Task 2: Apply Azure Hybrid Benefit to the primary
+
+[SK-110] Line 373  |  Decoration (bold/italic/<u>) stripped from a heading
+    note: decoration removed from a heading - a heading is already styled by the IDLx theme, so bold, italics and Word's '<u>' underline add nothing and render inconsistently
+    BEFORE: ### **Task 3: Review the cost of the DR pair**
+    AFTER : ### Task 3: Review the cost of the DR pair
+
+[SK-110] Line 386  |  Decoration (bold/italic/<u>) stripped from a heading
+    note: decoration removed from a heading - a heading is already styled by the IDLx theme, so bold, italics and Word's '<u>' underline add nothing and render inconsistently
+    BEFORE: ## **Conclusion**
+    AFTER : ## Conclusion
+
+[SK-110] Line 390  |  Decoration (bold/italic/<u>) stripped from a heading
+    note: decoration removed from a heading - a heading is already styled by the IDLx theme, so bold, italics and Word's '<u>' underline add nothing and render inconsistently
+    BEFORE: ### **Clean Up Resources**
+    AFTER : ### Clean Up Resources
+
+==============================================================================
+END OF LOG
+==============================================================================
