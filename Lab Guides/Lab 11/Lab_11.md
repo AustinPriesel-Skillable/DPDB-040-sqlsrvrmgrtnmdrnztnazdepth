@@ -4,7 +4,7 @@
 
 Zava wants its shopping assistant to answer natural-language questions such as “a bike that copes with rough mountain trails”. Keyword search misses questions like this, and copying product data into a separate vector store would bypass the governance built in Labs 9 and 10.
 
-In this lab you turn the secured database from Labs 9 and 10 into a retrieval engine for that assistant, keeping embeddings next to the product data under the same security. You store embeddings in the native **vector** type, generate them inside the database with +++AI_GENERATE_EMBEDDINGS+++ and an Azure OpenAI model in Microsoft Foundry reached through a managed identity, run exact and approximate semantic search, and combine it with keyword search.
+In this lab you turn the secured database from Labs 9 and 10 into a retrieval engine for that assistant, keeping embeddings next to the product data under the same security. You store embeddings in the native **vector** type, generate them inside the database with **AI_GENERATE_EMBEDDINGS** and an Azure OpenAI model in Microsoft Foundry reached through a managed identity, run exact and approximate semantic search, and combine it with keyword search.
 
 ### Objectives
 
@@ -28,11 +28,11 @@ By the end of this lab, you will be able to:
 
 ### Setup: Connect the Database to Azure OpenAI
 
-**Values used in this lab:** server **sql-zava-jd427**, database **sqldb-zava** and resource group **ResourceGroup1** (all from Lab 9), and your Foundry resource **aif-zava-<lab-user-number>** (Task 0). Wherever a script shows **<lab-user-number>**, replace it, including the angle brackets, with your lab user number.
+**Values used in this lab:** server **sql-zava-@lab.labinstance.id**, database **sqldb-zava-@lab.labinstance.id** and resource group **ResourceGroup1**, and your Foundry resource **aif-zava-@lab.labinstance.id** (Task 0). Wherever a script shows **<lab-user-number>**, replace it, including the angle brackets, with your lab user number [@lab.labinstance.id].
 
 ### Task 0: Create the Foundry resource and deploy the embedding model
 
-Each learner needs a Microsoft Foundry resource in the lab resource group. Resource names must be unique across Azure, so include your **lab user number**: the digits in your sign-in name (for example, User1-67029880 gives +++aif-zava-67029880+++). If your instructor provides a resource instead, skip this task and use that name wherever this guide shows +++aif-zava-<lab-user-number>+++.
+Each learner needs a Microsoft Foundry resource in the lab resource group. Resource names must be unique across Azure, so include your **lab user number**: the digits in your sign-in name (for example, User1-67029880 gives `aif-zava-@lab.labinstance.id`). If your instructor provides a resource instead, skip this task and use that name wherever this guide shows +++aif-zava-@lab.labinstance.id+++.
 
 1. In the Azure portal, click **Foundry** under **Azure services** or search for and select `Foundry`.
 
@@ -40,7 +40,7 @@ Each learner needs a Microsoft Foundry resource in the lab resource group. Resou
 
 1. Set **Resource group** to **ResourceGroup1**, **Name** to `aif-zava-@lab.labinstance.id` and **Region** to **canadaeast, eastus2 or westus**. If asked for a default project name, use `proj-zava-@lab.labinstance.id`
 
-1. If the portal reports that the sub-domain name is already used, add a digit (for example +++aif-zava-670298801+++). Note the exact name: every later step uses it.
+1. If the portal reports that the sub-domain name is already used, add a digit (for example `aif-zava-@lab.labinstance.id`). Note the exact name: every later step uses it.
 
 1. Click **Review + create**.
 
@@ -100,13 +100,13 @@ Each learner needs a Microsoft Foundry resource in the lab resource group. Resou
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2011/media/image8.png)
 
-1. Select **Managed identity**, click **+ Select members**, set **Managed identity** to **SQL server**, select **sql-zava-jd427**, click **Select**, then click **Review + assign** twice. Do not choose Foundry or Foundry project.
+1. Select **Managed identity**, click **+ Select members**, set **Managed identity** to **SQL server**, select **sql-zava-@lab.labinstance.id**, click **Select**, then click **Review + assign** twice. Do not choose Foundry or Foundry project.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2011/media/image9.png)
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2011/media/image10.png)
 
-1. Confirm the assignment: on the **Role assignments** tab, click **Refresh** and search for +++sql-zava-jd427+++. It must be listed under **Cognitive Services OpenAI User** with type **SQL server**. Wait about 5 minutes before Task 2.
+1. Confirm the assignment: on the **Role assignments** tab, click **Refresh** and search for +++sql-zava-@lab.labinstance.id+++. It must be listed under **Cognitive Services OpenAI User** with type **SQL server**. Wait about 5 minutes before Task 2.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2011/media/image11.png)
 
@@ -116,8 +116,8 @@ Each learner needs a Microsoft Foundry resource in the lab resource group. Resou
     ```bash
     # Replace the example Foundry name with your own before running
     RG=ResourceGroup1
-    SERVER=sql-zava-jd427
-    AOAI_NAME=aif-zava-67029880
+    SERVER=sql-zava-@lab.labinstance.id
+    AOAI_NAME=aif-zava-@lab.labinstance.id
     
     az sql server update -g $RG -n $SERVER -i   # turns on the identity; no change if already on
     
@@ -138,7 +138,7 @@ Each learner needs a Microsoft Foundry resource in the lab resource group. Resou
 
 **CREATE EXTERNAL MODEL** stores the endpoint, credential and model as one database object, and **AI_GENERATE_EMBEDDINGS** calls it from any query. This replaces hand-written REST calls and JSON parsing.
 
-**Before you run:** replace **<lab-user-number>** in all three places (the credential name, +++LOCATION+++ and **CREDENTIAL**), for example with **Ctrl+H** in the editor, so the address matches your Foundry resource exactly. Then run the whole script at once without highlighting anything. Any text in angle brackets is a placeholder; if one is left in, the script fails with “Only alphanumeric characters… are allowed in the hostname”.
+1. Replace **<lab-user-number>** with `@lab.labinstance.id` in all three places (the credential name, **LOCATION** and **CREDENTIAL**), for example with **Ctrl+H** in the editor, so the address matches your Foundry resource exactly. Then run the whole script at once without highlighting anything. Any text in angle brackets is a placeholder; if one is left in, the script fails with “Only alphanumeric characters… are allowed in the hostname”.
 
     ```T-sql
     -- 1. Clean up anything left from earlier attempts (makes the script safe to rerun)
@@ -158,7 +158,7 @@ Each learner needs a Microsoft Foundry resource in the lab resource group. Resou
     GO
     
     -- 3. Credential: the name must equal the endpoint URL
-    CREATE DATABASE SCOPED CREDENTIAL [https://aif-zava-<lab-user-number>.openai.azure.com]
+    CREATE DATABASE SCOPED CREDENTIAL [https://aif-zava-@lab.labinstance.id.openai.azure.com]
     WITH IDENTITY = 'Managed Identity',
          SECRET = '{"resourceid":"https://cognitiveservices.azure.com"}';
     GO
@@ -166,11 +166,11 @@ Each learner needs a Microsoft Foundry resource in the lab resource group. Resou
     -- 4. Register the embedding deployment as a database object (preview)
     CREATE EXTERNAL MODEL EmbeddingModel
     WITH (
-        LOCATION   = 'https://aif-zava-<lab-user-number>.openai.azure.com/openai/deployments/text-embedding-3-small/embeddings?api-version=2024-10-21',
+        LOCATION   = 'https://aif-zava-@lab.labinstance.id.openai.azure.com/openai/deployments/text-embedding-3-small/embeddings?api-version=2024-10-21',
         API_FORMAT = 'Azure OpenAI',
         MODEL_TYPE = EMBEDDINGS,
         MODEL      = 'text-embedding-3-small',
-        CREDENTIAL = [https://aif-zava-<lab-user-number>.openai.azure.com]
+        CREDENTIAL = [https://aif-zava-@lab.labinstance.id.openai.azure.com]
     );
     GO
     
@@ -204,7 +204,7 @@ Each learner needs a Microsoft Foundry resource in the lab resource group. Resou
 
 ### Task 1: Explore the vector type
 
-    
+1. Run the following query:
     ```T-sql
     DECLARE @a VECTOR(3) = '[1, 0, 0]',
             @b VECTOR(3) = '[0.7, 0.7, 0]';
