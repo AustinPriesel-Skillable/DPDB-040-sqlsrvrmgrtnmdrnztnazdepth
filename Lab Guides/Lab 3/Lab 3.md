@@ -91,21 +91,24 @@ You create ZavaOrders on the local SQL Server with 1,000 customers and 20,000 or
 
 ### Task 1: Set lab variables
 
-1. In the PowerShell window, run the block below. Replace *{initials}* with your initials :
+1. In the PowerShell window, run the block below:
 
     ```
-    New-Item -ItemType Directory -Path C:\Lab3 -Force | Out-Null  
-    Set-Location C:\Lab3  
-    $rg = "rg-lab3-\<initials\>"  
-    $loc = "centralindia"  
-    $server = "sql-lab3-\<initials\>-" + (Get-Random -Maximum 9999)  
-    $admin = "labadmin"  
-    $sqlPass = Read-Host "Enter SQL admin password"  
-    $azHost = "$server.database.windows.net"  
-    $server \# note this name down
+    New-Item -ItemType Directory -Path C:\Lab3 -Force | Out-Null
+    Set-Location C:\Lab3
+    $rg = "rg-lab3-@lab.LabInstance.Id"
+    $loc = "centralindia"
+    $server = "sql-lab3-@lab.LabInstance.Id"
+    $admin = "labadmin"
+    $sqlPass = Read-Host "Enter SQL admin password"
+    $azHost = "$server.database.windows.net"
+    $server
     ```
 
     Enter a strong password when prompted (12+ characters, upper, lower, number, symbol) as +++Zava#Lab2026!+++
+
+    >[!Note] Keep this PowerShell window open. If you close it, open a new Administrator PowerShell and run this block again. The names are tied to your lab instance, so they always come out the same.
+
 
     ![A computer screen with a black background Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image8.png)
 
