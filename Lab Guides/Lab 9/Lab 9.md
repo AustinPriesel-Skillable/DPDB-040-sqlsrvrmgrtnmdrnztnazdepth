@@ -872,7 +872,7 @@ Auditing answers “who did what”. Operational monitoring answers “is the da
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image123.png)
 
 
-##### If the vulnerability count still shows 0
+    >[!Note] If the vulnerability count still shows 0:
 
     - **No scan has completed yet.** Click **Scan now**, wait for the notification (1 to 5 minutes), and then open **View database vulnerability summary**. Ignore the **Recommendations (0)** counter; it is not used in this lab.
     - **The scan ran before the GRANT.** Run the confirmation query again, and then scan again.
