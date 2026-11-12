@@ -793,8 +793,6 @@ Auditing answers “who did what”. Operational monitoring answers “is the da
 
 1. Under **Vulnerabilities on this database**, click **Scan now**.
 
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image121.png)
-
 1. Wait for the scan to finish. This usually takes 1 to 5 minutes.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image112.png)
