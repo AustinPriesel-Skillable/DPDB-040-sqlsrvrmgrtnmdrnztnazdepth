@@ -58,7 +58,7 @@ This is the first of three connected labs. Lab 10 adds governance and data prote
 1. On the **Basics** tab, set the following values:
 
     - **Resource group:** Select your lab resource group.
-    - **Database name:** Enter `sqldb-zava`.
+    - **Database name:** Enter `sqldb-zava-@lab.labinstance.id`.
 
 
 1. Under **Server**, click **Create new**.
@@ -67,7 +67,7 @@ This is the first of three connected labs. Lab 10 adds governance and data prote
 
 1. In the **Create SQL Database Server** pane, set the following values:
 
-    - **Server name:** `sql-zava-jd427`
+    - **Server name:** `sql-zava-@lab.labinstance.id`
     - **Location:** @lab.CloudResourceGroup(ResourceGroup1).Location
     - **Authentication method:** Use SQL authentication
     - **Server admin login:** `sqladminuser`
@@ -222,11 +222,11 @@ In this exercise, you make your account the Microsoft Entra administrator, grant
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image33.png)
 
-1. In the search box, search for your lab account.
+1. In the search box, search for and select your **user1** acount, +++@lab.CloudPortalCredential(User1).Username+++ .
 
 1. Select your lab account.
 
-1. Click **Select**.
+1. Click **Select**.  
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image34.png)
 
@@ -297,13 +297,13 @@ Use **Option A** if SSMS is installed on your lab machine; otherwise, use **Opti
 
 1. On your lab machine, open **SQL Server Management Studio**.
 
-1. In the **Connect to Server** dialog, set **Server name** to +++sql-zava-jd427.database.windows.net+++.
+1. In the **Connect to Server** dialog, set **Server name** to `sql-zava-@lab.labinstance.id.database.windows.net`.
   
 1. Set **Authentication** to **Microsoft Entra MFA**.
   
 1. In **User name**, enter +++@lab.CloudPortalCredential(User1).Username+++.
   
-1. Set **Database name** to `sqldb-zava`.
+1. Set **Database name** to `sqldb-zava-@lab.labinstance.id`.
 
 1. Click **Connect**.
 
@@ -316,7 +316,7 @@ Use **Option A** if SSMS is installed on your lab machine; otherwise, use **Opti
 
 ##### Option B: Azure portal Query editor (no installation)
 
-1. Open the logical server **sql-zava-jd427**. Click **sqldb-zava**. In the left menu, expand **Settings** and click **SQL databases**.
+1. Open the logical server **sql-zava-@lab.labinstance.id**. Click **sqldb-zava**. In the left menu, expand **Settings** and click **SQL databases**.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image44.png)
   
@@ -426,7 +426,7 @@ Use **Option A** if SSMS is installed on your lab machine; otherwise, use **Opti
 1. On the **Basics** tab, set the following values:
 
     - **Resource group:** @lab.CloudResourceGroup(ResourceGroup1).Name
-    - **Name:** `law-zava-jd427`
+    - **Name:** `law-zava-@lab.labinstance.id`
     - **Region:** @lab.CloudResourceGroup(ResourceGroup1).Location
 
 1. Click **Review + Create**.
@@ -444,7 +444,7 @@ Use **Option A** if SSMS is installed on your lab machine; otherwise, use **Opti
 
 ### Task 2: Enable server auditing and diagnostics
 
-1. Open the logical server **sql-zava-jd427**.
+1. Open the logical server **sql-zava-@lab.labinstance.id**.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image66.png)
 
@@ -458,17 +458,17 @@ Use **Option A** if SSMS is installed on your lab machine; otherwise, use **Opti
 
 1. Under **Audit log destination**, select **Log Analytics**.
 
-1. Select the **law-zava-jd427** workspace.
+1. Select the **law-zava-@lab.labinstance.id** workspace.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image69.png)
 
 1. Turn on **Enable Auditing of Microsoft support operations**.
 
-1. Send these audit logs to the same Log Analytics workspace, **law-zava-jd427**. Click **Save**.
+1. Send these audit logs to the same Log Analytics workspace, **law-zava-@lab.labinstance.id**. Click **Save**.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image70.png)
 
-1. Open the database **sqldb-zava**.
+1. Open the database **sqldb-zava-@lab.labinstance.id**.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image71.png)
 
@@ -476,7 +476,7 @@ Use **Option A** if SSMS is installed on your lab machine; otherwise, use **Opti
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image72.png)
 
-1. In **Diagnostic setting name**, enter +++diag-to-law+++.
+1. In **Diagnostic setting name**, enter `diag-to-law`.
 
 1. Under **Categories**, select the following checkboxes:
 
@@ -494,7 +494,7 @@ Use **Option A** if SSMS is installed on your lab machine; otherwise, use **Opti
 
 1. Under **Destination details**, select **Send to Log Analytics workspace**.
 
-1. Select the **law-zava-jd427** workspace.
+1. Select the **law-zava-@lab.labinstance.id** workspace.
 
 1. Click **Save**.
 
@@ -534,7 +534,7 @@ Use **Option A** if SSMS is installed on your lab machine; otherwise, use **Opti
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image78.png)
 
-1. Click **law-zava-jd427**.
+1. Click **law-zava-@lab.labinstance.id**.
 
 1. In the left menu, select **Logs**.
 
@@ -600,7 +600,7 @@ Use **Option A** if SSMS is installed on your lab machine; otherwise, use **Opti
 
 Auditing answers “who did what”. Operational monitoring answers “is the database healthy, and is anything getting worse”.
 
-1. Open the database **sqldb-zava**.
+1. Open the database **sqldb-zava-@lab.labinstance.id**.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image88.png)
 
@@ -889,9 +889,9 @@ Auditing answers “who did what”. Operational monitoring answers “is the da
 
 1. Confirm that the following resources exist:
 
-    - **sqldb-zava** (SQL database)
-    - **sql-zava-jd427** (SQL server)
-    - **law-zava-jd427** (Log Analytics workspace)
+    - **sqldb-zava-@lab.labinstance.id** (SQL database)
+    - **sql-zava-@lab.labinstance.id** (SQL server)
+    - **law-zava-@lab.labinstance.id** (Log Analytics workspace)
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image120.png)
 
