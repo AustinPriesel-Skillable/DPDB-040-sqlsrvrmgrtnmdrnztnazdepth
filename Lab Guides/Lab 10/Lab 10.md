@@ -57,7 +57,7 @@ You created the server with SQL authentication, as in Lab 9. Now you make your a
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image30.png)
 
-1. Select **Log Analytics**, choose your subscription and your workspace (**law-zava-jd427**), and click **Save**.
+1. Select **Log Analytics**, choose your subscription and your workspace (**law-zava-@lab.labinstance.id**), and click **Save**.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image31.png)
 
@@ -86,9 +86,9 @@ You created the server with SQL authentication, as in Lab 9. Now you make your a
 
     ```
     RG="ResourceGroup1"
-    SERVER="sql-zava-jd427"
-    DB="sqldb-zava"
-    LAW="law-zava-jd427"
+    SERVER="sql-zava-@lab.labinstance.id"
+    DB="sqldb-zava-@lab.labinstance.id"
+    LAW="law-zava-@lab.labinstance.id"
 
     # Check the values point at real resources
     az sql db show -g $RG -s $SERVER -n $DB \
@@ -98,7 +98,7 @@ You created the server with SQL authentication, as in Lab 9. Now you make your a
       --query name -o tsv
     ```
 
-    **Expected result:** `sqldb-zava` with status **Online** (or **Paused**), and your workspace name.
+    **Expected result:** `sqldb-zava-@lab.labinstance.id` with status **Online** (or **Paused**), and your workspace name.
 
     >[!Note] Cloud Shell closes after about 20 minutes without input, and the variables are lost. Later Cloud Shell steps start with an `echo` check; if it shows empty values, or a command reports **expected one argument**, run the four variable lines again. To find your names, run `az group list --query "[].name" -o tsv` and `az monitor log-analytics workspace list -o table`.
 
@@ -147,7 +147,7 @@ az policy state trigger-scan -g $RG --no-wait
 
 ### Option B: Azure portal
 
-1. In the portal search bar at the top, type +++Policy+++ and select **Policy** under **Services**. In the left menu, click **Authoring > Definitions**.
+1. In the portal search bar at the top, type `Policy` and select **Policy** under **Services**. In the left menu, click **Authoring > Definitions**.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image36.png)
 
@@ -272,7 +272,7 @@ You layer four controls on `SalesLT.Customer`: roles grant table access, a colum
     DENY SELECT ON SalesLT.Customer (PasswordHash, PasswordSalt) TO SalesReps;
     ```
 
-    > **Production note:** Users without logins cannot sign in; they exist only for impersonation tests and are allowed with Entra-only authentication. In production, add Entra groups to these roles instead, for example `CREATE USER [SG-SalesReps] FROM EXTERNAL PROVIDER;`
+   **Production note:** Users without logins cannot sign in; they exist only for impersonation tests and are allowed with Entra-only authentication. In production, add Entra groups to these roles instead, for example `CREATE USER [SG-SalesReps] FROM EXTERNAL PROVIDER;`
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image56.png)
 
@@ -530,7 +530,7 @@ You label sensitive columns so audit logs report when they are read, create a le
     DROP TABLE #digest;
     ```
 
-    **Expected result:** no error, and a result named +++last_verified_block_id+++ with the value **0** (or higher). This proves the ledger data matches the digest. The procedure expects a JSON array, which is why the script wraps the digest in square brackets.
+    **Expected result:** no error, and a result named **last_verified_block_id** with the value **0** (or higher). This proves the ledger data matches the digest. The procedure expects a JSON array, which is why the script wraps the digest in square brackets.
 
     **Query editor shows only one result?** The editor displays the last result set, so you see `last_verified_block_id` but not `digest_used`. That is expected. In SSMS, both results appear.
 
@@ -620,9 +620,7 @@ Azure Policy proves the platform is configured correctly; a validation script pr
 
 1. In Cloud Shell, list the compliance state of your assignments:
 
-    **Bash**
-
-    ```
+    ```bash
     echo "RG=$RG LAW=$LAW"  # both must show values; if empty, rerun Getting Started, Task 4
 
     Q="[?contains(policyAssignmentName,'sqlgov')].{policy:policyDefinitionName,"
@@ -637,9 +635,9 @@ Azure Policy proves the platform is configured correctly; a validation script pr
 
     **Expected result:** your server is **Compliant** for all four assignments, because Getting Started set Entra-only authentication, server auditing, Defender for SQL and TLS 1.2.
 
-    > **Same policy listed twice, or more than four policies?** A duplicate usually means the policy was assigned by both Option A and Option B, or once at subscription scope; it does not change the result. The clean-up section at the end removes every copy. Other policies in the list belong to your subscription and are not part of this lab.
+    **Same policy listed twice, or more than four policies?** A duplicate usually means the policy was assigned by both Option A and Option B, or once at subscription scope; it does not change the result. The clean-up section at the end removes every copy. Other policies in the list belong to your subscription and are not part of this lab.
 
-    > **If the list is empty or shows Not started,** evaluation has not finished. Run `az policy state trigger-scan -g $RG --no-wait`, continue with Task 2, and check again at the end of the lab. Record the status you see; “evaluation pending” is an acceptable result for the lab.
+    **If the list is empty or shows Not started,** evaluation has not finished. Run `az policy state trigger-scan -g $RG --no-wait`, continue with Task 2, and check again at the end of the lab. Record the status you see; “evaluation pending” is an acceptable result for the lab.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image83.png)
 
@@ -650,9 +648,8 @@ Azure Policy proves the platform is configured correctly; a validation script pr
 
 1. In your query window, run:
 
-    **T-SQL**
 
-    ```
+    ```T-Sql
     DECLARE @results TABLE (control nvarchar(100), outcome nvarchar(10));
     DECLARE @all int = (SELECT COUNT(*) FROM SalesLT.Customer), @rep int, @email nvarchar(50);
 
@@ -720,7 +717,7 @@ Azure Policy proves the platform is configured correctly; a validation script pr
 
     **Expected result:** **Total vulnerabilities** is **0**, and VA1281 and VA2130 appear on the **Passed** tab as **Passed per custom baseline**.
 
-    > **Ignore the Recommendations (0) and Security Alerts (0) counters** on the Defender for Cloud page. They are updated later by Defender for Cloud and are not used in this lab; findings come from **View database vulnerability summary**.
+    **Ignore the Recommendations (0) and Security Alerts (0) counters** on the Defender for Cloud page. They are updated later by Defender for Cloud and are not used in this lab; findings come from **View database vulnerability summary**.
 
     ---
 
@@ -739,7 +736,7 @@ Delete the policy assignments first, because an assignment made at subscription 
 
 1. In the portal search bar, type +++Policy+++ and select **Policy**. In the left menu, click **Authoring > Assignments**.
 
-1. In the **Search** box, type +++unprotected+++. Each lab policy can appear more than once, for example at **Depth-lod…** (subscription) scope and at **Depth-lod…/ResourceGroup1** scope. You must delete every copy.
+1. In the **Search** box, type `unprotected`. Each lab policy can appear more than once, for example at **Depth-lod…** (subscription) scope and at **Depth-lod…/ResourceGroup1** scope. You must delete every copy.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image93.png)
 
@@ -756,9 +753,8 @@ Delete the policy assignments first, because an assignment made at subscription 
 
 This lists every assignment of the four lab policies, at subscription and resource group scope, then deletes them. Check the list before you run the delete loop: it should show only the four lab policies (some may appear twice).
 
-**Bash**
 
-```
+```bash
 bash
 echo "RG=$RG"  # must show a value; if empty, set RG again
 
@@ -803,9 +799,8 @@ done
 
 ### Option B: Cloud Shell
 
-**Bash**
 
-```
+```bash
 bash
 echo "RG=$RG SERVER=$SERVER LAW=$LAW"  # all three must show values
 
