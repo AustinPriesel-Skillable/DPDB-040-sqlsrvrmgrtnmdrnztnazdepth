@@ -38,7 +38,7 @@ This is the first of three connected labs. Lab 10 adds governance and data prote
 
 1. On the portal **Home** page, under **Azure services**, click **SQL databases**.
 
-    - If the tile is not shown, type +++Azure SQL Database+++ in the search bar at the top, and then select **Azure SQL Database** under **Services**.
+    - If the tile is not shown, type `Azure SQL Database` in the search bar at the top, and then select **Azure SQL Database** under **Services**.
     - Do not select **Azure SQL** (a hub page with no **Create** button), **Azure SQL Database Hyperscale** (it pre-selects the Hyperscale tier), or **SQL Server databases** (Azure Arc).
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image2.png)
@@ -58,7 +58,7 @@ This is the first of three connected labs. Lab 10 adds governance and data prote
 1. On the **Basics** tab, set the following values:
 
     - **Resource group:** Select your lab resource group.
-    - **Database name:** Enter +++sqldb-zava+++.
+    - **Database name:** Enter `sqldb-zava`.
 
 
 1. Under **Server**, click **Create new**.
@@ -67,12 +67,12 @@ This is the first of three connected labs. Lab 10 adds governance and data prote
 
 1. In the **Create SQL Database Server** pane, set the following values:
 
-    - **Server name:** +++sql-zava-jd427+++
-    - **Location:** East US (or the region your instructor gives you)
+    - **Server name:** `sql-zava-jd427`
+    - **Location:** @lab.CloudResourceGroup(ResourceGroup1).Location
     - **Authentication method:** Use SQL authentication
-    - **Server admin login:** +++sqladminuser+++
-    - **Password:** +++P@ssword12345+++
-    - **Confirm password:** +++P@ssword12345+++
+    - **Server admin login:** `sqladminuser`
+    - **Password:** `P@ssword12345`
+    - **Confirm password:** `P@ssword12345`
 
 
 1. Click **OK**.
@@ -162,11 +162,11 @@ Azure SQL blocks all public connections until a firewall rule allows them. In th
 
 1. On the **Public access** tab, confirm that **Public network access** is set to **Selected networks**.
 
-1. Under **Firewall rules**, confirm that one rule named +++ClientIPAddress_<date>+++ exists.
+1. Under **Firewall rules**, confirm that one rule named **ClientIPAddress_<date>** exists.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image22.png)
 
-1. In the **Rule name** box, rename the rule to +++AllowMyPC+++.
+1. In the **Rule name** box, rename the rule to `AllowMyPC`.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image23.png)
 
@@ -241,7 +241,7 @@ In this exercise, you make your account the Microsoft Entra administrator, grant
 
 You will grant database access to an Entra group rather than to individual people. Check whether the group exists, and create it if not.
 
-1. In the portal search bar, type +++Microsoft Entra ID+++.
+1. In the portal search bar, type `Microsoft Entra ID`.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image36.png)
 
@@ -253,7 +253,7 @@ You will grant database access to an Entra group rather than to individual peopl
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image38.png)
 
-1. Search for +++SQL-Analysts+++.
+1. Search for `SQL-Analysts`.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image39.png)
 
@@ -264,7 +264,7 @@ You will grant database access to an Entra group rather than to individual peopl
 1. Set the following values:
 
     - **Group type:** Security
-    - **Group name:** +++SQL-Analysts+++
+    - **Group name:** `SQL-Analysts`
     - **Membership type:** Assigned
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image40.png)
@@ -272,7 +272,7 @@ You will grant database access to an Entra group rather than to individual peopl
 
 1. Under **Members**, click **No members selected**.
 
-1. Search for and select your lab account.
+1. Search for and select your lab account, +++@lab.CloudPortalCredential(User1).Username+++.
 
 1. Click **Select**.
 
@@ -284,7 +284,7 @@ You will grant database access to an Entra group rather than to individual peopl
 
 1. Wait about one minute for the group to be created before you continue.
 
-    **If you cannot create groups:** Some lab tenants do not allow learners to create groups (**+ New group** is greyed out or fails). Ask your instructor to create the group or to give you another lab user’s email address. In Task 4, replace **[SQL-Analysts]** with **[*{that user’s email}*]**. The user then appears as **EXTERNAL_USER** instead of **EXTERNAL_GROUP**.
+    >[!Note] **If you cannot create groups:** Some lab tenants do not allow learners to create groups (**+ New group** is greyed out or fails). Ask your instructor to create the group or to give you another lab user’s email address. In Task 4, replace **[SQL-Analysts]** with **[*{that user’s email}*]**. The user then appears as **EXTERNAL_USER** instead of **EXTERNAL_GROUP**.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image43.png)
 
@@ -301,9 +301,9 @@ Use **Option A** if SSMS is installed on your lab machine; otherwise, use **Opti
   
 1. Set **Authentication** to **Microsoft Entra MFA**.
   
-1. In **User name**, enter your lab account.
+1. In **User name**, enter +++@lab.CloudPortalCredential(User1).Username+++.
   
-1. Set **Database name** to +++sqldb-zava+++.
+1. Set **Database name** to `sqldb-zava`.
 
 1. Click **Connect**.
 
@@ -337,9 +337,7 @@ Use **Option A** if SSMS is installed on your lab machine; otherwise, use **Opti
 
 1. In your query window, run the following code:
 
-    `T-SQL`
-
-    ```
+    ```T-Sql
     -- Members of the Entra group inherit access; no per-person users needed
     CREATE USER [SQL-Analysts] FROM EXTERNAL PROVIDER;
     ALTER ROLE db_datareader ADD MEMBER [SQL-Analysts];
@@ -350,7 +348,7 @@ Use **Option A** if SSMS is installed on your lab machine; otherwise, use **Opti
     WHERE type IN ('E', 'X'); -- E = external user, X = external group
     ```
 
-    **Expected result:** one row for **SQL-Analysts** with type +++EXTERNAL_GROUP+++ and authentication type +++EXTERNAL+++.
+    **Expected result:** one row for **SQL-Analysts** with type **EXTERNAL_GROUP** and authentication type **EXTERNAL**.
 
     If you see **Principal 'SQL-Analysts' could not be found**, the group does not exist or the name differs. Return to Task 2, then run the whole script again; nothing after line 1 runs when line 1 fails.
 
@@ -372,8 +370,6 @@ Use **Option A** if SSMS is installed on your lab machine; otherwise, use **Opti
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image51.png)
 
 1. In your query window, run the following check:
-
-    **T-SQL**
 
     ```
     SELECT SUSER_SNAME() AS login_name, USER_NAME() AS database_user, DB_NAME() AS database_name,
@@ -402,7 +398,7 @@ Use **Option A** if SSMS is installed on your lab machine; otherwise, use **Opti
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image55.png)
 
-    1. In **Username**, enter +++sqladminuser+++. In +++Password+++, enter +++P@ssword12345+++.
+    1. In **Username**, enter `sqladminuser`. In **Password**, enter `P@ssword12345`.
 
     1. Click **Connect**.
 
@@ -429,10 +425,9 @@ Use **Option A** if SSMS is installed on your lab machine; otherwise, use **Opti
 
 1. On the **Basics** tab, set the following values:
 
-    - **Resource group:** Select your lab resource group.
-    - **Name:** Enter +++law-zava-jd427+++.
-    - **Region:** Select the same region as your server.
-
+    - **Resource group:** @lab.CloudResourceGroup(ResourceGroup1).Name
+    - **Name:** `law-zava-jd427`
+    - **Region:** @lab.CloudResourceGroup(ResourceGroup1).Location
 
 1. Click **Review + Create**.
 
@@ -514,8 +509,6 @@ Use **Option A** if SSMS is installed on your lab machine; otherwise, use **Opti
 
 1. Run the following code. You must be signed in with Microsoft Entra authentication.
 
-    `T-SQL`
-
     ```
     SELECT TOP (10) FirstName, LastName, EmailAddress FROM SalesLT.Customer;
     SELECT COUNT(*) AS orders FROM SalesLT.SalesOrderHeader;
@@ -569,8 +562,6 @@ Use **Option A** if SSMS is installed on your lab machine; otherwise, use **Opti
 
 1. Paste the following query into the query pane:
 
-    **KQL: recent audit events**
-
     ```
     AzureDiagnostics
     | where Category == "SQLSecurityAuditEvents"
@@ -587,8 +578,6 @@ Use **Option A** if SSMS is installed on your lab machine; otherwise, use **Opti
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image86.png)
 
 1. Replace the query with the following query:
-
-    **KQL: failed sign-ins**
 
     ```
     AzureDiagnostics
@@ -664,7 +653,7 @@ Auditing answers “who did what”. Operational monitoring answers “is the da
     - **Aggregation type:** Total
     - **Value is:** Greater than
     - **Unit:** Count
-    - **Threshold value:** +++5+++
+    - **Threshold value:** `5`
 
 
 1. Under **When to evaluate**, set the following values:
@@ -681,7 +670,7 @@ Auditing answers “who did what”. Operational monitoring answers “is the da
 1. Click the **Details** tab.
 
     - Set **Severity** to **2 - Warning**.
-    - Set **Alert rule name** to +++alert-failed-connections+++.
+    - Set **Alert rule name** to `alert-failed-connections`.
 
 
 1. Click **Review + create**.
@@ -729,8 +718,6 @@ Auditing answers “who did what”. Operational monitoring answers “is the da
 
 1. Run the following code to confirm that Query Store and automatic tuning are active:
 
-    `T-SQL`
-
     ```
     SELECT actual_state_desc, query_capture_mode_desc,
            current_storage_size_mb, max_storage_size_mb
@@ -776,15 +763,14 @@ Auditing answers “who did what”. Operational monitoring answers “is the da
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image110.png)
 
     >[!Note] Email notifications for security alerts are set for the whole subscription in **Defender for Cloud > Environment settings >** your subscription **> Email notifications**. You do not need to change them for this lab.
-
-    **What you see at first:** Immediately after you enable Defender, the page shows **Recommendations (0)**, **Security Alerts (0)** and “No SQL vulnerability assessment scan results available”. This is normal: there are no results until you run a scan in Task 2. A scan takes 1 to 5 minutes, and its results appear under **View database vulnerability summary**. You do not use the **Recommendations** or **Security Alerts** counters on this page in this lab, so ignore them if they still show 0.
+    >
+    >**What you see at first:** Immediately after you enable Defender, the page shows **Recommendations (0)**, **Security Alerts (0)** and “No SQL vulnerability assessment scan results available”. This is normal: there are no results until you run a scan in Task 2. A scan takes 1 to 5 minutes, and its results appear under **View database vulnerability summary**. You do not use the **Recommendations** or **Security Alerts** counters on this page in this lab, so ignore them if they still show 0.
 
 
 ### Task 2: Run a vulnerability assessment
 
 1. In your query window, connected to **sqldb-zava** (not master), run the following code to introduce a deliberate weakness and confirm that it took effect:
 
-    `T-SQL`
 
     ```
     GRANT SELECT ON SalesLT.Customer TO public; -- every user inherits this
@@ -807,8 +793,6 @@ Auditing answers “who did what”. Operational monitoring answers “is the da
 
 1. Under **Vulnerabilities on this database**, click **Scan now**.
 
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image121.png)
-
 1. Wait for the scan to finish. This usually takes 1 to 5 minutes.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image112.png)
@@ -827,15 +811,13 @@ Auditing answers “who did what”. Operational monitoring answers “is the da
 
 1. On the **Findings** tab, clear any severity or status filter.
 
-1. In the search box, enter +++PUBLIC+++.
+1. In the search box, enter `PUBLIC`.
 
 1. Open the finding **Minimal set of principals should be members of fixed low impact database roles in SQL databases** (rule VA2109).
 
 1. Review its description, the query results (**SalesLT.Customer**, **SELECT**) and the remediation script.
 
 1. In your query window, run the following code to remediate the finding:
-
-    `T-SQL`
 
     ```
     GRANT SELECT ON SalesLT.Customer TO public;   -- every user inherits this
@@ -890,7 +872,7 @@ Auditing answers “who did what”. Operational monitoring answers “is the da
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image123.png)
 
 
-##### If the vulnerability count still shows 0
+    >[!Note] If the vulnerability count still shows 0:
 
     - **No scan has completed yet.** Click **Scan now**, wait for the notification (1 to 5 minutes), and then open **View database vulnerability summary**. Ignore the **Recommendations (0)** counter; it is not used in this lab.
     - **The scan ran before the GRANT.** Run the confirmation query again, and then scan again.
@@ -913,4 +895,4 @@ Auditing answers “who did what”. Operational monitoring answers “is the da
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image120.png)
 
-    >[!Note] Do not delete these resources.** Lab 10 and Lab 11 use them.
+    >[!Note] **Do not delete these resources.** Lab 10 and Lab 11 use them.

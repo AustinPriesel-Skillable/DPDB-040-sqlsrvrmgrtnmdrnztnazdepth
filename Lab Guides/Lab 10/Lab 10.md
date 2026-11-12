@@ -23,111 +23,7 @@ After completing this lab, you will be able to:
 
 # Getting Started: Build the Secured Environment
 
-> **Work in this order to save time:** start the database deployment (Task 1), and while it deploys (3 to 5 minutes) create the Log Analytics workspace (Task 2). Then finish Tasks 3 to 6.
-
-### Task 1: Create the database with secure defaults
-
-1. Open +++https://portal.azure.com/+++ and sign in with your lab account.
-
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image1.png)
-
-1. After signing in to the Azure portal, verify that the **Azure home page** opens successfully. From here, you can access Azure services and resources.
-
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image2.png)
-
-1. In the Azure portal, enter **SQL databases** in the top search bar and select **SQL databases** under Services. Alternatively, select **SQL databases** directly from the home page if available. Avoid selecting **Azure SQL** or **SQL Server databases**.
-
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image3.png)
-
-1. Click **+ Create** on the toolbar.
-
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image4.png)
-
-1. Select **SQL database**. Do not select SQL database (Free offer); it opens a different wizard with free-tier limits.
-
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image5.png)
-
-1. On the **Basics** tab, set:
-
-    1. **Resource group:** your lab resource group
-    1. **Database name:** `sqldb-zava`
-    1. **Server:** click **Create new**
-
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image6.png)
-
-1. In the **Create SQL Database Server** pane, set:
-
-    1. **Server name:** `sql-zava-jd427` (**Note:** use only lowercase letters, numbers and hyphens.)
-    1. **Location:** East US (or the region your instructor gives you)
-    1. **Authentication method:** Use SQL authentication
-    1. **Server admin login:** `sqladminuser`, **Password:** `P@ssword12345`, **Confirm password:** `P@ssword12345`
-
-1. Click **OK**.
-
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image7.png)
-
-1. Set **Want to use SQL elastic pool?** to **No** and **Workload environment** to **Development**.
-
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image8.png)
-
-1. Under **Compute + storage**, click **Configure database**. Select **General Purpose**, **Serverless**, **Max vCores 2** and **Auto-pause delay 1 hour**. Click **Apply**.
-
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image9.png)
-
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image10.png)
-
-1. Set **Backup storage redundancy** to **Locally-redundant backup storage**. Then select **Next: Networking**.
-
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image11.png)
-
-1. Click the **Networking** tab and set:
-
-    1. **Connectivity method:** Public endpoint
-    1. **Allow Azure services and resources to access this server:** No
-    1. **Add current client IP address:** Yes
-    1. **Minimum TLS version** (under **Encrypted connections**, if shown): leave at **TLS 1.2**. TLS 1.0 and 1.1 were retired for Azure SQL Database on 31 August 2025.
-
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image12.png)
-
-1. Click the **Security** tab. Under **Microsoft Defender for SQL**, select **Start free trial** to enable it. If the tab says Defender for SQL is already enabled for your subscription, leave it as it is. Then click the **Additional settings** tab.
-
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image13.png)
-
-1. On the **Additional settings** tab, set **Use existing data** to **Sample**. Click **OK** in the confirmation dialog. This loads the **AdventureWorksLT** sample (SalesLT schema).
-
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image14.png)
-
-1. Click **Review + create**, then **Create**.
-
-    >[!Note] Do not wait. Go straight to Task 2 while the deployment runs.
-
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image15.png)
-
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image16.png)
-
-
-### Task 2: Create the Log Analytics workspace
-
-1. Open a new browser tab on **portal.azure.com**. In the search bar, type **Log Analytics workspaces**, select it and click **+ Create**.
-
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image17.png)
-
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image18.png)
-
-1. Set **Resource group** to your lab group, **Name** to `law-zava-jd427`, and **Region** to the same region as your server (East US). Select **Review + Create**.
-
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image19.png)
-
-1. Click **Create**. Deployment takes under a minute.
-
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image20.png)
-
-1. Confirm that the **Log Analytics workspace** was created successfully.
-
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image21.png)
-
-
-### Task 3: Switch to Entra-only authentication, enable auditing and confirm network security
+### Task 1: Switch and verify Entra-only authentication, enable auditing and confirm network security
 
 You created the server with SQL authentication, as in Lab 9. Now you make your account the Microsoft Entra administrator and turn SQL authentication off, so every sign-in uses Entra ID.
 
@@ -145,13 +41,13 @@ You created the server with SQL authentication, as in Lab 9. Now you make your a
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image25.png)
 
-1. Click **Set admin**, search for your lab account, select it and click **Select**. Click **Save**.
+1. Click **Set admin**, search for your lab account +++@lab.CloudPortalCredential(User1).Username+++, select it and click **Select**. Click **Save**.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image26.png)
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image27.png)
 
-1. On the same page, select **Support only Microsoft Entra authentication for this server** and click **Save**. The `sqladminuser` login remains defined but can no longer sign in.
+1. On the same page, select **Support only Microsoft Entra authentication for this server** and click **Save**. The **sqladminuser** login remains defined but can no longer sign in.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image28.png)
 
@@ -161,7 +57,7 @@ You created the server with SQL authentication, as in Lab 9. Now you make your a
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image30.png)
 
-1. Select **Log Analytics**, choose your subscription and your workspace (for example `law-zava-jd427`), and click **Save**.
+1. Select **Log Analytics**, choose your subscription and your workspace (**law-zava-jd427**), and click **Save**.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image31.png)
 
@@ -172,7 +68,7 @@ You created the server with SQL authentication, as in Lab 9. Now you make your a
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image32.png)
 
 
-### Task 4: Open Cloud Shell and set variables
+### Task 2: Open Cloud Shell and set variables
 
 1. On the portal toolbar, click the **Cloud Shell** icon (**>_**).
 
@@ -301,7 +197,7 @@ az policy state trigger-scan -g $RG --no-wait
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image50.png)
 
-    > **“No policies found in the given scope”?** Check the **Search** box contains only the search text (clear anything else), and that the filters show **Category : SQL**, **Definition type : All definition types** and **Policy type : All policy types**. Then click **Refresh**.
+    **“No policies found in the given scope”?** Check the **Search** box contains only the search text (clear anything else), and that the filters show **Category : SQL**, **Definition type : All definition types** and **Policy type : All policy types**. Then click **Refresh**.
 
 
 ### Task 6: Connect to the database
@@ -332,18 +228,18 @@ Use **Option A** if SSMS is installed on your lab machine; otherwise use **Optio
 
 ### Check the connection
 
-**T-SQL**
+1. Run the following query:
 
-```
-SELECT SUSER_SNAME() AS login_name, USER_NAME() AS database_user, DB_NAME() AS database_name,
-       (SELECT COUNT(*) FROM SalesLT.Customer) AS customer_rows;
-```
+   ```
+    SELECT SUSER_SNAME() AS login_name, USER_NAME() AS database_user, DB_NAME() AS database_name,
+           (SELECT COUNT(*) FROM SalesLT.Customer) AS customer_rows;
+    ```
 
-**Expected result:** `login_name` is your lab account, `database_user` is **dbo** (you are the Entra admin), `database_name` is `sqldb-zava`, and `customer_rows` is **847**.
+    **Expected result:** `login_name` is your lab account, `database_user` is **dbo** (you are the Entra admin), `database_name` is `sqldb-zava`, and `customer_rows` is **847**.
 
-> **Running the scripts in this lab:** copy only the code lines, not the grey label above each block. Some scripts use **GO** to separate batches. SSMS handles GO; if the Query editor reports an error near GO, highlight each section between GO lines and run it on its own, in order.
-
-![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image55.png)
+    **Running the scripts in this lab:** copy only the code lines, not the grey label above each block. Some scripts use **GO** to separate batches. SSMS handles GO; if the Query editor reports an error near GO, highlight each section between GO lines and run it on its own, in order.
+    
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image55.png)
 
 ---
 
@@ -356,8 +252,6 @@ You layer four controls on `SalesLT.Customer`: roles grant table access, a colum
 ### Task 1: Create roles and test users
 
 1. In your query window, run:
-
-    **T-SQL**
 
     ```
     CREATE ROLE SalesReps;
@@ -387,8 +281,6 @@ You layer four controls on `SalesLT.Customer`: roles grant table access, a colum
 
 1. Check which sales reps exist in the data:
 
-    **T-SQL**
-
     ```
     SELECT SalesPerson, COUNT(*) AS customers
     FROM SalesLT.Customer GROUP BY SalesPerson ORDER BY customers DESC;
@@ -399,8 +291,6 @@ You layer four controls on `SalesLT.Customer`: roles grant table access, a colum
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image57.png)
 
 1. Create the mapping table, predicate function and security policy. If the values in your data differ, adjust the `SalesPerson` values in the INSERT to match the query above.
-
-    **T-SQL**
 
     ```
     CREATE SCHEMA Security;
@@ -442,8 +332,6 @@ You layer four controls on `SalesLT.Customer`: roles grant table access, a colum
 
 1. In your query window, run:
 
-    **T-SQL**
-
     ```
     ALTER TABLE SalesLT.Customer
         ALTER COLUMN EmailAddress ADD MASKED WITH (FUNCTION = 'email()');
@@ -465,8 +353,6 @@ Each block below switches to a test user, runs one test, and switches back with 
 
 1. Block A: what Rep_Pamela can see. Run: <!-- TODO: Need to check/add image -->
 
-    **T-SQL: Block A (Rep_Pamela reads customers)**
-
     ```
     EXECUTE AS USER = 'Rep_Pamela';
     SELECT TOP (5) COUNT(CustomerID) OVER () AS my_customers,
@@ -475,15 +361,13 @@ Each block below switches to a test user, runs one test, and switches back with 
     REVERT;
     ```
 
-    **Expected result:** five rows. `my_customers` is the number of rows Pamela can see (well below 847), `SalesPerson` is always `adventure-works\pamela0`, `EmailAddress` is masked (for example +++a@lab.LabInstance.Id+++@@lab.LabInstance.Id.com) and `Phone` shows only the last four digits (+++@lab.LabInstance.Id-@lab.LabInstance.Id-0173+++).
+    **Expected result:** five rows. `my_customers` is the number of rows Pamela can see (well below 847), `SalesPerson` is always `adventure-works\pamela0`, `EmailAddress` is masked (for example +++a@lab.LabInstance.Id+++@@lab.LabInstance.Id.com) and `Phone` shows only the last four digits (+++@lab.LabInstance.Id-0173+++).
 
-    > **Why COUNT(CustomerID) and not COUNT(\*)?** `COUNT(*)` needs SELECT permission on every column of the table, including `PasswordHash`, which SalesReps are denied, so it fails with a PasswordHash permission error. Counting a permitted column such as `CustomerID` returns the same number without touching the denied columns.
+    **Why COUNT(CustomerID) and not COUNT(\*)?** `COUNT(*)` needs SELECT permission on every column of the table, including `PasswordHash`, which SalesReps are denied, so it fails with a PasswordHash permission error. Counting a permitted column such as `CustomerID` returns the same number without touching the denied columns.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image60.png)
 
 1. Block B: the password column. Run:
-
-    **T-SQL: Block B (expect a permission error)**
 
     ```
     EXECUTE AS USER = 'Rep_Pamela';
@@ -497,8 +381,6 @@ Each block below switches to a test user, runs one test, and switches back with 
 
 1. Block C: inserting a customer for another rep. Run:
 
-    **T-SQL: Block C (expect a block predicate error)**
-
     ```
     EXECUTE AS USER = 'Rep_Pamela';
     INSERT SalesLT.Customer (FirstName, LastName, SalesPerson, PasswordHash, PasswordSalt)
@@ -511,8 +393,6 @@ Each block below switches to a test user, runs one test, and switches back with 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image62.png)
 
 1. Block D: what Mgr_Linda can see. Run:
-
-    **T-SQL: Block D (Mgr_Linda reads customers)**
 
     ```
     EXECUTE AS USER = 'Mgr_Linda';
@@ -528,11 +408,9 @@ Each block below switches to a test user, runs one test, and switches back with 
 
 1. Confirm you are back to your own identity:
 
-    **T-SQL**
-
     `SELECT USER_NAME() AS current_user_name; -- expect dbo`
 
-    > **If this does not return dbo,** an error stopped a block before `REVERT` ran, and your session is still impersonating a test user. Run `REVERT;` and check again. Later scripts fail with permission errors if you skip this.
+    **If this does not return dbo,** an error stopped a block before `REVERT` ran, and your session is still impersonating a test user. Run `REVERT;` and check again. Later scripts fail with permission errors if you skip this.
 
     | Persona | Rows visible | EmailAddress | PasswordHash | Insert for another rep |
     |---|---|---|---|---|
@@ -567,8 +445,6 @@ You label sensitive columns so audit logs report when they are read, create a le
 
 1. Make the labels repeatable with T-SQL. This sets the exact labels the auditor expects, overriding any portal recommendation for these columns:
 
-    **T-SQL**
-
     ```
     ADD SENSITIVITY CLASSIFICATION TO SalesLT.Customer.EmailAddress, SalesLT.Customer.Phone
         WITH (LABEL = 'Confidential - GDPR', INFORMATION_TYPE = 'Contact Info', RANK = MEDIUM);
@@ -592,8 +468,6 @@ You label sensitive columns so audit logs report when they are read, create a le
 
 1. Run this query as yourself. Auditing records that it touched classified columns:
 
-    **T-SQL**
-
     `SELECT TOP (20) FirstName, LastName, EmailAddress, Phone FROM SalesLT.Customer;`
 
     **Audit data takes 5 to 10 minutes to reach Log Analytics.** Continue with Tasks 3 to 5 now; you check the audit record in Task 5.
@@ -604,8 +478,6 @@ You label sensitive columns so audit logs report when they are read, create a le
 ### Task 3: Create a ledger table
 
 1. In your query window, run:
-
-    **T-SQL**
 
     ```
     CREATE SCHEMA Compliance;
@@ -639,15 +511,12 @@ You label sensitive columns so audit logs report when they are read, create a le
 
 1. (Optional) To see what a digest looks like, generate one on its own. It is a small JSON document holding the latest block ID and its hash:
 
-    **T-SQL: generate**
-
     `EXECUTE sp_generate_database_ledger_digest;`
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image71.png)
 
 1. Generate a digest and verify the ledger against it in one script. Run the whole script in one go; it captures the digest itself, so there is nothing to copy and paste:
 
-    **T-SQL: generate and verify**
 
     ```
     CREATE TABLE #digest (latest_digest nvarchar(max));
@@ -663,9 +532,9 @@ You label sensitive columns so audit logs report when they are read, create a le
 
     **Expected result:** no error, and a result named +++last_verified_block_id+++ with the value **0** (or higher). This proves the ledger data matches the digest. The procedure expects a JSON array, which is why the script wraps the digest in square brackets.
 
-    > **Query editor shows only one result?** The editor displays the last result set, so you see `last_verified_block_id` but not `digest_used`. That is expected. In SSMS, both results appear.
+    **Query editor shows only one result?** The editor displays the last result set, so you see `last_verified_block_id` but not `digest_used`. That is expected. In SSMS, both results appear.
 
-    > **Production note:** enable automatic digest storage (database **Security > Ledger**) to immutable Azure Blob Storage or Azure Confidential Ledger, so digests are kept outside the control of database administrators.
+    **Production note:** enable automatic digest storage (database **Security > Ledger**) to immutable Azure Blob Storage or Azure Confidential Ledger, so digests are kept outside the control of database administrators.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image72.png)
 
@@ -676,9 +545,7 @@ Auditors expect logs to be kept for a defined period and summarised on request.
 
 1. In Cloud Shell, set the workspace retention to 90 days and confirm it:
 
-    **Bash**
-
-    ```
+    ```Bash
     echo "RG=$RG LAW=$LAW"  # both must show values; if empty, rerun Getting Started, Task 4
 
     # Keep audit data for 90 days (adjust to your policy)
@@ -707,11 +574,9 @@ Auditors expect logs to be kept for a defined period and summarised on request.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image78.png)
 
-1. Confirm the audit record from Task 2. Paste and run:
+1. Confirm the audit record from Task 2. Paste and run the query:
 
-    **KQL: sensitive reads**
-
-    ```kusto
+    ```KQL
     AzureDiagnostics
     | where Category == "SQLSecurityAuditEvents"
     | where isnotempty(data_sensitivity_information_s)
@@ -726,9 +591,7 @@ Auditors expect logs to be kept for a defined period and summarised on request.
 
 1. Run the summary report:
 
-    **KQL: who read sensitive data in the last 24 hours**
-
-    ```
+    ```KQL
     AzureDiagnostics
     | where Category == "SQLSecurityAuditEvents"
     | where TimeGenerated > ago(24h)
@@ -745,8 +608,6 @@ Auditors expect logs to be kept for a defined period and summarised on request.
     **Evidence to capture:** Classification list, the ledger view, successful digest verification, the retention value, and both KQL results.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image81.png)
-
-    ---
 
 
 ## Exercise 3: Validate Governance Policies
@@ -868,7 +729,7 @@ Azure Policy proves the platform is configured correctly; a validation script pr
 
 **Duration:** about 5 minutes (after the lab; not part of the 50 minutes)
 
-> **Continuing to Lab 11?** Do not clean up; keep all resources. Do this section only when you have finished with the environment. Deletion is permanent: the server, the database and its sample data cannot be recovered.
+>[!Alert] **Continuing to Lab 11?** Do not clean up; keep all resources. Do this section only when you have finished with the environment. Deletion is permanent: the server, the database and its sample data cannot be recovered.
 
 Delete the policy assignments first, because an assignment made at subscription scope is not removed when you delete your resources. Then delete the three lab resources. Deleting the server also stops Defender for SQL billing for it.
 
@@ -958,7 +819,7 @@ az monitor log-analytics workspace delete -g $RG -n $LAW --yes --force true
 az resource list -g $RG --query "[].{name:name, type:type}" -o table
 ```
 
-> **About the workspace:** a workspace deleted in the portal is soft-deleted and can be recovered for 14 days, and its name stays reserved during that time. To reuse the same name sooner, delete it permanently: open the workspace, click **Delete**, select **Delete the workspace permanently**, and confirm. The Cloud Shell command above deletes it permanently.
+>[!knowledge] **About the workspace:** a workspace deleted in the portal is soft-deleted and can be recovered for 14 days, and its name stays reserved during that time. To reuse the same name sooner, delete it permanently: open the workspace, click **Delete**, select **Delete the workspace permanently**, and confirm. The Cloud Shell command above deletes it permanently.
 
 ### Task 3: Confirm the clean-up
 
