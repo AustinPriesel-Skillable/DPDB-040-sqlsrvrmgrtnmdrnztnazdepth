@@ -895,4 +895,4 @@ Auditing answers “who did what”. Operational monitoring answers “is the da
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image120.png)
 
-    >[!Note] Do not delete these resources.** Lab 10 and Lab 11 use them.
+    >[!Note] **Do not delete these resources.** Lab 10 and Lab 11 use them.
