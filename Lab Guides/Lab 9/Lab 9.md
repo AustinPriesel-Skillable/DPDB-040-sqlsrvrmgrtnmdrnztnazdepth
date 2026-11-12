@@ -272,7 +272,7 @@ You will grant database access to an Entra group rather than to individual peopl
 
 1. Under **Members**, click **No members selected**.
 
-1. Search for and select your lab account.
+1. Search for and select your lab account, +++@lab.CloudPortalCredential(User1).Username+++.
 
 1. Click **Select**.
 
@@ -301,7 +301,7 @@ Use **Option A** if SSMS is installed on your lab machine; otherwise, use **Opti
   
 1. Set **Authentication** to **Microsoft Entra MFA**.
   
-1. In **User name**, enter your lab account.
+1. In **User name**, enter +++@lab.CloudPortalCredential(User1).Username+++.
   
 1. Set **Database name** to `sqldb-zava`.
 
