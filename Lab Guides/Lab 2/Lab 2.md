@@ -127,7 +127,7 @@ You don't sign in to SQLVM01 for this. One Cloud Shell command sends a script to
 
 ### Task 3: Confirm discovery and start the assessments
 
-1. In the portal, search for **Azure Arc.**
+1. In the portal, search for `Azure Arc.`
 
     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image10.png)
 
@@ -151,7 +151,7 @@ You don't sign in to SQLVM01 for this. One Cloud Shell command sends a script to
 
     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image15.png)
 
-1. Set Name +++fabrikam-arc-migrate+++, your lab +++Subscription+++, Resource group **ResourceGroup1** and Region **West US 2**.
+1. Set Name `fabrikam-arc-migrate`, your lab `Subscription`, Resource group **ResourceGroup1** and Region **West US 2**.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image16.png)
 
@@ -302,7 +302,7 @@ Task 1 found the links. Now test them: what breaks when the databases are split 
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image28.png)
 
-1. Save it as +++GL_export_job.sql+++ in your Documents folder.
+1. Save it as `GL_export_job.sql` in your Documents folder.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image29.png)
 
@@ -314,7 +314,7 @@ Task 1 found the links. Now test them: what breaks when the databases are split 
 
     ![A computer screen shot of a computer screen Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image31.png)
 
-1. then press **Ctrl+F** and search for **CmdExec** to find **@subsystem=N'CmdExec'**. Don't execute the script; the job already exists: this is the definition that has to be rebuilt outside SQL Server, because a database backup never carries it.
+1. then press **Ctrl+F** and search for `CmdExec` to find **@subsystem=N'CmdExec'**. Don't execute the script; the job already exists: this is the definition that has to be rebuilt outside SQL Server, because a database backup never carries it.
 
     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image32.png)
 
@@ -375,7 +375,7 @@ Task 1 found the links. Now test them: what breaks when the databases are split 
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image42.png)
 
-1. Select the **Findings** Under **Instance** **compatibility**, select Trace flags not supported in Azure SQL Managed Instance were found. In the Finding details pane, confirm Type Warning and Impacted object +++TraceFlag+++ **1117**, the trace flag Lab 1 found. Close the pane.
+1. Select the **Findings** Under **Instance compatibility**, select Trace flags not supported in Azure SQL Managed Instance were found. In the Finding details pane, confirm Type Warning and Impacted object `TraceFlag` **1117**, the trace flag Lab 1 found. Close the pane.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image43.png)
 

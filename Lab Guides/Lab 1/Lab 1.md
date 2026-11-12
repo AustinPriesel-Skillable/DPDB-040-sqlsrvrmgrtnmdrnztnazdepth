@@ -72,7 +72,7 @@ You've just joined Fabrikam Retail as the migration DBA. The company plans to mo
 
     - **SQL connectivity**: Public (Internet)
     - **Enable SQL Authentication**
-    - **SQL Authentication**: Enable, with **Login name-** +++labadmin+++
+    - **SQL Authentication**: Enable, with **Login name-** `labadmin`
     and the password – +++P@ssword12345+++
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image11.png)
@@ -633,7 +633,7 @@ Use the **sqladmin server node** for every task. Each task ends with a **Log it*
 
     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image77.png)
 
-1. The script shows the server name +++SQLVM01+++ written into the file path. That breaks the day the server’s name changes.
+1. The script shows the server name `SQLVM01` written into the file path. That breaks the day the server’s name changes.
 
     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image78.png)
 

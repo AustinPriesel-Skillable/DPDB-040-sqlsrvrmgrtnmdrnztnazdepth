@@ -25,7 +25,7 @@ After completing this lab, you will be able to:
 
 ### Task 1: Create OrdersDB on the primary server
 
-1. In the portal search bar, type +++SQL databases+++. Under +++Services+++, select **Azure SQL Database**.
+1. In the portal search bar, type `SQL databases`. Under `Services`, select **Azure SQL Database**.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image1.png)
 
@@ -33,11 +33,11 @@ After completing this lab, you will be able to:
 
     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image2.png)
 
-1. On the **Basics** tab, set **Resource group** to **ResourceGroup1** and **Database name** to +++OrdersDB+++. Under **Server**, click **Create new**.
+1. On the **Basics** tab, set **Resource group** to **ResourceGroup1** and **Database name** to `OrdersDB`. Under **Server**, click **Create new**.
 
     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image3.png)
 
-1. In the **Create SQL Database Server** pane, set **Server name** to +++sql-fabrikam-pri-jd427+++, **Location** to **Central US**, **Authentication method** to **Use SQL authentication**, **Server admin login** to +++sqladminuser+++, and **Password** and **Confirm password** to +++Fabrikam!Lab2026+++. Click **OK**.
+1. In the **Create SQL Database Server** pane, set **Server name** to `sql-fabrikam-pri-jd427`, **Location** to **Central US**, **Authentication method** to **Use SQL authentication**, **Server admin login** to `sqladminuser`, and **Password** and **Confirm password** to +++Fabrikam!Lab2026+++. Click **OK**.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image4.png)
 
@@ -80,7 +80,7 @@ After completing this lab, you will be able to:
 
 ### Task 2: Create the secondary server
 
-1. In the portal search bar, type +++SQL servers+++, select **SQL servers** under **Services**, and click **+ Create**.
+1. In the portal search bar, type `SQL servers`, select **SQL servers** under **Services**, and click **+ Create**.
 
     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image14.png)
 
@@ -88,11 +88,11 @@ After completing this lab, you will be able to:
 
 1. On the **Basics** tab, set:
 
-    - **Resource group:** ResourceGroup1
-    - **Server name:** +++sql-fabrikam-dr-jd427+++
-    - **Location:** East US
+    - **Resource group:@lab.CloudResourceGroup(ResourceGroup1).Name
+    - **Server name:** `sql-fabrikam-dr-jd427`
+    - **Location:@lab.CloudResourceGroup(ResourceGroup1).Location
     - **Authentication method:** Use SQL authentication
-    - **Server admin login:** +++sqladminuser+++
+    - **Server admin login:** `sqladminuser`
     - **Password** and **Confirm password:** +++Fabrikam!Lab2026+++
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image16.png)
@@ -133,7 +133,7 @@ A failover group replicates one or more databases to a server in another region 
 
 1. Set:
 
-    - **Failover group name:** +++fog-fabrikam-jd427+++
+    - **Failover group name:** `fog-fabrikam-jd427`
     - **Server:** select **sql-fabrikam-dr-jd427** (East US)
     - A blue banner at the top of the pane says **Failover policy has been set to the recommended value of Customer managed**. There is no field to change; the portal sets it for you.
 
@@ -163,7 +163,7 @@ A failover group replicates one or more databases to a server in another region 
 
 ### Task 2: Check the replication and the listeners
 
-1. Open the primary server **sql-fabrikam-pri-jd427** (if you left it, type +++SQL servers+++ in the portal search bar, select **SQL servers** under **Services**, and click the server). In the server’s left menu, click **Data management > Failover groups**, then click **fog-fabrikam-jd427**. If it isn’t listed yet, click **Refresh**.
+1. Open the primary server **sql-fabrikam-pri-jd427** (if you left it, type `SQL servers` in the portal search bar, select **SQL servers** under **Services**, and click the server). In the server’s left menu, click **Data management > Failover groups**, then click **fog-fabrikam-jd427**. If it isn’t listed yet, click **Refresh**.
 
     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image28.png)
 
@@ -208,7 +208,7 @@ You save an order, fail the group over to East US, and confirm that the order is
 
 ### Task 1: Write an order and check where the listener points
 
-1. Click the search bar at the top of the portal and type +++SQL databases+++.
+1. Click the search bar at the top of the portal and type `SQL databases`.
 
 1. Under **Services**, click **Azure SQL Database**.
 
@@ -224,7 +224,7 @@ You save an order, fail the group over to East US, and confirm that the order is
 
     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image35.png)
 
-1. Sign in with +++sqladminuser+++ and +++Fabrikam!Lab2026+++ and click **Connect**.
+1. Sign in with `sqladminuser` and `Fabrikam!Lab2026` and click **Connect**.
 
 1. Run:
 
@@ -298,7 +298,7 @@ You save an order, fail the group over to East US, and confirm that the order is
 
     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image44.png)
 
-1. In the portal search bar, type +++SQL databases+++.
+1. In the portal search bar, type `SQL databases`.
 
 1. Under **Services**, click **Azure SQL Database**.
 
@@ -310,7 +310,7 @@ You save an order, fail the group over to East US, and confirm that the order is
 
     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%208/media/image46.png)
 
-1. Sign in with +++sqladminuser+++ and +++Fabrikam!Lab2026+++. If you see a firewall error, click **Allowlist IP**, then **OK**. Run:
+1. Sign in with `sqladminuser` and `Fabrikam!Lab2026`. If you see a firewall error, click **Allowlist IP**, then **OK**. Run:
 
     **T-SQL (on the new primary OrdersDB, East US)**
 
@@ -395,10 +395,10 @@ A failover group must be deleted before its servers, so work in this order. Keep
 
     **Expected result:** the group is removed. Both copies of OrdersDB still exist, now as separate databases.
 
-1. **Delete the secondary server:** open **sql-fabrikam-dr-jd427**, click **Delete** on the toolbar, type +++sql-fabrikam-dr-jd427+++ and click **Delete**. This also deletes its copy of OrdersDB.
+1. **Delete the secondary server:** open **sql-fabrikam-dr-jd427**, click **Delete** on the toolbar, type `sql-fabrikam-dr-jd427` and click **Delete**. This also deletes its copy of OrdersDB.
 
-1. **Delete the primary server:** open **sql-fabrikam-pri-jd427**, click **Delete**, type +++sql-fabrikam-pri-jd427+++ and click **Delete**.
+1. **Delete the primary server:** open **sql-fabrikam-pri-jd427**, click **Delete**, type `sql-fabrikam-pri-jd427` and click **Delete**.
 
-1. In the portal search bar, type +++All resources+++ and select **All resources**. Set the **Resource group** filter to **ResourceGroup1** and click **Refresh**.
+1. In the portal search bar, type `All resources` and select **All resources**. Set the **Resource group** filter to **ResourceGroup1** and click **Refresh**.
 
     **Expected result:** none of the Lab 8 resources is listed, and **ResourceGroup1** still exists.

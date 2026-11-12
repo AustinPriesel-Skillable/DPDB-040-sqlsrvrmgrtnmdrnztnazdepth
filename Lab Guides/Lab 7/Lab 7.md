@@ -29,7 +29,7 @@ After completing this lab, you will be able to:
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%207/media/image1.png)
 
-1. In the portal search bar, type +++SQL databases+++. Under +++Services+++, select **Azure SQL Database**.
+1. In the portal search bar, type `SQL databases`. Under `Services`, select **Azure SQL Database**.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%207/media/image2.png)
 
@@ -37,11 +37,11 @@ After completing this lab, you will be able to:
 
     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%207/media/image3.png)
 
-1. On the **Basics** tab, set **Resource group** to **ResourceGroup1** and **Database name** to +++FinanceDB+++. Under **Server**, click **Create new**.
+1. On the **Basics** tab, set **Resource group** to **ResourceGroup1** and **Database name** to `FinanceDB`. Under **Server**, click **Create new**.
 
     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%207/media/image4.png)
 
-1. In the **Create SQL Database Server** pane, set **Server name** to +++sql-fabrikam-bk-jd427+++, **Location** to **Central US**, **Authentication method** to **Use SQL authentication**, **Server admin login** to +++sqladminuser+++, and **Password** and **Confirm password** to +++Fabrikam!Lab2026+++. Click **OK**.
+1. In the **Create SQL Database Server** pane, set **Server name** to `sql-fabrikam-bk-jd427`, **Location** to **Central US**, **Authentication method** to **Use SQL authentication**, **Server admin login** to `sqladminuser`, and **Password** and **Confirm password** to +++Fabrikam!Lab2026+++. Click **OK**.
 
     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%207/media/image5.png)
 
@@ -157,7 +157,7 @@ An analyst runs a price update without a WHERE clause and sets every product’s
 
     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%207/media/image24.png)
 
-1. In the left menu, click **Query editor**. On the **SQL server authentication** tab, enter +++sqladminuser+++ and +++Fabrikam!Lab2026+++ and click **OK**.
+1. In the left menu, click **Query editor**. On the **SQL server authentication** tab, enter `sqladminuser` and `Fabrikam!Lab2026` and click **OK**.
 
     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%207/media/image25.png)
 
@@ -215,8 +215,8 @@ An analyst runs a price update without a WHERE clause and sets every product’s
 1. On the **Basics** tab, set:
 
     - **Restore source:** Point-in-time
-    - **Restore point (UTC):** the **EventTimeUtc** of the **Restore point (before error)** row from Task 1, rounded down to the minute (not the **Last good order saved** time). For example, for **2026-11-05 01:42:37**, enter the date +++2026-11-05+++ and the time **01:42**. If the time picker uses a 12-hour clock, choose **AM** or **PM** to match.
-    - **Database name:** +++FinanceDB_restored+++
+    - **Restore point (UTC):** the **EventTimeUtc** of the **Restore point (before error)** row from Task 1, rounded down to the minute (not the **Last good order saved** time). For example, for **2026-11-05 01:42:37**, enter the date `2026-11-05` and the time **01:42**. If the time picker uses a 12-hour clock, choose **AM** or **PM** to match.
+    - **Database name:** `FinanceDB_restored`
     - **Server:** sql-fabrikam-bk-jd427 (leave the default)
 
     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%207/media/image31.png)
@@ -260,7 +260,7 @@ An analyst runs a price update without a WHERE clause and sets every product’s
 
     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%207/media/image37.png)
 
-1. Find the restore duration: in the portal search bar, type +++Resource groups+++.
+1. Find the restore duration: in the portal search bar, type `Resource groups`.
 
     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%207/media/image38.png)
 
@@ -268,7 +268,7 @@ An analyst runs a price update without a WHERE clause and sets every product’s
 
     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%207/media/image39.png)
 
-1. In the left menu, click **Settings > Deployments**. Open the newest deployment (its name contains +++restore+++ or **FinanceDB_restored**) and check its **Duration**.
+1. In the left menu, click **Settings > Deployments**. Open the newest deployment (its name contains `restore` or **FinanceDB_restored**) and check its **Duration**.
 
     **Expected result:** a duration of about 5 to 10 minutes.
 
@@ -291,7 +291,7 @@ A cleanup script deletes the wrong database. Deleted databases keep their backup
 
     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%207/media/image41.png)
 
-1. Type +++FinanceDB_restored+++ to confirm and click **Delete**.
+1. Type `FinanceDB_restored` to confirm and click **Delete**.
 
     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%207/media/image42.png)
 
@@ -312,7 +312,7 @@ A cleanup script deletes the wrong database. Deleted databases keep their backup
 
     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%207/media/image45.png)
 
-1. Click **FinanceDB_restored** in the list. On the **Create SQL Database - Restore database** page, set **Database name** to +++FinanceDB_recovered+++, leave **Restore point** at the deletion time, and check that **Compute + storage** shows **General Purpose - Serverless**. Click **Review + create**, then **Create**.
+1. Click **FinanceDB_restored** in the list. On the **Create SQL Database - Restore database** page, set **Database name** to `FinanceDB_recovered`, leave **Restore point** at the deletion time, and check that **Compute + storage** shows **General Purpose - Serverless**. Click **Review + create**, then **Create**.
 
     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%207/media/image46.png)
 
@@ -365,12 +365,12 @@ In this lab, you configured FinanceDB to meet Fabrikam’s recovery requirements
 
 Delete the Lab 7 resources but keep **ResourceGroup1**:
 
-1. In the portal search bar, type +++SQL servers+++, select **SQL servers** under **Services**, and click **sql-fabrikam-bk-jd427**.
+1. In the portal search bar, type `SQL servers`, select **SQL servers** under **Services**, and click **sql-fabrikam-bk-jd427**.
 
-1. On the toolbar, click **Delete**. Type +++sql-fabrikam-bk-jd427+++ to confirm and click **Delete**. Deleting the server deletes every database on it.
+1. On the toolbar, click **Delete**. Type `sql-fabrikam-bk-jd427` to confirm and click **Delete**. Deleting the server deletes every database on it.
 
     **Point-in-time backups are lost when you delete the server,** so you can no longer restore these databases. LTR backups are different: they are kept, and billed, until they expire, even after the server is deleted. This lab created no LTR backups yet, so nothing is left behind.
 
-1. In the portal search bar, type +++All resources+++ and select **All resources**. Set the **Resource group** filter to **ResourceGroup1** and click **Refresh**.
+1. In the portal search bar, type `All resources` and select **All resources**. Set the **Resource group** filter to **ResourceGroup1** and click **Refresh**.
 
     **Expected result:** none of the Lab 7 resources is listed, and **ResourceGroup1** still exists.

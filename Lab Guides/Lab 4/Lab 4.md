@@ -250,7 +250,7 @@ By the end of the lab you will be able to:
 
 ### Task 1: Prepare the estimate while the collector runs
 
-1. Open the [Azure Pricing Calculator](https://azure.microsoft.com/pricing/calculator/) and log in with the given credentials.
+1. Open the +++https://azure.microsoft.com/pricing/calculator/+++ and log in with the given credentials.
 
     ![A screenshot of a login page Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%204/media/image8.png)
 
@@ -260,7 +260,7 @@ By the end of the lab you will be able to:
 
     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%204/media/image10.png)
 
-1. Click in the large name box that reads **Azure SQL Database** (just above the settings), clear it and type +++Like-for-like-8vCore+++. The item's header row updates to the new name.
+1. Click in the large name box that reads **Azure SQL Database** (just above the settings), clear it and type `Like-for-like-8vCore`. The item's header row updates to the new name.
 
     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%204/media/image11.png)
 
@@ -428,7 +428,7 @@ By the end of the lab you will be able to:
     - Update both the values in **the SQLDB-GP-Recommended** item:
     - Update the **Instance** field as **2 vCore**
     - Under the **Storage \> Data**, the first box shows **32** with GB
-    under it; select it, clear it and type the +++10+++ number. The Log line below updates by itself.
+    under it; select it, clear it and type the `10` number. The Log line below updates by itself.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%204/media/image25.png)
   
@@ -672,7 +672,7 @@ The [Azure Retail Prices API](https://learn.microsoft.com/rest/api/cost-manageme
 
 1. **Add the Hyperscale item:**
 
-    - **Add it:** search for **Azure SQL Database** and select **Add to
+    - **Add it:** search for `Azure SQL Database` and select **Add to
     estimate**. Scroll down to the new item.
 
     ![A screenshot of a website Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%204/media/image48.png)

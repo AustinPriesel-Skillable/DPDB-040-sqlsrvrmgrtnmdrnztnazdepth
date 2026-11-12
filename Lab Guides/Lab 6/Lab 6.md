@@ -41,7 +41,7 @@ You deploy a Hyperscale database with the AdventureWorksLT sample, which stands 
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image1.png)
 
-1. In the portal search bar, type +++SQL databases+++. Under +++Services+++, select **Azure SQL Database**.
+1. In the portal search bar, type `SQL databases`. Under `Services`, select **Azure SQL Database**.
 
     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image2.png)
 
@@ -49,11 +49,11 @@ You deploy a Hyperscale database with the AdventureWorksLT sample, which stands 
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image3.png)
 
-1. On the **Basics** tab, set **Resource group** to **ResourceGroup1** and **Database name** to +++ReportingHS+++. Under **Server**, click **Create new**.
+1. On the **Basics** tab, set **Resource group** to **ResourceGroup1** and **Database name** to `ReportingHS`. Under **Server**, click **Create new**.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image4.png)
 
-1. In the **Create SQL Database Server** pane, set **Server name** to +++sql-fabrikam-hs-jd427+++, **Location** to **Central US**, **Authentication method** to **Use SQL authentication**, **Server admin login** to +++sqladminuser+++, and **Password** and **Confirm password** to +++Fabrikam!Lab2026+++. Click **OK**.
+1. In the **Create SQL Database Server** pane, set **Server name** to `sql-fabrikam-hs-jd427`, **Location** to **Central US**, **Authentication method** to **Use SQL authentication**, **Server admin login** to `sqladminuser`, and **Password** and **Confirm password** to +++Fabrikam!Lab2026+++. Click **OK**.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image5.png)
 
@@ -122,7 +122,7 @@ You deploy a Hyperscale database with the AdventureWorksLT sample, which stands 
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image17.png)
 
-1. On the **SQL server authentication** tab, enter +++sqladminuser+++ and +++Fabrikam!Lab2026+++, and click **OK**. If you see a firewall error, click **Allowlist IP** in the message, then click **OK** again.
+1. On the **SQL server authentication** tab, enter `sqladminuser` and `Fabrikam!Lab2026`, and click **OK**. If you see a firewall error, click **Allowlist IP** in the message, then click **OK** again.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image18.png)
 
@@ -176,7 +176,7 @@ A named replica is a read-only database with its own name and its own compute, s
 
     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image23.png)
 
-1. Set **Server** to **sql-fabrikam-hs-jd427** (the same server as the primary) and **Database name** to +++ReportingHS_AI+++.
+1. Set **Server** to **sql-fabrikam-hs-jd427** (the same server as the primary) and **Database name** to `ReportingHS_AI`.
 
 1. Under **Compute + storage**, click **Configure database**.
 
@@ -223,7 +223,7 @@ A named replica is a read-only database with its own name and its own compute, s
 
     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image31.png)
 
-1. In the portal search bar, type +++SQL databases+++, select **Azure SQL Database** under **Services**.
+1. In the portal search bar, type `SQL databases`, select **Azure SQL Database** under **Services**.
 
     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image32.png)
 
@@ -233,7 +233,7 @@ A named replica is a read-only database with its own name and its own compute, s
 
     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image33.png)
 
-1. In the left menu, click **Query editor** and sign in with +++sqladminuser+++ and +++Fabrikam!Lab2026+++.
+1. In the left menu, click **Query editor** and sign in with `sqladminuser` and `Fabrikam!Lab2026`.
 
     ![A screenshot of a computer screen Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image34.png)
 
@@ -336,7 +336,7 @@ In this lab, you evaluated Azure SQL Database Hyperscale as the new destination 
 
 Delete the Lab 6 resources but keep **ResourceGroup1**:
 
-1. In the portal search bar, type +++SQL servers+++ and select **SQL servers** under **Services**.
+1. In the portal search bar, type `SQL servers` and select **SQL servers** under **Services**.
 
     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%206/media/image43.png)
 

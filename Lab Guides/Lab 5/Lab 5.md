@@ -62,7 +62,7 @@ The managed instance and the SQL VM share one virtual network so the VM can reac
 
 1. On the **Basics** tab, set **Resource group** to **ResourceGroup1**, **Virtual network name** to **vnet-fabrikam** and **Region** to **Central US**.
 
-    > Click **Next** until you reach the **Address Space** tab.
+    Click **Next** until you reach the **Address Space** tab.
 
     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%205/media/image3.png)
 
@@ -74,7 +74,7 @@ The managed instance and the SQL VM share one virtual network so the VM can reac
 
     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%205/media/image5.png)
 
-1. Set Name to +++snet-sqlmi+++, leave Starting address at 10.0.0.0 and Size at /24.
+1. Set Name to `snet-sqlmi`, leave Starting address at 10.0.0.0 and Size at /24.
 
     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%205/media/image6.png)
 
@@ -102,7 +102,7 @@ The managed instance and the SQL VM share one virtual network so the VM can reac
 
     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%205/media/image12.png)
 
-    > **Expected result:** **Your deployment is complete** within a minute.
+    **Expected result:** **Your deployment is complete** within a minute.
 
     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%205/media/image13.png)
 
@@ -137,7 +137,7 @@ SalesDB and InventoryDB go to Managed Instance because of their instance-scoped 
     - **Storage in GB:** 32
     - **Backup storage redundancy:** Locally-redundant backup storage
 
-    > Click **Apply**.
+    Click **Apply**.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%205/media/image18.png)
 
@@ -148,7 +148,7 @@ SalesDB and InventoryDB go to Managed Instance because of their instance-scoped 
 
 1. Under **Authentication**, set **Authentication method** to **Use SQL authentication**, Managed Instance **admin** **login** to **sqladminuser**, and **Password** and **Confirm password** to **Fabrikam!Lab2026**.
 
-    > Click **Next: Networking**.
+    Click **Next: Networking**.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%205/media/image21.png)
 
@@ -160,13 +160,7 @@ SalesDB and InventoryDB go to Managed Instance because of their instance-scoped 
 
 1. Click **Next: Security**, then **Next: Additional settings**. Leave **Collation**, **Time zone** and **Maintenance window** at their defaults. Under **Update policy**, select **SQL Server 2025**.
 
-    > **AI-ready consideration:** the update policy decides which engine
-    > features the instance gets. The **SQL Server 2022** policy has no
-    > vector data type. The **SQL Server 2025** policy adds the vector data
-    > type and functions, and backups can still be restored to SQL Server
-    > 2025. **Always-up-to-date** gets every new feature first, but you can
-    > never switch back, and backups can’t be restored to any SQL Server
-    > version.
+    **AI-ready consideration:** the update policy decides which engine features the instance gets. The **SQL Server 2022** policy has no vector data type. The **SQL Server 2025** policy adds the vector data type and functions, and backups can still be restored to SQL Server 2025. **Always-up-to-date** gets every new feature first, but you can never switch back, and backups can’t be restored to any SQL Server version.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%205/media/image24.png)
 
@@ -180,7 +174,7 @@ SalesDB and InventoryDB go to Managed Instance because of their instance-scoped 
 
     1. **Name:** Workload, **Value:** SalesDB and InventoryDB
 
-    > Click **Review + create**.
+    Click **Review + create**.
 
     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%205/media/image26.png)
 
@@ -188,8 +182,7 @@ SalesDB and InventoryDB go to Managed Instance because of their instance-scoped 
 
     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%205/media/image27.png)
 
-    > **Expected result:** **Deployment is in progress**. Don’t wait. Go
-    > straight to Exercise 1.
+    **Expected result:** **Deployment is in progress**. Don’t wait. Go straight to Exercise 1.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%205/media/image28.png)
 
@@ -218,11 +211,11 @@ DocsArchive goes to a VM because it uses FILESTREAM, which neither PaaS target s
 
 1. On the **Basics** tab, set:
 
-    - **Resource group:** ResourceGroup1
+    - **Resource group:@lab.CloudResourceGroup(ResourceGroup1).Name
     - **Virtual machine name:** sqlvm-docs
-    - **Region:** Central US
+    - **Region:@lab.CloudResourceGroup(ResourceGroup1).Location
     - **Availability options:** No infrastructure redundancy required
-    - **Size:** click **See all sizes**, search for **D2ads_v5**, select
+    - **Size:** click **See all sizes**, search for `D2ads_v5`, select
     **Standard_D2ads_v5** and click **Select**
 
     - **Username:** sqladminuser
@@ -230,9 +223,7 @@ DocsArchive goes to a VM because it uses FILESTREAM, which neither PaaS target s
     - **Public inbound ports:** Allow selected ports, with **RDP (3389)**
     selected
 
-    > **Why D2ads_v5?** The **d** in the name means the size has a local
-    > temporary SSD, which is where tempdb goes. A size without the **d**,
-    > such as D2s_v5, has no local disk to put tempdb on.
+    **Why D2ads_v5?** The **d** in the name means the size has a local temporary SSD, which is where tempdb goes. A size without the **d**, such as D2s_v5, has no local disk to put tempdb on.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%205/media/image32.png)
 
@@ -269,7 +260,7 @@ DocsArchive goes to a VM because it uses FILESTREAM, which neither PaaS target s
 
     - **tempdb storage**: it shows Using local SSD drive for tempdb.
 
-    > Click **Ok**.
+    Click **Ok**.
 
     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%205/media/image39.png)
 
@@ -288,8 +279,7 @@ DocsArchive goes to a VM because it uses FILESTREAM, which neither PaaS target s
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%205/media/image41.png)
 
-    > **Expected result:** deployment starts and takes 8 to 12 minutes.
-    > Don’t wait. Go straight to Exercise 2, then return here for Task 2.
+    **Expected result:** deployment starts and takes 8 to 12 minutes. Don’t wait. Go straight to Exercise 2, then return here for Task 2.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%205/media/image42.png)
 
@@ -364,8 +354,8 @@ In this task, you prove that the VM meets the two requirements for DocsArchive. 
 
 1. Replace the script with this one and click **Run**. It sets the FILESTREAM access level, creates a test database with a FILESTREAM filegroup on the data drive, and declares a vector:
 
-    > . C:\Lab\Invoke-LabSql.ps1
-    >
+    . C:\Lab\Invoke-LabSql.ps1
+
     ```
     Invoke-LabSql -Server localhost -Query "EXEC sp_configure 'filestream
     access level', 1; RECONFIGURE;"
@@ -432,10 +422,7 @@ ReportingDB and FinanceDB go to Azure SQL Database because they have no instance
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%205/media/image56.png)
 
-    > **Hyperscale check:** open the **Service tier** drop-down before you
-    > click **Apply** and note **Hyperscale (On-demand scalable storage)**.
-    > That is where a database over 4 TB, or one that needs fast scale-out,
-    > would go. Leave **General Purpose** selected.
+    **Hyperscale check:** open the **Service tier** drop-down before you click **Apply** and note **Hyperscale (On-demand scalable storage)**. That is where a database over 4 TB, or one that needs fast scale-out, would go. Leave **General Purpose** selected.
 
 1. Set **Backup storage redundancy** to **Locally-redundant backup storage**.
 
@@ -447,7 +434,7 @@ ReportingDB and FinanceDB go to Azure SQL Database because they have no instance
 
 1. Click **Next** until you reach the **Tags** tab. Add **MigrationWave** with value **1**, and **Workload** with value **ReportingDB**.
 
-    > Click **Review + create**.
+    Click **Review + create**.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%205/media/image59.png)
 
@@ -503,7 +490,7 @@ ReportingDB and FinanceDB go to Azure SQL Database because they have no instance
 
 1. Open **FinanceDB** and, and in the left menu, click **Query editor**.
 
-1. On the **SQL server authentication** tab, enter +++sqladminuser+++ and **Fabrikam!Lab2026**, and click **OK**. If you see a firewall error, click **Allowlist IP** in the message, then click **OK** again.
+1. On the **SQL server authentication** tab, enter `sqladminuser` and **Fabrikam!Lab2026**, and click **OK**. If you see a firewall error, click **Allowlist IP** in the message, then click **OK** again.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%205/media/image72.png)
 
@@ -513,26 +500,21 @@ ReportingDB and FinanceDB go to Azure SQL Database because they have no instance
 
 1. Run this query. It tries to read a table in ReportingDB from FinanceDB, the kind of query InventoryDB runs against SalesDB:
 
-    > **T-SQL**
-    >
-    > SELECT TOP (1) name FROM ReportingDB.sys.objects;
+
+### T-SQL
+
+    SELECT TOP (1) name FROM ReportingDB.sys.objects;
 
     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%205/media/image74.png)
 
-    > **Expected result:** the query fails on purpose. The Messages pane
-    > shows “Reference to database and/or server name in
-    > ‘ReportingDB.sys.objects’ is not supported in this version of SQL
-    > Server” (error 40515), followed by “Failed to execute the query”. Each
-    > Azure SQL database is its own boundary, so cross-database queries
-    > fail. That is exactly why SalesDB and InventoryDB go to Managed
-    > Instance instead. Continue with the next step.
+    **Expected result:** the query fails on purpose. The Messages pane shows “Reference to database and/or server name in ‘ReportingDB.sys.objects’ is not supported in this version of SQL Server” (error 40515), followed by “Failed to execute the query”. Each Azure SQL database is its own boundary, so cross-database queries fail. That is exactly why SalesDB and InventoryDB go to Managed Instance instead. Continue with the next step.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%205/media/image75.png)
 
 1. Clear the editor and run:
 
-    > **T-SQL**
-    >
+    **T-SQL**
+
     ```
     DECLARE @v VECTOR(3) = '[0.1, 2, 30]';
     SELECT CAST(@v AS nvarchar(100)) AS vector_value,
@@ -542,10 +524,7 @@ ReportingDB and FinanceDB go to Azure SQL Database because they have no instance
 
     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%205/media/image76.png)
 
-    > **Expected result:** a vector_value of the three numbers and
-    > service_objective **GP_S_Gen5_2**. Azure SQL Database supports the
-    > vector data type at every compatibility level, with no setting to
-    > change.
+    **Expected result:** a vector_value of the three numbers and service_objective **GP_S_Gen5_2**. Azure SQL Database supports the vector data type at every compatibility level, with no setting to change.
 
 
 ## Exercise 3: Deploy Azure SQL Managed Instance
@@ -572,8 +551,7 @@ The managed instance has no public endpoint, so you test it from sqlvm-docs, whi
 
 1. Copy the **Host** value,
 
-    > **for example**
-    > sqlmi-fabrikam-jd427.abc123def456.database.windows.net.
+    **for example** sqlmi-fabrikam-jd427.abc123def456.database.windows.net.
 
     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%205/media/image80.png)
 
@@ -594,8 +572,8 @@ The managed instance has no public endpoint, so you test it from sqlvm-docs, whi
 
 1. Paste this script, replace ***{host}*** with the Host value you copied, and click **Run**. It connects from the VM to the managed instance over the virtual network, creates the two Wave 2 databases, runs the kind of cross-database query that failed on Azure SQL Database, and checks SQL Agent: **PowerShell (Run command on sqlvm-docs)**
 
-    > . C:\Lab\Invoke-LabSql.ps1
-    >
+    . C:\Lab\Invoke-LabSql.ps1
+
     ```
     $mi = '*{host}*'
     Invoke-LabSql -Server $mi -Query "SELECT @@SERVERNAME AS server_name,
@@ -636,8 +614,8 @@ The managed instance has no public endpoint, so you test it from sqlvm-docs, whi
 
 1. Replace the script with this one, replace ***{host}*** again, and click **Run**: **PowerShell (Run command on sqlvm-docs)**
 
-    > . C:\Lab\Invoke-LabSql.ps1
-    >
+    . C:\Lab\Invoke-LabSql.ps1
+
     ```
     $mi = '*{host}*'
     Invoke-LabSql -Server $mi -Database SalesDB -Query "DECLARE @v
@@ -647,9 +625,8 @@ The managed instance has no public endpoint, so you test it from sqlvm-docs, whi
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%205/media/image86.png)
 
-    > **Expected result**: a vector_value of the three numbers. The vector
-    > type works because you chose the SQL Server 2025 update policy.
-    >
+    **Expected result**: a vector_value of the three numbers. The vector type works because you chose the SQL Server 2025 update policy.
+
     >[!Note] If you see “Cannot find data type VECTOR”, the instance has the SQL Server 2022 update policy. On the managed instance’s left menu, click Settings \> Compute + storage, set Update policy to SQL Server 2025, click Apply, wait for the update to finish, and run the script again.
 
 
@@ -665,7 +642,7 @@ The managed instance has no public endpoint, so you test it from sqlvm-docs, whi
 
 1. Click **Add filter**, select **Tags**, choose **MigrationWave** and the value **1**, and click **Apply**.
 
-    > **Expected result:** only **ReportingDB** is listed: the Wave 1 pilot.
+    **Expected result:** only **ReportingDB** is listed: the Wave 1 pilot.
 
     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%205/media/image89.png)
 
@@ -673,8 +650,7 @@ The managed instance has no public endpoint, so you test it from sqlvm-docs, whi
 
 1. Change the filter value to **2**.
 
-    > **Expected result:** only **sqlmi-fabrikam-jd427** is listed. SalesDB
-    > and InventoryDB share one instance, so they move as one wave.
+    **Expected result:** only **sqlmi-fabrikam-jd427** is listed. SalesDB and InventoryDB share one instance, so they move as one wave.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%205/media/image91.png)
 
@@ -682,8 +658,7 @@ The managed instance has no public endpoint, so you test it from sqlvm-docs, whi
 
 1. Change the filter value to **3**.
 
-    > **Expected result:** **sqlvm-docs**: the targets that wait for a
-    > sign-off or an upgrade test.
+    **Expected result:** **sqlvm-docs**: the targets that wait for a sign-off or an upgrade test.
 
     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%205/media/image93.png)
 

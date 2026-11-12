@@ -105,10 +105,9 @@ You create ZavaOrders on the local SQL Server with 1,000 customers and 20,000 or
     $server
     ```
 
-    Enter a strong password when prompted (12+ characters, upper, lower, number, symbol) as +++Zava#Lab2026!+++
+    Enter a strong password when prompted (12+ characters, upper, lower, number, symbol) as `Zava#Lab2026!`
 
     >[!Note] Keep this PowerShell window open. If you close it, open a new Administrator PowerShell and run this block again. The names are tied to your lab instance, so they always come out the same.
-
 
     ![A computer screen with a black background Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image8.png)
 
