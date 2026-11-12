@@ -157,8 +157,8 @@ You create ZavaOrders on the local SQL Server with 1,000 customers and 20,000 or
 
     Everything worked:
     - Both providers show Registered.
-    - The resource group rg-lab3-sd was created.
-    - The SQL server **sql-lab3-sd-1186** was created. Note this name down.
+    - The resource group rg-lab3-@lab.LabInstance.Id was created.
+    - The SQL server **sql-lab3-@lab.LabInstance.Id** was created. Note this name down.
     - The firewall rule Allow lets your VM’s IP connect.
 
     Once the prompt is back, check that both databases are deploying:
@@ -347,7 +347,7 @@ SqlPackage runs on your VM and connects to both ends directly. DMS is an Azure s
 
     ```
     az config set extension.use_dynamic_install=yes_without_prompt
-    $dms = "dms-lab3-" + (Get-Random -Maximum 9999)
+    $dms = "dms-lab3-@lab.LabInstance.Id"
     az datamigration sql-service create --resource-group $rg --sql-migration-service-name $dms --location $loc -o table
     ```
 
@@ -576,7 +576,7 @@ Azure SQL Database is scoped to the database: there is no SQL Agent, apps should
 1. Create a contained database user for the application instead of a server login. Exercise 3 uses it for the smoke test:
 
     ```
-    $appPass = "Zx#" + [guid]::NewGuid().ToString("N").Substring(0,12) + "9Q"
+    $appPass = "Zx#@lab.LabInstance.Id9Q"
     sqlcmd -S $azHost -d ZavaOrders_Online -U $admin -P $sqlPass -Q "IF USER_ID('app_orders') IS NULL CREATE USER app_orders WITH PASSWORD = '$appPass' ELSE ALTER USER app_orders WITH PASSWORD = '$appPass'; ALTER ROLE db_datareader ADD MEMBER app_orders; ALTER ROLE db_datawriter ADD MEMBER app_orders;"
     ```
 
