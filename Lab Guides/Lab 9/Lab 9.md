@@ -284,7 +284,7 @@ You will grant database access to an Entra group rather than to individual peopl
 
 1. Wait about one minute for the group to be created before you continue.
 
-    **If you cannot create groups:** Some lab tenants do not allow learners to create groups (**+ New group** is greyed out or fails). Ask your instructor to create the group or to give you another lab user’s email address. In Task 4, replace **[SQL-Analysts]** with **[*{that user’s email}*]**. The user then appears as **EXTERNAL_USER** instead of **EXTERNAL_GROUP**.
+    >[!Note] **If you cannot create groups:** Some lab tenants do not allow learners to create groups (**+ New group** is greyed out or fails). Ask your instructor to create the group or to give you another lab user’s email address. In Task 4, replace **[SQL-Analysts]** with **[*{that user’s email}*]**. The user then appears as **EXTERNAL_USER** instead of **EXTERNAL_GROUP**.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image43.png)
 
