@@ -718,14 +718,14 @@ Azure Policy proves the platform is configured correctly; a validation script pr
 
     **Ignore the Recommendations (0) and Security Alerts (0) counters** on the Defender for Cloud page. They are updated later by Defender for Cloud and are not used in this lab; findings come from **View database vulnerability summary**.
 
-    ---
 
+>[!Alert] **Continuing to Lab 11?** Do not clean up; keep all resources. Do this section only when you have finished with the environment. Deletion is permanent: the server, the database and its sample data cannot be recovered.
 
 # Clean Up Resources
 
-**Duration:** about 5 minutes (after the lab; not part of the 50 minutes)
-
 >[!Alert] **Continuing to Lab 11?** Do not clean up; keep all resources. Do this section only when you have finished with the environment. Deletion is permanent: the server, the database and its sample data cannot be recovered.
+>
+**Duration:** about 5 minutes (after the lab; not part of the 50 minutes)
 
 Delete the policy assignments first, because an assignment made at subscription scope is not removed when you delete your resources. Then delete the three lab resources. Deleting the server also stops Defender for SQL billing for it.
 
