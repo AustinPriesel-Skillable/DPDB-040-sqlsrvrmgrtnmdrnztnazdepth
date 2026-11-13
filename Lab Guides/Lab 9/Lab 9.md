@@ -32,6 +32,10 @@ This is the first of three connected labs. Lab 10 adds governance and data prote
 
 1. Open +++https://portal.azure.com/+++.
 
+   **Username**: +++@lab.CloudPortalCredential(User1).Username+++
+   
+   **Access Token (TAP)**: +++@lab.CloudPortalCredential(User1).AccessToken+++
+
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image1.png)
 
 1. Sign in with your lab account.
