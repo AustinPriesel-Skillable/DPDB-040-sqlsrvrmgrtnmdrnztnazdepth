@@ -40,8 +40,6 @@ Each learner needs a Microsoft Foundry resource in the lab resource group. Resou
 
 1. Set **Resource group** to **ResourceGroup1**, **Name** to `aif-zava-@lab.labinstance.id` and **Region** to **canadaeast, eastus2 or westus**. If asked for a default project name, use `proj-zava-@lab.labinstance.id`
 
-1. If the portal reports that the sub-domain name is already used, add a digit (for example `aif-zava-@lab.labinstance.id`). Note the exact name: every later step uses it.
-
 1. Click **Review + create**.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2011/media/image3.png)
@@ -68,7 +66,7 @@ Each learner needs a Microsoft Foundry resource in the lab resource group. Resou
 
     **Expected result:** one row, **text-embedding-3-small | text-embedding-3-small | Succeeded**. The deployment name must be exactly **text-embedding-3-small**. If you get a quota error, use +++--sku-capacity 30+++. Cloud Shell may warn that the subscription is not registered to Microsoft.CloudShell; you can ignore it.
 
->[!Knowledge] **Portal alternative:** open the resource, click **Go to Foundry portal**, then **Models + endpoints > + Deploy model > Deploy base model**. Choose **text-embedding-3-small**, keep the deployment name exactly +++text-embedding-3-small+++, and set the rate limit to 50K tokens per minute.
+>[!Knowledge] **Portal alternative:** open the resource, click **Go to Foundry portal**, then **Models + endpoints > + Deploy model > Deploy base model**. Choose **text-embedding-3-small**, keep the deployment name exactly `text-embedding-3-small` and set the rate limit to 50K tokens per minute.
 
 ### Task 1: Grant the server identity access to the model
 
