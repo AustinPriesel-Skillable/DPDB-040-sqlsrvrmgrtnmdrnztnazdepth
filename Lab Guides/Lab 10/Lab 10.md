@@ -230,7 +230,7 @@ Use **Option A** if SSMS is installed on your lab machine; otherwise use **Optio
 
 1. Run the following query:
 
-   ```
+    ```
     SELECT SUSER_SNAME() AS login_name, USER_NAME() AS database_user, DB_NAME() AS database_name,
            (SELECT COUNT(*) FROM SalesLT.Customer) AS customer_rows;
     ```
@@ -241,7 +241,6 @@ Use **Option A** if SSMS is installed on your lab machine; otherwise use **Optio
     
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image55.png)
 
----
 
 ## Exercise 1: Configure Data Access Controls
 
