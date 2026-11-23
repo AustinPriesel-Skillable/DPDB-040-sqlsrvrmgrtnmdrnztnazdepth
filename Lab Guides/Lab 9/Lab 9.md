@@ -1,924 +1,752 @@
-# **Lab 9: Secure Azure SQL workloads**
+# **Lab 11: Enable AI-Ready Capabilities in Azure SQL**
 
 **Introduction**
 
-You’ve just joined Zava Cycles as the database engineer. Zava sells bikes, components and riding gear, and its order system runs on Azure SQL Database. The company plans to launch an AI shopping assistant on the same data, but a pre-launch security review stopped the project: developers share one SQL administrator password, nothing records who reads or changes customer data, and nobody is alerted to attacks or problems.
+Zava wants its shopping assistant to answer natural-language questions such as “a bike that copes with rough mountain trails”. Keyword search misses questions like this, and copying product data into a separate vector store would bypass the governance built in Labs 9 and 10.
 
-Your job is to deploy the database the right way and close those gaps. Microsoft Entra ID will replace shared passwords, every sign-in and query will be audited, Microsoft Defender for SQL will watch for attacks and misconfigurations, and monitoring will tell you when the database is unhealthy.
-
-This is the first of three connected labs. Lab 10 adds governance and data protection to the database you secure here, and Lab 11 adds AI capabilities. Do not delete your resources at the end of this lab.
+In this lab you turn the secured database from Labs 9 and 10 into a retrieval engine for that assistant, keeping embeddings next to the product data under the same security. You store embeddings in the native **vector** type, generate them inside the database with **AI_GENERATE_EMBEDDINGS** and an Azure OpenAI model in Microsoft Foundry reached through a managed identity, run exact and approximate semantic search, and combine it with keyword search.
 
 **Objectives**
 
-- Deploy Azure SQL Database with network access limited to your own IP address.
+By the end of this lab, you will be able to:
 
-- Configure a Microsoft Entra administrator, grant access through an Entra group, and enforce Entra-only authentication.
-
-- Send server audit events to Log Analytics and trace queries, schema changes and failed sign-ins to a specific identity.
-
-- Monitor the database with metrics, an alert rule, Query Store and automatic tuning.
-
-- Enable Microsoft Defender for SQL, remediate a vulnerability, and investigate a security alert.
+- Design an AI-ready Azure SQL architecture and justify its key decisions.
+- Implement vectors, embeddings and semantic retrieval patterns, including hybrid search and retrieval-augmented generation (RAG).
+- Optimize performance for AI and operational workloads with Query Store, caching, filtering and indexing decisions.
 
 **Prerequisites**
 
-- An Azure subscription where you have **Contributor** rights on your resource group.
+- **Lab 9 completed (required).** Lab 11 uses its server **sql-zava-jd427**, its database **sqldb-zava** with the AdventureWorksLT sample, your Microsoft Entra admin account (SQL authentication is turned off), the **SQL-Analysts** database user and the firewall rule for your IP address.
+- The server’s system-assigned managed identity is turned on (Lab 9, Getting started, Task 3). Setup Task 1 checks this.
+- **Lab 10 completed (recommended, not required).** Lab 11 refers to Lab 10’s governance controls but does not use any objects Lab 10 creates.
+- Permission to create a Microsoft Foundry resource and deploy models in your lab resource group (Setup Task 0), or a Foundry resource from your instructor with a deployment named **text-embedding-3-small** (1536 dimensions).
+- Rights to assign roles on that resource (you have them on a resource you create), or an instructor who does it for you.
+- SQL Server Management Studio 22 or Visual Studio Code with the MSSQL extension, both of which support the vector type and external models.
 
-- Permission to create security groups in Microsoft Entra ID. If your lab account does not have this permission, your instructor will create the **SQL-Analysts** group for you (Exercise 1, Task 2).
+**Starting without Lab 9?** Do these Lab 9 steps first (about 15 minutes): Getting started, Task 1 (create **sqldb-zava** on **sql-zava-jd427** with sample data and your client IP) and Task 3 (managed identity); then Exercise 1, Task 1 (make yourself the Microsoft Entra admin). If you skip creating the **SQL-Analysts** group, remove the **GRANT … TO [SQL-Analysts]** line in Exercise 1, Task 5.
 
-- A query tool: SQL Server Management Studio (SSMS) 21 or later (SSMS 22 recommended) on your lab machine, **or** the Azure portal **Query editor**, which needs no installation. Exercise 1, Task 3 covers both.
+### **Setup: Connect the Database to Azure OpenAI**
 
-**Instructor note:** Log Analytics takes 5 to 10 minutes to show audit data. Learners enable auditing early in Exercise 2, complete Exercise 3, then return to Exercise 2, Task 4. The guide tells them when.
+**Values used in this lab:** server **sql-zava-jd427**, database **sqldb-zava** and resource group **ResourceGroup1** (all from Lab 9), and your Foundry resource **aif-zava-<lab-user-number>** (Task 0). Wherever a script shows **<lab-user-number>**, replace it, including the angle brackets, with your lab user number.
 
-### **Getting started: Set up your environment**
+#### **Task 0: Create the Foundry resource and deploy the embedding model**
 
-#### **Task 1: Create the Azure SQL Database**
+Each learner needs a Microsoft Foundry resource in the lab resource group. Resource names must be unique across Azure, so include your **lab user number**: the digits in your sign-in name (for example, User1-67029880 gives **aif-zava-67029880**). If your instructor provides a resource instead, skip this task and use that name wherever this guide shows **aif-zava-<lab-user-number>**.
 
-1.  Open +++https://portal.azure.com/+++.
+1. In the Azure portal, click **Foundry** under **Azure services**.
 
-    ![](./media/image1.png)
+2. Click **Create a Foundry resource**.
 
-2.  Sign in with your lab account.
+3. Set **Resource group** to +++ResourceGroup1+++ (your Lab 9 resource group), **Name** to **aif-zava-<lab-user-number>** and **Region** to the server’s region (East US in Lab 9). If asked for a default project name, use +++proj-zava+++.
 
-3.  On the portal **Home** page, under **Azure services**, click **SQL databases**.
+4. If the portal reports that the sub-domain name is already used, add a digit (for example **aif-zava-670298801**). Note the exact name: every later step uses it.
 
-    - If the tile is not shown, type +++Azure SQL Database+++ in the search bar at the top, and then select **Azure SQL Database** under **Services**.
-
-    - Do not select **Azure SQL** (a hub page with no **Create** button), **Azure SQL Database Hyperscale** (it pre-selects the Hyperscale tier), or **SQL Server databases** (Azure Arc).
-
-    ![](./media/image2.png)
-
-4.  On the **SQL databases** page, click **+ Create** on the toolbar.
+5. Click **Review + create**.
 
     ![](./media/image3.png)
 
-5.  From the drop-down list, select **SQL database**.
-
-    - Do not select **SQL database (Free offer)**; it opens a different wizard with free-tier limits.
-
     ![](./media/image4.png)
-
-6.  On the **Basics** tab, set the following values:
-
-    - **Resource group:** Select your lab resource group.
-
-    - **Database name:** Enter +++sqldb-zava+++.
-
-7.  Under **Server**, click **Create new**.
 
     ![](./media/image5.png)
 
-8.  In the **Create SQL Database Server** pane, set the following values:
+6. Click the **Cloud Shell** icon (`>_`) at the top of the portal, choose **Bash**, and run the commands below to deploy the embedding model. Capacity 50 (50,000 tokens per minute) lets the load in Exercise 2 run without throttling.
 
-    - **Server name:** +++sql-zava-jd427+++
+**Bash (Cloud Shell)**
 
-    - **Location:** East US (or the region your instructor gives you)
+```bash
+# Replace the example name on the AOAI_NAME line with your Foundry resource name
+RG=ResourceGroup1
+AOAI_NAME=aif-zava-67029880
 
-    - **Authentication method:** Use SQL authentication
+az cognitiveservices account deployment create -g $RG -n $AOAI_NAME \
+  --deployment-name text-embedding-3-small \
+  --model-name text-embedding-3-small --model-version 1 --model-format OpenAI \
+  --sku-name Standard --sku-capacity 50
 
-    - **Server admin login:** +++sqladminuser+++
+az cognitiveservices account deployment list -g $RG -n $AOAI_NAME \
+  --query "[].{deployment:name, model:properties.model.name, state:properties.provisioningState}" -o table
+```
 
-    - **Password:** +++P@ssword12345+++
+**Expected result:** one row, **text-embedding-3-small | text-embedding-3-small | Succeeded**. The deployment name must be exactly **text-embedding-3-small**. If you get a quota error, use +++--sku-capacity 30+++. Cloud Shell may warn that the subscription is not registered to Microsoft.CloudShell; you can ignore it.
 
-    - **Confirm password:** +++P@ssword12345+++
+**Portal alternative:** open the resource, click **Go to Foundry portal**, then **Models + endpoints > + Deploy model > Deploy base model**. Choose **text-embedding-3-small**, keep the deployment name exactly +++text-embedding-3-small+++, and set the rate limit to 50K tokens per minute.
 
-9.  Click **OK**.
-
-    ![](./media/image6.png)
-
-10. Set **Want to use SQL elastic pool?** to **No**.
-
-11. Set **Workload environment** to **Development**.
-
-12. Under **Compute + storage**, click **Configure database**.
-
-    ![](./media/image7.png)
-
-13. Set **Service tier** to **General Purpose**.
-
-    - Set **Compute tier** to **Serverless**.
-
-    - Set **Max vCores** to **2**.
-
-    - Set **Auto-pause delay** to **1 hour**.
- 
-14. Click **Apply**.
-
-    ![](./media/image8.png)
-
-15. Set **Backup storage redundancy** to **Locally-redundant backup storage**.
-
-    ![](./media/image9.png)
-
-16. Click the **Networking** tab.
-
-    ![](./media/image11.png)
-
-17. Set the following values:
-
-    - **Connectivity method:** Public endpoint
-
-    - **Allow Azure services and resources to access this server:** No
-
-    - **Add current client IP address:** Yes
-
-    ![](./media/image12.png)
-
-18. Click the **Security** tab.
-
-    ![](./media/image13.png)
-
-19. Set **Enable Microsoft Defender for SQL** to **Not now**. You enable it in Exercise 3.
-
-20. Click the **Additional settings** tab.
-
-     ![](./media/image14.png)
-
-21. Under **Data source**, set **Use existing data** to **Sample**. This loads the AdventureWorksLT sample database.
-
-22. In the confirmation dialog, click **OK**.
-
-    ![](./media/image15.png)
-
-23. Click **Review + create**.
-
-    ![](./media/image16.png)
-
-24. On the **Review + create** tab, click **Create**.
-
-    ![](./media/image17.png)
-
-25. Wait for the deployment to complete. This takes 2 to 3 minutes.
-
-    ![](./media/image18.png)
-
-#### **Task 2: Confirm network security**
-
-Azure SQL blocks all public connections until a firewall rule allows them. In this task, you confirm that only your IP address is allowed.
-
-1.  Click **Go to resource**.
-
-    ![](./media/image19.png)
-
-2.  On the database **Overview** page, click the **Server name** link to open the logical server.
-
-    ![](./media/image20.png)
-
-3.  In the left menu, click **Security > Networking**.
-
-    ![](./media/image21.png)
-
-4.  On the **Public access** tab, confirm that **Public network access** is set to **Selected networks**.
-
-5.  Under **Firewall rules**, confirm that one rule named **ClientIPAddress_<date>** exists.
-
-    ![](./media/image22.png)
-
-6.  In the **Rule name** box, rename the rule to +++AllowMyPC+++.
-
-    ![](./media/image23.png)
-
-7.  Confirm that **Allow Azure services and resources to access this server** is cleared. Leaving it selected would let resources in any Azure tenant reach the server’s login prompt.
-
-    ![](./media/image24.png)
-
-8.  Click **Save**.
-
-    ![](./media/image25.png)
-
-9.  Click the **Connectivity** tab.
-
-10. Confirm that **Minimum TLS version** is **1.2**.
-
-11. Under **Outbound networking**, confirm that **Restrict outbound networking** shows **Restrictions disabled**. Lab 11 calls Azure OpenAI from the database and needs this outbound access.
-
-    ![](./media/image26.png)
- 
-#### **Task 3: Turn on the server’s managed identity**
-
-Lab 11 uses this identity to call Azure OpenAI without storing an API key in the database. Turning it on now means Lab 11 can start straight away.
+#### **Task 1: Grant the server identity access to the model**
 
 1.  In the logical server’s left menu, click **Security > Identity**.
 
-    ![](./media/image27.png)
+   ![](./media/image35.png)
 
 2.  Under **System assigned managed identity**, set **Status** to **On**.
 
-    ![](./media/image28.png)
+   ![](./media/image36.png)
 
 3.  Click **Save**.
 
-    ![](./media/image29.png)
+   ![](./media/image37.png)
 
 4.  Confirm that **Status** is **On** and that **Save** is greyed out, which means the change is saved.
 
-    ![](./media/image30.png)
+   ![](./media/image38.png)
 
-### **Exercise 1: Configure Microsoft Entra authentication**
+5. In the Azure portal, open your Foundry resource **aif-zava-\<lab-user-number\>**: type its name in the top search bar and select it under **Resources** (or go to **Foundry > All resources**). Do not use the Microsoft Foundry overview page; IAM is only on the resource itself.
 
-In this exercise, you make your account the Microsoft Entra administrator, grant an Entra group read access, and then turn off SQL authentication entirely.
+   ![](./media/image6.png)
 
-#### **Task 1: Set the Microsoft Entra administrator**
+6. Select **Access control (IAM) > + Add > Add role assignment**.
 
-1.  On the logical server’s left menu, click **Settings > Microsoft Entra ID**.
+   ![](./media/image7.png)
 
-    ![](./media/image32.png)
+7. Select +++Cognitive Services OpenAI User+++, then **Next**.
 
-2.  Click **Set admin**.
+   ![](./media/image8.png)
 
-    ![](./media/image33.png)
+8. Select **Managed identity**, click **+ Select members**, set **Managed identity** to **SQL server**, select +++sql-zava-jd427+++, click **Select**, then click **Review + assign** twice. Do not choose Foundry or Foundry project.
 
-3.  In the search box, search for your lab account.
+   ![](./media/image9.png)
 
-4.  Select your lab account.
+   ![](./media/image10.png)
 
-5.  Click **Select**.
+9. Confirm the assignment: on the **Role assignments** tab, click **Refresh** and search for +++sql-zava-jd427+++. It must be listed under **Cognitive Services OpenAI User** with type **SQL server**. Wait about 5 minutes before Task 2.
 
-    ![](./media/image34.png)
+   ![](./media/image11.png)
 
-6.  Leave **Support only Microsoft Entra authentication for this server** cleared for now.
+**CLI alternative (Cloud Shell, Bash). In Bash, never leave <…> placeholders: < is read as a file redirect.**
 
-7.  Click **Save**.
+```bash
+# Replace the example Foundry name with your own before running
+RG=ResourceGroup1
+SERVER=sql-zava-jd427
+AOAI_NAME=aif-zava-67029880
 
-    ![](./media/image35.png)
+az sql server update -g $RG -n $SERVER -i   # turns on the identity; no change if already on
 
-#### **Task 2: Create the SQL-Analysts group**
+SQL_MI=$(az sql server show -g $RG -n $SERVER --query identity.principalId -o tsv)
+AOAI_ID=$(az cognitiveservices account show -g $RG -n $AOAI_NAME --query id -o tsv)
+echo "SQL identity: $SQL_MI"; echo "Foundry resource: $AOAI_ID"
 
-You will grant database access to an Entra group rather than to individual people. Check whether the group exists, and create it if not.
+az role assignment create --assignee-object-id $SQL_MI \
+  --assignee-principal-type ServicePrincipal \
+  --role "Cognitive Services OpenAI User" --scope $AOAI_ID
 
-1.  In the portal search bar, type +++Microsoft Entra ID+++.
+az role assignment list --assignee $SQL_MI --scope $AOAI_ID -o table
+```
 
-    ![](./media/image36.png)
+**Outbound access:** on the server’s **Security > Networking > Connectivity** tab, confirm that **Outbound networking** shows **Restrictions disabled**; no change is needed. Only if restrictions are enabled, open **Configure outbound networking restrictions** and add **aif-zava-\<lab-user-number\>.openai.azure.com**, or every model call fails.
 
-2.  Under **Services**, select **Microsoft Entra ID**.
+#### **Task 2: Create the credential, external model and embedding procedure**
 
-     ![](./media/image37.png)
+**CREATE EXTERNAL MODEL** stores the endpoint, credential and model as one database object, and **AI_GENERATE_EMBEDDINGS** calls it from any query. This replaces hand-written REST calls and JSON parsing.
 
-3.  In the left menu, click **Manage > Groups**.
+**Before you run:** replace **<lab-user-number>** in all three places (the credential name, **LOCATION** and **CREDENTIAL**), for example with **Ctrl+H** in the editor, so the address matches your Foundry resource exactly. Then run the whole script at once without highlighting anything. Any text in angle brackets is a placeholder; if one is left in, the script fails with “Only alphanumeric characters… are allowed in the hostname”.
 
-    ![](./media/image38.png)
+**T-SQL**
 
-4.  Search for +++SQL-Analysts+++.
+```sql
+-- 1. Clean up anything left from earlier attempts (makes the script safe to rerun)
+IF EXISTS (SELECT 1 FROM sys.external_models WHERE name = 'EmbeddingModel')
+    DROP EXTERNAL MODEL EmbeddingModel;
 
-    ![](./media/image39.png)
+DECLARE @sql NVARCHAR(MAX) = N'';
+SELECT @sql += N'DROP DATABASE SCOPED CREDENTIAL ' + QUOTENAME(name) + N';'
+FROM sys.database_scoped_credentials
+WHERE name LIKE N'%openai.azure.com%';
+EXEC (@sql);
+GO
 
-5.  If the group exists, note its exact name and go to Task 3. Otherwise, continue with the next step.
+-- 2. Master key (only if missing); use your own strong password
+IF NOT EXISTS (SELECT 1 FROM sys.symmetric_keys WHERE name = '##MS_DatabaseMasterKey##')
+    CREATE MASTER KEY ENCRYPTION BY PASSWORD = 'Use-A-Strong-Pa55word!';
+GO
 
-6.  Click **+ New group**.
+-- 3. Credential: the name must equal the endpoint URL
+CREATE DATABASE SCOPED CREDENTIAL [https://aif-zava-<lab-user-number>.openai.azure.com]
+WITH IDENTITY = 'Managed Identity',
+     SECRET = '{"resourceid":"https://cognitiveservices.azure.com"}';
+GO
 
-7.  Set the following values:
+-- 4. Register the embedding deployment as a database object (preview)
+CREATE EXTERNAL MODEL EmbeddingModel
+WITH (
+    LOCATION   = 'https://aif-zava-<lab-user-number>.openai.azure.com/openai/deployments/text-embedding-3-small/embeddings?api-version=2024-10-21',
+    API_FORMAT = 'Azure OpenAI',
+    MODEL_TYPE = EMBEDDINGS,
+    MODEL      = 'text-embedding-3-small',
+    CREDENTIAL = [https://aif-zava-<lab-user-number>.openai.azure.com]
+);
+GO
 
-    - **Group type:** Security
+-- 5. One entry point for the rest of the lab
+CREATE OR ALTER PROCEDURE dbo.get_embedding
+    @text NVARCHAR(MAX),
+    @embedding VECTOR(1536) OUTPUT
+AS
+BEGIN
+    SET @embedding = CAST(AI_GENERATE_EMBEDDINGS(@text USE MODEL EmbeddingModel) AS VECTOR(1536));
+    IF @embedding IS NULL
+        THROW 50001, 'Embedding call failed. Check role assignment and external model.', 1;
+END;
+GO
 
-    - **Group name:** +++SQL-Analysts+++
+-- 6. Test
+DECLARE @v VECTOR(1536);
+EXEC dbo.get_embedding N'waterproof cycling jacket', @v OUTPUT;
+SELECT VECTORPROPERTY(@v, 'Dimensions') AS dims;
+```
 
-    - **Membership type:** Assigned
+**Expected result:** **dims = 1536**. HTTP 401 or 403 means the role assignment has not applied yet: wait a few minutes and rerun. HTTP 404 means the deployment is not named exactly **text-embedding-3-small**. “DNS resolution… failed” means the resource name is wrong. Red squiggles under **USE** or **END** in the Query editor are not errors. See Troubleshooting for other messages.
 
-    ![](./media/image40.png)
+**Why a managed identity:** No API key is stored in the database, and access can be revoked centrally, consistent with the Entra-only design from Lab 9. **Why an external model:** the endpoint and model can be changed in one place with **ALTER EXTERNAL MODEL**, and its use is controlled by permissions.
 
-8.  Under **Members**, click **No members selected**.
+**Preview feature:** **CREATE EXTERNAL MODEL** and **AI_GENERATE_EMBEDDINGS** are in preview for Azure SQL Database at the time of this revision. If either statement fails, create **dbo.get_embedding** from Appendix A instead and continue; every later step works unchanged.
 
-9.  Search for and select your lab account.
+![](./media/image12.png)
 
-10. Click **Select**.
+### **Exercise 1: Create Vector-Enabled Database Objects**
 
-    ![](./media/image41.png)
+#### **Task 1: Explore the vector type**
 
-11. Click **Create**.
+**T-SQL**
 
-    ![](./media/image42.png)
+```sql
+DECLARE @a VECTOR(3) = '[1, 0, 0]',
+        @b VECTOR(3) = '[0.7, 0.7, 0]';
 
-12. Wait about one minute for the group to be created before you continue.
+SELECT VECTOR_DISTANCE('cosine',    @a, @b) AS cosine_distance,
+       VECTOR_DISTANCE('euclidean', @a, @b) AS euclidean_distance,
+       VECTOR_DISTANCE('dot',       @a, @b) AS negative_dot_product;
+```
 
-    **If you cannot create groups:** Some lab tenants do not allow learners to create groups (**+ New group** is greyed out or fails). Ask your instructor to create the group or to give you another lab user’s email address. In Task 4, replace **[SQL-Analysts]** with **[\<that user’s email\>]**. The user then appears as **EXTERNAL_USER** instead of **EXTERNAL_GROUP**.
+Lower distance means more similar for all three metrics. Azure OpenAI embeddings are normalised, so cosine and dot product rank identically; cosine is the usual default.
 
-    ![](./media/image43.png)
+![](./media/image13.png)
 
-#### **Task 3: Connect to the database**
+#### **Task 2: Create the vector table**
 
-Use **Option A** if SSMS is installed on your lab machine; otherwise, use **Option B**. Later steps say “in your query window”; this means the tool you chose.
+**T-SQL**
 
-##### **Option A: SQL Server Management Studio (SSMS)** (Optional)
+```sql
+CREATE TABLE dbo.ProductEmbeddings (
+    ProductID   INT            NOT NULL CONSTRAINT PK_ProductEmbeddings PRIMARY KEY,
+    ProductName NVARCHAR(200)  NOT NULL,
+    Category    NVARCHAR(50)   NOT NULL,
+    ListPrice   MONEY          NOT NULL,
+    Description NVARCHAR(MAX)  NOT NULL,   -- the exact text that is embedded
+    Embedding   VECTOR(1536)   NULL,       -- native vector type (float32; float16 in preview)
+    EmbeddedAt  DATETIME2(0)   NULL,
+    CONSTRAINT FK_ProductEmbeddings_Product
+        FOREIGN KEY (ProductID) REFERENCES SalesLT.Product (ProductID)
+);
+```
 
-1.  On your lab machine, open **SQL Server Management Studio**.
+**Design decisions:**
 
-2.  In the **Connect to Server** dialog, set **Server name** to +++sql-zava-jd427.database.windows.net+++.
-   
-3.  Set **Authentication** to **Microsoft Entra MFA**.
-  
-4.  In **User name**, enter your lab account.
-    
-5.  Set **Database name** to +++sqldb-zava+++.
+- **Separate table:** each float32 vector is about 6 KB (1536 × 4 bytes), or about 3 KB with half-precision float16 (preview); keeping it out of **SalesLT.Product** protects order-processing performance.
+- **Stored source text:** **Description** records exactly what was embedded, so re-embedding after a model change is reproducible.
+- **Relational columns alongside the vector:** **Category** and **ListPrice** allow filtering before ranking.
 
-6.  Click **Connect**.
+#### **Task 3: Insert source records**
 
-7.  Complete the Microsoft Entra sign-in prompt with your lab account.
+**T-SQL**
 
-8.  In **Object Explorer**, expand **Databases**.
+```sql
+INSERT dbo.ProductEmbeddings (ProductID, ProductName, Category, ListPrice, Description)
+SELECT p.ProductID, p.Name, pc.Name, p.ListPrice,
+       CONCAT(p.Name, N'. Category: ', pc.Name, N'. ',
+              ISNULL(N'Color: ' + p.Color + N'. ', N''), d.Description)
+FROM SalesLT.Product p
+JOIN SalesLT.ProductCategory pc ON pc.ProductCategoryID = p.ProductCategoryID
+CROSS APPLY (   -- one English description per product
+    SELECT TOP (1) pd.Description
+    FROM SalesLT.ProductModelProductDescription pmd
+    JOIN SalesLT.ProductDescription pd ON pd.ProductDescriptionID = pmd.ProductDescriptionID
+    WHERE pmd.ProductModelID = p.ProductModelID AND pmd.Culture = N'en'
+    ORDER BY pd.ProductDescriptionID
+) AS d
+WHERE NOT EXISTS (SELECT 1 FROM dbo.ProductEmbeddings e WHERE e.ProductID = p.ProductID);
 
-9.  Right-click **sqldb-zava** and select **New Query**.
+SELECT COUNT(*) AS products FROM dbo.ProductEmbeddings;
+```
 
-##### **Option B: Azure portal Query editor (no installation)**
+**Expected result:** about 290 rows with NULL embeddings. A few product models have more than one English description, so the query takes one per product; it also skips products already loaded, so it is safe to rerun.
 
-1.  Open the logical server **sql-zava-jd427**. Click **sqldb-zava**. In the left menu, expand **Settings** and click **SQL databases**.
+![](./media/image14.png)
 
-    ![](./media/image44.png)
-    
+#### **Task 4: Apply governance to AI objects**
 
-2.  In the database’s left menu, click **Query editor**.
+**T-SQL**
 
-    ![](./media/image45.png)
+```sql
+IF DATABASE_PRINCIPAL_ID('SQL-Analysts') IS NOT NULL
+    GRANT SELECT ON dbo.ProductEmbeddings TO [SQL-Analysts];   -- database user from Lab 9, Exercise 1, Task 4
+ELSE
+    PRINT 'SQL-Analysts not found: GRANT skipped (Lab 9 group not created).';
 
-    
-5.  On the **Microsoft Entra authentication** tab, click **Connect as <your account>**.
+ADD SENSITIVITY CLASSIFICATION TO dbo.ProductEmbeddings.Embedding
+WITH (LABEL = 'General', INFORMATION_TYPE = 'AI Embedding', RANK = LOW);
 
-    ![](./media/image46.png)
+-- Applications get EXECUTE on search procedures only (created in Exercise 3)
+IF DATABASE_PRINCIPAL_ID('AiSearchUsers') IS NULL
+    CREATE ROLE AiSearchUsers;
 
-6.  Click **New query**.
+IF DATABASE_PRINCIPAL_ID('AssistantApp') IS NULL
+    CREATE USER AssistantApp WITHOUT LOGIN;   -- stand-in for an app managed identity
 
-    ![](./media/image47.png)
+ALTER ROLE AiSearchUsers ADD MEMBER AssistantApp;
 
+-- Verify
+SELECT r.name AS role_name, m.name AS member_name
+FROM sys.database_role_members rm
+JOIN sys.database_principals r ON r.principal_id = rm.role_principal_id
+JOIN sys.database_principals m ON m.principal_id = rm.member_principal_id
+WHERE r.name = 'AiSearchUsers';
 
-#### **Task 4: Create contained users for Entra identities**
+SELECT grantee = USER_NAME(grantee_principal_id), permission_name
+FROM sys.database_permissions
+WHERE major_id = OBJECT_ID('dbo.ProductEmbeddings');
+```
 
-1.  In your query window, run the following code:
+**Expected result:** **AiSearchUsers | AssistantApp**, and **SQL-Analysts | SELECT**. If SQL-Analysts was not created in Lab 9, the grant is skipped and nothing later depends on it. The script can be rerun safely.
 
-    **T-SQL**
+Embeddings can leak the meaning of the text they encode, so they inherit the sensitivity of their source. Product data is public; customer or HR text would need the Lab 10 controls. Do not grant **EXECUTE** on the external model to **AiSearchUsers**: the search procedures call it as owner, so applications cannot send arbitrary text to the model.
 
-    ```
-    -- Members of the Entra group inherit access; no per-person users needed
-    CREATE USER [SQL-Analysts] FROM EXTERNAL PROVIDER;
-    ALTER ROLE db_datareader ADD MEMBER [SQL-Analysts];
+![](./media/image15.png)
 
-    -- Verify Entra-based principals
-    SELECT name, type_desc, authentication_type_desc
-    FROM sys.database_principals
-    WHERE type IN ('E', 'X'); -- E = external user, X = external group
-    ```
+### **Exercise 2: Load and Query Vector Data**
 
-    **Expected result:** one row for **SQL-Analysts** with type **EXTERNAL_GROUP** and authentication type **EXTERNAL**.
+#### **Task 1: Generate and store embeddings**
 
-    If you see **Principal 'SQL-Analysts' could not be found**, the group does not exist or the name differs. Return to Task 2, then run the whole script again; nothing after line 1 runs when line 1 fails.
+This loop embeds 25 rows per set-based **UPDATE**, calling the external model directly, and pauses 5 seconds between batches to stay within the deployment’s rate limit. It is restartable because it only touches rows that are still NULL. Expect 1 to 2 minutes.
 
-    ![](./media/image49.png)
+**T-SQL**
 
-#### **Task 5: Enforce Entra-only authentication and validate**
+```sql
+SET NOCOUNT ON;
+DECLARE @batch INT = 25, @rows INT = 1, @done INT = 0;
 
-1.  In the portal, return to the server’s **Settings > Microsoft Entra ID** page.
+WHILE @rows > 0
+BEGIN
+    UPDATE TOP (@batch) dbo.ProductEmbeddings
+    SET Embedding  = AI_GENERATE_EMBEDDINGS(Description USE MODEL EmbeddingModel),
+        EmbeddedAt = SYSUTCDATETIME()
+    WHERE Embedding IS NULL;
 
-2.  Select **Support only Microsoft Entra authentication for this server**.
+    SET @rows = @@ROWCOUNT;
+    SET @done += @rows;
+    RAISERROR('%d rows embedded', 0, 1, @done) WITH NOWAIT;
 
-3.  In the **Enable Microsoft Entra-only authentication** dialog, click **Yes**.
+    WAITFOR DELAY '00:00:05';   -- stays within the deployment's rate limit
+END;
+```
 
-    ![](./media/image50.png)
+If it stops with HTTP 429 (throttling), wait 30 seconds and rerun; it resumes where it stopped. If your deployment capacity is below 50, use +++@batch = 5+++ and +++WAITFOR DELAY '00:00:06'+++. Each row is still one model request, so in production generate embeddings off the request path, for example from a scheduled job, Azure Functions or a Microsoft Fabric pipeline, and run large re-embeds off-peak.
 
-4.  Click **Save**.
+![](./media/image16.png)
 
-    ![](./media/image51.png)
+#### **Task 2: Validate the load**
 
-5.  In your query window, run the following check:
+**T-SQL**
 
-    **T-SQL**
+```sql
+SELECT COUNT(*)                                     AS total_rows,
+       SUM(IIF(Embedding IS NULL, 1, 0))            AS missing,
+       MIN(VECTORPROPERTY(Embedding, 'Dimensions')) AS dims
+FROM dbo.ProductEmbeddings;
+```
 
-    ```
-    SELECT SUSER_SNAME() AS login_name, USER_NAME() AS database_user, DB_NAME() AS database_name,
-           (SELECT COUNT(*) FROM SalesLT.Customer) AS customer_rows;
-    ```
+**Expected result:** **missing = 0**, **dims = 1536**.
 
-    **Expected result:** **login_name** is your lab account, **database_user** is **dbo** (you are the Entra admin), **database_name** is **sqldb-zava**, and **customer_rows** is 847.
+![](./media/image17.png)
 
-     ![](./media/image52.png)   
+#### **Task 3: Run a semantic search**
 
-6.  If you use the **Query editor**, test that SQL authentication is now refused:
+**Question1: a bike that copes with rough mountain trails**
 
-    1.  In the logical server’s left menu, expand **Settings** and click **SQL databases**.
+**T-SQL**
 
-    2.  Click **sqldb-zava**.
+```sql
+DECLARE @question NVARCHAR(400) = N'a bike that copes with rough mountain trails';
+DECLARE @query_vector VECTOR(1536);
+EXEC dbo.get_embedding @question, @query_vector OUTPUT;
 
-        ![](./media/image53.png) 
+SELECT TOP (5) ProductID, ProductName, Category, ListPrice,
+       CAST(VECTOR_DISTANCE('cosine', Embedding, @query_vector) AS DECIMAL(6,4)) AS distance
+FROM dbo.ProductEmbeddings
+ORDER BY distance;
+```
 
-    3.  In the database’s left menu, click **Query editor**.
+Rerun with each question below, changing only **@question**, and record the results.
 
-         ![](./media/image54.png) 
+| Question | Top result | Distance | Relevant? |
+|---|---|---|---|
+| a bike that copes with rough mountain trails | | | |
+| something to keep my hands warm on cold morning rides | | | |
+| carry water on a long ride | | | |
+| a gift for a child learning to ride | | | |
 
-    4.  On the toolbar, click **Sign out**.
+   ![](./media/image18.png)
 
-    5.  Select the **SQL authentication** tab.
+**Question2: something to keep my hands warm on cold morning rides**
 
-         ![](./media/image55.png) 
+**T-SQL**
 
-    6.  In **Username**, enter +++sqladminuser+++. In **Password**, enter +++P@ssword12345+++.
+```sql
+DECLARE @question NVARCHAR(400) = N'something to keep my hands warm on cold morning rides';
+DECLARE @query_vector VECTOR(1536);
+EXEC dbo.get_embedding @question, @query_vector OUTPUT;
 
-    7.  Click **Connect**.
+SELECT TOP (5) ProductID, ProductName, Category, ListPrice,
+       CAST(VECTOR_DISTANCE('cosine', Embedding, @query_vector) AS DECIMAL(6,4)) AS distance
+FROM dbo.ProductEmbeddings
+ORDER BY distance;
+```
 
-         ![](./media/image56.png)   
+   ![](./media/image19.png)
 
-    8.  Confirm that the conection is refused with a message that the server supports only Microsoft Entra authentication.
+**Question3: carry water on a long ride**
 
-        ![](./media/image57.png) 
+**T-SQL**
 
-### **Exercise 2: Enable SQL auditing and monitoring**
+```sql
+DECLARE @question NVARCHAR(400) = N'carry water on a long ride';
+DECLARE @query_vector VECTOR(1536);
+EXEC dbo.get_embedding @question, @query_vector OUTPUT;
 
-#### **Task 1: Create a Log Analytics workspace**
+SELECT TOP (5) ProductID, ProductName, Category, ListPrice,
+       CAST(VECTOR_DISTANCE('cosine', Embedding, @query_vector) AS DECIMAL(6,4)) AS distance
+FROM dbo.ProductEmbeddings
+ORDER BY distance;
+```
 
-1.  In the portal search bar, type +++Log Analytics workspaces+++.
+   ![](./media/image20.png)
 
-2.  Under **Services**, select **Log Analytics workspaces**.
+**Question4: a gift for a child learning to ride**
 
-    ![](./media/image61.png) 
+**T-SQL**
 
-3.  Click **+ Create**.
+```sql
+DECLARE @question NVARCHAR(400) = N'a gift for a child learning to ride';
+DECLARE @query_vector VECTOR(1536);
+EXEC dbo.get_embedding @question, @query_vector OUTPUT;
 
-    ![](./media/image62.png) 
+SELECT TOP (5) ProductID, ProductName, Category, ListPrice,
+       CAST(VECTOR_DISTANCE('cosine', Embedding, @query_vector) AS DECIMAL(6,4)) AS distance
+FROM dbo.ProductEmbeddings
+ORDER BY distance;
+```
 
-4.  On the **Basics** tab, set the following values:
+   ![](./media/image21.png)
 
-    - **Resource group:** Select your lab resource group.
+#### **Task 4: Find similar products**
 
-    - **Name:** Enter +++law-zava-jd427+++.
+**T-SQL**
 
-    - **Region:** Select the same region as your server.
+```sql
+DECLARE @seed VECTOR(1536) =
+    (SELECT TOP (1) Embedding
+     FROM dbo.ProductEmbeddings
+     WHERE ProductName LIKE N'Mountain-200%'
+     ORDER BY ProductID);
 
-5.  Click **Review + Create**.
+SELECT TOP (5) ProductName, Category,
+       CAST(VECTOR_DISTANCE('cosine', Embedding, @seed) AS DECIMAL(6,4)) AS distance
+FROM dbo.ProductEmbeddings
+WHERE ProductName NOT LIKE N'Mountain-200%'
+ORDER BY distance;
+```
 
-    ![](./media/image63.png) 
+   ![](./media/image22.png)
 
-6.  Click **Create**.
+### **Exercise 3: Perform Hybrid and Semantic Search**
 
-    ![](./media/image64.png) 
+#### **Task 1: Create a full-text index**
 
+**T-SQL**
 
-7.  Wait for the deployment to complete. This takes less than a minute.
+```sql
+CREATE FULLTEXT CATALOG ftc_products AS DEFAULT;
 
-    ![](./media/image65.png) 
+CREATE FULLTEXT INDEX ON dbo.ProductEmbeddings (Description LANGUAGE 1033)
+    KEY INDEX PK_ProductEmbeddings
+    WITH CHANGE_TRACKING AUTO;
 
+SELECT FULLTEXTCATALOGPROPERTY('ftc_products', 'PopulateStatus') AS populate_status;   -- 0 = done
+```
 
-#### **Task 2: Enable server auditing and diagnostics**
+   ![](./media/image23.png)
 
-1.  Open the logical server **sql-zava-jd427**.
+#### **Task 2: Compare keyword and semantic search**
 
-    ![](./media/image66.png)
+**T-SQL**
 
-2.  In the left menu, click **Security > Auditing**.
+```sql
+DECLARE @question NVARCHAR(400) = N'Road-650 Red 52';
 
-    ![](./media/image67.png)
+SELECT TOP (5) p.ProductName, k.RANK AS keyword_rank
+FROM FREETEXTTABLE(dbo.ProductEmbeddings, Description, @question) AS k
+JOIN dbo.ProductEmbeddings p ON p.ProductID = k.[KEY]
+ORDER BY k.RANK DESC;
 
-3.  Turn on **Enable Azure SQL Auditing**.
+DECLARE @query_vector VECTOR(1536);
+EXEC dbo.get_embedding @question, @query_vector OUTPUT;
 
-    ![](./media/image68.png)
+SELECT TOP (5) ProductName,
+       CAST(VECTOR_DISTANCE('cosine', Embedding, @query_vector) AS DECIMAL(6,4)) AS distance
+FROM dbo.ProductEmbeddings
+ORDER BY distance;
+```
 
-4.  Under **Audit log destination**, select **Log Analytics**.
+Note: Run it again with +++keep my hands warm on cold rides+++. Keyword search wins on exact model, size and colour; semantic search wins on concepts. Hybrid search combines both.
 
-5.  Select the **law-zava-jd427** workspace.
+   ![](./media/image24.png)
 
-    ![](./media/image69.png)
+#### **Task 3: Filtered semantic search**
 
-6.  Turn on **Enable Auditing of Microsoft support operations**.
+**T-SQL**
 
-7.  Send these audit logs to the same Log Analytics workspace, **law-zava-jd427**. Click **Save**.
+```sql
+DECLARE @query_vector VECTOR(1536);
+EXEC dbo.get_embedding N'comfortable bike for long weekend rides', @query_vector OUTPUT;
 
-    ![](./media/image70.png)
+SELECT TOP (5) ProductName, Category, ListPrice,
+       CAST(VECTOR_DISTANCE('cosine', Embedding, @query_vector) AS DECIMAL(6,4)) AS distance
+FROM dbo.ProductEmbeddings
+WHERE ListPrice < 1000
+  AND Category LIKE N'%Bikes'
+ORDER BY distance;
+```
 
-8.  Open the database **sqldb-zava**.
+Relational predicates narrow the candidates before ranking: fewer distance calculations and more relevant results.
 
-    ![](./media/image71.png)
+   ![](./media/image25.png)
 
+#### **Task 4: Hybrid search with Reciprocal Rank Fusion**
 
-9. In the left menu, click **Monitoring > Diagnostic settings**. Click **+ Add diagnostic setting**.
+RRF adds 1 / (60 + rank) from each result list, so items ranked well by both methods rise to the top without normalising different score types.
 
-    ![](./media/image72.png)
+**T-SQL**
 
-10. In **Diagnostic setting name**, enter +++diag-to-law+++.
+```sql
+CREATE OR ALTER PROCEDURE dbo.hybrid_search
+    @question NVARCHAR(400),
+    @top INT = 5
+WITH EXECUTE AS OWNER   -- callers need only EXECUTE permission
+AS
+BEGIN
+    SET NOCOUNT ON;
 
-11. Under **Categories**, select the following checkboxes:
+    DECLARE @query_vector VECTOR(1536);
+    EXEC dbo.get_embedding @question, @query_vector OUTPUT;
 
-    - **SQL Insights**
+    WITH vec AS (
+        SELECT TOP (50) ProductID,
+               ROW_NUMBER() OVER (ORDER BY VECTOR_DISTANCE('cosine', Embedding, @query_vector)) AS rnk
+        FROM dbo.ProductEmbeddings
+        ORDER BY VECTOR_DISTANCE('cosine', Embedding, @query_vector)
+    ),
+    kw AS (
+        SELECT TOP (50) k.[KEY] AS ProductID,
+               ROW_NUMBER() OVER (ORDER BY k.RANK DESC) AS rnk
+        FROM FREETEXTTABLE(dbo.ProductEmbeddings, Description, @question) AS k
+        ORDER BY k.RANK DESC
+    )
+    SELECT TOP (@top) p.ProductName, p.Category, p.ListPrice,
+           v.rnk AS vector_rank,
+           w.rnk AS keyword_rank,
+           CAST(ISNULL(1.0 / (60 + v.rnk), 0) + ISNULL(1.0 / (60 + w.rnk), 0) AS DECIMAL(8,6)) AS rrf_score
+    FROM vec v
+    FULL OUTER JOIN kw w ON w.ProductID = v.ProductID
+    JOIN dbo.ProductEmbeddings p ON p.ProductID = COALESCE(v.ProductID, w.ProductID)
+    ORDER BY rrf_score DESC;
+END;
+GO
 
-    - **Errors**
+GRANT EXECUTE ON dbo.hybrid_search TO AiSearchUsers;
+GO
 
-    - **Timeouts**
+EXEC dbo.hybrid_search N'Road-650 Red 52';
+EXEC dbo.hybrid_search N'keep my hands warm on cold rides';
 
-    - **Deadlocks**
+-- Governed access: the app can search but cannot read the table directly
+EXECUTE AS USER = 'AssistantApp';
 
-    ![](./media/image73.png)
+EXEC dbo.hybrid_search N'carry water on a long ride', 3;   -- works: returns 3 products
 
-12. Under **Metrics**, select **Basic**.
+BEGIN TRY
+    SELECT TOP (1) * FROM dbo.ProductEmbeddings;   -- should be blocked
+END TRY
+BEGIN CATCH
+    SELECT ERROR_MESSAGE() AS expected_result;     -- "The SELECT permission was denied..."
+END CATCH;
 
-    ![](./media/image74.png)
+REVERT;
 
-13. Under **Destination details**, select **Send to Log Analytics workspace**.
+SELECT USER_NAME() AS [who_am_i];   -- should be dbo again
+```
 
-14. Select the **law-zava-jd427** workspace.
+Compare **vector_rank** and **keyword_rank**: exact-model queries are led by keyword matches, conceptual queries by vector matches.
 
-15. Click **Save**.
+**Expected result:** each of the first two searches returns five products with **vector_rank**, **keyword_rank** and **rrf_score**. The governed test returns three products and then a row saying “The SELECT permission was denied…”. That denial is the point of the test: the app can search but cannot read the table. **who_am_i** must show **dbo**; if it shows AssistantApp, run +++REVERT;+++.
 
-    ![](./media/image75.png)
-    
-    **Note:** Server-level auditing covers every database on the server, including future ones. Do not also enable database-level auditing; it duplicates records.
+   ![](./media/image26.png)
 
-#### **Task 3: Generate activity**
+#### **Task 5: Optimize performance for AI and operational workloads**
 
-1.  Return to your query window.
+##### **5a. Measure where time is spent**
 
-2.  Run the following code. You must be signed in with Microsoft Entra authentication.
+**T-SQL**
 
-    **T-SQL**
+```sql
+SET STATISTICS TIME ON;
 
-    ```
-    SELECT TOP (10) FirstName, LastName, EmailAddress FROM SalesLT.Customer;
-    SELECT COUNT(*) AS orders FROM SalesLT.SalesOrderHeader;
-    CREATE TABLE dbo.AuditDemo (Id int PRIMARY KEY);
-    DROP TABLE dbo.AuditDemo;
-    SELECT * FROM dbo.TableThatDoesNotExist; -- deliberate error 208
-    ```
-    ![](./media/image76.png)
+DECLARE @v VECTOR(1536);
+EXEC dbo.get_embedding N'carry water on a long ride', @v OUTPUT;   -- A: model call
 
-3. Sign back in with **Microsoft Entra authentication**.
+SELECT TOP (5) ProductName
+FROM dbo.ProductEmbeddings
+ORDER BY VECTOR_DISTANCE('cosine', Embedding, @v);                 -- B: vector ranking
 
-    ![](./media/image46.png)
+SET STATISTICS TIME OFF;
+```
 
-    **Query editor users:** a sign-in rejected by the Query editor may not be recorded as a database authentication failure, so the failed sign-in query in Task 4 may return no rows. That is expected; note it in your evidence and continue.
+In the **Messages** tab, compare elapsed times. The model call (A) dominates; the vector ranking (B) takes a few milliseconds for about 290 rows.
 
-    **Now go to Exercise 3.** Return to Task 4 after Exercise 3, when the logs have had time to arrive.
+   ![](./media/image27.png)
 
-#### **Task 4: Review audit logs (after Exercise 3)**
+##### **5b. Cache repeated question vectors**
 
-1.  On the portal **Home** page, click **Log Analytics workspaces**.
+**T-SQL**
 
-    ![](./media/image78.png)
+```sql
+CREATE TABLE dbo.QueryEmbeddingCache (
+    Question  NVARCHAR(400) NOT NULL PRIMARY KEY,
+    Embedding VECTOR(1536)  NOT NULL,
+    CachedAt  DATETIME2(0)  NOT NULL DEFAULT SYSUTCDATETIME()
+);
+GO
 
-2.  Click **law-zava-jd427**.
+CREATE OR ALTER PROCEDURE dbo.get_embedding_cached
+    @text NVARCHAR(400),
+    @embedding VECTOR(1536) OUTPUT
+AS
+BEGIN
+    SELECT @embedding = Embedding
+    FROM dbo.QueryEmbeddingCache
+    WHERE Question = @text;
 
-3.  In the left menu, select **Logs**.
+    IF @embedding IS NULL
+    BEGIN
+        EXEC dbo.get_embedding @text, @embedding OUTPUT;
+        INSERT dbo.QueryEmbeddingCache (Question, Embedding) VALUES (@text, @embedding);
+    END
+END;
+GO
 
-    ![](./media/image80.png)
+SET STATISTICS TIME ON;
 
-4.  If the **Welcome to Log Analytics** window opens, close it.
+DECLARE @v VECTOR(1536);
+EXEC dbo.get_embedding_cached N'carry water on a long ride', @v OUTPUT;   -- miss
+EXEC dbo.get_embedding_cached N'carry water on a long ride', @v OUTPUT;   -- hit
 
-    ![](./media/image81.png)
+SET STATISTICS TIME OFF;
+```
 
-5.  If the **Queries hub** window opens, close it.
+The second call skips the model entirely. Popular questions in a shopping assistant repeat often, so this removes most latency and cost.
 
-    ![](./media/image82.png)
+   ![](./media/image28.png)
 
-6.  Turn off the **Agent** toggle.
+##### **5c. Find the most expensive queries with Query Store**
 
-    ![](./media/image83.png)
+**T-SQL**
 
-7.  At the top right of the query pane, open the **Simple mode** drop-down list.
+```sql
+EXEC sp_query_store_flush_db;
 
-    ![](./media/image84.png)
+SELECT TOP (5)
+       LEFT(qt.query_sql_text, 70)                                AS query_text,
+       SUM(rs.count_executions)                                   AS executions,
+       CAST(AVG(rs.avg_duration) / 1000.0 AS DECIMAL(10,1))       AS avg_duration_ms,
+       CAST(AVG(rs.avg_cpu_time) / 1000.0 AS DECIMAL(10,1))       AS avg_cpu_ms,
+       CAST(AVG(rs.avg_logical_io_reads) AS DECIMAL(10,0))        AS avg_reads
+FROM sys.query_store_query_text qt
+JOIN sys.query_store_query q          ON q.query_text_id = qt.query_text_id
+JOIN sys.query_store_plan p           ON p.query_id = q.query_id
+JOIN sys.query_store_runtime_stats rs ON rs.plan_id = p.plan_id
+GROUP BY qt.query_sql_text
+ORDER BY SUM(rs.avg_cpu_time * rs.count_executions) DESC;
+```
 
-8.  Select **KQL mode**.
+Find the query containing **VECTOR_DISTANCE**. Its CPU and reads are small, confirming the SQL side scales well at this size; the cost to watch is the model call and the full scan as the table grows.
 
-    ![](./media/image85.png)
+   ![](./media/image29.png)
 
-9.  Paste the following query into the query pane:
+##### **5d. Decide on vector indexing and workload isolation**
 
-    **KQL: recent audit events**
+Record your decision for Zava (about 290 rows today, 500,000 support-article chunks planned), and how you would keep AI reads away from order processing (Exercise 1, Task 1).
 
-    ```
-    AzureDiagnostics
-    | where Category == "SQLSecurityAuditEvents"
-    | where TimeGenerated > ago(24h)
-    | project TimeGenerated, action_name_s, server_principal_name_s,
-              client_ip_s, succeeded_s, statement_s
-    | order by TimeGenerated desc
-    ```
-    
-10. Click **Run**.
+**T-SQL (optional)**
 
-11. In the results, find your **SELECT**, **CREATE TABLE** and **DROP TABLE** statements with your account name.
+```sql
+-- Preview feature: syntax and limitations may change between releases; skip if it fails
+-- Run CREATE VECTOR INDEX once; rerunning it reports that the index already exists
+CREATE VECTOR INDEX vix_ProductEmbeddings_Embedding
+ON dbo.ProductEmbeddings (Embedding)
+WITH (METRIC = 'cosine', TYPE = 'diskann');
+GO
 
-    ![](./media/image86.png)
+-- Approximate nearest-neighbour search through the index
+DECLARE @qv VECTOR(1536);
+EXEC dbo.get_embedding_cached N'carry water on a long ride', @qv OUTPUT;
 
-12. Replace the query with the following query:
+SELECT TOP (5) WITH APPROXIMATE
+       t.ProductName,
+       CAST(s.distance AS DECIMAL(6,4)) AS distance
+FROM VECTOR_SEARCH(
+         TABLE      = dbo.ProductEmbeddings AS t,
+         COLUMN     = Embedding,
+         SIMILAR_TO = @qv,
+         METRIC     = 'cosine'
+     ) AS s
+ORDER BY s.distance;
+```
 
-    **KQL: failed sign-ins**
+Newer vector index versions take the number of results from **SELECT TOP (n) WITH APPROXIMATE**; earlier preview releases used **TOP_N** inside **VECTOR_SEARCH** and now return “does not support explicit TOP_N parameter”. If **WITH APPROXIMATE** gives a syntax error on your server, remove those two words. At this size the approximate results should match the exact results from Exercise 2. If your release makes the table read-only while a vector index exists, drop the index before changing data.
 
-    ```
-    AzureDiagnostics
-    | where Category == "SQLSecurityAuditEvents"
-    | where action_name_s == "DATABASE AUTHENTICATION FAILED"
-    | summarize Failures = count() by client_ip_s, bin(TimeGenerated, 15m)
-    ```
+   ![](./media/image30.png)
 
-13. Click **Run**.
+### **Cleanup**
 
-14. Confirm that the failed sign-ins appear with your client IP address (SSMS users).
+This is the last lab in the series. In Cloud Shell (Bash), delete all resources to stop charges:
 
-    - Query editor users may see no rows; see the note in Task 3.
+**Bash**
 
-    - If neither query returns rows, wait 5 minutes and run both queries again. Audit data takes 5 to 10 minutes to arrive.
+```bash
+az group delete -n ResourceGroup1 --yes --no-wait
+az group exists -n ResourceGroup1   # returns false when the deletion has finished
+```
 
-    ![](./media/image87.png)    
+**--no-wait** returns immediately, so **az group exists** keeps returning **true** for a few minutes. Run it again until it returns **false**. The command deletes everything in the group, including the Lab 9 resources, so run it only when you have finished Labs 9 to 11.
 
-#### **Task 5: Monitor and manage the operational environment**
+**Optional:** turn Microsoft Defender for SQL back to Free only if it was enabled at subscription level. A “Subscription Not Registered” message means it was never enabled and there is nothing to do.
 
-Auditing answers “who did what”. Operational monitoring answers “is the database healthy, and is anything getting worse”.
+**Bash (optional)**
 
-1.  Open the database **sqldb-zava**.
+```bash
+az security pricing create -n SqlServers --tier Free
+```
 
-    ![](./media/image88.png)
+**Optional:** a deleted Foundry resource keeps its name for a while. To reuse the name in a later lab run, purge it:
 
-2.  In the left menu, click **Monitoring > Metrics**.
+**Bash (optional)**
 
-    ![](./media/image89.png)
+```bash
+az cognitiveservices account list-deleted -o table
+az cognitiveservices account purge -l eastus -g ResourceGroup1 -n aif-zava-67029880   # use your resource name
+```
 
-3.  Set **Metric** to **App CPU percentage**.
+   ![](./media/image31.png)
 
-    - This is the CPU metric for serverless databases. On a provisioned database, select **CPU percentage** instead.
+   ![](./media/image32.png)
 
-4.  Set **Aggregation** to **Avg**.
+If you used a shared Foundry resource from your instructor instead of creating your own, ask them to remove your server’s role assignment from it.
 
-    - In the time range picker at the top right, select **Last hour**.
- 
-        ![](./media/image90.png)
-
-5.  Click **+ Add metric**.
-
-    - Set **Metric** to **Data IO percentage**.
-
-    - Set **Aggregation** to **Avg**.
-
-    ![](./media/image91.png)
-
-6.  Click **+ Add metric** again.
-
-    - Set **Metric** to **Failed Connections : User Errors**.
-
-    - Set **Aggregation** to **Sum**.
-
-    ![](./media/image92.png)
-
-7. In the left menu, click **Monitoring > Alerts**.
-
-    - Click **+ Create > Alert rule**.
-
-        ![](./media/image93.png)
-
-    - On the **Condition** tab, select the **Failed Connections : User Errors** signal.
-
-         ![](./media/image94.png)
-
-8. Under **Alert logic**, set the following values:
-
-    - **Threshold type:** Static
-
-    - **Aggregation type:** Total
-
-    - **Value is:** Greater than
-
-    - **Unit:** Count
-
-    - **Threshold value:** +++5+++
-    
-7. Under **When to evaluate**, set the following values:
-
-    - **Check every:** 1 minute
-
-    - **Lookback period:** 5 minutes
-
-    - Review the estimated cost in the **Preview** pane (about USD 0.10 per month).
-
-     ![](./media/image95.png)
-
-8. Skip the **Actions** tab. Add an action group with your email address only if your instructor asks you to.
-
-9. Click the **Details** tab.
-
-    - Set **Severity** to **2 - Warning**.
-
-    - Set **Alert rule name** to +++alert-failed-connections+++.
-
-10. Click **Review + create**.
-
-     ![](./media/image96.png)
-
-11. Click **Create**.
-
-     ![](./media/image97.png)
-
-12.    After creating the alert rule, select Alert rules to view the alert rules configured for the Azure SQL database and verify that the newly created rule appears in the list. 
-
-     ![](./media/image98.png)
-
-13. In the database’s left menu, click **Intelligent performance > Query performance insight**.
-
-14. Review the top queries by CPU.
-
-    ![](./media/image100.png)
-
-15. If the page shows “There is no performance data available”, wait a few minutes and click **Refresh**. The chart fills once Query Store has collected data.
-
-     ![](./media/image99.png)
-
-16. Click **Intelligent performance > Automatic tuning**.
-
-    ![](./media/image101.png)
-
-    - For **FORCE PLAN**, set **Desired state** to **ON**.
-
-    ![](./media/image102.png)
-
-
-17. Click **Apply**.
-
-    ![](./media/image103.png)
-
-18. In the **Do you want to continue?** dialog, click **OK**.
-
-19. Confirm that **Current state** for **FORCE PLAN** is **ON**. It shows **Inherited from server** or **Forced by user**; both are correct.
-
-    ![](./media/image104.png)
-
-20. Return to your query window.
-
-21. Run the following code to confirm that Query Store and automatic tuning are active:
-
-    **T-SQL**
-
-    ```
-    SELECT actual_state_desc, query_capture_mode_desc,
-           current_storage_size_mb, max_storage_size_mb
-    FROM sys.database_query_store_options;
-
-    SELECT name, desired_state_desc, actual_state_desc
-    FROM sys.database_automatic_tuning_options;
-    ```
-
-    **Expected result:** Query Store **actual_state_desc** is **READ_WRITE**, and **FORCE_LAST_GOOD_PLAN** **actual_state_desc** is **ON**. In the Query editor, run each **SELECT** statement separately if only one result set is shown.
-
-    ![](./media/image105.png)
-
-### **Exercise 3: Configure Microsoft Defender for SQL**
-
-#### **Task 1: Enable Defender for SQL**
-
-1.  Open the database **sqldb-zava**.
-
-    ![](./media/image106.png)
-
-2.  In the left menu, click **Security > Microsoft Defender for Cloud**.
-
-3.  Click **Enable**.
-
-    ![](./media/image107.png)
-
-4.  Wait 1 to 2 minutes, then refresh the page.
-
-5.  Confirm that the page shows **Microsoft Defender for SQL: On** and **Enabled at the server-level**.
-
-    ![](./media/image108.png)
-
-6.  Under **Microsoft Defender for SQL**, click **Settings**.
-
-    ![](./media/image109.png)
-
-7.  Confirm that vulnerability assessment uses the **Express configuration** (the default; it needs no storage account).
-
-    - If vulnerability assessment is off, or shows the classic configuration with no storage account, switch it to the express configuration and click **Save**. Otherwise, scans never produce results.
-
-    ![](./media/image110.png)
-
-    **Note:** Email notifications for security alerts are set for the whole subscription in **Defender for Cloud > Environment settings >** your subscription **> Email notifications**. You do not need to change them for this lab.
-
-    **What you see at first:** Immediately after you enable Defender, the page shows **Recommendations (0)**, **Security Alerts (0)** and “No SQL vulnerability assessment scan results available”. This is normal: there are no results until you run a scan in Task 2. A scan takes 1 to 5 minutes, and its results appear under **View database vulnerability summary**. You do not use the **Recommendations** or **Security Alerts** counters on this page in this lab, so ignore them if they still show 0.
-
-#### **Task 2: Run a vulnerability assessment**
-
-1.  In your query window, connected to **sqldb-zava** (not master), run the following code to introduce a deliberate weakness and confirm that it took effect:
-
-    **T-SQL**
-
-    ```
-    GRANT SELECT ON SalesLT.Customer TO public; -- every user inherits this
-
-    -- Confirm the grant exists; this also wakes a paused serverless database
-    SELECT DB_NAME() AS database_name,
-           OBJECT_SCHEMA_NAME(major_id) AS schema_name,
-           OBJECT_NAME(major_id) AS object_name,
-           permission_name, state_desc
-    FROM sys.database_permissions
-    WHERE grantee_principal_id = DATABASE_PRINCIPAL_ID('public')
-      AND class = 1; -- object-level permissions
-    ```
-
-    **Expected result:** a row with **database_name** **sqldb-zava**, **SalesLT**, **Customer**, **SELECT** and **GRANT**. If **database_name** is **master**, or there is no row, select **sqldb-zava** in your query tool and run the script again.
-
-    ![](./media/image111.png)
-
-2.  Return to the database’s **Security > Microsoft Defender for Cloud** page.
-
-3.  Under **Vulnerabilities on this database**, click **Scan now**.
-
-    ![](./media/image121.png)
-
-4.  Wait for the scan to finish. This usually takes 1 to 5 minutes.
-
-    ![](./media/image112.png)
-
-5.  Click **View database vulnerability summary**.
-
-    ![](./media/image113.png)
-
-6.  On the **Vulnerability Assessment** page, confirm that the **Last scan time** is later than the time you ran the **GRANT**.
-
-    - If it is not, click **Scan history**.
-
-    - If the latest scan is still in progress, wait, and then click **Refresh**.
-
-    ![](./media/image114.png)
-
-7.  On the **Findings** tab, clear any severity or status filter.
-
-8.  In the search box, enter +++PUBLIC+++.
-
-9.  Open the finding **Minimal set of principals should be members of fixed low impact database roles in SQL databases** (rule VA2109).
-
-10. Review its description, the query results (**SalesLT.Customer**, **SELECT**) and the remediation script.
-
-11. In your query window, run the following code to remediate the finding:
-
-    **T-SQL**
-
-    ```
-    GRANT SELECT ON SalesLT.Customer TO public;   -- every user inherits this
-
-    -- Confirm the grant exists; this also wakes a paused serverless database
-    SELECT DB_NAME() AS database_name,
-       OBJECT_SCHEMA_NAME(major_id) AS schema_name,
-       OBJECT_NAME(major_id) AS object_name,
-       permission_name, state_desc
-    FROM sys.database_permissions
-    WHERE grantee_principal_id = DATABASE_PRINCIPAL_ID('public')
-    AND class = 1;   -- object-level permissions
-
-    ```
-    ![](./media/image111.png)
-
-12. Return to the **Vulnerability Assessment** page.
-
-    ![](./media/image112.png)
-
-13. Open a finding that lists configuration you intend to keep: **VA2109 - Minimal set of principals should be members of fixed low impact database roles in SQL databases**. It lists **SQL-Analysts** in **db_datareader**, which you granted on purpose in Exercise 1.
-
-    ![](./media/image113.png)
-
-14. Click **Add all results as baseline**.
-
-    ![](./media/image115.png)
-
-15. In the **Set baseline** dialog, click **Yes**.
-
-    ![](./media/image116.png)
-
-16. Confirm that the result status shows **In Baseline**.
-
-    ![](./media/image117.png)
-
-17. Click **Scan** again.
-
-18. Wait for the scan to complete.
-
-19. Click the **Passed** tab.
-
-    ![](./media/image118.png)
-
-20. Confirm that the PUBLIC finding (VA1054) now appears under **Passed** checks.
-
-21. Confirm that the baselined finding (VA2109) shows **Passed per custom baseline**.
-
-    **Where is the firewall rule finding?** Server-level firewall rules are stored in the master database, so the check that flags your **AllowMyPC** rule (VA2065) appears in the server’s (master) results, not in **sqldb-zava**. You can view it on the logical server’s **Security > Microsoft Defender for Cloud** page. Baselining it there is optional.
-
-    ![](./media/image123.png)
-
-##### **If the vulnerability count still shows 0**
-
-    - **No scan has completed yet.** Click **Scan now**, wait for the notification (1 to 5 minutes), and then open **View database vulnerability summary**. Ignore the **Recommendations (0)** counter; it is not used in this lab.
-
-    - **The scan ran before the GRANT.** Run the confirmation query again, and then scan again.
-
-    - **The GRANT ran in master.** In the Query editor, the connection is always to the database you opened it from; in SSMS, check the database drop-down on the toolbar.
-
-    - **Defender is still provisioning, or vulnerability assessment is not configured.** On the Defender for Cloud page, confirm **On** and **Enabled at the server-level**, and then check **Settings** for the express configuration (Task 1, step 7). If you enabled Defender less than 2 minutes ago, wait, refresh the page, and scan again.
-
-    - **A filter hides the finding.** Clear the search box and any severity filter, and look in both the failed and passed lists.
-
-![](./media/image119.png)
-
-### **Review your lab resources**
-
-1.  In the portal, open **Resource Manager > Recent resources**.
-
-2.  Confirm that the following resources exist:
-
-    - **sqldb-zava** (SQL database)
-
-    - **sql-zava-jd427** (SQL server)
-
-    - **law-zava-jd427** (Log Analytics workspace)
-
-      ![](./media/image120.png)
-
-**Note: Do not delete these resources.** Lab 10 and Lab 11 use them.
