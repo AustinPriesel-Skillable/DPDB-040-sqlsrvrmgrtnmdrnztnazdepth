@@ -57,8 +57,8 @@ This is the first of three connected labs. Lab 10 adds governance and data prote
 
 1. On the **Basics** tab, set the following values:
 
-    - **Resource group:** Select your lab resource group.
-    - **Database name:** Enter `sqldb-zava`.
+    - **Resource group:** @lab.CloudResourceGroup(ResourceGroup1).Name
+    - **Database name:** Enter `sqldb-zava-@lab.labinstance.id`.
 
 
 1. Under **Server**, click **Create new**.
@@ -67,8 +67,8 @@ This is the first of three connected labs. Lab 10 adds governance and data prote
 
 1. In the **Create SQL Database Server** pane, set the following values:
 
-    - **Server name:** `sql-zava-jd427`
-    - **Location:** East US (or the region your instructor gives you)
+    - **Server name:** `sql-zava-@lab.labinstance.id`
+    - **Location:** @lab.CloudResourceGroup(ResourceGroup1).Location
     - **Authentication method:** Use SQL authentication
     - **Server admin login:** `sqladminuser`
     - **Password:** +++P@ssword12345+++
@@ -297,13 +297,13 @@ Use **Option A** if SSMS is installed on your lab machine; otherwise, use **Opti
 
 1. On your lab machine, open **SQL Server Management Studio**.
 
-1. In the **Connect to Server** dialog, set **Server name** to +++sql-zava-jd427.database.windows.net+++.
+1. In the **Connect to Server** dialog, set **Server name** to `sql-zava-@lab.labinstance.id.database.windows.net`
   
 1. Set **Authentication** to **Microsoft Entra MFA**.
   
 1. In **User name**, enter your lab account.
   
-1. Set **Database name** to `sqldb-zava`.
+1. Set **Database name** to `sqldb-zava-@lab.labinstance.id`.
 
 1. Click **Connect**.
 
@@ -337,9 +337,7 @@ Use **Option A** if SSMS is installed on your lab machine; otherwise, use **Opti
 
 1. In your query window, run the following code:
 
-    `T-SQL`
-
-    ```
+    ```T-SQL
     -- Members of the Entra group inherit access; no per-person users needed
     CREATE USER [SQL-Analysts] FROM EXTERNAL PROVIDER;
     ALTER ROLE db_datareader ADD MEMBER [SQL-Analysts];
@@ -350,7 +348,7 @@ Use **Option A** if SSMS is installed on your lab machine; otherwise, use **Opti
     WHERE type IN ('E', 'X'); -- E = external user, X = external group
     ```
 
-    **Expected result:** one row for **SQL-Analysts** with type `EXTERNAL_GROUP` and authentication type `EXTERNAL`.
+    **Expected result:** one row for **SQL-Analysts** with type **EXTERNAL_GROUP** and authentication type **EXTERNAL**.
 
     If you see **Principal 'SQL-Analysts' could not be found**, the group does not exist or the name differs. Return to Task 2, then run the whole script again; nothing after line 1 runs when line 1 fails.
 
@@ -429,8 +427,8 @@ Use **Option A** if SSMS is installed on your lab machine; otherwise, use **Opti
 
 1. On the **Basics** tab, set the following values:
 
-    - **Resource group:** Select your lab resource group.
-    - **Name:** Enter `law-zava-jd427`.
+    - **Resource group:** @lab.CloudResourceGroup(ResourceGroup1).Name
+    - **Name:** Enter `law-zava-@lab.labinstance.id`.
     - **Region:** Select the same region as your server.
 
 
@@ -449,7 +447,7 @@ Use **Option A** if SSMS is installed on your lab machine; otherwise, use **Opti
 
 ### Task 2: Enable server auditing and diagnostics
 
-1. Open the logical server **sql-zava-jd427**.
+1. Open the logical server **sql-zava-@lab.labinstance.id**.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image66.png)
 
@@ -469,7 +467,7 @@ Use **Option A** if SSMS is installed on your lab machine; otherwise, use **Opti
 
 1. Turn on **Enable Auditing of Microsoft support operations**.
 
-1. Send these audit logs to the same Log Analytics workspace, **law-zava-jd427**. Click **Save**.
+1. Send these audit logs to the same Log Analytics workspace, **law-zava-@lab.labinstance.id**. Click **Save**.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image70.png)
 
@@ -499,7 +497,7 @@ Use **Option A** if SSMS is installed on your lab machine; otherwise, use **Opti
 
 1. Under **Destination details**, select **Send to Log Analytics workspace**.
 
-1. Select the **law-zava-jd427** workspace.
+1. Select the **law-zava-@lab.labinstance.id** workspace.
 
 1. Click **Save**.
 
@@ -514,9 +512,7 @@ Use **Option A** if SSMS is installed on your lab machine; otherwise, use **Opti
 
 1. Run the following code. You must be signed in with Microsoft Entra authentication.
 
-    `T-SQL`
-
-    ```
+    ```T-SQL
     SELECT TOP (10) FirstName, LastName, EmailAddress FROM SalesLT.Customer;
     SELECT COUNT(*) AS orders FROM SalesLT.SalesOrderHeader;
     CREATE TABLE dbo.AuditDemo (Id int PRIMARY KEY);
@@ -541,7 +537,7 @@ Use **Option A** if SSMS is installed on your lab machine; otherwise, use **Opti
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image78.png)
 
-1. Click **law-zava-jd427**.
+1. Click **law-zava-@lab.labinstance.id**.
 
 1. In the left menu, select **Logs**.
 
@@ -571,7 +567,7 @@ Use **Option A** if SSMS is installed on your lab machine; otherwise, use **Opti
 
     **KQL: recent audit events**
 
-    ```
+    ```KQL
     AzureDiagnostics
     | where Category == "SQLSecurityAuditEvents"
     | where TimeGenerated > ago(24h)
@@ -590,7 +586,7 @@ Use **Option A** if SSMS is installed on your lab machine; otherwise, use **Opti
 
     **KQL: failed sign-ins**
 
-    ```
+    ```KQL
     AzureDiagnostics
     | where Category == "SQLSecurityAuditEvents"
     | where action_name_s == "DATABASE AUTHENTICATION FAILED"
@@ -729,9 +725,7 @@ Auditing answers “who did what”. Operational monitoring answers “is the da
 
 1. Run the following code to confirm that Query Store and automatic tuning are active:
 
-    `T-SQL`
-
-    ```
+    ```T-SQL
     SELECT actual_state_desc, query_capture_mode_desc,
            current_storage_size_mb, max_storage_size_mb
     FROM sys.database_query_store_options;
@@ -784,9 +778,8 @@ Auditing answers “who did what”. Operational monitoring answers “is the da
 
 1. In your query window, connected to **sqldb-zava** (not master), run the following code to introduce a deliberate weakness and confirm that it took effect:
 
-    `T-SQL`
 
-    ```
+    ```T-SQL
     GRANT SELECT ON SalesLT.Customer TO public; -- every user inherits this
 
     -- Confirm the grant exists; this also wakes a paused serverless database
@@ -835,9 +828,8 @@ Auditing answers “who did what”. Operational monitoring answers “is the da
 
 1. In your query window, run the following code to remediate the finding:
 
-    `T-SQL`
 
-    ```
+    ```T-SQL
     GRANT SELECT ON SalesLT.Customer TO public;   -- every user inherits this
 
     -- Confirm the grant exists; this also wakes a paused serverless database
@@ -908,8 +900,8 @@ Auditing answers “who did what”. Operational monitoring answers “is the da
 1. Confirm that the following resources exist:
 
     - **sqldb-zava** (SQL database)
-    - **sql-zava-jd427** (SQL server)
-    - **law-zava-jd427** (Log Analytics workspace)
+    - **sql-zava-@lab.labinstance.id** (SQL server)
+    - **law-zava-@lab.labinstance.id** (Log Analytics workspace)
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image120.png)
 
