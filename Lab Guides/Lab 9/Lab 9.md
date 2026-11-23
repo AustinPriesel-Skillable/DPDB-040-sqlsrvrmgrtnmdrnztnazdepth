@@ -32,13 +32,13 @@ By the end of this lab, you will be able to:
 
 ### Task 0: Create the Foundry resource and deploy the embedding model
 
-Each learner needs a Microsoft Foundry resource in the lab resource group. Resource names must be unique across Azure, so include your **lab user number**: the digits in your sign-in name (for example, User1-67029880 gives `aif-zava-67029880`). If your instructor provides a resource instead, skip this task and use that name wherever this guide shows `aif-zava-<lab-user-number>`.
+Each learner needs a Microsoft Foundry resource in the lab resource group. Resource names must be unique across Azure, so include your **lab user number**: the digits in your sign-in name (for example, User1-67029880 gives `aif-zava-@lab.labinstance.id`). If your instructor provides a resource instead, skip this task and use that name wherever this guide shows `aif-zava-@lab.labinstance.id`.
 
 1. In the Azure portal, click **Foundry** under **Azure services**.
 
 1. Click **Create a Foundry resource**.
 
-1. Set **Resource group** to `ResourceGroup1` (your Lab 9 resource group), **Name** to **aif-zava-<lab-user-number>** and **Region** to the server’s region (East US in Lab 9). If asked for a default project name, use `proj-zava`.
+1. Set **Resource group** to **@lab.CloudResourceGroup(ResourceGroup1).Name**, **Name** to **aif-zava-@lab.labinstance.id** and **Region** to the server’s region (**@lab.CloudResourceGroup(ResourceGroup1).Location**). If asked for a default project name, use `proj-zava-@lab.labinstance.id`.
 
 1. If the portal reports that the sub-domain name is already used, add a digit (for example `aif-zava-670298801`). Note the exact name: every later step uses it.
 
@@ -52,8 +52,6 @@ Each learner needs a Microsoft Foundry resource in the lab resource group. Resou
 
 1. Click the **Cloud Shell** icon (`>_`) at the top of the portal, choose **Bash**, and run the commands below to deploy the embedding model. Capacity 50 (50,000 tokens per minute) lets the load in Exercise 2 run without throttling.
 
-
-`Bash (Cloud Shell)`
 
 ```bash
 # Replace the example name on the AOAI_NAME line with your Foundry resource name
@@ -91,7 +89,7 @@ az cognitiveservices account deployment list -g $RG -n $AOAI_NAME \
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image38.png)
 
-1. In the Azure portal, open your Foundry resource **aif-zava-*{lab-user-number}***: type its name in the top search bar and select it under **Resources** (or go to **Foundry > All resources**). Do not use the Microsoft Foundry overview page; IAM is only on the resource itself.
+1. In the Azure portal, open your Foundry resource **aif-zava-@lab.labinstance.id**: type its name in the top search bar and select it under **Resources** (or go to **Foundry > All resources**). Do not use the Microsoft Foundry overview page; IAM is only on the resource itself.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image6.png)
 
@@ -103,13 +101,13 @@ az cognitiveservices account deployment list -g $RG -n $AOAI_NAME \
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image8.png)
 
-1. Select **Managed identity**, click **+ Select members**, set **Managed identity** to **SQL server**, select **sql-zava-jd427**, click **Select**, then click **Review + assign** twice. Do not choose Foundry or Foundry project.
+1. Select **Managed identity**, click **+ Select members**, set **Managed identity** to **SQL server**, select **sql-zava-@lab.labinstance.id**, click **Select**, then click **Review + assign** twice. Do not choose Foundry or Foundry project.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image9.png)
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image10.png)
 
-1. Confirm the assignment: on the **Role assignments** tab, click **Refresh** and search for `sql-zava-jd427`. It must be listed under **Cognitive Services OpenAI User** with type **SQL server**. Wait about 5 minutes before Task 2.
+1. Confirm the assignment: on the **Role assignments** tab, click **Refresh** and search for `sql-zava-@lab.labinstance.id`. It must be listed under **Cognitive Services OpenAI User** with type **SQL server**. Wait about 5 minutes before Task 2.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image11.png)
 
@@ -119,8 +117,8 @@ az cognitiveservices account deployment list -g $RG -n $AOAI_NAME \
 ```bash
 # Replace the example Foundry name with your own before running
 RG=ResourceGroup1
-SERVER=sql-zava-jd427
-AOAI_NAME=aif-zava-67029880
+SERVER=sql-zava-@lab.labinstance.id
+AOAI_NAME=aif-zava-@lab.labinstance.id
 
 az sql server update -g $RG -n $SERVER -i   # turns on the identity; no change if already on
 
