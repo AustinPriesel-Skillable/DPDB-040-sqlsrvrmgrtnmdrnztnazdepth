@@ -35,7 +35,7 @@ After completing this lab, you will be able to:
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2011/media/image2.png)
 
-1. In the Azure portal, enter **SQL databases** in the top search bar and select **SQL databases** under Services. Alternatively, select **SQL databases** directly from the home page if available. Avoid selecting **Azure SQL** or **SQL Server databases**.
+1. In the Azure portal, enter `SQL databases` in the top search bar and select **SQL databases** under Services. Alternatively, select **SQL databases** directly from the home page if available. Avoid selecting **Azure SQL** or **SQL Server databases**.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2011/media/image3.png)
 
@@ -49,16 +49,16 @@ After completing this lab, you will be able to:
 
 1. On the **Basics** tab, set:
 
-    1. **Resource group:** your lab resource group
-    1. **Database name:** `sqldb-zava`
+    1. **Resource group:** @lab.CloudResourceGroup(ResourceGroup1).Name
+    1. **Database name:** `sqldb-zava-@lab.labinstance.id`
     1. **Server:** click **Create new**
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2011/media/image6.png)
 
 1. In the **Create SQL Database Server** pane, set:
 
-    1. **Server name:** `sql-zava-jd427` (**Note:** use only lowercase letters, numbers and hyphens.)
-    1. **Location:** East US (or the region your instructor gives you)
+    1. **Server name:** `sql-zava-@lab.labinstance.id`
+    1. **Location:** @lab.CloudResourceGroup(ResourceGroup1).Location
     1. **Authentication method:** Use SQL authentication
     1. **Server admin login:** `sqladminuser`, **Password:** `P@ssword12345`, **Confirm password:** `P@ssword12345`
 
@@ -114,7 +114,7 @@ After completing this lab, you will be able to:
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2011/media/image18.png)
 
-1. Set **Resource group** to your lab group, **Name** to `law-zava-jd427`, and **Region** to the same region as your server (East US). Select **Review + Create**.
+1. Set **Resource group** to your lab group, **Name** to `law-zava-@lab.labinstance.id`, and **Region** to the same region as your server (East US). Select **Review + Create**.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2011/media/image19.png)
 
@@ -161,7 +161,7 @@ You created the server with SQL authentication, as in Lab 9. Now you make your a
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2011/media/image30.png)
 
-1. Select **Log Analytics**, choose your subscription and your workspace (for example `law-zava-jd427`), and click **Save**.
+1. Select **Log Analytics**, choose your subscription and your workspace (for example `law-zava-@lab.labinstance.id`), and click **Save**.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2011/media/image31.png)
 
@@ -190,9 +190,9 @@ You created the server with SQL authentication, as in Lab 9. Now you make your a
 
     ```
     RG="ResourceGroup1"
-    SERVER="sql-zava-jd427"
-    DB="sqldb-zava"
-    LAW="law-zava-jd427"
+    SERVER="sql-zava-@lab.labinstance.id"
+    DB="sqldb-zava-@lab.labinstance.id"
+    LAW="law-zava-@lab.labinstance.id"
 
     # Check the values point at real resources
     az sql db show -g $RG -s $SERVER -n $DB \
@@ -866,6 +866,8 @@ Azure Policy proves the platform is configured correctly; a validation script pr
 
 # Clean Up Resources
 
+>[!Alert] If you are continuing on to Lab 11, **DO NOT** delete the current resources.
+
 **Duration:** about 5 minutes (after the lab; not part of the 50 minutes)
 
 **Continuing to Lab 11?** Do not clean up; keep all resources. Do this section only when you have finished with the environment. Deletion is permanent: the server, the database and its sample data cannot be recovered.
@@ -965,3 +967,4 @@ az resource list -g $RG --query "[].{name:name, type:type}" -o table
 1. In **Policy > Authoring > Assignments**, confirm none of the four lab policies is listed.
 
 1. In **All resources**, filtered to your lab resource group, confirm `sqldb-zava`, `sql-zava-jd427` and `law-zava-jd427` are gone.
+
