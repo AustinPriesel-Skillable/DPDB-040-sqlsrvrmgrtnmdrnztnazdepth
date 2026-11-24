@@ -1,4 +1,4 @@
-# Lab 10: Implement Governance and Data Protection
+# Lab 11: Implement Governance and Data Protection
 
 ## Introduction
 
