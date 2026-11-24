@@ -129,7 +129,7 @@ The SQL port is open to the whole internet until you do this. Don't skip it.
 
 1. Paste the following into the **PowerShell Script** box and click **Run**. Leave the page open. When it finishes, the **Output** box ends with **Seed complete**.
 
-    >[!Note] Make sure to  **<your sqladmin password>** is correct at the **first line of the script:**
+    >[!Note] Make sure the **SQLPwd** is correct at the **first line of the script:**
   
     ```
     $SqlPwd = 'P@ssword12345'
