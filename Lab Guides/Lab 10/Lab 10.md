@@ -23,9 +23,6 @@ This is the first of three connected labs. Lab 10 adds governance and data prote
 - Permission to create security groups in Microsoft Entra ID. If your lab account does not have this permission, your instructor will create the **SQL-Analysts** group for you (Exercise 1, Task 2).
 - A query tool: SQL Server Management Studio (SSMS) 21 or later (SSMS 22 recommended) on your lab machine, **or** the Azure portal **Query editor**, which needs no installation. Exercise 1, Task 3 covers both.
 
-
-**Instructor note:** Log Analytics takes 5 to 10 minutes to show audit data. Learners enable auditing early in Exercise 2, complete Exercise 3, then return to Exercise 2, Task 4. The guide tells them when.
-
 ### Getting started: Set up your environment
 
 ### Task 1: Create the Azure SQL Database
