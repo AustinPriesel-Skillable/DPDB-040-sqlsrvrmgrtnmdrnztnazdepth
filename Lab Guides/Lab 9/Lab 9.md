@@ -3,7 +3,7 @@
 ## Introduction
 
 Zava wants its shopping assistant to answer natural-language questions such as “a bike that copes with rough mountain trails”. Keyword search misses questions like this, and copying product data into a separate vector store would bypass the security and governance applied to the database.
-In this lab you turn the Zava product database into a retrieval engine for that assistant, keeping embeddings next to the product data so they fall under the same security. You store embeddings in the native vector type, generate them inside the database with AI_GENERATE_EMBEDDINGS and an Azure OpenAI model in Microsoft Foundry reached through a managed identity, run exact and approximate semantic search, and combine it with keyword search. Labs 10 and 11 then secure and govern this same database, so every AI object you create here comes under those controls.
+In this lab you turn the Zava product database into a retrieval engine for that assistant, keeping embeddings next to the product data so they come under the same security and governance. You store embeddings in the native vector type, generate them inside the database with AI_GENERATE_EMBEDDINGS and an Azure OpenAI model in Microsoft Foundry reached through a managed identity, run exact and, optionally, approximate semantic search, and combine it with keyword search. Lab 10 then secures this same database and Lab 11 governs it, so every AI object you create here comes under those controls. Do not delete your resources at the end of this lab.
 
 ### Objectives
 
@@ -183,6 +183,50 @@ Azure SQL blocks all public connections until a firewall rule allows them. In th
 1. Under **Outbound networking**, confirm that **Restrict outbound networking** shows **Restrictions disabled**. Lab 11 calls Azure OpenAI from the database and needs this outbound access.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image63.png)
+
+### Task 3: Connect to the database
+
+Use **Option A** if SSMS is installed on your lab machine; otherwise, use **Option B**. Later steps say “in your query window”; this means the tool you chose.
+
+#### Option A: SQL Server Management Studio (SSMS) (Optional)
+
+1. On your lab machine, open **SQL Server Management Studio**.
+
+1. In the **Connect to Server** dialog, set **Server name** to `sql-zava-@lab.labinstance.id.database.windows.net`
+  
+1. Set **Authentication** to **Microsoft Entra MFA**.
+  
+1. In **User name**, enter your lab account.
+  
+1. Set **Database name** to `sqldb-zava-@lab.labinstance.id`.
+
+1. Click **Connect**.
+
+1. Complete the Microsoft Entra sign-in prompt with your lab account.
+
+1. In **Object Explorer**, expand **Databases**.
+
+1. Right-click **sqldb-zava** and select **New Query**.
+
+
+#### Option B: Azure portal Query editor (no installation)
+
+1. Open the logical server **sql-zava-jd427**. Click **sqldb-zava**. In the left menu, expand **Settings** and click **SQL databases**.
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image68.png)
+  
+1. In the database’s left menu, click **Query editor**.
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image69.png)
+
+1. On the **Microsoft Entra authentication** tab, click **Connect as <your account>**.
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image70.png)
+
+1. Click **New query**.
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image71.png)
+
 
 ## Setup: Connect the Database to Azure OpenAI
 
@@ -882,7 +926,9 @@ Newer vector index versions take the number of results from **SELECT TOP (n) WIT
 
    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image31.png)
 
-### Cleanup
+>[!Note] Do not delete these resources. Lab 10 and Lab 11 use them.
+
+### Cleanup (Optional)
 
 This is the last lab in the series. In Cloud Shell (Bash), delete all resources to stop charges:
 
