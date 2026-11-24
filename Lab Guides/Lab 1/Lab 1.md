@@ -286,8 +286,7 @@ The SQL port is open to the whole internet until you do this. Don't skip it.
 
 1. In the **Connect to Server** dialog:
 
-    - **Server type**: Database Engine
-    - **Server name**: the VM's **public IP address** from Setup step 2
+    - **Server name**: **SQLVM01**'s **public IP address** from Setup step 2
     - **Authentication**: SQL Server Authentication
     - **Login**: `labadmin`
     - **Password**- `P@ssword12345`
