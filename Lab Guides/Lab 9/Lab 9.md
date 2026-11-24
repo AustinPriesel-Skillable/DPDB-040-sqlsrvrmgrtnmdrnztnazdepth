@@ -1,32 +1,190 @@
-# Lab 11: Enable AI-Ready Capabilities in Azure SQL
+# Lab 9: Enable AI-Ready Capabilities in Azure SQL
 
 ## Introduction
 
-Zava wants its shopping assistant to answer natural-language questions such as “a bike that copes with rough mountain trails”. Keyword search misses questions like this, and copying product data into a separate vector store would bypass the governance built in Labs 9 and 10.
-
-In this lab you turn the secured database from Labs 9 and 10 into a retrieval engine for that assistant, keeping embeddings next to the product data under the same security. You store embeddings in the native **vector** type, generate them inside the database with `AI_GENERATE_EMBEDDINGS` and an Azure OpenAI model in Microsoft Foundry reached through a managed identity, run exact and approximate semantic search, and combine it with keyword search.
+Zava wants its shopping assistant to answer natural-language questions such as “a bike that copes with rough mountain trails”. Keyword search misses questions like this, and copying product data into a separate vector store would bypass the security and governance applied to the database.
+In this lab you turn the Zava product database into a retrieval engine for that assistant, keeping embeddings next to the product data so they fall under the same security. You store embeddings in the native vector type, generate them inside the database with AI_GENERATE_EMBEDDINGS and an Azure OpenAI model in Microsoft Foundry reached through a managed identity, run exact and approximate semantic search, and combine it with keyword search. Labs 10 and 11 then secure and govern this same database, so every AI object you create here comes under those controls.
 
 ### Objectives
 
 By the end of this lab, you will be able to:
-- Design an AI-ready Azure SQL architecture and justify its key decisions.
-- Implement vectors, embeddings and semantic retrieval patterns, including hybrid search and retrieval-augmented generation (RAG).
+- Design an AI-ready Azure SQL architecture and justify its key decisions
+- Implement vectors, embeddings and semantic retrieval patterns, including hybrid search and retrieval-augmented generation (RAG)
 - Optimize performance for AI and operational workloads with Query Store, caching, filtering and indexing decisions.
-
 
 ### Prerequisites
 
-- **Lab 9 completed (required).** Lab 11 uses its server **sql-zava-jd427**, its database **sqldb-zava** with the AdventureWorksLT sample, your Microsoft Entra admin account (SQL authentication is turned off), the **SQL-Analysts** database user and the firewall rule for your IP address.
-- The server’s system-assigned managed identity is turned on (Lab 9, Getting started, Task 3). Setup Task 1 checks this.
-- **Lab 10 completed (recommended, not required).** Lab 11 refers to Lab 10’s governance controls but does not use any objects Lab 10 creates.
-- Permission to create a Microsoft Foundry resource and deploy models in your lab resource group (Setup Task 0), or a Foundry resource from your instructor with a deployment named `text-embedding-3-small` (1536 dimensions).
-- Rights to assign roles on that resource (you have them on a resource you create), or an instructor who does it for you.
-- SQL Server Management Studio 22 or Visual Studio Code with the MSSQL extension, both of which support the vector type and external models.
+This is the first lab in the series, so you create everything it needs yourself. The setup takes about 15 minutes.
+
+- An Azure subscription and a lab resource group. You need rights to create resources in the group: an Azure SQL logical server, a database and a Microsoft Foundry resource.
+- Rights to assign roles on the resources you create. You have these on any resource you create yourself. If you don't, your instructor can assign the roles for you.
+- A Microsoft Entra account that you will make the server's Microsoft Entra admin. The server uses Microsoft Entra-only authentication, so SQL authentication stays turned off.
+- Your client IP address. You add it as a server firewall rule when you create the server.
+- A Foundry resource. Either you have permission to create one and deploy models in your lab resource group (Setup Task 0), or your instructor gives you one with a deployment named text-embedding-3-small (1536 dimensions).
+- Optional: a Microsoft Entra security group named SQL-Analysts. Exercise 1, Task 5 grants this group access. If you can't create Entra groups, remove the GRANT … TO [SQL-Analysts] line from that task.
+- A query tool: SQL Server Management Studio 22, or Visual Studio Code with the MSSQL extension. Both support the vector type and external models.
+
+## Getting started: Set up your environment
+
+### Task 1: Create the Azure SQL Database
+
+1. Open +++https://portal.azure.com/+++.
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image39.png)
+
+1. Sign in with your lab account.
+
+1. On the portal **Home** page, under **Azure services**, click **SQL databases**.
+
+    - If the tile is not shown, type `Azure SQL Database` in the search bar at the top, and then select **Azure SQL Database** under **Services**.
+    - Do not select **Azure SQL** (a hub page with no **Create** button), **Azure SQL Database Hyperscale** (it pre-selects the Hyperscale tier), or **SQL Server databases** (Azure Arc).
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image40.png)
 
 
-**Starting without Lab 9?** Do these Lab 9 steps first (about 15 minutes): Getting started, Task 1 (create **sqldb-zava** on **sql-zava-jd427** with sample data and your client IP) and Task 3 (managed identity); then Exercise 1, Task 1 (make yourself the Microsoft Entra admin). If you skip creating the **SQL-Analysts** group, remove the **GRANT … TO [SQL-Analysts]** line in Exercise 1, Task 5.
+1. On the **SQL databases** page, click **+ Create** on the toolbar.
 
-### Setup: Connect the Database to Azure OpenAI
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image41.png)
+
+1. From the drop-down list, select **SQL database**.
+
+    - Do not select **SQL database (Free offer)**; it opens a different wizard with free-tier limits.
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image42.png)
+
+
+1. On the **Basics** tab, set the following values:
+
+    - **Resource group:** @lab.CloudResourceGroup(ResourceGroup1).Name
+    - **Database name:** Enter `sqldb-caldova-@lab.labinstance.id`.
+
+
+1. Under **Server**, click **Create new**.
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image43.png)
+
+1. In the **Create SQL Database Server** pane, set the following values:
+
+    - **Server name:** `sql-caldova-@lab.labinstance.id`
+    - **Location:** @lab.CloudResourceGroup(ResourceGroup1).Location
+    - **Authentication method:** Use SQL authentication
+    - **Server admin login:** `sqladminuser`
+    - **Password:** +++P@ssword12345+++
+    - **Confirm password:** +++P@ssword12345+++
+
+
+1. Click **OK**.
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image44.png)
+
+1. Set **Want to use SQL elastic pool?** to **No**.
+
+1. Set **Workload environment** to **Development**.
+
+1. Under **Compute + storage**, click **Configure database**.
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image45.png)
+
+1. Set **Service tier** to **General Purpose**.
+
+    - Set **Compute tier** to **Serverless**.
+    - Set **Max vCores** to **2**.
+    - Set **Auto-pause delay** to **1 hour**.
+
+
+1. Click **Apply**.
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image46.png)
+
+1. Set **Backup storage redundancy** to **Locally-redundant backup storage**.
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image47.png)
+
+1. Click the **Networking** tab.
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image48.png)
+
+1. Set the following values:
+
+    - **Connectivity method:** Public endpoint
+    - **Allow Azure services and resources to access this server:** No
+    - **Add current client IP address:** Yes
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image49.png)
+
+
+1. Click the **Security** tab.
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image50.png)
+
+1. Set **Enable Microsoft Defender for SQL** to **Not now**. You enable it in Exercise 3.
+
+1. Click the **Additional settings** tab.
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image51.png)
+
+1. Under **Data source**, set **Use existing data** to **Sample**. This loads the AdventureWorksLT sample database.
+
+1. In the confirmation dialog, click **OK**.
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image52.png)
+
+1. Click **Review + create**.
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image53.png)
+
+1. On the **Review + create** tab, click **Create**.
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image54.png)
+
+1. Wait for the deployment to complete. This takes 2 to 3 minutes.
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image55.png)
+
+
+### Task 2: Confirm network security
+
+Azure SQL blocks all public connections until a firewall rule allows them. In this task, you confirm that only your IP address is allowed.
+
+1. Click **Go to resource**.
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image56.png)
+
+1. On the database **Overview** page, click the **Server name** link to open the logical server.
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image57.png)
+
+1. In the left menu, click **Security > Networking**.
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image58.png)
+
+1. On the **Public access** tab, confirm that **Public network access** is set to **Selected networks**.
+
+1. Under **Firewall rules**, confirm that one rule named `ClientIPAddress_<date>` exists.
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image59.png)
+
+1. In the **Rule name** box, rename the rule to `AllowMyPC`.
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image60.png)
+
+1. Confirm that **Allow Azure services and resources to access this server** is cleared. Leaving it selected would let resources in any Azure tenant reach the server’s login prompt.
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image61.png)
+
+1. Click **Save**.
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image62.png)
+
+1. Click the **Connectivity** tab.
+
+1. Confirm that **Minimum TLS version** is **1.2**.
+
+1. Under **Outbound networking**, confirm that **Restrict outbound networking** shows **Restrictions disabled**. Lab 11 calls Azure OpenAI from the database and needs this outbound access.
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image63.png)
+
+## Setup: Connect the Database to Azure OpenAI
 
 **Values used in this lab:** server **sql-zava-jd427**, database **sqldb-zava** and resource group **ResourceGroup1** (all from Lab 9), and your Foundry resource **aif-zava-<lab-user-number>** (Task 0). Wherever a script shows **<lab-user-number>**, replace it, including the angle brackets, with your lab user number.
 
@@ -36,19 +194,25 @@ Each learner needs a Microsoft Foundry resource in the lab resource group. Resou
 
 1. In the Azure portal, click **Foundry** under **Azure services**.
 
+   ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image1.png)
+
 1. Click **Create a Foundry resource**.
 
+   ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image2.png)
+
 1. Set **Resource group** to **@lab.CloudResourceGroup(ResourceGroup1).Name**, **Name** to **aif-zava-@lab.labinstance.id** and **Region** to the server’s region (**@lab.CloudResourceGroup(ResourceGroup1).Location**). If asked for a default project name, use `proj-zava-@lab.labinstance.id`.
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image3.png)
 
 1. If the portal reports that the sub-domain name is already used, add a digit (for example `aif-zava-670298801`). Note the exact name: every later step uses it.
 
 1. Click **Review + create**.
 
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image3.png)
+   ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image4.png)
 
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image4.png)
+1. Click **Create**.
 
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image5.png)
+   ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image5.png)
 
 1. Click the **Cloud Shell** icon (`>_`) at the top of the portal, choose **Bash**, and run the commands below to deploy the embedding model. Capacity 50 (50,000 tokens per minute) lets the load in Exercise 2 run without throttling.
 
@@ -93,23 +257,25 @@ az cognitiveservices account deployment list -g $RG -n $AOAI_NAME \
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image6.png)
 
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image7.png)   
+
 1. Select **Access control (IAM) > + Add > Add role assignment**.
-
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image7.png)
-
-1. Select **Cognitive Services OpenAI User**, then **Next**.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image8.png)
 
-1. Select **Managed identity**, click **+ Select members**, set **Managed identity** to **SQL server**, select **sql-zava-@lab.labinstance.id**, click **Select**, then click **Review + assign** twice. Do not choose Foundry or Foundry project.
+1. Select **Cognitive Services OpenAI User**, then **Next**.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image9.png)
 
+1. Select **Managed identity**, click **+ Select members**, set **Managed identity** to **SQL server**, select **sql-zava-@lab.labinstance.id**, click **Select**, then click **Review + assign** twice. Do not choose Foundry or Foundry project.
+
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image10.png)
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image11.png)
 
 1. Confirm the assignment: on the **Role assignments** tab, click **Refresh** and search for `sql-zava-@lab.labinstance.id`. It must be listed under **Cognitive Services OpenAI User** with type **SQL server**. Wait about 5 minutes before Task 2.
 
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image11.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image12.png)
 
 
 **CLI alternative (Cloud Shell, Bash). In Bash, never leave <…> placeholders: < is read as a file redirect.**
@@ -201,7 +367,7 @@ SELECT VECTORPROPERTY(@v, 'Dimensions') AS dims;
 
 **Preview feature:** **CREATE EXTERNAL MODEL** and **AI_GENERATE_EMBEDDINGS** are in preview for Azure SQL Database at the time of this revision. If either statement fails, create **dbo.get_embedding** from Appendix A instead and continue; every later step works unchanged.
 
-![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image12.png)
+![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image13.png)
 
 ## Exercise 1: Create Vector-Enabled Database Objects
 
@@ -220,7 +386,7 @@ SELECT VECTOR_DISTANCE('cosine',    @a, @b) AS cosine_distance,
 
 Lower distance means more similar for all three metrics. Azure OpenAI embeddings are normalised, so cosine and dot product rank identically; cosine is the usual default.
 
-![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image13.png)
+![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image14.png)
 
 ### Task 2: Create the vector table
 
@@ -245,6 +411,7 @@ CREATE TABLE dbo.ProductEmbeddings (
 - **Stored source text:** **Description** records exactly what was embedded, so re-embedding after a model change is reproducible.
 - **Relational columns alongside the vector:** **Category** and **ListPrice** allow filtering before ranking.
 
+**[IMAGE]**
 
 ### Task 3: Insert source records
 
@@ -271,7 +438,7 @@ SELECT COUNT(*) AS products FROM dbo.ProductEmbeddings;
 
 **Expected result:** about 290 rows with NULL embeddings. A few product models have more than one English description, so the query takes one per product; it also skips products already loaded, so it is safe to rerun.
 
-![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image14.png)
+![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image15.png)
 
 ### Task 4: Apply governance to AI objects
 
@@ -311,7 +478,7 @@ WHERE major_id = OBJECT_ID('dbo.ProductEmbeddings');
 
 Embeddings can leak the meaning of the text they encode, so they inherit the sensitivity of their source. Product data is public; customer or HR text would need the Lab 10 controls. Do not grant **EXECUTE** on the external model to **AiSearchUsers**: the search procedures call it as owner, so applications cannot send arbitrary text to the model.
 
-![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image15.png)
+![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image16.png)
 
 ## Exercise 2: Load and Query Vector Data
 
@@ -342,7 +509,7 @@ END;
 
 If it stops with HTTP 429 (throttling), wait 30 seconds and rerun; it resumes where it stopped. If your deployment capacity is below 50, use `@batch = 5` and `WAITFOR DELAY '00:00:06'`. Each row is still one model request, so in production generate embeddings off the request path, for example from a scheduled job, Azure Functions or a Microsoft Fabric pipeline, and run large re-embeds off-peak.
 
-![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image16.png)
+![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image17.png)
 
 ### Task 2: Validate the load
 
@@ -357,7 +524,7 @@ FROM dbo.ProductEmbeddings;
 
 **Expected result:** **missing = 0**, **dims = 1536**.
 
-![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image17.png)
+![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image18.png)
 
 ### Task 3: Run a semantic search
 
@@ -385,7 +552,7 @@ Rerun with each question below, changing only **@question**, and record the resu
 | carry water on a long ride | | | |
 | a gift for a child learning to ride | | | |
 
-   ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image18.png)
+   ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image19.png)
 
 ### Question2: something to keep my hands warm on cold morning rides
 
@@ -402,7 +569,7 @@ FROM dbo.ProductEmbeddings
 ORDER BY distance;
 ```
 
-   ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image19.png)
+   ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image20.png)
 
 ### Question3: carry water on a long ride
 
@@ -419,7 +586,7 @@ FROM dbo.ProductEmbeddings
 ORDER BY distance;
 ```
 
-   ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image20.png)
+   ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image21.png)
 
 ### Question4: a gift for a child learning to ride
 
@@ -436,7 +603,7 @@ FROM dbo.ProductEmbeddings
 ORDER BY distance;
 ```
 
-   ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image21.png)
+   ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image22.png)
 
 ### Task 4: Find similar products
 
@@ -456,7 +623,7 @@ WHERE ProductName NOT LIKE N'Mountain-200%'
 ORDER BY distance;
 ```
 
-   ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image22.png)
+   ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image23.png)
 
 ## Exercise 3: Perform Hybrid and Semantic Search
 
@@ -474,7 +641,7 @@ CREATE FULLTEXT INDEX ON dbo.ProductEmbeddings (Description LANGUAGE 1033)
 SELECT FULLTEXTCATALOGPROPERTY('ftc_products', 'PopulateStatus') AS populate_status;   -- 0 = done
 ```
 
-   ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image23.png)
+   ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image24.png)
 
 ### Task 2: Compare keyword and semantic search
 
@@ -499,7 +666,7 @@ ORDER BY distance;
 
 >[!Note] Run it again with `keep my hands warm on cold rides`. Keyword search wins on exact model, size and colour; semantic search wins on concepts. Hybrid search combines both.
 
-   ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image24.png)
+   ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image25.png)
 
 ### Task 3: Filtered semantic search
 
@@ -519,7 +686,7 @@ ORDER BY distance;
 
 Relational predicates narrow the candidates before ranking: fewer distance calculations and more relevant results.
 
-   ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image25.png)
+   ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image26.png)
 
 ### Task 4: Hybrid search with Reciprocal Rank Fusion
 
@@ -589,7 +756,7 @@ Compare **vector_rank** and **keyword_rank**: exact-model queries are led by key
 
 **Expected result:** each of the first two searches returns five products with **vector_rank**, **keyword_rank** and **rrf_score**. The governed test returns three products and then a row saying “The SELECT permission was denied…”. That denial is the point of the test: the app can search but cannot read the table. **who_am_i** must show **dbo**; if it shows AssistantApp, run `REVERT;`.
 
-   ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image26.png)
+   ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image27.png)
 
 ### Task 5: Optimize performance for AI and operational workloads
 
@@ -612,7 +779,7 @@ SET STATISTICS TIME OFF;
 
 In the **Messages** tab, compare elapsed times. The model call (A) dominates; the vector ranking (B) takes a few milliseconds for about 290 rows.
 
-   ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image27.png)
+   ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image28.png)
 
 ##### 5b. Cache repeated question vectors
 
@@ -654,7 +821,7 @@ SET STATISTICS TIME OFF;
 
 The second call skips the model entirely. Popular questions in a shopping assistant repeat often, so this removes most latency and cost.
 
-   ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image28.png)
+   ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image29.png)
 
 ##### 5c. Find the most expensive queries with Query Store
 
@@ -679,7 +846,7 @@ ORDER BY SUM(rs.avg_cpu_time * rs.count_executions) DESC;
 
 Find the query containing **VECTOR_DISTANCE**. Its CPU and reads are small, confirming the SQL side scales well at this size; the cost to watch is the model call and the full scan as the table grows.
 
-   ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image29.png)
+   ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image30.png)
 
 ##### 5d. Decide on vector indexing and workload isolation
 
@@ -713,7 +880,7 @@ ORDER BY s.distance;
 
 Newer vector index versions take the number of results from **SELECT TOP (n) WITH APPROXIMATE**; earlier preview releases used **TOP_N** inside **VECTOR_SEARCH** and now return “does not support explicit TOP_N parameter”. If **WITH APPROXIMATE** gives a syntax error on your server, remove those two words. At this size the approximate results should match the exact results from Exercise 2. If your release makes the table read-only while a vector index exists, drop the index before changing data.
 
-   ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image30.png)
+   ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%209/media/image31.png)
 
 ### Cleanup
 
