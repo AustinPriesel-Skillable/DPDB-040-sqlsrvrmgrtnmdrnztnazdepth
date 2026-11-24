@@ -51,7 +51,7 @@ You've just joined Fabrikam Retail as the migration DBA. The company plans to mo
     - **Virtual machine name**: `SQLVM01`
     - **Region**: @lab.CloudResourceGroup(ResourceGroup1).Location
     - **Availability options**: No infrastructure redundancy required
-    - **Size**: click **See all sizes**, search and select **D4s_v7**
+    - **Size**: click **See all sizes**, search and select `D4s_v5`. If v5 is unavailable, search for and select `D4s_v7`.
     - **Username**: `labadmin`
     - **Password**: `P@ssword12345`
     - **Public inbound ports**: Allow selected ports, with **RDP
