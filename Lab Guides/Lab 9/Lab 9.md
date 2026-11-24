@@ -56,7 +56,7 @@ This is the first lab in the series, so you create everything it needs yourself.
 1. On the **Basics** tab, set the following values:
 
     - **Resource group:** @lab.CloudResourceGroup(ResourceGroup1).Name
-    - **Database name:** Enter `sqldb-caldova-@lab.labinstance.id`.
+    - **Database name:** Enter `sqldb-zava-@lab.labinstance.id`.
 
 
 1. Under **Server**, click **Create new**.
@@ -65,7 +65,7 @@ This is the first lab in the series, so you create everything it needs yourself.
 
 1. In the **Create SQL Database Server** pane, set the following values:
 
-    - **Server name:** `sql-caldova-@lab.labinstance.id`
+    - **Server name:** `sql-zava-@lab.labinstance.id`
     - **Location:** @lab.CloudResourceGroup(ResourceGroup1).Location
     - **Authentication method:** Use SQL authentication
     - **Server admin login:** `sqladminuser`
@@ -222,12 +222,12 @@ Each learner needs a Microsoft Foundry resource in the lab resource group. Resou
 RG=ResourceGroup1
 AOAI_NAME=aif-zava-67029880
 
-az cognitiveservices account deployment create -g $RG -n $AOAI_NAME \
-  --deployment-name text-embedding-3-small \
-  --model-name text-embedding-3-small --model-version 1 --model-format OpenAI \
+az cognitiveservices account deployment create -g $RG -n $AOAI_NAME 
+  --deployment-name text-embedding-3-small 
+  --model-name text-embedding-3-small --model-version 1 --model-format OpenAI 
   --sku-name Standard --sku-capacity 50
 
-az cognitiveservices account deployment list -g $RG -n $AOAI_NAME \
+az cognitiveservices account deployment list -g $RG -n $AOAI_NAME 
   --query "[].{deployment:name, model:properties.model.name, state:properties.provisioningState}" -o table
 ```
 
@@ -292,8 +292,8 @@ SQL_MI=$(az sql server show -g $RG -n $SERVER --query identity.principalId -o ts
 AOAI_ID=$(az cognitiveservices account show -g $RG -n $AOAI_NAME --query id -o tsv)
 echo "SQL identity: $SQL_MI"; echo "Foundry resource: $AOAI_ID"
 
-az role assignment create --assignee-object-id $SQL_MI \
-  --assignee-principal-type ServicePrincipal \
+az role assignment create --assignee-object-id $SQL_MI 
+  --assignee-principal-type ServicePrincipal 
   --role "Cognitive Services OpenAI User" --scope $AOAI_ID
 
 az role assignment list --assignee $SQL_MI --scope $AOAI_ID -o table
