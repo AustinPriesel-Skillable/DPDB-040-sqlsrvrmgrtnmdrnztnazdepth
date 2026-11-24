@@ -58,7 +58,7 @@ This is the first of three connected labs. Lab 10 adds governance and data prote
 1. On the **Basics** tab, set the following values:
 
     - **Resource group:** @lab.CloudResourceGroup(ResourceGroup1).Name
-    - **Database name:** Enter `sqldb-Caldova-@lab.labinstance.id`.
+    - **Database name:** Enter `sqldb-caldova-@lab.labinstance.id`.
 
 
 1. Under **Server**, click **Create new**.
@@ -67,7 +67,7 @@ This is the first of three connected labs. Lab 10 adds governance and data prote
 
 1. In the **Create SQL Database Server** pane, set the following values:
 
-    - **Server name:** `sql-Caldova-@lab.labinstance.id`
+    - **Server name:** `sql-caldova-@lab.labinstance.id`
     - **Location:** @lab.CloudResourceGroup(ResourceGroup1).Location
     - **Authentication method:** Use SQL authentication
     - **Server admin login:** `sqladminuser`
@@ -297,13 +297,13 @@ Use **Option A** if SSMS is installed on your lab machine; otherwise, use **Opti
 
 1. On your lab machine, open **SQL Server Management Studio**.
 
-1. In the **Connect to Server** dialog, set **Server name** to `sql-Caldova-@lab.labinstance.id.database.windows.net`
+1. In the **Connect to Server** dialog, set **Server name** to `sql-caldova-@lab.labinstance.id.database.windows.net`
   
 1. Set **Authentication** to **Microsoft Entra MFA**.
   
 1. In **User name**, enter your lab account.
   
-1. Set **Database name** to `sqldb-Caldova-@lab.labinstance.id`.
+1. Set **Database name** to `sqldb-caldova-@lab.labinstance.id`.
 
 1. Click **Connect**.
 
@@ -311,12 +311,12 @@ Use **Option A** if SSMS is installed on your lab machine; otherwise, use **Opti
 
 1. In **Object Explorer**, expand **Databases**.
 
-1. Right-click **sqldb-Caldova** and select **New Query**.
+1. Right-click **sqldb-caldova** and select **New Query**.
 
 
 ##### Option B: Azure portal Query editor (no installation)
 
-1. Open the logical server **sql-Caldova-jd427**. Click **sqldb-Caldova**. In the left menu, expand **Settings** and click **SQL databases**.
+1. Open the logical server **sql-caldova-jd427**. Click **sqldb-caldova**. In the left menu, expand **Settings** and click **SQL databases**.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image44.png)
   
@@ -378,7 +378,7 @@ Use **Option A** if SSMS is installed on your lab machine; otherwise, use **Opti
            (SELECT COUNT(*) FROM SalesLT.Customer) AS customer_rows;
     ```
 
-    **Expected result:** **login_name** is your lab account, **database_user** is **dbo** (you are the Entra admin), **database_name** is **sqldb-Caldova**, and **customer_rows** is 847.
+    **Expected result:** **login_name** is your lab account, **database_user** is **dbo** (you are the Entra admin), **database_name** is **sqldb-caldova**, and **customer_rows** is 847.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image52.png)  
 
@@ -386,7 +386,7 @@ Use **Option A** if SSMS is installed on your lab machine; otherwise, use **Opti
 
     1. In the logical server’s left menu, expand **Settings** and click **SQL databases**.
 
-    1. Click **sqldb-Caldova**.
+    1. Click **sqldb-caldova**.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image53.png)
 
@@ -428,7 +428,7 @@ Use **Option A** if SSMS is installed on your lab machine; otherwise, use **Opti
 1. On the **Basics** tab, set the following values:
 
     - **Resource group:** @lab.CloudResourceGroup(ResourceGroup1).Name
-    - **Name:** Enter `law-Caldova-@lab.labinstance.id`.
+    - **Name:** Enter `law-caldova-@lab.labinstance.id`.
     - **Region:** Select the same region as your server.
 
 
@@ -447,7 +447,7 @@ Use **Option A** if SSMS is installed on your lab machine; otherwise, use **Opti
 
 ### Task 2: Enable server auditing and diagnostics
 
-1. Open the logical server **sql-Caldova-@lab.labinstance.id**.
+1. Open the logical server **sql-caldova-@lab.labinstance.id**.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image66.png)
 
@@ -461,17 +461,17 @@ Use **Option A** if SSMS is installed on your lab machine; otherwise, use **Opti
 
 1. Under **Audit log destination**, select **Log Analytics**.
 
-1. Select the **law-Caldova-jd427** workspace.
+1. Select the **law-caldova-jd427** workspace.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image69.png)
 
 1. Turn on **Enable Auditing of Microsoft support operations**.
 
-1. Send these audit logs to the same Log Analytics workspace, **law-Caldova-@lab.labinstance.id**. Click **Save**.
+1. Send these audit logs to the same Log Analytics workspace, **law-caldova-@lab.labinstance.id**. Click **Save**.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image70.png)
 
-1. Open the database **sqldb-Caldova**.
+1. Open the database **sqldb-caldova**.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image71.png)
 
@@ -497,7 +497,7 @@ Use **Option A** if SSMS is installed on your lab machine; otherwise, use **Opti
 
 1. Under **Destination details**, select **Send to Log Analytics workspace**.
 
-1. Select the **law-Caldova-@lab.labinstance.id** workspace.
+1. Select the **law-caldova-@lab.labinstance.id** workspace.
 
 1. Click **Save**.
 
@@ -537,7 +537,7 @@ Use **Option A** if SSMS is installed on your lab machine; otherwise, use **Opti
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image78.png)
 
-1. Click **law-Caldova-@lab.labinstance.id**.
+1. Click **law-caldova-@lab.labinstance.id**.
 
 1. In the left menu, select **Logs**.
 
@@ -607,7 +607,7 @@ Use **Option A** if SSMS is installed on your lab machine; otherwise, use **Opti
 
 Auditing answers “who did what”. Operational monitoring answers “is the database healthy, and is anything getting worse”.
 
-1. Open the database **sqldb-Caldova**.
+1. Open the database **sqldb-caldova**.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image88.png)
 
@@ -743,7 +743,7 @@ Auditing answers “who did what”. Operational monitoring answers “is the da
 
 ### Task 1: Enable Defender for SQL
 
-1. Open the database **sqldb-Caldova**.
+1. Open the database **sqldb-caldova**.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image106.png)
 
@@ -776,7 +776,7 @@ Auditing answers “who did what”. Operational monitoring answers “is the da
 
 ### Task 2: Run a vulnerability assessment
 
-1. In your query window, connected to **sqldb-Caldova** (not master), run the following code to introduce a deliberate weakness and confirm that it took effect:
+1. In your query window, connected to **sqldb-caldova** (not master), run the following code to introduce a deliberate weakness and confirm that it took effect:
 
 
     ```T-SQL
@@ -792,7 +792,7 @@ Auditing answers “who did what”. Operational monitoring answers “is the da
       AND class = 1; -- object-level permissions
     ```
 
-    **Expected result:** a row with **database_name** **sqldb-Caldova**, **SalesLT**, **Customer**, **SELECT** and **GRANT**. If **database_name** is **master**, or there is no row, select **sqldb-Caldova** in your query tool and run the script again.
+    **Expected result:** a row with **database_name** **sqldb-caldova**, **SalesLT**, **Customer**, **SELECT** and **GRANT**. If **database_name** is **master**, or there is no row, select **sqldb-caldova** in your query tool and run the script again.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image111.png)
 
@@ -877,7 +877,7 @@ Auditing answers “who did what”. Operational monitoring answers “is the da
 
 1. Confirm that the baselined finding (VA2109) shows **Passed per custom baseline**.
 
-    **Where is the firewall rule finding?** Server-level firewall rules are stored in the master database, so the check that flags your **AllowMyPC** rule (VA2065) appears in the server’s (master) results, not in **sqldb-Caldova**. You can view it on the logical server’s **Security > Microsoft Defender for Cloud** page. Baselining it there is optional.
+    **Where is the firewall rule finding?** Server-level firewall rules are stored in the master database, so the check that flags your **AllowMyPC** rule (VA2065) appears in the server’s (master) results, not in **sqldb-caldova**. You can view it on the logical server’s **Security > Microsoft Defender for Cloud** page. Baselining it there is optional.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image123.png)
 
@@ -899,9 +899,9 @@ Auditing answers “who did what”. Operational monitoring answers “is the da
 
 1. Confirm that the following resources exist:
 
-    - **sqldb-Caldova** (SQL database)
-    - **sql-Caldova-@lab.labinstance.id** (SQL server)
-    - **law-Caldova-@lab.labinstance.id** (Log Analytics workspace)
+    - **sqldb-caldova** (SQL database)
+    - **sql-caldova-@lab.labinstance.id** (SQL server)
+    - **law-caldova-@lab.labinstance.id** (Log Analytics workspace)
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2010/media/image120.png)
 
