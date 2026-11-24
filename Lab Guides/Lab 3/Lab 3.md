@@ -50,16 +50,13 @@ By the end of the lab you will be able to:
 **Verify the tools (1 minute).** Open **Windows PowerShell as
 Administrator** and run:
     
-    ```
     sqlcmd -? | Select-Object -First 2  
     bcp -v  
     sqlpackage /version  
     az version --output table
-    ```
-
 
     Each command should print a version.
-
+    
   ![A computer screen with red and blue text Description automatically
   generated](./media/image1.png) 
 
