@@ -51,7 +51,7 @@ You've just joined Fabrikam Retail as the migration DBA. The company plans to mo
     - **Virtual machine name**: `SQLVM01`
     - **Region**: @lab.CloudResourceGroup(ResourceGroup1).Location
     - **Availability options**: No infrastructure redundancy required
-    - **Size**: click **See all sizes**, search and select **D4s_v5**
+    - **Size**: click **See all sizes**, search and select **D4s_v7**
     - **Username**: `labadmin`
     - **Password**: `P@ssword12345`
     - **Public inbound ports**: Allow selected ports, with **RDP
@@ -72,8 +72,9 @@ You've just joined Fabrikam Retail as the migration DBA. The company plans to mo
 
     - **SQL connectivity**: Public (Internet)
     - **Enable SQL Authentication**
-    - **SQL Authentication**: Enable, with **Login name-** `labadmin`
-    and the password – `P@ssword12345`
+    - **SQL Authentication**: Enable
+    - **Login name**: `labadmin`
+    - **Password**: `P@ssword12345`
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image11.png)
 
