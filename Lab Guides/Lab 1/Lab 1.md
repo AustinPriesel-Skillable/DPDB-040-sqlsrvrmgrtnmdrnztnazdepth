@@ -127,12 +127,12 @@ The SQL port is open to the whole internet until you do this. Don't skip it.
 
     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image19.png)
 
-1. Paste it into the **PowerShell Script** box and click **Run**. Leave the page open. When it finishes, the **Output** box ends with **Seed complete**.
+1. Paste the following into the **PowerShell Script** box and click **Run**. Leave the page open. When it finishes, the **Output** box ends with **Seed complete**.
 
-    >[!Note] Make sure to replace the **<your sqladmin password>** with your password (`P@ssword12345`) **at the first line of the script:**
+    >[!Note] Make sure to  **<your sqladmin password>** is correct at the **first line of the script:**
   
     ```
-    $SqlPwd = '<your sqladmin password>'
+    $SqlPwd = 'P@ssword12345'
     $ErrorActionPreference = 'Stop'
     New-Item -ItemType Directory -Path C:\LabSetup, C:\exports -Force | Out-Null
     icacls C:\LabSetup /grant 'Everyone:(OI)(CI)R' | Out-Null
