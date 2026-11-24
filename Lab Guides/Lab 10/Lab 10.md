@@ -1,4 +1,4 @@
-# Lab 9: Secure Azure SQL workloads
+# Lab 10: Secure Azure SQL workloads
 
 ## Introduction
 
