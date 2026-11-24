@@ -57,10 +57,11 @@ Administrator** and run:
     az version --output table
     ```
 
+
     Each command should print a version.
 
-    ![A computer screen with red and blue text Description automatically
-    generated](./media/image1.png)
+  ![A computer screen with red and blue text Description automatically
+  generated](./media/image1.png) 
 
 **If SqlPackage is not recognised or fails with "You must install or
 update .NET".** SqlPackage 170.x runs on .NET 10 and needs the latest
