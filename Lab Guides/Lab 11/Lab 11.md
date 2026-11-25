@@ -349,8 +349,6 @@ SELECT SUSER_SNAME() AS login_name, USER_NAME() AS database_user, DB_NAME() AS d
 
 ## Exercise 1: Configure Data Access Controls
 
-**Duration:** 12 minutes
-
 You layer four controls on `SalesLT.Customer`: roles grant table access, a column DENY hides password data, RLS filters rows per rep, and DDM masks contact details. Users without logins stand in for real Entra users so you can impersonate them.
 
 ### Task 1: Create roles and test users
@@ -479,7 +477,7 @@ Each block below switches to a test user, runs one test, and switches back with 
 
     **Why COUNT(CustomerID) and not COUNT(\*)?** `COUNT(*)` needs SELECT permission on every column of the table, including `PasswordHash`, which SalesReps are denied, so it fails with a PasswordHash permission error. Counting a permitted column such as `CustomerID` returns the same number without touching the denied columns.
 
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2011/media/image60.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2011/media/image95.png)
 
 1. Block B: the password column. Run:
 
@@ -493,7 +491,7 @@ Each block below switches to a test user, runs one test, and switches back with 
 
     **Expected result:** **The SELECT permission was denied on the column 'PasswordHash' of the object 'Customer'** (error 230). The Query editor also shows **Failed to execute the query**; that is the expected outcome.
 
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2011/media/image61.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2011/media/image96.png)
 
 1. Block C: inserting a customer for another rep. Run:
 
@@ -508,7 +506,7 @@ Each block below switches to a test user, runs one test, and switches back with 
 
     **Expected result:** an error stating that **the target object has a block predicate that conflicts with this operation** (error 33504). No row is inserted.
 
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2011/media/image62.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2011/media/image97.png)
 
 1. Block D: what Mgr_Linda can see. Run:
 
@@ -540,7 +538,6 @@ Each block below switches to a test user, runs one test, and switches back with 
     | Mgr_Linda | All customers (847) | Clear text | Readable | Not granted |
     | Entra admin (db_owner) | All customers | Clear text | Readable | Allowed |
 
-    **Evidence to capture:** Query results for both personas, including the two expected errors.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2011/media/image64.png)
 
@@ -548,8 +545,6 @@ Each block below switches to a test user, runs one test, and switches back with 
 
 
 ## Exercise 2: Implement Auditing and Compliance Controls
-
-**Duration:** 13 minutes
 
 You label sensitive columns so audit logs report when they are read, create a ledger table whose history can be cryptographically verified, and set audit retention.
 
@@ -742,16 +737,12 @@ Auditors expect logs to be kept for a defined period and summarised on request.
 
 1. Click **Save > Save as query**, name it **Sensitive data access report**, and click **Save**, so it can be rerun for every audit.
 
-    **Evidence to capture:** Classification list, the ledger view, successful digest verification, the retention value, and both KQL results.
-
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%2011/media/image81.png)
 
     ---
 
 
 ## Exercise 3: Validate Governance Policies
-
-**Duration:** 12 minutes
 
 Azure Policy proves the platform is configured correctly; a validation script proves the data controls behave correctly; a vulnerability re-scan proves the changes introduced no new risk.
 
@@ -866,14 +857,6 @@ Azure Policy proves the platform is configured correctly; a validation script pr
 
 # Clean Up Resources
 
->[!Alert] If you are continuing on to Lab 11, **DO NOT** delete the current resources.
-
-**Duration:** about 5 minutes (after the lab; not part of the 50 minutes)
-
-**Continuing to Lab 11?** Do not clean up; keep all resources. Do this section only when you have finished with the environment. Deletion is permanent: the server, the database and its sample data cannot be recovered.
-
-Delete the policy assignments first, because an assignment made at subscription scope is not removed when you delete your resources. Then delete the three lab resources. Deleting the server also stops Defender for SQL billing for it.
-
 ### Task 1: Delete the policy assignments
 
 ### Option A: Azure portal
@@ -909,14 +892,14 @@ F+=" || contains(displayName,'for unprotected Azure SQL servers')"
 F+=" || contains(displayName,'SQL Database should be running TLS version 1.2')"
 
 # 1. List what will be deleted
-az policy assignment list -g $RG --disable-scope-strict-match \
+az policy assignment list -g $RG --disable-scope-strict-match 
   --query "[?$F].{name:name, scope:scope, policy:displayName}" -o table
 
 # 2. Delete them
-az policy assignment list -g $RG --disable-scope-strict-match \
+az policy assignment list -g $RG --disable-scope-strict-match 
   --query "[?$F].[name, scope]" -o tsv |
 while read NAME SCOPE; do
-  az policy assignment delete --name "$NAME" --scope "$SCOPE" \
+  az policy assignment delete --name "$NAME" --scope "$SCOPE" 
     && echo "Deleted: $NAME"
 done
 ```
