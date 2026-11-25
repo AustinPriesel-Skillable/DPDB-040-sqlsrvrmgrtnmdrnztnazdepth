@@ -308,7 +308,7 @@ By the end of the lab you will be able to:
 
     >[!Note] Replace 0 with the monthly cost.
 
-    Save-Result CostLikeForLike 0 **\# replace 0 with the monthly total**
+    +++Save-Result CostLikeForLike 0+++
 
     ![A screen shot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%204/media/image17.png)
 
