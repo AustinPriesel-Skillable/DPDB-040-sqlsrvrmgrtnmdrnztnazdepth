@@ -269,7 +269,7 @@ AOAI_NAME=aif-zava-67029880
 az cognitiveservices account deployment create -g $RG -n $AOAI_NAME 
   --deployment-name text-embedding-3-small 
   --model-name text-embedding-3-small --model-version 1 --model-format OpenAI 
-  --sku-name Standard --sku-capacity 50
+  --sku-name GlobalStandard --sku-capacity 50
 
 az cognitiveservices account deployment list -g $RG -n $AOAI_NAME 
   --query "[].{deployment:name, model:properties.model.name, state:properties.provisioningState}" -o table
@@ -371,7 +371,7 @@ IF NOT EXISTS (SELECT 1 FROM sys.symmetric_keys WHERE name = '##MS_DatabaseMaste
 GO
 
 -- 3. Credential: the name must equal the endpoint URL
-CREATE DATABASE SCOPED CREDENTIAL [https://aif-zava-<lab-user-number>.openai.azure.com]
+CREATE DATABASE SCOPED CREDENTIAL [https://aif-zava-@lab.labinstance.id.openai.azure.com]
 WITH IDENTITY = 'Managed Identity',
      SECRET = '{"resourceid":"https://cognitiveservices.azure.com"}';
 GO
@@ -379,11 +379,11 @@ GO
 -- 4. Register the embedding deployment as a database object (preview)
 CREATE EXTERNAL MODEL EmbeddingModel
 WITH (
-    LOCATION   = 'https://aif-zava-<lab-user-number>.openai.azure.com/openai/deployments/text-embedding-3-small/embeddings?api-version=2024-10-21',
+    LOCATION   = 'https://aif-zava-@lab.labinstance.id.openai.azure.com/openai/deployments/text-embedding-3-small/embeddings?api-version=2024-10-21',
     API_FORMAT = 'Azure OpenAI',
     MODEL_TYPE = EMBEDDINGS,
     MODEL      = 'text-embedding-3-small',
-    CREDENTIAL = [https://aif-zava-<lab-user-number>.openai.azure.com]
+    CREDENTIAL = [https://aif-zava-@lab.labinstance.id.openai.azure.com]
 );
 GO
 
