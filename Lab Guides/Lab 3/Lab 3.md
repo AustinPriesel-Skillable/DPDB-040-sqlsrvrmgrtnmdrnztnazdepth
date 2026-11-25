@@ -96,13 +96,13 @@ You create ZavaOrders on the local SQL Server with 1,000 customers and 20,000 or
     ```
     New-Item -ItemType Directory -Path C:\Lab3 -Force | Out-Null  
     Set-Location C:\Lab3  
-    $rg = "rg-lab3-\<initials\>"  
+    $rg = "rg-lab3-<initials>"  
     $loc = "centralindia"  
-    $server = "sql-lab3-\<initials\>-" + (Get-Random -Maximum 9999)  
+    $server = "sql-lab3-<initials>-" + (Get-Random -Maximum 9999)  
     $admin = "labadmin"  
     $sqlPass = Read-Host "Enter SQL admin password"  
     $azHost = "$server.database.windows.net"  
-    $server \# note this name down
+    $server
     ```
 
     Enter a strong password when prompted (12+ characters, upper, lower, number, symbol) as `Zava#Lab2026!`
