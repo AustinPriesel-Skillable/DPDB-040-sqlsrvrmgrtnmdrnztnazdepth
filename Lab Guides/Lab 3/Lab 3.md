@@ -52,6 +52,7 @@ By the end of the lab you will be able to:
 1. Install the latest .NET 10 SDK and runtime machine-wide:
 
     `winget install Microsoft.DotNet.SDK.10 --accept-source-agreements --accept-package-agreements`
+   
     `winget install Microsoft.DotNet.Runtime.10 --accept-source-agreements --accept-package-agreements`
     
     ![A screenshot of a computer screen Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image2.png)
@@ -75,6 +76,7 @@ By the end of the lab you will be able to:
 1. Verify:
 
     `dotnet --list-runtimes`
+   
     `sqlpackage /version`
     
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image7.png)
