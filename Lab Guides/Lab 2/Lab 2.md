@@ -139,10 +139,6 @@ You don't sign in to SQLVM01 for this. One Cloud Shell command sends a script to
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image12.png)
 
-1. Open the SQLVM01 SQL Server instance. In the left menu, under **Migration**, select **Assessments**, then click **Run assessment**.
-
-    ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image13.png)
-
 1. Create the Azure Migrate project that reads the same Arc data. Go back to Azure Arc by the top navigation.
 
     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image14.png)
