@@ -183,15 +183,15 @@ You create ZavaOrders on the local SQL Server with 1,000 customers and 20,000 or
     IS_SRVROLEMEMBER('sysadmin') AS IsSysadmin;"
     ```
 
-**Result:** You’ll see that Server is not found or not accessible. Proceed with installing SQL Server first.
+    **Result:** You’ll see that Server is not found or not accessible. Proceed with installing SQL Server first.
+    
+    ![A screenshot of a computer program Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image15.png)
+    
+    **Install SQL Server Developer (only if no MSSQL service exists).** This takes 10 to 20 minutes. The Basic install creates the default instance MSSQLSERVER and adds your Windows account to the sysadmin role, which is what this lab expects.
+    
+    Do not use winget or a previously saved SQL2022-SSEI-Dev.exe: that installer has been retired and stops with "This version of the installer is no longer supported". Use the current installer from Microsoft instead:
 
-![A screenshot of a computer program Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image15.png)
-
-**Install SQL Server Developer (only if no MSSQL service exists).** This takes 10 to 20 minutes. The Basic install creates the default instance MSSQLSERVER and adds your Windows account to the sysadmin role, which is what this lab expects.
-
-Do not use winget or a previously saved SQL2022-SSEI-Dev.exe: that installer has been retired and stops with "This version of the installer is no longer supported". Use the current installer from Microsoft instead:
-
-1. In the VM's browser, open <https://www.microsoft.com/sql-server/sql-server-downloads> . In the **Developer** section, choose **Enterprise Developer** and the installer file will be downloaded.
+1. In the VM's browser, open +++https://www.microsoft.com/sql-server/sql-server-downloads+++. In the **Developer** section, choose **Enterprise Developer** and the installer file will be downloaded.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image16.png)
 
