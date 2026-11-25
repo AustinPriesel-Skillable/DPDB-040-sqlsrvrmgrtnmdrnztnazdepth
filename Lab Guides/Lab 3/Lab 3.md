@@ -32,7 +32,9 @@ By the end of the lab you will be able to:
   rollback path
 
 
-**Verify the tools (1 minute).** Open **Windows PowerShell as Administrator** and run:
+### **Verify the tools (1 minute).** 
+
+1. Open **Windows PowerShell as Administrator** and run:
   
     ```
     sqlcmd -? | Select-Object -First 2  
@@ -40,49 +42,50 @@ By the end of the lab you will be able to:
     sqlpackage /version  
     az version --output table
     ```
-
+    
     Each command should print a version.
-
+    
     ![A computer screen with red and blue text Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image1.png)
 
 **If SqlPackage is not recognised or fails with "You must install or update .NET".** SqlPackage 170.x runs on .NET 10 and needs the latest .NET 10 runtime under **C:\Program Files\dotnet.** Run these steps in order, in the same Administrator PowerShell window:
-- Install the latest .NET 10 SDK and runtime machine-wide:
+
+1. Install the latest .NET 10 SDK and runtime machine-wide:
 
     ```
     winget install Microsoft.DotNet.SDK.10 --accept-source-agreements --accept-package-agreements
     winget install Microsoft.DotNet.Runtime.10 --accept-source-agreements --accept-package-agreements
     ```
-
+    
     ![A screenshot of a computer screen Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image2.png)
-
+    
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image3.png)
-
+    
     ![A computer screen shot of a program Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image4.png)
 
-- Install SqlPackage as a .NET global tool, or update it if it is already there:
+1. Install SqlPackage as a .NET global tool, or update it if it is already there:
 
     `dotnet tool update -g microsoft.sqlpackage`
-
+    
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image5.png)
 
-- Add the tools folder to this window's PATH so you do not need to reopen PowerShell:
+1. Add the tools folder to this window's PATH so you do not need to reopen PowerShell:
 
     `$env:Path += ";$env:USERPROFILE\\dotnet\tools"`
-
+    
     ![A screenshot of a computer program Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image6.png)
 
-- Verify:
+1. Verify:
 
     ```
     dotnet --list-runtimes
     sqlpackage /version
     ```
-
+    
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image7.png)
-
+    
     **Expected result:** the runtime list includes a Microsoft.NETCore.App 10.0.x version at least as high as the one in any earlier error message, and SqlPackage prints its version (for example 170.5.96).
 
-    **Keep one PowerShell window open for the whole lab.** Later steps reuse variables set in Exercise 0. If you close the window, rerun Exercise 0, Task 1 (variables only) before continuing.
+**Keep one PowerShell window open for the whole lab.** Later steps reuse variables set in Exercise 0. If you close the window, rerun Exercise 0, Task 1 (variables only) before continuing.
 
 
 ## Exercise 0: Set up the source and target
