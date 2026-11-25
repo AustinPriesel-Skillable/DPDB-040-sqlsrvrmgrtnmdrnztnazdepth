@@ -170,7 +170,9 @@ You create ZavaOrders on the local SQL Server with 1,000 customers and 20,000 or
 
 ### Task 3: Build the source database
 
-**Before you start, check the source SQL Server.** Every source command in this lab connects to $src, which Task 1 set to localhost (the default instance). Run:
+**Before you start, check the source SQL Server.** Every source command in this lab connects to $src, which Task 1 set to localhost (the default instance). 
+
+1. Run:
 
     ```
     Get-Service | Where-Object { $\_.Name -like 'MSSQL\*' } | Format-Table
@@ -181,9 +183,9 @@ You create ZavaOrders on the local SQL Server with 1,000 customers and 20,000 or
     IS_SRVROLEMEMBER('sysadmin') AS IsSysadmin;"
     ```
 
-    **Result:** You’ll see that Server is not found or not accessible. Proceed with installing SQL Server first.
+**Result:** You’ll see that Server is not found or not accessible. Proceed with installing SQL Server first.
 
-    ![A screenshot of a computer program Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image15.png)
+![A screenshot of a computer program Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image15.png)
 
 **Install SQL Server Developer (only if no MSSQL service exists).** This takes 10 to 20 minutes. The Basic install creates the default instance MSSQLSERVER and adds your Windows account to the sysadmin role, which is what this lab expects.
 
@@ -353,10 +355,11 @@ SqlPackage runs on your VM and connects to both ends directly. DMS is an Azure s
 
 1. Check its state and retrieve the integration runtime authentication keys:
 
-    ```
-    az datamigration sql-service show --resource-group $rg --sql-migration-service-name $dms -o jsonc
-    az datamigration sql-service list-auth-key --resource-group $rg --sql-migration-service-name $dms -o table
-    ```
+  
+    `az datamigration sql-service show --resource-group $rg --sql-migration-service-name $dms -o jsonc`
+   
+    `az datamigration sql-service list-auth-key --resource-group $rg --sql-migration-service-name $dms -o table`
+  
 
     **Expected result:** provisioningState is Succeeded, the integration runtime state shows it still needs registration, and two authentication keys are returned. Treat the keys as secrets.
 
