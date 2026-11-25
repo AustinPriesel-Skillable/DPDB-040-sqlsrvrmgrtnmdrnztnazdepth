@@ -411,8 +411,7 @@ By the end of the lab you will be able to:
 
     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%204/media/image22.png)
 
-    - **Rename it:** in the copy's large name box, clear the text and type
-    **SQLDB-GP-Recommended.**
+    - **Rename it:** in the copy's large name box, clear the text and type +++SQLDB-GP-Recommended+++
 
     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%204/media/image23.png)
 
@@ -447,8 +446,7 @@ By the end of the lab you will be able to:
 
 1. Add the **Managed Instance** item at the recommended size:
 
-    - **Add it:** scroll up to **Search products**, type Azure SQL Managed
-    Instance, and select **Add to estimate** on its tile.
+    - **Add it:** scroll up to **Search products**, type +++Azure SQL Managed Instance+++, and select **Add to estimate** on its tile.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%204/media/image28.png)
 
@@ -465,7 +463,7 @@ By the end of the lab you will be able to:
 
     - **Set these values:**
     - **Region**: Central India
-    - **Type** (or Deployment option): Single instance
+    - **Instance Type** (or Deployment option): Single instance
     - **Service** **Tier**: Next-gen General Purpose, to match MiTier
     (NextGenGeneralPurpose on the test run). If the calculator doesn't list it, choose General Purpose.
 
@@ -613,7 +611,7 @@ The [Azure Retail Prices API](https://learn.microsoft.com/rest/api/cost-manageme
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%204/media/image42.png)
 
-1. **Add it:** scroll up to Search products, type Virtual Machines, and select Add to estimate on its tile. Scroll down to the estimate area, where the new item appears.
+1. **Add it:** Scroll up to Search products, type +++Virtual Machines+++, and select Add to estimate on its tile. Scroll down to the estimate area, where the new item appears.
 
     ![A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%204/media/image43.png)
 
@@ -840,8 +838,7 @@ Zava already owns SQL Server licenses and can commit for 3 years. You apply both
 1. **Save it:**
 
     ```
-    Save-Result CostSqlDbGpAhb 0 \# monthly total of SQLDB-GP-Recommended
-    with Azure Hybrid Benefit
+    Save-Result CostSqlDbGpAhb 0 # monthly total of SQLDB-GP-Recommended with Azure Hybrid Benefit
     ```
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%204/media/image63.png)
