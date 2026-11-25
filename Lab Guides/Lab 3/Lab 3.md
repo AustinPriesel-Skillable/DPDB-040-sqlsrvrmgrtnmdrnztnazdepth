@@ -32,7 +32,9 @@ By the end of the lab you will be able to:
   rollback path
 
 
-**Verify the tools (1 minute).** Open **Windows PowerShell as Administrator** and run:
+### **Verify the tools (1 minute).** 
+
+1. Open **Windows PowerShell as Administrator** and run:
   
     ```
     sqlcmd -? | Select-Object -First 2  
@@ -40,49 +42,48 @@ By the end of the lab you will be able to:
     sqlpackage /version  
     az version --output table
     ```
-
+    
     Each command should print a version.
-
+    
     ![A computer screen with red and blue text Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image1.png)
 
-**If SqlPackage is not recognised or fails with "You must install or update .NET".** SqlPackage 170.x runs on .NET 10 and needs the latest .NET 10 runtime under **C:\Program Files\dotnet.** Run these steps in order, in the same Administrator PowerShell window:
-- Install the latest .NET 10 SDK and runtime machine-wide:
+    **If SqlPackage is not recognised or fails with "You must install or update .NET".** SqlPackage 170.x runs on .NET 10 and needs the latest .NET 10 runtime under **C:\Program Files\dotnet.** Run these steps in order, in the same Administrator PowerShell window:
 
-    ```
-    winget install Microsoft.DotNet.SDK.10 --accept-source-agreements --accept-package-agreements
-    winget install Microsoft.DotNet.Runtime.10 --accept-source-agreements --accept-package-agreements
-    ```
+1. Install the latest .NET 10 SDK and runtime machine-wide:
 
+    `winget install Microsoft.DotNet.SDK.10 --accept-source-agreements --accept-package-agreements`
+   
+    `winget install Microsoft.DotNet.Runtime.10 --accept-source-agreements --accept-package-agreements`
+    
     ![A screenshot of a computer screen Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image2.png)
-
+    
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image3.png)
-
+    
     ![A computer screen shot of a program Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image4.png)
 
-- Install SqlPackage as a .NET global tool, or update it if it is already there:
+1. Install SqlPackage as a .NET global tool, or update it if it is already there:
 
     `dotnet tool update -g microsoft.sqlpackage`
-
+    
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image5.png)
 
-- Add the tools folder to this window's PATH so you do not need to reopen PowerShell:
+1. Add the tools folder to this window's PATH so you do not need to reopen PowerShell:
 
     `$env:Path += ";$env:USERPROFILE\\dotnet\tools"`
-
+    
     ![A screenshot of a computer program Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image6.png)
 
-- Verify:
+1. Verify:
 
-    ```
-    dotnet --list-runtimes
-    sqlpackage /version
-    ```
-
+    `dotnet --list-runtimes`
+   
+    `sqlpackage /version`
+    
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image7.png)
-
+    
     **Expected result:** the runtime list includes a Microsoft.NETCore.App 10.0.x version at least as high as the one in any earlier error message, and SqlPackage prints its version (for example 170.5.96).
 
-    **Keep one PowerShell window open for the whole lab.** Later steps reuse variables set in Exercise 0. If you close the window, rerun Exercise 0, Task 1 (variables only) before continuing.
+**Keep one PowerShell window open for the whole lab.** Later steps reuse variables set in Exercise 0. If you close the window, rerun Exercise 0, Task 1 (variables only) before continuing.
 
 
 ## Exercise 0: Set up the source and target
@@ -169,7 +170,9 @@ You create ZavaOrders on the local SQL Server with 1,000 customers and 20,000 or
 
 ### Task 3: Build the source database
 
-**Before you start, check the source SQL Server.** Every source command in this lab connects to $src, which Task 1 set to localhost (the default instance). Run:
+**Before you start, check the source SQL Server.** Every source command in this lab connects to $src, which Task 1 set to localhost (the default instance). 
+
+1. Run:
 
     ```
     Get-Service | Where-Object { $\_.Name -like 'MSSQL\*' } | Format-Table
@@ -181,14 +184,14 @@ You create ZavaOrders on the local SQL Server with 1,000 customers and 20,000 or
     ```
 
     **Result:** You’ll see that Server is not found or not accessible. Proceed with installing SQL Server first.
-
+    
     ![A screenshot of a computer program Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image15.png)
+    
+    **Install SQL Server Developer (only if no MSSQL service exists).** This takes 10 to 20 minutes. The Basic install creates the default instance MSSQLSERVER and adds your Windows account to the sysadmin role, which is what this lab expects.
+    
+    Do not use winget or a previously saved SQL2022-SSEI-Dev.exe: that installer has been retired and stops with "This version of the installer is no longer supported". Use the current installer from Microsoft instead:
 
-**Install SQL Server Developer (only if no MSSQL service exists).** This takes 10 to 20 minutes. The Basic install creates the default instance MSSQLSERVER and adds your Windows account to the sysadmin role, which is what this lab expects.
-
-Do not use winget or a previously saved SQL2022-SSEI-Dev.exe: that installer has been retired and stops with "This version of the installer is no longer supported". Use the current installer from Microsoft instead:
-
-1. In the VM's browser, open <https://www.microsoft.com/sql-server/sql-server-downloads> . In the **Developer** section, choose **Enterprise Developer** and the installer file will be downloaded.
+1. In the VM's browser, open +++https://www.microsoft.com/sql-server/sql-server-downloads+++. In the **Developer** section, choose **Enterprise Developer** and the installer file will be downloaded.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image16.png)
 
@@ -352,10 +355,11 @@ SqlPackage runs on your VM and connects to both ends directly. DMS is an Azure s
 
 1. Check its state and retrieve the integration runtime authentication keys:
 
-    ```
-    az datamigration sql-service show --resource-group $rg --sql-migration-service-name $dms -o jsonc
-    az datamigration sql-service list-auth-key --resource-group $rg --sql-migration-service-name $dms -o table
-    ```
+  
+    `az datamigration sql-service show --resource-group $rg --sql-migration-service-name $dms -o jsonc`
+   
+    `az datamigration sql-service list-auth-key --resource-group $rg --sql-migration-service-name $dms -o table`
+  
 
     **Expected result:** provisioningState is Succeeded, the integration runtime state shows it still needs registration, and two authentication keys are returned. Treat the keys as secrets.
 
