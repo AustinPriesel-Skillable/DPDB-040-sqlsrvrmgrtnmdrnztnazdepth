@@ -250,7 +250,7 @@ By the end of the lab you will be able to:
 
 ### Task 1: Prepare the estimate while the collector runs
 
-1. Open the [Azure Pricing Calculator](https://azure.microsoft.com/pricing/calculator/) and log in with the given credentials.
+1. Open the +++https://azure.microsoft.com/pricing/calculator/+++ and log in with the given credentials.
 
     ![A screenshot of a login page Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/sqlsrvrmgrtnmdrnztnazdepth/refs/heads/main/Lab%20Guides/Lab%204/media/image8.png)
 
